@@ -17,7 +17,7 @@ function HomePage() {
     <>
       <Box
         sx={{
-          height: "calc(100vh - 126px)",
+          height: "calc(87%)",
           display: "flex",
           flexDirection: "column", // Change to column for vertical centering
           justifyContent: "center", // Center vertically
@@ -40,7 +40,7 @@ function HomePage() {
               flexDirection: "column",
               alignItems: "flex-start", // Align items to the left
               mr: 10, // Add margin right for spacing between text and carousel
-              ml: '85px',
+              ml: '5%',
             }}
           >
             <Paper
@@ -57,7 +57,7 @@ function HomePage() {
             >
               <Typography
                 variant="h6"
-                sx={{ fontWeight: 700, fontSize: "24px" }}
+                sx={{ fontWeight: 700, fontSize: "1.3vw" }}
               >
                 Texas Product Engineering Organization
               </Typography>
@@ -66,7 +66,7 @@ function HomePage() {
               sx={{
                 fontFamily: "DM Sans",
                 fontWeight: 700,
-                fontSize: "64px",
+                fontSize: "3.8vw",
                 mb: 0,
               }}
             >
@@ -76,7 +76,7 @@ function HomePage() {
               sx={{
                 fontFamily: "DM Sans",
                 fontWeight: 700,
-                fontSize: "64px",
+                fontSize: "3.8vw",
                 mb: 4,
               }}
             >
@@ -85,8 +85,8 @@ function HomePage() {
             <Typography
               sx={{
                 fontWeight: 400,
-                fontSize: "24px",
-                maxWidth: "600px",
+                fontSize: "1.3vw",
+                maxWidth: "100%",
                 textAlign: "left",
                 mb: 3,
               }}
@@ -100,7 +100,7 @@ function HomePage() {
               sx={{
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",
-                fontSize: "20px",
+                fontSize: "1.2vw",
                 borderRadius: "10px",
                 padding: "10px 20px",
                 backgroundColor: "#FB8C14",
@@ -130,8 +130,8 @@ function HomePage() {
           >
             <Box
               sx={{
-                width: 500,
-                height: 500,
+                width: "33vw",
+                height: "33vw",
                 backgroundColor: "#D9D9D9",
                 borderRadius: "12px",
               }}

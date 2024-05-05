@@ -14,8 +14,8 @@ function WhatWeDo() {
         justifyContent: "center",
         borderRadius: "12px",
         border: "1px solid #FFFFFF",
-        width: "407px", // Fixed width for each card
-        height: "550px", // Fixed height for uniformity
+        width: "27%", // Fixed width for each card
+        height: "60vh", // Fixed height for uniformity
         backgroundColor: "#202938",
         color: "#FFFFFF",
       }}
@@ -32,13 +32,13 @@ function WhatWeDo() {
       </Box>
       <Typography
         variant="h6"
-        sx={{ fontSize: "24px", fontWeight: "bold", fontWeight: 700 }}
+        sx={{ fontSize: "1.3vw", fontWeight: "bold", fontWeight: 700 }}
       >
         {title}
       </Typography>
       <Typography
         sx={{
-          fontSize: "22px",
+          fontSize: "1.2vw",
           textAlign: "center",
           width: "90%",
           fontWeight: 400,
@@ -73,7 +73,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "DM Sans",
               fontWeight: 700,
-              fontSize: "48px",
+              fontSize: "3.8vw",
               color: theme.palette.secondary.main,
               marginBottom: "20px",
             }}
@@ -85,7 +85,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >
@@ -136,7 +136,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "DM Sans",
               fontWeight: 700,
-              fontSize: "48px",
+              fontSize: "3.8vw",
               color: theme.palette.secondary.main,
               marginBottom: "20px",
             }}
@@ -148,7 +148,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >
@@ -169,7 +169,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >
@@ -180,7 +180,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >
@@ -191,7 +191,7 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >

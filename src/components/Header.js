@@ -46,7 +46,7 @@ function Header() {
       style={{
         background: determineBackground(),
         boxShadow: "none",
-        height: "126px",
+        height: "13%",
       }}
     >
       <Toolbar
