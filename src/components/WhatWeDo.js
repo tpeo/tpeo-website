@@ -1,5 +1,9 @@
 import React from "react";
-import { Box, Typography, useTheme, Paper } from "@mui/material";
+import { Box, Typography, useTheme, Paper, IconButton } from "@mui/material";
+import designIcon from "../assets/designIcon.png";
+import engineeringIcon from "../assets/engineeringIcon.png";
+import productIcon from "../assets/productIcon.png";
+import tenetVector from "../assets/tenetVector.png";
 
 function WhatWeDo() {
   const theme = useTheme();
@@ -23,17 +27,14 @@ function WhatWeDo() {
       <Box
         sx={{
           width: "80%",
-          height: "55%",
+          height: "60%",
           backgroundColor: "#D9D9D9",
           mb: 2,
         }}
       >
         {/* Image placeholder */}
       </Box>
-      <Typography
-        variant="h6"
-        sx={{ fontSize: "1.3vw", fontWeight: "bold", fontWeight: 700 }}
-      >
+      <Typography variant="h6" sx={{ fontSize: "1.3vw", fontWeight: 700 }}>
         {title}
       </Typography>
       <Typography
@@ -47,6 +48,42 @@ function WhatWeDo() {
         {description}
       </Typography>
     </Paper>
+  );
+
+  const IconWithLabel = ({ iconSrc, altText, label }) => (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: 0,
+      }}
+    >
+      <IconButton
+        color="inherit"
+        aria-label={altText}
+        sx={{ padding: 0, margin: 0 }}
+      >
+        <img
+          src={iconSrc}
+          alt={altText}
+          style={{ width: "11.5vh", height: "11.5vh" }}
+        />
+      </IconButton>
+      <Typography
+        variant="h6"
+        sx={{
+          fontFamily: "",
+          fontWeight: 400,
+          fontSize: "1.8vw",
+          color: theme.palette.text.primary,
+          textAlign: "center",
+          mt: 2,
+        }}
+      >
+        {label}
+      </Typography>
+    </Box>
   );
 
   return (
@@ -148,8 +185,9 @@ function WhatWeDo() {
             sx={{
               fontFamily: "",
               fontWeight: 400,
-              fontSize: "1.3vw",
+              fontSize: "1.5vw",
               color: theme.palette.text.primary,
+              paddingY: '20px'
             }}
           >
             At the core of TPEO lies the intersection of Product, Design, and
@@ -159,44 +197,49 @@ function WhatWeDo() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-evenly",
+            justifyContent: "center",
             width: "100%",
             mt: 4,
+            gap: 4,
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "",
-              fontWeight: 400,
-              fontSize: "1.3vw",
-              color: theme.palette.text.primary,
-            }}
-          >
-            Product
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "",
-              fontWeight: 400,
-              fontSize: "1.3vw",
-              color: theme.palette.text.primary,
-            }}
-          >
-            Design
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              fontFamily: "",
-              fontWeight: 400,
-              fontSize: "1.3vw",
-              color: theme.palette.text.primary,
-            }}
-          >
-            Engineering
-          </Typography>
+          <IconWithLabel
+            iconSrc={productIcon}
+            altText="Product Icon"
+            label="Product"
+          />
+
+            <img
+              src={tenetVector}
+              alt="Tenet Vector"
+              style={{ width: "25vw", height: "9vh", marginTop: 0 }}
+            />
+
+          <IconWithLabel
+            iconSrc={designIcon}
+            altText="Design Icon"
+            label="Design"
+          />
+            <img
+              src={tenetVector}
+              alt="Tenet Vector"
+              style={{ width: "25vw", height: "9vh", marginTop: 0 }}
+            />
+          <IconWithLabel
+            iconSrc={engineeringIcon}
+            altText="Engineering Icon"
+            label="Engineering"
+          />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            mt: 4,
+            gap: 4,
+          }}
+        >
         </Box>
       </Box>
     </>

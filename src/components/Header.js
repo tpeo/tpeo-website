@@ -3,7 +3,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Button,
   useTheme,
   Link as MuiLink,
@@ -71,7 +70,7 @@ function Header() {
             aria-label="logo"
             sx={{ padding: 0, marginRight: 2 }}
           >
-            <img src={logo} alt="TPEO Logo" style={{ width: 85, height: 85 }} />
+            <img src={logo} alt="TPEO Logo" style={{ width: '8vh', height: '8vh' }} />
           </IconButton>
         </Link>
         <div
@@ -90,7 +89,7 @@ function Header() {
                 textDecoration: "none",
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",
-                fontSize: "20px",
+                fontSize: "1.2vw",
                 borderRadius: "12px",
                 padding: "10px 10px",
                 backgroundColor:
@@ -119,7 +118,7 @@ function Header() {
             sx={{
               color: theme.palette.text.primary,
               fontFamily: "Helvetica Neue, Arial, sans-serif",
-              fontSize: "20px",
+              fontSize: "1.2vw",
               borderRadius: "10px",
               padding: "10px 20px",
               backgroundColor: "#FB8C14",
