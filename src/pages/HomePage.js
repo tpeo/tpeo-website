@@ -16,6 +16,11 @@ function HomePage() {
     <>
       <Box
         sx={{
+          height: "calc(13%)"
+        }}
+      ></Box>
+      <Box
+        sx={{
           height: "calc(87%)",
           display: "flex",
           flexDirection: "column", // Change to column for vertical centering
@@ -39,7 +44,7 @@ function HomePage() {
               flexDirection: "column",
               alignItems: "flex-start", // Align items to the left
               mr: 10, // Add margin right for spacing between text and carousel
-              ml: '5%',
+              ml: "5%",
             }}
           >
             <Paper
@@ -124,7 +129,7 @@ function HomePage() {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "flex-start",
-              mr: 10
+              mr: 10,
             }}
           >
             <Box

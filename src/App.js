@@ -19,7 +19,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Header />
-        <Divider />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/new-fellow" element={<NewFellowPage />} />
