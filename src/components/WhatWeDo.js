@@ -50,7 +50,7 @@ function WhatWeDo() {
     </Paper>
   );
 
-  const IconWithLabel = ({ iconSrc, altText, label }) => (
+  const IconWithLabel = ({ iconSrc, altText, label, blurb }) => (
     <Box
       sx={{
         display: "flex",
@@ -82,6 +82,18 @@ function WhatWeDo() {
         }}
       >
         {label}
+      </Typography>
+      <Typography
+        variant="body1"
+        sx={{
+          mt: 1,
+          fontSize: "1vw",
+          textAlign: "center",
+          color: theme.palette.text.primary, 
+          maxWidth: "100%" 
+        }}
+      >
+        {blurb}
       </Typography>
     </Box>
   );
@@ -197,16 +209,16 @@ function WhatWeDo() {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
-            width: "100%",
             mt: 4,
-            gap: 4,
+            gap: 0,
+            width: "90vw"
           }}
         >
           <IconWithLabel
             iconSrc={productIcon}
             altText="Product Icon"
             label="Product"
+            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
 
             <img
@@ -219,6 +231,7 @@ function WhatWeDo() {
             iconSrc={designIcon}
             altText="Design Icon"
             label="Design"
+            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
             <img
               src={tenetVector}
@@ -229,6 +242,7 @@ function WhatWeDo() {
             iconSrc={engineeringIcon}
             altText="Engineering Icon"
             label="Engineering"
+            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
         </Box>
         <Box

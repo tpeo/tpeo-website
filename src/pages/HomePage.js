@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import WhatWeDo from "../components/WhatWeDo";
+import WhereWeveWorked from "../components/WhereWeveWorked";
 
 function HomePage() {
   const theme = useTheme();
@@ -57,6 +58,7 @@ function HomePage() {
                 borderRadius: "40px",
                 border: "1px solid white",
                 mb: 1,
+                backgroundColor: "transparent"
               }}
             >
               <Typography
@@ -151,6 +153,7 @@ function HomePage() {
         </Box>
       </Box>
       <WhatWeDo></WhatWeDo>
+      <WhereWeveWorked></WhereWeveWorked>
     </>
   );
 }

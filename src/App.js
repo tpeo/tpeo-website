@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themes/theme";
-import { Divider } from "@mui/material";
 
 // Import pages
 import HomePage from "./pages/HomePage";
@@ -13,6 +12,7 @@ import SponsorsPage from "./pages/SponsorsPage";
 
 // Import components
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +26,7 @@ function App() {
           <Route path="/clients" element={<ClientPage />} />
           <Route path="/sponsors" element={<SponsorsPage />} />
         </Routes>
+        <Footer/>
       </Router>
     </ThemeProvider>
   );

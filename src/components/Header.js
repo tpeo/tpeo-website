@@ -69,7 +69,7 @@ function Header() {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="logo"
+              aria-label="logo" 
               sx={{ padding: 0, marginRight: 2 }}
             >
               <img
@@ -134,7 +134,7 @@ function Header() {
                   "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                 "&:hover": {
                   backgroundColor: "#FB8C14",
-                  opacity: 0.9,
+                  opacity: 0.95,
                   letterSpacing: "0.03em",
                   transition:
                     "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
