@@ -139,7 +139,7 @@ function HomePage() {
                 width: "33vw",
                 height: "33vw",
                 backgroundColor: "#D9D9D9",
-                borderRadius: "12px",
+                borderRadius: "20px",
               }}
             >
               Carousel Placeholder
