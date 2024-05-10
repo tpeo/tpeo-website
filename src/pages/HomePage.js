@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Paper,
-  IconButton,
-  useTheme,
-} from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Box, Typography, Button, Paper, useTheme } from "@mui/material";
 import WhatWeDo from "../components/WhatWeDo";
 import WhereWeveWorked from "../components/WhereWeveWorked";
+import Carousel from "../components/Carousel";
 
 function HomePage() {
   const theme = useTheme();
@@ -17,15 +10,14 @@ function HomePage() {
     <>
       <Box
         sx={{
-          height: "calc(13%)"
+          height: "13%",
         }}
       ></Box>
       <Box
         sx={{
-          height: "calc(87%)",
+          height: "87%",
+          maxWidth: "100vw",
           display: "flex",
-          flexDirection: "column", // Change to column for vertical centering
-          justifyContent: "center", // Center vertically
           background: "linear-gradient(25deg, #EC913E, #1A202C 50%)",
           color: "#FFFFFF",
           padding: "0px 0px",
@@ -34,13 +26,15 @@ function HomePage() {
         <Box
           sx={{
             display: "flex",
+            flexDirection: "row", // Ensure both components are side by side
             justifyContent: "space-between",
-            alignItems: "center", // vertical centering
-            flex: 1,
+            alignItems: "center",
+            width: "100%",
           }}
         >
           <Box
             sx={{
+              width: "50%",
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start", // Align items to the left
@@ -58,7 +52,7 @@ function HomePage() {
                 borderRadius: "40px",
                 border: "1px solid white",
                 mb: 1,
-                backgroundColor: "transparent"
+                backgroundColor: "transparent",
               }}
             >
               <Typography
@@ -127,33 +121,18 @@ function HomePage() {
           </Box>
           <Box
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              mr: 10,
+              width: "40%", // Assign nearly half the width to the carousel
+              flexDirection: "column",
+              justifyContent: "center", // Center the carousel vertically within its container
+              paddingRight: "4%", // Ensure some padding to prevent touching the screen edge
             }}
           >
-            <Box
-              sx={{
-                width: "33vw",
-                height: "33vw",
-                backgroundColor: "#D9D9D9",
-                borderRadius: "20px",
-              }}
-            >
-              Carousel Placeholder
-            </Box>
-            <IconButton
-              sx={{ color: "white", "&:hover": { color: "#FB8C14" }, ml: 2 }}
-            >
-              <ArrowForwardIosIcon />
-            </IconButton>
+            <Carousel />
           </Box>
         </Box>
       </Box>
-      <WhatWeDo></WhatWeDo>
-      <WhereWeveWorked></WhereWeveWorked>
+      <WhatWeDo />
+      <WhereWeveWorked />
     </>
   );
 }
