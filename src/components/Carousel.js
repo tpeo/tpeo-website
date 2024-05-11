@@ -1,11 +1,10 @@
 import React from "react";
-import { Box, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Carousel() {
-  const theme = useTheme(); // using the theme for styling
   const images = [
     { id: 1, url: "https://via.placeholder.com/500", alt: "Carousel Slide 1" },
     { id: 2, url: "https://via.placeholder.com/500", alt: "Carousel Slide 2" },
