@@ -8,12 +8,13 @@ import {
   Link as MuiLink,
   Divider,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
 function Header() {
   const theme = useTheme(); // To access the theme values
   const location = useLocation(); // To get the current path
+  const navigate = useNavigate(); // To programmatically navigate
 
   // Function to determine background style based on the route
   const determineBackground = () => {
@@ -25,7 +26,7 @@ function Header() {
         return `linear-gradient(to right, ${theme.palette.background.default}, ${theme.palette.secondary.main})`;
       case "/clients":
       case "/sponsors":
-        return `linear-gradient(to right, ${theme.palette.secondary.main}, ${theme.palette.background.default})`;
+        return theme.palette.background.default;
       default:
         return theme.palette.background.default;
     }
@@ -34,10 +35,10 @@ function Header() {
   // List of navigation items
   const navItems = [
     { path: "/team", text: "Our Team" },
-    { path: "/new-fellow", text: "For New Fellows" },
-    { path: "/clients", text: "For Clients" },
-    { path: "/sponsors", text: "For Sponsors" },
-    { path: "/join-tpeo", text: "Join TPEO" },
+    { path: "/new-fellow", text: "Fellows" },
+    { path: "/clients", text: "Clients" },
+    { path: "/sponsors", text: "Sponsors" },
+    { path: "/join", text: "Join TPEO" },
   ];
 
   return (
@@ -122,12 +123,13 @@ function Header() {
 
             <Button
               variant="contained"
+              onClick={() => navigate("/contact")} // Navigate to the Contact Us page
               sx={{
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",
                 fontSize: "1.2vw",
                 borderRadius: "10px",
-                padding: "10px 20px",
+                padding: "5px 20px",
                 backgroundColor: "#FB8C14",
                 boxShadow: "none",
                 transition:

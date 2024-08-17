@@ -31,7 +31,7 @@ function TeamPage() {
     <>
     <Box
       sx={{
-        height: "100vh",
+        height: "110vh",
         background: `
           linear-gradient(0deg, rgba(236, 145, 62, 0.7), rgba(236, 145, 62, 0) 65%),
           #1A202C`, // Dark background as the base layer

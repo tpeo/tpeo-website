@@ -3,7 +3,7 @@ import { Box, Typography, Button, Paper, Grid, useTheme } from "@mui/material";
 
 const cohortData = [
   {
-    name: "Alice Johnson",
+    name: "Raina Parikh",
     title: "Director",
     tag: "Directors",
     previousCompany: "Google",
@@ -37,31 +37,7 @@ const cohortData = [
   {
     name: "Alice Johnson",
     title: "Director",
-    tag: "Product",
-    previousCompany: "Google",
-    coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Alice Johnson",
-    title: "Director",
-    tag: "Directors",
-    previousCompany: "Google",
-    coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Alice Johnson",
-    title: "Director",
-    tag: "Directors",
-    previousCompany: "Google",
-    coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
-  },
-  {
-    name: "Alice Johnson",
-    title: "Director",
-    tag: "Directors",
+    tag: "Alumni",
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
     sourceImage: "https://via.placeholder.com/150",
@@ -84,31 +60,37 @@ function CohortCard({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "start",
         borderRadius: "12px",
         border: "1px solid #FFFFFF",
         backgroundColor: "#202938",
         color: "#FFFFFF",
         marginBottom: 2, // Space between rows
+        width: "100%", // Ensure the card uses full width up to the maxWidth
+        height: "48vh",
       }}
     >
       <img
         src={sourceImage}
         alt={name}
         style={{
-          width: "100%",
-          height: "auto",
+          width: "15vw",
+          height: "15vw",
           borderRadius: "12px",
-          marginBottom: 2,
+          marginBottom: "2vh",
+          marginTop: "2vh"
         }}
       />
-      <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: "bold" }}>
+      <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: "700", marginBottom: "1vh" }}>
         {name}
       </Typography>
-      <Typography sx={{ fontSize: "1em" }}>
-        {title} - {previousCompany}
+      <Typography sx={{ fontSize: "1.1em", marginBottom: "2vh" }}>
+        {title}
       </Typography>
-      <Typography sx={{ fontSize: "0.8em", fontStyle: "italic" }}>
+      <Typography sx={{ fontSize: "0.9em" }}>
+        {previousCompany}
+      </Typography>
+      <Typography sx={{ fontSize: "0.9em", fontStyle: "italic" }}>
         {coolFact}
       </Typography>
     </Paper>
@@ -141,8 +123,9 @@ function Cohort() {
         sx={{
           display: "flex",
           justifyContent: "center",
-          marginBottom: 3,
-          gap: "4vw",
+          marginBottom: 5,
+          marginTop: 3,
+          gap: "5vw",
         }}
       >
         {tags.map((tag) => (
@@ -153,8 +136,9 @@ function Cohort() {
             sx={{
               borderRadius: "15px",
               fontFamily: "Helvetica Neue, Arial, sans-serif",
-              fontSize: "1.2vw",
-              padding: "10px 20px",
+              fontSize: "1.3vw",
+              padding: "25px 33px",
+              height: "4vw",
               backgroundColor:
                 activeTag === tag
                   ? "rgba(236, 145, 62, 0.8)"
@@ -176,11 +160,24 @@ function Cohort() {
           </Button>
         ))}
       </Box>
-      <Grid container spacing={2} justifyContent="center">
+      <Grid
+        container
+        spacing={3}
+        justifyContent="center"
+        alignItems="center"
+        sx={{ width: "100%", paddingX: "11vw" }}
+      >
         {cohortData
           .filter((member) => member.tag === activeTag)
           .map((member) => (
-            <Grid item key={member.name} xs={12} sm={6} md={4}>
+            <Grid
+              item
+              key={member.name}
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
               <CohortCard {...member} />
             </Grid>
           ))}
