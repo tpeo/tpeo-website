@@ -13,9 +13,11 @@ import SponsorsPage from "./pages/sponsorsPage/SponsorsPage";
 // Import components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ResponsiveWarning from "./components/ResponsiveWarning";
 import JoinTPEOPage from "./pages/JoinTPEOPage";
 import ContactUsPage from "./pages/ContactUs";
+
+import MobileHeader from "./mobile/MobileHeader";
+import MobileHomePage from "./mobile/MobileHomePage";
 
 function App() {
   const isMobile = window.innerWidth <= 768;
@@ -24,7 +26,13 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         {isMobile ? (
-          <ResponsiveWarning />
+          <>
+            <MobileHeader />
+            <Routes>
+              <Route path="/" element={<MobileHomePage />} />
+              {/* Add other mobile-specific routes here */}
+            </Routes>
+          </>
         ) : (
           <>
             <Header />
