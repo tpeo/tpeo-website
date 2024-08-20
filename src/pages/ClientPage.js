@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Typography, useTheme, Grid, Paper, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useTheme,
+  Grid,
+  Paper,
+  Button,
+  Fade,
+} from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import LockIcon from "@mui/icons-material/Lock";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
@@ -13,7 +21,7 @@ const clients = [
     name: "BiGAUSTIN",
     description: ["Full-stack Website Redesign", "Headless CRM application"],
     tags: ["tag1", "tag2"],
-    image: "https://via.placeholder.com/150", // Replace with actual image URL
+    image: "https://via.placeholder.com/300", // Replace with actual image URL
     link: "/clients", // Replace with actual link
   },
   {
@@ -89,13 +97,13 @@ function ClientCard({ client }) {
           ))}
         </Box>
       </Box>
-      <Box sx={{ flex: 0.4, textAlign: "center" }}>
+      <Box sx={{ flex: 0.4, textAlign: "end" }}>
         <img
           src={client.image}
           alt={client.name}
           style={{
             maxWidth: "100%",
-            maxHeight: "10vh",
+            maxHeight: "20vh",
             objectFit: "contain",
             marginBottom: "1vh",
           }}
@@ -138,89 +146,102 @@ function ClientPage() {
           paddingLeft: "4vw",
         }}
       >
-        <Typography
-          variant="h2"
-          sx={{
-            fontFamily: "DM Sans",
-            fontWeight: 700,
-            fontSize: "4vw",
-            color: theme.palette.text.primary,
-            marginBottom: "2vh",
-            marginTop: "30vh",
-            textAlign: "left",
-            width: "100%",
-            maxWidth: "1200px",
-          }}
-        >
-          clients
-        </Typography>
-        <Typography
-          variant="h5"
-          sx={{
-            fontFamily: "DM Sans",
-            fontWeight: 400,
-            fontSize: "2vw",
-            color: theme.palette.text.primary,
-            marginBottom: "0vh",
-            textAlign: "left",
-            width: "100%",
-            maxWidth: "1200px",
-          }}
-        >
-          we love clients here's the cool stuff we've done for them
-        </Typography>
+        <Fade in={true} timeout={600}>
+          <Typography
+            variant="h2"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 700,
+              fontSize: "4vw",
+              color: theme.palette.text.primary,
+              marginBottom: "2vh",
+              marginTop: "30vh",
+              textAlign: "left",
+              width: "100%",
+              maxWidth: "1200px",
+            }}
+          >
+            clients
+          </Typography>
+        </Fade>
+
+        <Fade in={true} timeout={800}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 400,
+              fontSize: "2vw",
+              color: theme.palette.text.primary,
+              marginBottom: "0vh",
+              textAlign: "left",
+              width: "100%",
+              maxWidth: "1200px",
+            }}
+          >
+            we love clients here's the cool stuff we've done for them
+          </Typography>
+        </Fade>
 
         <Grid
           container
           spacing={4}
           sx={{ maxWidth: "1200px", paddingTop: "12vh" }}
         >
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ color: theme.palette.text.primary }}>
-              <EnergySavingsLeafIcon
-                sx={{ fontSize: "2vw", marginBottom: 2 }}
-              />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Feature 1
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ color: theme.palette.text.primary }}>
-              <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Feature 2
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ color: theme.palette.text.primary }}>
-              <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Feature 3
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box sx={{ color: theme.palette.text.primary }}>
-              <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Collaboration
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
+          <Fade in={true} timeout={1000}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ color: theme.palette.text.primary }}>
+                <EnergySavingsLeafIcon
+                  sx={{ fontSize: "2vw", marginBottom: 2 }}
+                />
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                  Feature 1
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                  Cool stuff
+                </Typography>
+              </Box>
+            </Grid>
+          </Fade>
+          <Fade in={true} timeout={1100}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ color: theme.palette.text.primary }}>
+                <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                  Feature 2
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                  Cool stuff
+                </Typography>
+              </Box>
+            </Grid>
+          </Fade>
+          <Fade in={true} timeout={1200}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ color: theme.palette.text.primary }}>
+                <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                  Feature 3
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                  Cool stuff
+                </Typography>
+              </Box>
+            </Grid>
+          </Fade>
+          <Fade in={true} timeout={1300}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Box sx={{ color: theme.palette.text.primary }}>
+                <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
+                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                  Collaboration
+                </Typography>
+                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                  Cool stuff
+                </Typography>
+              </Box>
+            </Grid>
+          </Fade>
         </Grid>
       </Box>
       <Box
@@ -230,14 +251,14 @@ function ClientPage() {
           flexDirection: "column",
           justifyContent: "start",
           alignItems: "center",
-          height: "110vh",
+          height: "auto",
           paddingX: "3vw", // Add padding here instead of on the Grid
         }}
       >
         <Box
           sx={{
             textAlign: "center",
-            width: "40%",
+            width: "55%",
             marginTop: "10vh",
           }}
         >
@@ -262,7 +283,7 @@ function ClientPage() {
               color: theme.palette.text.primary,
             }}
           >
-            We've worked with numerous local Austin startups, non-profits, and
+            Weve worked with numerous local Austin startups, non-profits, and
             companies to aid them with technological solutions
           </Typography>
         </Box>
@@ -278,9 +299,43 @@ function ClientPage() {
             </Grid>
           ))}
         </Grid>
+        <Box
+          sx={{
+            textAlign: "center",
+            width: "55%",
+            marginTop: "10vh",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 700,
+              fontSize: "3.8vw",
+              color: theme.palette.secondary.main,
+              marginBottom: "20px",
+            }}
+          >
+            What we do
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "",
+              fontWeight: 400,
+              fontSize: "1.3vw",
+              color: theme.palette.text.primary,
+              marginBottom: "2vh",
+            }}
+          >
+            All Client projects are paired with a team of experienced
+            students—Product Manager, Designers, Engineers—who have participated
+            in our rigorous training curriculum.
+          </Typography>
+        </Box>
       </Box>
 
-      <FAQ></FAQ>
+      <FAQ type="Client"></FAQ>
     </>
   );
 }

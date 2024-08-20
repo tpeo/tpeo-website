@@ -8,6 +8,7 @@ const theme = createTheme({
     },
     secondary: {
       main: '#EC913E',  // Secondary color
+      dark: "#FB8C14" // Saturated Orange
     },
     background: {
       default: '#1A202C',  // Default background color
