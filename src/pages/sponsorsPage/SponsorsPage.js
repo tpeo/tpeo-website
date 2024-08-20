@@ -69,10 +69,10 @@ function SponsorsPage() {
                 <EnergySavingsLeafIcon
                   sx={{ fontSize: "2vw", marginBottom: 2 }}
                 />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Events
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Sponsors have the opportunity to host special events with TPEO
                   members
                 </Typography>
@@ -83,10 +83,10 @@ function SponsorsPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Recruiting Benefits
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   At TPEO, we train every member what they need to succeed in
                   the tech world. Sponsors will have access to our resume book.
                 </Typography>
@@ -97,10 +97,10 @@ function SponsorsPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Network
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Sponsors have access to the TPEO network, which includes
                   current members and alumni
                 </Typography>
@@ -111,10 +111,10 @@ function SponsorsPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Design-a-thon
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Sponsors have the opportunity to be featured as a speaker in
                   TPEO’s flagship premiere event
                 </Typography>

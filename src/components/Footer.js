@@ -60,6 +60,11 @@ const Footer = () => {
               width: "12vw",
               height: "auto",
               maxWidth: "100%",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              navigate('/');
+              window.scrollTo(0, 0); // Scroll to the top after navigation
             }}
           />
           <Typography
@@ -95,7 +100,7 @@ const Footer = () => {
               window.scrollTo(0, 0); // Scroll to the top after navigation
             }}
             sx={{
-              width: "16.4.8vw",
+              width: "16.4vw",
               height: "10vh",
               color: theme.palette.text.primary,
               fontFamily: "Helvetica Neue, Arial, sans-serif",
@@ -127,6 +132,7 @@ const Footer = () => {
           >
             <IconButton
               color="inherit"
+              href="mailto:example@example.com"
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -140,6 +146,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
+              href="https://www.instagram.com/txproduct"
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -155,6 +162,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
+              href="https://www.linkedin.com/in/tpeo"
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -168,6 +176,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
+              href="https://www.youtube.com/channel/tpeo"
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -181,6 +190,7 @@ const Footer = () => {
             </IconButton>
             <IconButton
               color="inherit"
+              href="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug"
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",

@@ -194,10 +194,10 @@ function ClientPage() {
                 <EnergySavingsLeafIcon
                   sx={{ fontSize: "2vw", marginBottom: 2 }}
                 />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
                   Feature 1
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>
@@ -207,10 +207,10 @@ function ClientPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary }}>
                 <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Feature 2
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>
@@ -220,10 +220,10 @@ function ClientPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary }}>
                 <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Feature 3
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>
@@ -233,10 +233,10 @@ function ClientPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary }}>
                 <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Collaboration
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>

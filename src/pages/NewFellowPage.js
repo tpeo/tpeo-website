@@ -134,7 +134,7 @@ function NewFellowPage() {
         <Grid
           container
           spacing={4}
-          sx={{ maxWidth: "1200px", paddingTop: "12vh" }}
+          sx={{ width: "85vw", paddingTop: "12vh" }}
         >
           <Fade in={true} timeout={1000}>
             <Grid item xs={12} sm={6} md={3}>
@@ -142,10 +142,10 @@ function NewFellowPage() {
                 <EnergySavingsLeafIcon
                   sx={{ fontSize: "2vw", marginBottom: 2 }}
                 />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Tangible Skills
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>
@@ -155,10 +155,10 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
                   Learn from Experienced Directors & Leads
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Our curriculum will be taught by those who have interned at
                   top programs in their respective fields
                 </Typography>
@@ -169,10 +169,10 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
                   Direct Application
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Cool stuff
                 </Typography>
               </Box>
@@ -182,10 +182,10 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
                   Cross-Collaboration
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
                   Work with other fellows outside of respective disciplines
                 </Typography>
               </Box>
