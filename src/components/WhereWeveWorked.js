@@ -127,7 +127,7 @@ function WhereWeveWorked() {
           >
             <img
               src={companies}
-              alt="Project Image"
+              alt="Project"
               style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </Box>

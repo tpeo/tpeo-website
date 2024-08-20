@@ -1,48 +1,103 @@
 import React, { useState } from "react";
-import { Box, Typography, Button, Paper, Grid, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Paper,
+  Grid,
+  useTheme,
+  Fade,
+} from "@mui/material";
 
 const cohortData = [
   {
     name: "Raina Parikh",
     title: "Director",
-    tag: "Directors",
+    tags: ["Directors"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
     sourceImage: "https://via.placeholder.com/150",
   },
   {
-    name: "Bob Smith",
-    title: "Engineer",
-    tag: "Engineering",
+    name: "Vincent Do",
+    title: "Engineering Director",
+    tags: ["Engineering", "Directors"],
     previousCompany: "Facebook",
     coolFact: "Climbed Everest",
     sourceImage: "https://via.placeholder.com/150",
   },
   {
-    name: "Carol Danvers",
-    title: "Product Manager",
-    tag: "Product",
+    name: "Yash Kukrecha",
+    title: "Engineering Lead",
+    tags: ["Engineering"],
+    previousCompany: "Facebook",
+    coolFact: "Climbed Everest",
+    sourceImage: "https://via.placeholder.com/150",
+  },
+  {
+    name: "Sahil Chowdhury",
+    title: "Engineering Lead",
+    tags: ["Engineering"],
+    previousCompany: "Facebook",
+    coolFact: "Climbed Everest",
+    sourceImage: "https://via.placeholder.com/150",
+  },
+  {
+    name: "Shiv Nikhra",
+    title: "Engineering Lead",
+    tags: ["Engineering"],
+    previousCompany: "Facebook",
+    coolFact: "Climbed Everest",
+    sourceImage: "https://via.placeholder.com/150",
+  },
+  {
+    name: "Nidhi Malpani",
+    title: "Design Director",
+    tags: ["Design", "Directors"],
     previousCompany: "Amazon",
     coolFact: "Runs marathons",
     sourceImage: "https://via.placeholder.com/150",
   },
   {
-    name: "Alice Johnson",
-    title: "Director",
-    tag: "Design",
+    name: "Rumi Sait",
+    title: "Design Lead",
+    tags: ["Design"],
+    previousCompany: "Amazon",
+    coolFact: "Runs marathons",
+    sourceImage: "https://via.placeholder.com/150",
+  },
+  {
+    name: "Esther Uzoma",
+    title: "Design Lead",
+    tags: ["Design"],
+    previousCompany: "Amazon",
+    coolFact: "Runs marathons",
+    sourceImage: "https://via.placeholder.com/150",
+  },
+  {
+    name: "Jessica Yang",
+    title: "Product Director",
+    tags: ["Product", "Directors"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
     sourceImage: "https://via.placeholder.com/150",
   },
   {
-    name: "Alice Johnson",
-    title: "Director",
-    tag: "Alumni",
+    name: "Venkat Sundaram",
+    title: "Product Director",
+    tags: ["Product"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
     sourceImage: "https://via.placeholder.com/150",
   },
-  // Add more members as needed
+  {
+    name: "Jonathan Wong",
+    title: "Previous Product Director",
+    tags: ["Alumni"],
+    previousCompany: "Google",
+    coolFact: "Speaks 5 languages",
+    sourceImage: "https://via.placeholder.com/150",
+  },
 ];
 
 function CohortCard({
@@ -65,8 +120,8 @@ function CohortCard({
         border: "1px solid #FFFFFF",
         backgroundColor: "#202938",
         color: "#FFFFFF",
-        marginBottom: 2, // Space between rows
-        width: "100%", // Ensure the card uses full width up to the maxWidth
+        marginBottom: 2,
+        width: "100%",
         height: "48vh",
       }}
     >
@@ -78,18 +133,19 @@ function CohortCard({
           height: "15vw",
           borderRadius: "12px",
           marginBottom: "2vh",
-          marginTop: "2vh"
+          marginTop: "2vh",
         }}
       />
-      <Typography variant="h6" sx={{ fontSize: "1.2em", fontWeight: "700", marginBottom: "1vh" }}>
+      <Typography
+        variant="h6"
+        sx={{ fontSize: "1.2em", fontWeight: "700", marginBottom: "1vh" }}
+      >
         {name}
       </Typography>
       <Typography sx={{ fontSize: "1.1em", marginBottom: "2vh" }}>
         {title}
       </Typography>
-      <Typography sx={{ fontSize: "0.9em" }}>
-        {previousCompany}
-      </Typography>
+      <Typography sx={{ fontSize: "0.9em" }}>{previousCompany}</Typography>
       <Typography sx={{ fontSize: "0.9em", fontStyle: "italic" }}>
         {coolFact}
       </Typography>
@@ -146,13 +202,12 @@ function Cohort() {
               fontWeight: activeTag === tag ? "bold" : "normal",
               color: "white",
               transition:
-                "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease", // Add transitions for background-color and letter-spacing
+                "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
               "&:hover": {
-                //   fontWeight: "bold",
                 letterSpacing: "0.03em",
                 background: "rgba(236, 145, 62, 0.4)",
                 transition:
-                  "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease", // Ensure transitions apply on hover as well
+                  "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
               },
             }}
           >
@@ -168,18 +223,23 @@ function Cohort() {
         sx={{ width: "100%", paddingX: "11vw" }}
       >
         {cohortData
-          .filter((member) => member.tag === activeTag)
-          .map((member) => (
-            <Grid
-              item
+          .filter((member) => member.tags.includes(activeTag))
+          .map((member, index) => (
+            <Fade
               key={member.name}
-              xs={12}
-              sm={6}
-              md={4}
-              sx={{ display: "flex", justifyContent: "center" }}
+              in={true}
+              timeout={(index + 1) * 300} // Delay each card appearance slightly for a staggered effect
             >
-              <CohortCard {...member} />
-            </Grid>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
+                <CohortCard {...member} />
+              </Grid>
+            </Fade>
           ))}
       </Grid>
     </Box>
