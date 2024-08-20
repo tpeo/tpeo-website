@@ -85,8 +85,8 @@ function HomePage() {
             <Typography
               sx={{
                 fontWeight: 400,
-                fontSize: "1.3vw",
-                maxWidth: "100%",
+                fontSize: "1.5vw",
+                maxWidth: "95%",
                 textAlign: "left",
                 mb: 3,
               }}

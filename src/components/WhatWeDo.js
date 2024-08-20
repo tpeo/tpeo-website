@@ -50,7 +50,7 @@ function WhatWeDo() {
     </Paper>
   );
 
-  const IconWithLabel = ({ iconSrc, altText, label, blurb }) => (
+  const IconWithLabel = ({ iconSrc, altText, label }) => (
     <Box
       sx={{
         display: "flex",
@@ -82,18 +82,6 @@ function WhatWeDo() {
         }}
       >
         {label}
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{
-          mt: 1,
-          fontSize: "1vw",
-          textAlign: "center",
-          color: theme.palette.text.primary, 
-          maxWidth: "100%" 
-        }}
-      >
-        {blurb}
       </Typography>
     </Box>
   );
@@ -172,6 +160,7 @@ function WhatWeDo() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          margin: 0,
         }}
       >
         <Box
@@ -199,7 +188,7 @@ function WhatWeDo() {
               fontWeight: 400,
               fontSize: "1.5vw",
               color: theme.palette.text.primary,
-              paddingY: '20px'
+              paddingY: "20px",
             }}
           >
             At the core of TPEO lies the intersection of Product, Design, and
@@ -210,50 +199,96 @@ function WhatWeDo() {
           sx={{
             display: "flex",
             mt: 4,
-            gap: 0,
-            width: "90vw"
+            gap: "3vw",
+            width: "90vw",
+            justifyContent: "center",
           }}
         >
           <IconWithLabel
             iconSrc={productIcon}
             altText="Product Icon"
             label="Product"
-            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
-
-            <img
-              src={tenetVector}
-              alt="Tenet Vector"
-              style={{ width: "25vw", height: "9vh", marginTop: 0 }}
-            />
-
+          <img
+            src={tenetVector}
+            alt="Tenet Vector"
+            style={{
+              width: "20vw",
+              height: "6vh",
+              marginTop: 0,
+              marginRight: "1vw",
+            }}
+          />
           <IconWithLabel
             iconSrc={designIcon}
             altText="Design Icon"
             label="Design"
-            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
-            <img
-              src={tenetVector}
-              alt="Tenet Vector"
-              style={{ width: "25vw", height: "9vh", marginTop: 0 }}
-            />
+          <img
+            src={tenetVector}
+            alt="Tenet Vector"
+            style={{ width: "20vw", height: "6vh", marginTop: 0 }}
+          />
           <IconWithLabel
             iconSrc={engineeringIcon}
             altText="Engineering Icon"
             label="Engineering"
-            blurb="Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit. Maecenas ultrices, orci vitae convallis mattis."
           />
         </Box>
         <Box
           sx={{
             display: "flex",
-            justifyContent: "center",
-            width: "100%",
+            justifyContent: "space-between",
+            width: "90vw",
             mt: 4,
-            gap: 4,
+            marginRight: "2vw",
           }}
         >
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "1vw",
+              textAlign: "center",
+              color: theme.palette.text.primary,
+              width: "25%",
+            }}
+          >
+            Product fellows will step into the shoes of a Product Manager,
+            learning how to oversee the entire lifecycle of a product from
+            ideation to launch, while collaborating with cross-functional teams
+            to drive product vision and strategy.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "1vw",
+              textAlign: "center",
+              color: theme.palette.text.primary,
+              width: "25%",
+            }}
+          >
+            Design fellows immerse themselves in the end-to-end design process,
+            honing design thinking skills through collaboration and
+            decision-making. We cultivate a real-world growth environment where
+            fellows can push the boundaries of their craft through hands-on
+            experience and teamwork.
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: "1vw",
+              textAlign: "center",
+              color: theme.palette.text.primary,
+              width: "25%",
+            }}
+          >
+            Engineering fellows dive deep into the full-stack development
+            process, mastering the skills needed to build scalable, user-centric
+            applications. From frontend interfaces to backend systems, they
+            collaborate with designers and product managers to bring innovative
+            ideas to life, gaining hands-on experience in real-world engineering
+            challenges.
+          </Typography>
         </Box>
       </Box>
     </>

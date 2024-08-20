@@ -7,7 +7,7 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import companies from "../assets/companies.png";
+import companies from "../assets/companiesNew.png";
 import leaf from "../assets/leaf.png";
 
 function WhereWeveWorked() {
@@ -68,7 +68,7 @@ function WhereWeveWorked() {
           flexDirection: "column",
           alignItems: "center",
           paddingBottom: "10px",
-          height: "140vh"
+          height: "140vh",
         }}
       >
         <Box
@@ -114,11 +114,31 @@ function WhereWeveWorked() {
             color: "#FFFFFF",
           }}
         >
-          <Box sx={{ flexGrow: 1 }}></Box>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              overflow: "hidden",
+              borderTopLeftRadius: "12px",
+              borderTopRightRadius: "12px",
+            }}
+          >
+            <img
+              src={companies}
+              alt="Project Image"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
+          </Box>
           <Divider sx={{ borderColor: "#FFFFFF" }} />
           <Box sx={{ display: "flex", alignItems: "", padding: "10px" }}>
             <IconButton color="inherit" sx={{ padding: "0", margin: "4vh" }}>
-              <img src={leaf} alt="BigAustin Icon" style={{ width: "8vh", height: "8vh" }} />
+              <img
+                src={leaf}
+                alt="BigAustin Icon"
+                style={{ width: "8vh", height: "8vh" }}
+              />
             </IconButton>
             <Box
               sx={{
