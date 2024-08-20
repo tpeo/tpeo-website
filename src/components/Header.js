@@ -16,6 +16,11 @@ function Header() {
   const location = useLocation(); // To get the current path
   const navigate = useNavigate();
 
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0); // Scroll to the top
+  };
+
   // Function to determine background style based on the route
   const determineBackground = () => {
     switch (location.pathname) {
@@ -66,6 +71,7 @@ function Header() {
         >
           <Link
             to="/"
+            onClick={() => handleNavigation("/")}
             style={{
               color: "inherit",
               textDecoration: "none",
@@ -95,8 +101,8 @@ function Header() {
           >
             {navItems.map(({ path, text }) => (
               <MuiLink
-                component={Link}
-                to={path}
+              component="button" // Changed to a button to handle onClick
+              onClick={() => handleNavigation(path)}
                 sx={{
                   textDecoration: "none",
                   color: theme.palette.text.primary,
@@ -108,7 +114,7 @@ function Header() {
                     location.pathname === path
                       ? "rgba(236, 145, 62, 0.4)"
                       : "transparent",
-                  fontWeight: location.pathname === path ? "bold" : "normal",
+                  //fontWeight: location.pathname === path ? "bold" : "normal",
                   letterSpacing:
                     location.pathname === path ? "normal" : "normal",
                   transition:
@@ -128,10 +134,7 @@ function Header() {
 
             <Button
               variant="contained"
-              onClick={() => {
-                navigate("/contact");
-                window.scrollTo(0, 0); // Scroll to the top after navigation
-              }}
+              onClick={() => handleNavigation("/contact")}
               sx={{
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",

@@ -111,6 +111,10 @@ function JoinTPEOPage() {
 
             <Fade in={true} timeout={800}>
               <Button
+                component="a"
+                href="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug" // Replace with your actual Slack invite link
+                target="_blank"
+                rel="noopener noreferrer"
                 variant="outlined"
                 sx={{
                   borderColor: "#FFFFFF",
