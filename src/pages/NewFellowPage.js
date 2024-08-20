@@ -7,6 +7,8 @@ import {
   Paper,
   Button,
   Fade,
+  IconButton,
+  Divider,
 } from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import LockIcon from "@mui/icons-material/Lock";
@@ -17,6 +19,9 @@ import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import companies from "../assets/companiesNew.png";
+import leaf from "../assets/leaf.png";
+import ProjectCard from "../components/ProjectCard";
 
 function NewFellowPage() {
   const theme = useTheme();
@@ -30,6 +35,31 @@ function NewFellowPage() {
     // Add more images if needed
   ];
 
+  const projects = [
+    {
+      id: 1,
+      url: "https://via.placeholder.com/500",
+      alt: "Carousel Slide 1",
+      name: "Hively",
+      brief: "Brief descrtiption of yas",
+    },
+    {
+      id: 2,
+      url: "https://via.placeholder.com/500",
+      alt: "Carousel Slide 2",
+      name: "Cribcritiq",
+      brief: "Brief descrtiption of yas",
+    },
+    {
+      id: 3,
+      url: "https://via.placeholder.com/500",
+      alt: "Carousel Slide 3",
+      name: "Hively",
+      brief: "Brief descrtiption of yas",
+    },
+    // Add more images if needed
+  ];
+
   const settings = {
     dots: false,
     infinite: true, // Consider keeping infinite regardless of image count for a continuous feel
@@ -40,6 +70,15 @@ function NewFellowPage() {
     autoplaySpeed: 3000,
   };
 
+  const settings2 = {
+    dots: false,
+    infinite: true, // Consider keeping infinite regardless of image count for a continuous feel
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+  };
 
   return (
     <>
@@ -230,44 +269,44 @@ function NewFellowPage() {
           </Typography>
         </Box>
         <Box
-            sx={{
-              width: "95%",
-              alignItems: "center",
-              justifyContent: "center",
-              mx: "auto",
-              mt: "5vh",
-              marginBottom: "10vh"
-            }}
-          >
-            <Slider {...settings}>
-              {images.map((image) => (
-                <div key={image.id}>
-                  <Box
-                    sx={{
+          sx={{
+            width: "95%",
+            alignItems: "center",
+            justifyContent: "center",
+            mx: "auto",
+            mt: "5vh",
+            marginBottom: "10vh",
+          }}
+        >
+          <Slider {...settings}>
+            {images.map((image) => (
+              <div key={image.id}>
+                <Box
+                  sx={{
+                    width: "100%",
+                    maxWidth: "26vw",
+                    height: "26vw",
+                    backgroundColor: "#D9D9D9",
+                    borderRadius: "15px",
+                    overflow: "hidden",
+                    margin: "auto",
+                  }}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.alt}
+                    style={{
                       width: "100%",
-                      maxWidth: "26vw",
-                      height: "26vw",
-                      backgroundColor: "#D9D9D9",
-                      borderRadius: "15px",
-                      overflow: "hidden",
-                      margin: "auto",
+                      height: "100%",
+                      objectFit: "cover",
                     }}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Box>
-                </div>
-              ))}
-            </Slider>
-          </Box>
-          <Box
+                  />
+                </Box>
+              </div>
+            ))}
+          </Slider>
+        </Box>
+        <Box
           sx={{
             textAlign: "center",
             width: "80%",
@@ -298,8 +337,100 @@ function NewFellowPage() {
             Here's some cool things that our new fellows have built in the past!
           </Typography>
         </Box>
+        <Box
+          sx={{
+            width: "95%",
+            mx: "auto",
+            mt: "5vh",
+            marginBottom: "10vh",
+            display: "flex",
+            justifyContent: "space-around",
+          }}
+        >
+          <ProjectCard
+            name="Cribcritiq"
+            imageLink={companies} 
+            brief="Project Brief"
+            iconImage={leaf} 
+            height="43" // Height in vh
+            width="40" // Width in vw
+          />
+          <ProjectCard
+            name="Cribcritiq"
+            imageLink={companies} 
+            brief="Project Brief"
+            iconImage={leaf} 
+            height="43" // Height in vh
+            width="40" // Width in vw
+          />
+        </Box>
+        <Box
+          sx={{
+            textAlign: "center",
+            width: "80%",
+            marginTop: "10vh",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 700,
+              fontSize: "3.8vw",
+              color: theme.palette.secondary.main,
+              marginBottom: "20px",
+            }}
+          >
+            Our Engineering Curriculum
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "",
+              fontWeight: 400,
+              fontSize: "1.3vw",
+              color: theme.palette.text.primary,
+            }}
+          >
+            Get a taste of how it is to be a new fellow!
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            width: "95%",
+            mx: "auto",
+            mt: "5vh",
+            marginBottom: "10vh",
+            display: "flex",
+            justifyContent: "space-around",
+          }}
+        >
+          <ProjectCard
+            name="Cribcritiq"
+            imageLink={companies} 
+            brief="Project Brief"
+            iconImage={leaf} 
+            height="35" // Height in vh
+            width="25" // Width in vw
+          />
+          <ProjectCard
+            name="Cribcritiq"
+            imageLink={companies} 
+            brief="Project Brief"
+            iconImage={leaf} 
+            height="35" // Height in vh
+            width="25" // Width in vw
+          />
+          <ProjectCard
+            name="Cribcritiq"
+            imageLink={companies} 
+            brief="Project Brief"
+            iconImage={leaf} 
+            height="35" // Height in vh
+            width="25" // Width in vw
+          />
+        </Box>
       </Box>
-      
 
       <FAQ type="NewFellow"></FAQ>
     </>

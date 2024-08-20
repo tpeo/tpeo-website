@@ -128,7 +128,10 @@ function Header() {
 
             <Button
               variant="contained"
-              onClick={() => navigate("/contact")} 
+              onClick={() => {
+                navigate("/contact");
+                window.scrollTo(0, 0); // Scroll to the top after navigation
+              }}
               sx={{
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",
