@@ -13,9 +13,11 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GroupIcon from "@mui/icons-material/Group";
 import TPEOLogoGradient from "../assets/TPEOLogoGradient.png";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const theme = useTheme();
+  const navigate = useNavigate();
   return (
     <>
       <Divider sx={{ backgroundColor: "white" }} />
@@ -88,6 +90,10 @@ const Footer = () => {
         >
           <Button
             variant="contained"
+            onClick={() => {
+              navigate("/join");
+              window.scrollTo(0, 0); // Scroll to the top after navigation
+            }}
             sx={{
               width: "16.4.8vw",
               height: "10vh",

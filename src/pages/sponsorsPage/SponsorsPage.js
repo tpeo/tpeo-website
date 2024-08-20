@@ -8,7 +8,6 @@ import Sponsors from "./Sponsors";
 import FAQ from "./FAQ";
 
 function SponsorsPage() {
-  
   const theme = useTheme();
 
   return (
@@ -18,7 +17,7 @@ function SponsorsPage() {
           minHeight: "100vh",
           background: `
             linear-gradient(0deg, rgba(26, 32, 44, 0) 0%, rgba(26, 32, 44, 0.8) 60%),
-            linear-gradient(90deg, #1A202C, #EC913E)`, // Adjusted gradient direction and colors
+            linear-gradient(90deg, #1A202C, #EC913E)`,
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
@@ -58,11 +57,13 @@ function SponsorsPage() {
           what we offer to our sponsors!
         </Typography>
 
-        <Grid container spacing={4} sx={{ maxWidth: "1200px", paddingTop: "12vh" }}>
+        <Grid
+          container
+          spacing={4}
+          sx={{ width: "85vw", paddingTop: "12vh" }}
+        >
           <Grid item xs={12} sm={6} md={3}>
-            <Box
-              sx={{ color: theme.palette.text.primary }}
-            >
+            <Box sx={{ color: theme.palette.text.primary }}>
               <EnergySavingsLeafIcon
                 sx={{ fontSize: "2vw", marginBottom: 2 }}
               />
@@ -70,47 +71,44 @@ function SponsorsPage() {
                 Events
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                You'd have the opportunity to host special events etc
+                Sponsors have the opportunity to host special events with TPEO
+                members
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} sm={6} md={3}>
-            <Box
-              sx={{ color: theme.palette.text.primary }}
-            >
+            <Box sx={{ color: theme.palette.text.primary }}>
               <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Feature 2
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box
-              sx={{ color: theme.palette.text.primary }}
-            >
-              <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-              <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                Feature 3
-              </Typography>
-              <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Cool stuff
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={6} md={3}>
-            <Box
-              sx={{ color: theme.palette.text.primary }}
-            >
-              <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
               <Typography variant="h6" sx={{ fontWeight: 700 }}>
                 Recruiting Benefits
               </Typography>
               <Typography variant="body1" sx={{ fontWeight: 400 }}>
-                Here at TPEO, we train every member to acclimatize to the tech
-                world process. You will have access to our resume book.
+                At TPEO, we train every member what they need to succeed in the
+                tech world. Sponsors will have access to our resume book.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Box sx={{ color: theme.palette.text.primary }}>
+              <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                Network
+              </Typography>
+              <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                Sponsors have access to the TPEO network, which includes current
+                members and alumni
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <Box sx={{ color: theme.palette.text.primary }}>
+              <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                Design-a-thon
+              </Typography>
+              <Typography variant="body1" sx={{ fontWeight: 400 }}>
+                Sponsors have the opportunity to be featured as a speaker in
+                TPEO’s flagship premiere event
               </Typography>
             </Box>
           </Grid>

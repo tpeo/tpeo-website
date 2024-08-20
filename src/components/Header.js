@@ -14,7 +14,7 @@ import logo from "../assets/logo.png";
 function Header() {
   const theme = useTheme(); // To access the theme values
   const location = useLocation(); // To get the current path
-  const navigate = useNavigate(); // To programmatically navigate
+  const navigate = useNavigate();
 
   // Function to determine background style based on the route
   const determineBackground = () => {
@@ -23,10 +23,13 @@ function Header() {
       case "/team":
         return theme.palette.background.default;
       case "/new-fellow":
-        return `linear-gradient(to right, ${theme.palette.background.default}, ${theme.palette.secondary.main})`;
+        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`;
       case "/clients":
+        return `linear-gradient(to left, rgba(26, 32, 44, 1) 40%, #825835 100%)`; 
       case "/sponsors":
-        return theme.palette.background.default;
+        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #44372f 100%)`; 
+      case "/contact":
+        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`; 
       default:
         return theme.palette.background.default;
     }
@@ -47,8 +50,10 @@ function Header() {
         position="fixed"
         style={{
           background: determineBackground(),
+          backgroundColor: theme.palette.background.default,
           boxShadow: "none",
           height: "13%",
+          //transition: "background 0.5s ease-in-out",
         }}
       >
         <Toolbar
@@ -70,7 +75,7 @@ function Header() {
             <IconButton
               edge="start"
               color="inherit"
-              aria-label="logo" 
+              aria-label="logo"
               sx={{ padding: 0, marginRight: 2 }}
             >
               <img
@@ -123,7 +128,7 @@ function Header() {
 
             <Button
               variant="contained"
-              onClick={() => navigate("/contact")} // Navigate to the Contact Us page
+              onClick={() => navigate("/contact")} 
               sx={{
                 color: theme.palette.text.primary,
                 fontFamily: "Helvetica Neue, Arial, sans-serif",
@@ -147,7 +152,7 @@ function Header() {
             </Button>
           </div>
         </Toolbar>
-        <Divider sx={{ backgroundColor: "white"}}></Divider>
+        <Divider sx={{ backgroundColor: "white" }}></Divider>
       </AppBar>
     </>
   );

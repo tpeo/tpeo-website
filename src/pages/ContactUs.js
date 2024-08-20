@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, useTheme, Paper } from "@mui/material";
+import { Box, Typography, useTheme, Paper, Fade } from "@mui/material";
 
 function ContactUsPage() {
   const theme = useTheme();
@@ -9,9 +9,7 @@ function ContactUsPage() {
       <Box
         sx={{
           height: "100vh",
-          background: `
-          linear-gradient(270deg, rgba(236, 145, 62, 0.7), rgba(236, 145, 62, 0) 65%),
-          #1A202C`, // Dark background as the base layer
+          background: `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`,
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
@@ -20,40 +18,44 @@ function ContactUsPage() {
         }}
       >
         {/* Main Contact Us Heading */}
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily: "DM Sans",
-            fontWeight: 700,
-            fontSize: "3.5vw",
-            color: theme.palette.text.primary,
-            textAlign: "left",
-            marginBottom: "5vh",
-            paddingTop: "25vh",
-          }}
-        >
-          Contact Us
-        </Typography>
+        <Fade in={true} timeout={600}>
+          <Typography
+            variant="h3"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 700,
+              fontSize: "3.5vw",
+              color: theme.palette.text.primary,
+              textAlign: "left",
+              marginBottom: "5vh",
+              paddingTop: "25vh",
+            }}
+          >
+            Contact Us
+          </Typography>
+        </Fade>
 
         {/* Subheading with Contact Information */}
-        <Typography
-          variant="body1"
-          sx={{
-            fontFamily: "DM Sans",
-            fontWeight: 400,
-            fontSize: "1.5vw",
-            color: theme.palette.text.primary,
-            textAlign: "left",
-            marginBottom: "5vh",
-            lineHeight: "1.5em",
-            width: "45vw",
-          }}
-        >
-          Have any questions as a prospective member? As a previous client? If
-          you are a current or prospective member, client, or sponsor, please
-          reach out to us at:{" "}
-          <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
-        </Typography>
+        <Fade in={true} timeout={900}>
+          <Typography
+            variant="body1"
+            sx={{
+              fontFamily: "DM Sans",
+              fontWeight: 400,
+              fontSize: "1.5vw",
+              color: theme.palette.text.primary,
+              textAlign: "left",
+              marginBottom: "5vh",
+              lineHeight: "1.5em",
+              width: "45vw",
+            }}
+          >
+            Have any questions as a prospective member? As a previous client? If
+            you are a current or prospective member, client, or sponsor, please
+            reach out to us at:{" "}
+            <span style={{ fontWeight: 1000 }}>txproduct@gmail.com</span>
+          </Typography>
+        </Fade>
 
         {/* Cards Section */}
         <Box
@@ -64,115 +66,121 @@ function ContactUsPage() {
           }}
         >
           {/* Members Card */}
-          <Paper
-            sx={{
-              padding: "2vw",
-              backgroundColor: "#202938",
-              borderRadius: "12px",
-              border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-              textAlign: "left",
-              color: theme.palette.text.primary,
-              width: "25%",
-            }}
-          >
-            <Typography
-              variant="h6"
+          <Fade in={true} timeout={1100}>
+            <Paper
               sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                fontSize: "1.5vw",
-                marginBottom: "1vh",
-                marginTop: "2vh",
+                padding: "2vw",
+                backgroundColor: "#202938",
+                borderRadius: "12px",
+                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
+                textAlign: "left",
+                color: theme.palette.text.primary,
+                width: "25%",
               }}
             >
-              Members
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 400,
-                fontSize: "1.2vw",
-              }}
-            >
-              If you are a current or prospective member, reach out to us at:{" "}
-              <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
-            </Typography>
-          </Paper>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 700,
+                  fontSize: "1.5vw",
+                  marginBottom: "1vh",
+                  marginTop: "2vh",
+                }}
+              >
+                Members
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 400,
+                  fontSize: "1.2vw",
+                }}
+              >
+                If you are a current or prospective member, reach out to us at:{" "}
+                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+              </Typography>
+            </Paper>
+          </Fade>
 
           {/* Clients Card */}
-          <Paper
-            sx={{
-              padding: "2vw",
-              backgroundColor: "#202938",
-              borderRadius: "12px",
-              border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-              textAlign: "left",
-              color: theme.palette.text.primary,
-              width: "25%",
-            }}
-          >
-            <Typography
-              variant="h6"
+          <Fade in={true} timeout={1200}>
+            <Paper
               sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                fontSize: "1.5vw",
-                marginBottom: "1vh",
-                marginTop: "2vh",
+                padding: "2vw",
+                backgroundColor: "#202938",
+                borderRadius: "12px",
+                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
+                textAlign: "left",
+                color: theme.palette.text.primary,
+                width: "25%",
               }}
             >
-              Clients
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 400,
-                fontSize: "1.2vw",
-              }}
-            >
-              If you are a current or prospective member, reach out to us at:{" "}
-              <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
-            </Typography>
-          </Paper>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 700,
+                  fontSize: "1.5vw",
+                  marginBottom: "1vh",
+                  marginTop: "2vh",
+                }}
+              >
+                Clients
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 400,
+                  fontSize: "1.2vw",
+                }}
+              >
+                If you are a current or prospective member, reach out to us at:{" "}
+                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+              </Typography>
+            </Paper>
+          </Fade>
 
           {/* Sponsors Card */}
-          <Paper
-            sx={{
-              padding: "2vw",
-              backgroundColor: "#202938",
-              borderRadius: "12px",
-              border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-              textAlign: "left",
-              color: theme.palette.text.primary,
-              width: "25%",
-            }}
-          >
-            <Typography
-              variant="h6"
+          <Fade in={true} timeout={1300}>
+            <Paper
               sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                fontSize: "1.5vw",
-                marginBottom: "1vh",
-                marginTop: "2vh",
+                padding: "2vw",
+                backgroundColor: "#202938",
+                borderRadius: "12px",
+                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
+                textAlign: "left",
+                color: theme.palette.text.primary,
+                width: "25%",
               }}
             >
-              Sponsors
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 400,
-                fontSize: "1.2vw",
-              }}
-            >
-              If you are a current or prospective member, reach out to us at:{" "}
-              <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
-            </Typography>
-          </Paper>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 700,
+                  fontSize: "1.5vw",
+                  marginBottom: "1vh",
+                  marginTop: "2vh",
+                }}
+              >
+                Sponsors
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontFamily: "DM Sans",
+                  fontWeight: 400,
+                  fontSize: "1.2vw",
+                }}
+              >
+                If you are a current or prospective member, reach out to us at:{" "}
+                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+              </Typography>
+            </Paper>
+          </Fade>
         </Box>
       </Box>
     </>

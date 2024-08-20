@@ -130,9 +130,7 @@ function ClientPage() {
       <Box
         sx={{
           height: "100vh",
-          background: `
-            linear-gradient(0deg, rgba(26, 32, 44, 0) 0%, rgba(26, 32, 44, 0.8) 60%),
-            linear-gradient(90deg, #1A202C, #EC913E)`, // Adjusted gradient direction and colors
+          background: `linear-gradient(to left, rgba(26, 32, 44, 1) 40%, #825835 100%)`, // Adjusted gradient direction and colors
           display: "flex",
           flexDirection: "column",
           justifyContent: "start",
