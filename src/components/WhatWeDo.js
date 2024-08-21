@@ -4,6 +4,7 @@ import designIcon from "../assets/designIcon.png";
 import engineeringIcon from "../assets/engineeringIcon.png";
 import productIcon from "../assets/productIcon.png";
 import tenetVector from "../assets/tenetVector.png";
+import noImage from "../assets/noImage.png";
 
 function WhatWeDo() {
   const theme = useTheme();
@@ -32,7 +33,11 @@ function WhatWeDo() {
           mb: 2,
         }}
       >
-        {/* Image placeholder */}
+        <img
+          src={noImage}
+          alt={"noimage?"}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        ></img>
       </Box>
       <Typography variant="h6" sx={{ fontSize: "1.3vw", fontWeight: 700 }}>
         {title}
@@ -166,7 +171,7 @@ function WhatWeDo() {
         <Box
           sx={{
             textAlign: "center",
-            width: "40%",
+            width: "45%",
           }}
         >
           <Typography
@@ -179,7 +184,7 @@ function WhatWeDo() {
               marginBottom: "20px",
             }}
           >
-            Our three tenets
+            Our three fellowships
           </Typography>
           <Typography
             variant="h6"

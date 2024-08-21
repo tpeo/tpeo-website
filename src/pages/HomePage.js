@@ -114,12 +114,12 @@ function HomePage() {
                   padding: "10px 20px",
                   backgroundColor: "#FB8C14",
                   boxShadow: "",
+                  letterSpacing: "normal",
                   transition:
                     "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                   "&:hover": {
                     backgroundColor: "#FB8C14",
                     opacity: 1,
-                    letterSpacing: "0.03em",
                     transition:
                       "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                   },

@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   useTheme,
   Grid,
-  Paper,
-  Button,
   Fade,
+  Modal,
   IconButton,
-  Divider,
 } from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import LockIcon from "@mui/icons-material/Lock";
@@ -22,59 +20,46 @@ import "slick-carousel/slick/slick-theme.css";
 import companies from "../assets/companiesNew.png";
 import leaf from "../assets/leaf.png";
 import ProjectCard from "../components/ProjectCard";
+import CloseIcon from "@mui/icons-material/Close";
 
 function NewFellowPage() {
   const theme = useTheme();
 
-  const images = [
-    { id: 1, url: "https://via.placeholder.com/500", alt: "Carousel Slide 1" },
-    { id: 2, url: "https://via.placeholder.com/500", alt: "Carousel Slide 2" },
-    { id: 3, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    { id: 4, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    { id: 5, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    // Add more images if needed
-  ];
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const projects = [
-    {
-      id: 1,
-      url: "https://via.placeholder.com/500",
-      alt: "Carousel Slide 1",
-      name: "Hively",
-      brief: "Brief descrtiption of yas",
-    },
-    {
-      id: 2,
-      url: "https://via.placeholder.com/500",
-      alt: "Carousel Slide 2",
-      name: "Cribcritiq",
-      brief: "Brief descrtiption of yas",
-    },
-    {
-      id: 3,
-      url: "https://via.placeholder.com/500",
-      alt: "Carousel Slide 3",
-      name: "Hively",
-      brief: "Brief descrtiption of yas",
-    },
-    // Add more images if needed
-  ];
+  const handleOpen = (image) => {
+    setSelectedImage(image);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedImage(null);
+  };
+
+  // Dynamically import all images from the specified directory
+  const importAll = (r) =>
+    r.keys().map((key, index) => ({
+      id: index + 1,
+      url: r(key), 
+      alt: `Carousel Slide ${index + 1}`,
+    }));
+  
+
+  const images = importAll(
+    require.context(
+      "../assets/socialImages",
+      false,
+      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/
+    )
+  );
 
   const settings = {
     dots: false,
     infinite: true, // Consider keeping infinite regardless of image count for a continuous feel
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
-  const settings2 = {
-    dots: false,
-    infinite: true, // Consider keeping infinite regardless of image count for a continuous feel
-    speed: 500,
-    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -131,21 +116,23 @@ function NewFellowPage() {
           </Typography>
         </Fade>
 
-        <Grid
-          container
-          spacing={4}
-          sx={{ width: "85vw", paddingTop: "12vh" }}
-        >
+        <Grid container spacing={4} sx={{ width: "85vw", paddingTop: "12vh" }}>
           <Fade in={true} timeout={1000}>
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <EnergySavingsLeafIcon
                   sx={{ fontSize: "2vw", marginBottom: 2 }}
                 />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 700, fontSize: "1.25vw" }}
+                >
                   Tangible Skills
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 400, fontSize: "0.95vw" }}
+                >
                   Cool stuff
                 </Typography>
               </Box>
@@ -155,10 +142,16 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 700, fontSize: "1.25vw" }}
+                >
                   Learn from Experienced Directors & Leads
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 400, fontSize: "0.95vw" }}
+                >
                   Our curriculum will be taught by those who have interned at
                   top programs in their respective fields
                 </Typography>
@@ -169,10 +162,16 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 700, fontSize: "1.25vw" }}
+                >
                   Direct Application
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 400, fontSize: "0.95vw" }}
+                >
                   Cool stuff
                 </Typography>
               </Box>
@@ -182,10 +181,16 @@ function NewFellowPage() {
             <Grid item xs={12} sm={6} md={3}>
               <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
                 <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: 700, fontSize: "1.25vw" }}
+                >
                   Cross-Collaboration
                 </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ fontWeight: 400, fontSize: "0.95vw" }}
+                >
                   Work with other fellows outside of respective disciplines
                 </Typography>
               </Box>
@@ -280,7 +285,7 @@ function NewFellowPage() {
         >
           <Slider {...settings}>
             {images.map((image) => (
-              <div key={image.id}>
+              <div key={image.id} onClick={() => handleOpen(image.url)}>
                 <Box
                   sx={{
                     width: "100%",
@@ -349,17 +354,17 @@ function NewFellowPage() {
         >
           <ProjectCard
             name="Cribcritiq"
-            imageLink={companies} 
+            imageLink={companies}
             brief="Project Brief"
-            iconImage={leaf} 
+            iconImage={leaf}
             height="43" // Height in vh
             width="40" // Width in vw
           />
           <ProjectCard
             name="Cribcritiq"
-            imageLink={companies} 
+            imageLink={companies}
             brief="Project Brief"
-            iconImage={leaf} 
+            iconImage={leaf}
             height="43" // Height in vh
             width="40" // Width in vw
           />
@@ -407,25 +412,25 @@ function NewFellowPage() {
         >
           <ProjectCard
             name="Cribcritiq"
-            imageLink={companies} 
+            imageLink={companies}
             brief="Project Brief"
-            iconImage={leaf} 
+            iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
           />
           <ProjectCard
             name="Cribcritiq"
-            imageLink={companies} 
+            imageLink={companies}
             brief="Project Brief"
-            iconImage={leaf} 
+            iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
           />
           <ProjectCard
             name="Cribcritiq"
-            imageLink={companies} 
+            imageLink={companies}
             brief="Project Brief"
-            iconImage={leaf} 
+            iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
           />
@@ -433,6 +438,60 @@ function NewFellowPage() {
       </Box>
 
       <FAQ type="NewFellow"></FAQ>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "transparent",
+          backdropFilter: "none",
+        }}
+      >
+        <Fade in={open}>
+          <Box
+            sx={{
+              position: "relative",
+              maxWidth: "90vw",
+              maxHeight: "90vh",
+            }}
+          >
+            <IconButton
+              onClick={handleClose}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                bgcolor: "rgba(0, 0, 0, 0.7)", // Slightly darker background for visibility
+                color: "#fff",
+                borderRadius: "50%",
+                p: 1,
+                "&:hover": {
+                  bgcolor: "rgba(0, 0, 0, 0.7)", // Keep the background solid on hover
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            {selectedImage && (
+              <img
+                src={selectedImage}
+                alt="Selected"
+                style={{
+                  width: "auto",
+                  height: "90vh", // Height fits within the viewport height
+                  maxWidth: "100%", // Ensure width fits within the viewport width
+                  objectFit: "contain",
+                  display: "block",
+                  margin: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            )}
+          </Box>
+        </Fade>
+      </Modal>
     </>
   );
 }

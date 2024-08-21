@@ -132,6 +132,7 @@ function FAQ({ type }) {
       sx={{
         backgroundColor: theme.palette.background.default,
         padding: "5vh 10vw",
+        paddingBottom: "10vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -170,7 +171,7 @@ function FAQ({ type }) {
           sx={{
             width: "80%",
             borderBottom: "1px solid #555", // Subtle line to separate questions
-            padding: "3vh",
+            padding: "4vh",
             marginBottom: "0vh",
           }}
         >
@@ -188,7 +189,7 @@ function FAQ({ type }) {
               sx={{
                 fontFamily: "DM Sans",
                 fontWeight: openIndexes.includes(index) ? 700 : 400,
-                fontSize: "1.8vw",
+                fontSize: "1.2vw",
                 color: "#FFFFFF",
               }}
             >
@@ -208,9 +209,10 @@ function FAQ({ type }) {
               sx={{
                 fontFamily: "DM Sans",
                 fontWeight: 400,
-                fontSize: "1.2vw",
+                fontSize: "1.0vw",
                 color: "#FFFFFF",
                 marginTop: "1vh",
+                width: "90%"
               }}
             >
               {faq.answer}
