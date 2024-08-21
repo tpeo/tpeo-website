@@ -1,7 +1,15 @@
 import React from "react";
 import { Paper, Box, Divider, IconButton, Typography } from "@mui/material";
 
-const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
+const ProjectCard = ({
+  name,
+  imageLink,
+  brief,
+  iconImage,
+  height,
+  width,
+  link,
+}) => {
   return (
     <Paper
       sx={{
@@ -10,9 +18,10 @@ const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
         borderRadius: "12px",
         border: "1px solid #FFFFFF",
         width: `${width}vw`,
-        height: `${height}vh`,
+        height: `auto`,
         backgroundColor: "#202938",
         color: "#FFFFFF",
+        paddingBottom: "3vh",
       }}
     >
       <Box
@@ -23,17 +32,33 @@ const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
           borderTopLeftRadius: "12px",
           borderTopRightRadius: "12px",
           height: `${parseInt(height) * 0.7}vh`, // Scale height for the image box
+          overflow: "hidden", // Ensure the image is contained
         }}
       >
-        <img
-          src={imageLink}
-          alt={name}
+        <a
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
+            display: "block", // Ensure the anchor tag takes up the full space
             width: "100%",
             height: "100%",
-            objectFit: "fill",
+            textDecoration: "none", // Remove underline or other text decorations
           }}
-        />
+        >
+          <img
+            src={imageLink}
+            alt={name}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              borderTopLeftRadius: "12px",
+              borderTopRightRadius: "12px",
+              display: "block", // Ensure the image behaves correctly within the anchor
+            }}
+          />
+        </a>
       </Box>
       <Divider sx={{ borderColor: "#FFFFFF" }} />
       <Box
@@ -43,10 +68,7 @@ const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
           padding: "5px",
         }}
       >
-        <IconButton
-          color="inherit"
-          sx={{ padding: "0", margin: "2vh" }}
-        >
+        <IconButton color="inherit" sx={{ padding: "0", margin: "2vh" }}>
           <img
             src={iconImage}
             alt={`${name} Icon`}
@@ -58,6 +80,7 @@ const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
             display: "flex",
             flexDirection: "column",
             marginLeft: "10px",
+            width: "90%"
           }}
         >
           <Typography
@@ -70,7 +93,7 @@ const ProjectCard = ({ name, imageLink, brief, iconImage, height, width }) => {
           >
             {name}
           </Typography>
-          <Typography variant="body2" sx={{ fontSize: "1.1vw" }}>
+          <Typography variant="body2" sx={{ fontSize: "0.9vw" }}>
             {brief}
           </Typography>
         </Box>

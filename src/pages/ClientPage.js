@@ -79,7 +79,7 @@ function ClientCard({ client }) {
             {line}
           </Typography>
         ))}
-        <Box sx={{ display: "flex", gap: "1vw", marginTop: "1vh" }}>
+        <Box sx={{ display: "flex", gap: "1vw", marginTop: "5vh" }}>
           {client.tags.map((tag, index) => (
             <Button
               key={index}
@@ -88,8 +88,9 @@ function ClientCard({ client }) {
                 backgroundColor: "#D9D9D9",
                 color: "#000",
                 fontSize: "0.8vw",
-                padding: "0.5vw 1vw",
+                padding: "0.2vw 2vw",
                 textTransform: "none",
+                fontWeight: 700,
               }}
             >
               {tag}

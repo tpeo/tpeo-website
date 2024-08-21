@@ -21,6 +21,7 @@ import companies from "../assets/companiesNew.png";
 import leaf from "../assets/leaf.png";
 import ProjectCard from "../components/ProjectCard";
 import CloseIcon from "@mui/icons-material/Close";
+import Hively from "../assets/Hively.png";
 
 function NewFellowPage() {
   const theme = useTheme();
@@ -42,10 +43,9 @@ function NewFellowPage() {
   const importAll = (r) =>
     r.keys().map((key, index) => ({
       id: index + 1,
-      url: r(key), 
+      url: r(key),
       alt: `Carousel Slide ${index + 1}`,
     }));
-  
 
   const images = importAll(
     require.context(
@@ -353,20 +353,28 @@ function NewFellowPage() {
           }}
         >
           <ProjectCard
-            name="Cribcritiq"
-            imageLink={companies}
-            brief="Project Brief"
+            name="Hively"
+            imageLink={Hively}
+            brief="Hively is a collaborative platform designed to simplify the college housing search. 
+            It empowers students to sign up, form groups, and create research cards that make comparing and contrasting housing options a breeze. 
+            With features tailored for collaborative decision-making, Hively turns the daunting task of finding the perfect home into an organized 
+            and streamlined experience, helping students discover their ideal living arrangements with ease."
             iconImage={leaf}
             height="43" // Height in vh
             width="40" // Width in vw
+            link="https://hively.vercel.app/"
           />
           <ProjectCard
-            name="Cribcritiq"
+            name="Thoughtless"
             imageLink={companies}
-            brief="Project Brief"
+            brief="Thoughtless is a site that reimagines the way student organizations can grade applications. It comes with a built-in spreadsheet 
+            crawler to process information from third-party application platforms and organizes applicant data in an aesthetic, easy-to-read format. 
+            With integrated scoring and comments, graders can easily provide accurate scores and thoughtful feedback. Thoughtless is how we will make 
+            the application review process a whole lot easier."
             iconImage={leaf}
             height="43" // Height in vh
             width="40" // Width in vw
+            link="https://thoughtless-teal.vercel.app/"
           />
         </Box>
         <Box
@@ -411,7 +419,7 @@ function NewFellowPage() {
           }}
         >
           <ProjectCard
-            name="Cribcritiq"
+            name="Notion Embed"
             imageLink={companies}
             brief="Project Brief"
             iconImage={leaf}
@@ -419,7 +427,7 @@ function NewFellowPage() {
             width="25" // Width in vw
           />
           <ProjectCard
-            name="Cribcritiq"
+            name="Youtube Embed"
             imageLink={companies}
             brief="Project Brief"
             iconImage={leaf}
@@ -427,7 +435,7 @@ function NewFellowPage() {
             width="25" // Width in vw
           />
           <ProjectCard
-            name="Cribcritiq"
+            name="Slack Embed"
             imageLink={companies}
             brief="Project Brief"
             iconImage={leaf}

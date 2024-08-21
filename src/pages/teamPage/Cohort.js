@@ -8,6 +8,8 @@ import {
   useTheme,
   Fade,
 } from "@mui/material";
+import noImage from "../../assets/noImage.png";
+import RainaParikh from "../../assets/fellowImages/RainaParikh.png";
 
 const cohortData = [
   {
@@ -16,7 +18,7 @@ const cohortData = [
     tags: ["Directors"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: RainaParikh,
   },
   {
     name: "Vincent Do",
@@ -24,7 +26,7 @@ const cohortData = [
     tags: ["Engineering", "Directors"],
     previousCompany: "Facebook",
     coolFact: "Climbed Everest",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Yash Kukrecha",
@@ -32,7 +34,7 @@ const cohortData = [
     tags: ["Engineering"],
     previousCompany: "Facebook",
     coolFact: "Climbed Everest",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Sahil Chowdhury",
@@ -40,7 +42,7 @@ const cohortData = [
     tags: ["Engineering"],
     previousCompany: "Facebook",
     coolFact: "Climbed Everest",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Shiv Nikhra",
@@ -48,7 +50,7 @@ const cohortData = [
     tags: ["Engineering"],
     previousCompany: "Facebook",
     coolFact: "Climbed Everest",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Nidhi Malpani",
@@ -56,7 +58,7 @@ const cohortData = [
     tags: ["Design", "Directors"],
     previousCompany: "Amazon",
     coolFact: "Runs marathons",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Rumi Sait",
@@ -64,7 +66,7 @@ const cohortData = [
     tags: ["Design"],
     previousCompany: "Amazon",
     coolFact: "Runs marathons",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Esther Uzoma",
@@ -72,7 +74,7 @@ const cohortData = [
     tags: ["Design"],
     previousCompany: "Amazon",
     coolFact: "Runs marathons",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Jessica Yang",
@@ -80,7 +82,7 @@ const cohortData = [
     tags: ["Product", "Directors"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Venkat Sundaram",
@@ -88,7 +90,7 @@ const cohortData = [
     tags: ["Product"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
   {
     name: "Jonathan Wong",
@@ -96,7 +98,7 @@ const cohortData = [
     tags: ["Alumni"],
     previousCompany: "Google",
     coolFact: "Speaks 5 languages",
-    sourceImage: "https://via.placeholder.com/150",
+    sourceImage: noImage,
   },
 ];
 

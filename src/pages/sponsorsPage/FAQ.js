@@ -188,7 +188,7 @@ function FAQ({ type }) {
               variant="h6"
               sx={{
                 fontFamily: "DM Sans",
-                fontWeight: openIndexes.includes(index) ? 700 : 400,
+                fontWeight: 700,
                 fontSize: "1.2vw",
                 color: "#FFFFFF",
               }}

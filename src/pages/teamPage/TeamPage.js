@@ -1,21 +1,49 @@
-import React, { useEffect } from "react";
-import { Box, Typography, useTheme, Fade } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Typography,
+  useTheme,
+  Fade,
+  Modal,
+  IconButton,
+} from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cohort from "./Cohort";
+import CloseIcon from "@mui/icons-material/Close";
 
 function TeamPage() {
   const theme = useTheme();
 
-  const images = [
-    { id: 1, url: "https://via.placeholder.com/500", alt: "Carousel Slide 1" },
-    { id: 2, url: "https://via.placeholder.com/500", alt: "Carousel Slide 2" },
-    { id: 3, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    { id: 4, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    { id: 5, url: "https://via.placeholder.com/500", alt: "Carousel Slide 3" },
-    // Add more images if needed
-  ];
+  // Dynamically import all images from the specified directory
+  const importAll = (r) =>
+    r.keys().map((key, index) => ({
+      id: index + 1,
+      url: r(key),
+      alt: `Carousel Slide ${index + 1}`,
+    }));
+
+  const images = importAll(
+    require.context(
+      "../../assets/socialImages",
+      false,
+      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/
+    )
+  );
+
+  const [open, setOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleOpen = (image) => {
+    setSelectedImage(image);
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedImage(null);
+  };
 
   const settings = {
     dots: false,
@@ -76,7 +104,7 @@ function TeamPage() {
           >
             <Slider {...settings}>
               {images.map((image) => (
-                <div key={image.id}>
+                <div key={image.id} onClick={() => handleOpen(image.url)}>
                   <Box
                     sx={{
                       width: "100%",
@@ -105,6 +133,60 @@ function TeamPage() {
         </Fade>
       </Box>
       <Cohort></Cohort>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "transparent",
+          backdropFilter: "none",
+        }}
+      >
+        <Fade in={open}>
+          <Box
+            sx={{
+              position: "relative",
+              maxWidth: "90vw",
+              maxHeight: "90vh",
+            }}
+          >
+            <IconButton
+              onClick={handleClose}
+              sx={{
+                position: "absolute",
+                top: 8,
+                right: 8,
+                bgcolor: "rgba(0, 0, 0, 0.7)", // Slightly darker background for visibility
+                color: "#fff",
+                borderRadius: "50%",
+                p: 1,
+                "&:hover": {
+                  bgcolor: "rgba(0, 0, 0, 0.7)", // Keep the background solid on hover
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            {selectedImage && (
+              <img
+                src={selectedImage}
+                alt="Selected"
+                style={{
+                  width: "auto",
+                  height: "90vh", // Height fits within the viewport height
+                  maxWidth: "100%", // Ensure width fits within the viewport width
+                  objectFit: "contain",
+                  display: "block",
+                  margin: "auto",
+                  borderRadius: "12px",
+                }}
+              />
+            )}
+          </Box>
+        </Fade>
+      </Modal>
     </>
   );
 }
