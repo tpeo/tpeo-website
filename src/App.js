@@ -18,6 +18,7 @@ import ContactUsPage from "./pages/ContactUs";
 
 import MobileHeader from "./mobile/MobileHeader";
 import MobileHomePage from "./mobile/MobileHomePage";
+import MobileFooter from "./mobile/MobileFooter";
 
 function App() {
   const isMobile = window.innerWidth <= 768;
@@ -27,11 +28,12 @@ function App() {
       <Router>
         {isMobile ? (
           <>
-            <MobileHeader />
+            {/* <MobileHeader /> */}
             <Routes>
               <Route path="/" element={<MobileHomePage />} />
               {/* Add other mobile-specific routes here */}
             </Routes>
+            <MobileFooter></MobileFooter>
           </>
         ) : (
           <>

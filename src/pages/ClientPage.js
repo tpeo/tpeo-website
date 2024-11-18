@@ -28,7 +28,7 @@ const clients = [
     link: 'https://medium.com/@channurichinmayee/tpeo-showcase-this-is-how-we-redesigned-a-nonprofits-website-end-to-end-86a36864844c',
   },
   {
-    name: 'Austin Pets Alive (APA)',
+    name: 'Austin Pets Alive',
     description: ['Process Optimization', 'Volunteer Management System'],
     tags: ['Animal Shelter', 'Process Improvement'],
     image: apaImage,
