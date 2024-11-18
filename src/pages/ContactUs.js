@@ -40,7 +40,6 @@ function ContactUsPage() {
           <Typography
             variant="body1"
             sx={{
-              fontFamily: "DM Sans",
               fontWeight: 400,
               fontSize: "1.5vw",
               color: theme.palette.text.primary,
@@ -93,13 +92,12 @@ function ContactUsPage() {
               <Typography
                 variant="body1"
                 sx={{
-                  fontFamily: "DM Sans",
                   fontWeight: 400,
                   fontSize: "1.2vw",
                 }}
               >
                 If you are a current or prospective member, reach out to us at:{" "}
-                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
               </Typography>
             </Paper>
           </Fade>
@@ -132,12 +130,11 @@ function ContactUsPage() {
               <Typography
                 variant="body1"
                 sx={{
-                  fontFamily: "DM Sans",
                   fontWeight: 400,
                   fontSize: "1.2vw",
                 }}
               >
-                If you are a current or prospective member, reach out to us at:{" "}
+                For communication post handover, tech maintenance, or potential clients:{" "}
                 <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
               </Typography>
             </Paper>
@@ -171,12 +168,11 @@ function ContactUsPage() {
               <Typography
                 variant="body1"
                 sx={{
-                  fontFamily: "DM Sans",
                   fontWeight: 400,
                   fontSize: "1.2vw",
                 }}
               >
-                If you are a current or prospective member, reach out to us at:{" "}
+                For current/future sponsor communication, partnerships director reaching out:{" "}
                 <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
               </Typography>
             </Paper>

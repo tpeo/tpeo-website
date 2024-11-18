@@ -5,7 +5,6 @@ import {
   useTheme,
   Grid,
   Paper,
-  Button,
   Fade,
 } from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
@@ -13,37 +12,34 @@ import LockIcon from "@mui/icons-material/Lock";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import FAQ from "./sponsorsPage/FAQ";
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
+import ClientProcess from '../assets/vectorImages/ClientProcess.png'
+import thoughtlessImage from '../assets/projectImages/Thoughtless.png'
+import apaImage from '../assets/projectImages/apa_logo.png'
+import bigAustinImage from '../assets/projectImages/bigaustin_logo.png'
 
 // Sample JSON data for the clients
 const clients = [
   {
-    name: "BiGAUSTIN",
-    description: ["Full-stack Website Redesign", "Headless CRM application"],
-    tags: ["tag1", "tag2"],
-    image: "https://via.placeholder.com/300", // Replace with actual image URL
-    link: "/clients", // Replace with actual link
+    name: 'BiGAUSTIN',
+    description: ['Full-stack Website Redesign', 'Headless CRM application'],
+    tags: ['Non-profit', 'Website Redesign'],
+    image: bigAustinImage,
+    link: 'https://medium.com/@channurichinmayee/tpeo-showcase-this-is-how-we-redesigned-a-nonprofits-website-end-to-end-86a36864844c',
   },
   {
-    name: "Austin Public Library",
-    description: ["Full-stack Website Redesign", "Headless CRM application"],
-    tags: ["tag"],
-    image: "https://via.placeholder.com/150", // Replace with actual image URL
-    link: "/clients", // Replace with actual link
+    name: 'Austin Pets Alive (APA)',
+    description: ['Process Optimization', 'Volunteer Management System'],
+    tags: ['Animal Shelter', 'Process Improvement'],
+    image: apaImage,
+    link: 'https://medium.com/@channurichinmayee/tpeo-showcase-heres-how-we-optimized-an-austin-animal-shelter-s-end-to-end-processes-890e2d94e866',
   },
   {
-    name: "Project Name",
-    description: ["Full-stack Website Redesign", "Headless CRM application"],
-    tags: ["tag1", "tag2"],
-    image: "https://via.placeholder.com/150", // Replace with actual image URL
-    link: "/clients", // Replace with actual link
-  },
-  {
-    name: "Bee Cave Arts Foundation",
-    description: ["Full-stack Website Redesign", "Headless CRM application"],
-    tags: ["tag"],
-    image: "https://via.placeholder.com/150", // Replace with actual image URL
-    link: "/clients", // Replace with actual link
+    name: 'Thoughtless',
+    description: ['Product Development', 'Community Engagement Platform'],
+    tags: ['Student Organization', 'Product Launch'],
+    image: thoughtlessImage,
+    link: 'https://medium.com/@channurichinmayee/introducing-thoughtless-a-product-for-student-orgs-made-by-a-student-org-cc8a643b9fa0',
   },
 ];
 
@@ -51,83 +47,74 @@ const clients = [
 function ClientCard({ client }) {
   const theme = useTheme();
 
+  const handleCardClick = () => {
+    window.open(client.link, '_blank');
+  };
+
   return (
-    <Paper
-      sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "2vw",
-        backgroundColor: "#202938",
-        borderRadius: "12px",
-        border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-        width: "38vw",
-        height: "23vh",
-        color: theme.palette.text.primary,
-      }}
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      style={{ width: '38vw', margin: '1rem', cursor: 'pointer' }}
+      onClick={handleCardClick}
     >
-      <Box sx={{ flex: 1 }}>
-        <Typography variant="h6" sx={{ fontWeight: 700, marginBottom: "1vh" }}>
-          {client.name}
-        </Typography>
-        {client.description.map((line, index) => (
-          <Typography
-            key={index}
-            variant="body2"
-            sx={{ marginBottom: "0.5vh" }}
-          >
-            {line}
+      <Paper
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '2vw',
+          backgroundColor: '#202938',
+          borderRadius: '12px',
+          border: '2px solid rgba(255, 255, 255, 0.2)',
+          color: theme.palette.text.primary,
+          height: '23vh',
+        }}
+        elevation={3}
+      >
+        {/* Content Section */}
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h5" sx={{ fontWeight: 700, marginBottom: '1vh' }}>
+            {client.name}
           </Typography>
-        ))}
-        <Box sx={{ display: "flex", gap: "1vw", marginTop: "5vh" }}>
-          {client.tags.map((tag, index) => (
-            <Button
-              key={index}
-              variant="contained"
-              sx={{
-                backgroundColor: "#D9D9D9",
-                color: "#000",
-                fontSize: "0.8vw",
-                padding: "0.2vw 2vw",
-                textTransform: "none",
-                fontWeight: 700,
-              }}
-            >
-              {tag}
-            </Button>
+          {client.description.map((line, index) => (
+            <Typography key={index} variant="body1" sx={{ marginBottom: '0.5vh' }}>
+              {line}
+            </Typography>
           ))}
+          <Box sx={{ display: 'flex', gap: '1vw', marginTop: '2vh', flexWrap: 'wrap' }}>
+            {client.tags.map((tag, index) => (
+              <Box
+                key={index}
+                sx={{
+                  backgroundColor: '#D9D9D9',
+                  color: '#000',
+                  fontSize: '0.8vw',
+                  padding: '0.2vw 1vw',
+                  borderRadius: '5px',
+                  fontWeight: 700,
+                }}
+              >
+                {tag}
+              </Box>
+            ))}
+          </Box>
         </Box>
-      </Box>
-      <Box sx={{ flex: 0.4, textAlign: "end" }}>
-        <img
-          src={client.image}
-          alt={client.name}
-          style={{
-            maxWidth: "100%",
-            maxHeight: "20vh",
-            objectFit: "contain",
-            marginBottom: "1vh",
-          }}
-        />
-        <Button
-          component={Link}
-          to={client.link}
-          sx={{
-            backgroundColor: theme.palette.primary.main,
-            color: "#FFFFFF",
-            borderRadius: "50%",
-            padding: "10px",
-            minWidth: "3vw",
-            minHeight: "3vw",
-            "&:hover": {
-              backgroundColor: theme.palette.primary.dark,
-            },
-          }}
-        >
-          &gt;
-        </Button>
-      </Box>
-    </Paper>
+        {/* Image Section */}
+        <Box sx={{ flexShrink: 0, marginLeft: '1vw' }}>
+          <img
+            src={client.image}
+            alt={client.name}
+            style={{
+              width: '100%',
+              maxWidth: "16vw",
+              height: 'auto',
+              maxHeight: '18vh',
+              objectFit: 'contain',
+            }}
+          />
+        </Box>
+      </Paper>
+    </motion.div>
   );
 }
 
@@ -170,7 +157,6 @@ function ClientPage() {
           <Typography
             variant="h5"
             sx={{
-              fontFamily: "DM Sans",
               fontWeight: 400,
               fontSize: "2vw",
               color: theme.palette.text.primary,
@@ -180,7 +166,7 @@ function ClientPage() {
               maxWidth: "1200px",
             }}
           >
-            we love clients here's the cool stuff we've done for them
+            We love our nonprofit partners! Here's the cool stuff we have done for them
           </Typography>
         </Fade>
 
@@ -196,10 +182,10 @@ function ClientPage() {
                   sx={{ fontSize: "2vw", marginBottom: 2 }}
                 />
                 <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
-                  Feature 1
+                  Active Communication
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                  Cool stuff
+                Personal point of contact for each client project!
                 </Typography>
               </Box>
             </Grid>
@@ -209,10 +195,10 @@ function ClientPage() {
               <Box sx={{ color: theme.palette.text.primary }}>
                 <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
                 <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                  Feature 2
+                Pro-Bono Work
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                  Cool stuff
+                Access to experienced engineers, designers, and product managers
                 </Typography>
               </Box>
             </Grid>
@@ -222,10 +208,10 @@ function ClientPage() {
               <Box sx={{ color: theme.palette.text.primary }}>
                 <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
                 <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                  Feature 3
+                Build for the Client
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                  Cool stuff
+                Projects are designed with the client in mind. We integrate out work  to existing systems
                 </Typography>
               </Box>
             </Grid>
@@ -235,10 +221,10 @@ function ClientPage() {
               <Box sx={{ color: theme.palette.text.primary }}>
                 <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
                 <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                  Collaboration
+                Built for the Future
                 </Typography>
                 <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                  Cool stuff
+                Our projects are designed and built to last
                 </Typography>
               </Box>
             </Grid>
@@ -278,13 +264,12 @@ function ClientPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
             }}
           >
-            Weve worked with numerous local Austin startups, non-profits, and
+            We've worked with numerous local Austin startups, non-profits, and
             companies to aid them with technological solutions
           </Typography>
         </Box>
@@ -322,7 +307,6 @@ function ClientPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
@@ -334,6 +318,15 @@ function ClientPage() {
             in our rigorous training curriculum.
           </Typography>
         </Box>
+        <Box
+            component="img"
+            src={ClientProcess}
+            alt="Our Process"
+            sx={{
+              width: "100%",
+              marginY: "5vh",
+            }}
+          />
       </Box>
 
       <FAQ type="Client"></FAQ>

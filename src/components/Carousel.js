@@ -1,14 +1,12 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Fade,
-  Modal,
-  IconButton,
-} from "@mui/material";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { useState } from 'react';
+import { Box, Modal, IconButton } from '@mui/material';
+import Slider from 'react-slick';
+import CloseIcon from '@mui/icons-material/Close';
+import ImageWithLoader from './ImageWithLoader';
+import { motion, AnimatePresence } from 'framer-motion';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function Carousel() {
   // Dynamically import all images from the specified directory
@@ -21,9 +19,9 @@ function Carousel() {
 
   const images = importAll(
     require.context(
-      "../assets/socialImages",
+      '../assets/socialImages',
       false,
-      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/
+      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/i
     )
   );
 
@@ -47,7 +45,7 @@ function Carousel() {
     slidesToShow: 1,
     slidesToScroll: 1,
     centerMode: true,
-    centerPadding: "5%", // Responsive padding on the sides of the center image
+    centerPadding: '5%', // Responsive padding on the sides of the center image
   };
 
   return (
@@ -55,23 +53,31 @@ function Carousel() {
       <Slider {...settings}>
         {images.map((image) => (
           <div key={image.id} onClick={() => handleOpen(image.url)}>
-            <Box
-              sx={{
-                width: "100%", // Changed width from 33vw to 100% of the slide content
-                maxWidth: "33vw", // Use maxWidth to control the visible area
-                height: "33vw", // Maintaining height based on viewport width
-                backgroundColor: "#D9D9D9",
-                borderRadius: "20px",
-                overflow: "hidden",
-                margin: "auto", // Center the box in the slide if necessary
+            <motion.div
+              whileHover={{ scale: 1.01 }} // Hover animation
+              transition={{ type: 'spring', stiffness: 200 }}
+              style={{
+                width: '100%',
+                maxWidth: '33vw',
+                height: '33vw',
+                margin: 'auto',
+                position: 'relative',
+                borderRadius: '20px',
+                overflow: 'hidden',
+                cursor: 'pointer',
               }}
             >
-              <img
+              <ImageWithLoader
                 src={image.url}
                 alt={image.alt}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: '20px',
+                }}
               />
-            </Box>
+            </motion.div>
           </div>
         ))}
       </Slider>
@@ -79,55 +85,75 @@ function Carousel() {
         open={open}
         onClose={handleClose}
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "transparent",
-          backdropFilter: "none",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          bgcolor: 'transparent',
+          backdropFilter: 'none',
         }}
       >
-        <Fade in={open}>
-          <Box
-            sx={{
-              position: "relative",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-            }}
-          >
-            <IconButton
-              onClick={handleClose}
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                bgcolor: "rgba(0, 0, 0, 0.7)", // Slightly darker background for visibility
-                color: "#fff",
-                borderRadius: "50%",
-                p: 1,
-                "&:hover": {
-                  bgcolor: "rgba(0, 0, 0, 0.7)", // Keep the background solid on hover
-                },
-              }}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              key="modal"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
             >
-              <CloseIcon />
-            </IconButton>
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{
-                  width: "auto",
-                  height: "90vh", // Height fits within the viewport height
-                  maxWidth: "100%", // Ensure width fits within the viewport width
-                  objectFit: "contain",
-                  display: "block",
-                  margin: "auto",
-                  borderRadius: "12px",
+              <Box
+                sx={{
+                  position: 'relative',
+                  maxWidth: '90vw',
+                  maxHeight: '90vh',
                 }}
-              />
-            )}
-          </Box>
-        </Fade>
+              >
+                <IconButton
+                  onClick={handleClose}
+                  sx={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    bgcolor: 'rgba(0, 0, 0, 0.7)',
+                    color: '#fff',
+                    borderRadius: '50%',
+                    p: 1,
+                    '&:hover': {
+                      bgcolor: 'rgba(0, 0, 0, 0.7)',
+                    },
+                  }}
+                >
+                  <CloseIcon />
+                </IconButton>
+                {selectedImage && (
+                  <motion.div
+                    whileHover={{ scale: 1.01 }} // Hover animation on modal image
+                    transition={{ type: 'spring', stiffness: 100 }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <ImageWithLoader
+                      src={selectedImage}
+                      alt="Selected"
+                      style={{
+                        width: 'auto',
+                        height: '90vh',
+                        maxWidth: '100%',
+                        objectFit: 'contain',
+                        display: 'block',
+                        margin: 'auto',
+                        borderRadius: '12px',
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </Box>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Modal>
     </>
   );

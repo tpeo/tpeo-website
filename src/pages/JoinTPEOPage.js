@@ -4,14 +4,14 @@ import {
   Typography,
   Button,
   useTheme,
-  Fade,
   Modal,
-  IconButton,
 } from "@mui/material";
 import Slider from "react-slick";
+import { motion, AnimatePresence } from "framer-motion";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import CloseIcon from "@mui/icons-material/Close";
+
+const MotionButton = motion(Button);
 
 function JoinTPEOPage() {
   const theme = useTheme();
@@ -28,7 +28,7 @@ function JoinTPEOPage() {
     require.context(
       "../assets/socialImages",
       false,
-      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/
+      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/i
     )
   );
 
@@ -77,7 +77,11 @@ function JoinTPEOPage() {
             mt: "25vh",
           }}
         >
-          <Fade in={true} timeout={600}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <Box>
               <Typography
                 variant="h4"
@@ -103,10 +107,10 @@ function JoinTPEOPage() {
                   marginTop: "1vh",
                 }}
               >
-                We're like really cool! Join usss
+                We're like really cool! Join us
               </Typography>
             </Box>
-          </Fade>
+          </motion.div>
 
           {/* Buttons Section */}
           <Box
@@ -117,9 +121,15 @@ function JoinTPEOPage() {
               alignItems: "flex-end", // Align items to the right
             }}
           >
-            <Fade in={true} timeout={700}>
-              <Button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <MotionButton
                 variant="contained"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
                 sx={{
                   backgroundColor: theme.palette.primary.main,
                   color: "#FFFFFF",
@@ -135,16 +145,22 @@ function JoinTPEOPage() {
                 }}
               >
                 Link to Application
-              </Button>
-            </Fade>
+              </MotionButton>
+            </motion.div>
 
-            <Fade in={true} timeout={800}>
-              <Button
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <MotionButton
                 component="a"
                 href="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug" // Replace with your actual Slack invite link
                 target="_blank"
                 rel="noopener noreferrer"
                 variant="outlined"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
                 sx={{
                   borderColor: "#FFFFFF",
                   color: "#FFFFFF",
@@ -163,11 +179,15 @@ function JoinTPEOPage() {
                 }}
               >
                 Join our Slack!
-              </Button>
-            </Fade>
+              </MotionButton>
+            </motion.div>
           </Box>
         </Box>
-        <Fade in={true} timeout={1100}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.1 }}
+        >
           <Box
             sx={{
               width: "80%",
@@ -180,15 +200,17 @@ function JoinTPEOPage() {
             <Slider {...settings}>
               {images.map((image) => (
                 <div key={image.id} onClick={() => handleOpen(image.url)}>
-                  <Box
-                    sx={{
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                    style={{
                       width: "100%",
                       maxWidth: "25vw",
                       height: "25vw",
-                      backgroundColor: "#D9D9D9",
                       borderRadius: "15px",
                       overflow: "hidden",
                       margin: "auto",
+                      cursor: "pointer",
                     }}
                   >
                     <img
@@ -200,12 +222,12 @@ function JoinTPEOPage() {
                         objectFit: "cover",
                       }}
                     />
-                  </Box>
+                  </motion.div>
                 </div>
               ))}
             </Slider>
           </Box>
-        </Fade>
+        </motion.div>
       </Box>
       <Modal
         open={open}
@@ -218,48 +240,51 @@ function JoinTPEOPage() {
           backdropFilter: "none",
         }}
       >
-        <Fade in={open}>
-          <Box
-            sx={{
-              position: "relative",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-            }}
-          >
-            <IconButton
-              onClick={handleClose}
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                bgcolor: "rgba(0, 0, 0, 0.7)", // Slightly darker background for visibility
-                color: "#fff",
-                borderRadius: "50%",
-                p: 1,
-                "&:hover": {
-                  bgcolor: "rgba(0, 0, 0, 0.7)", // Keep the background solid on hover
-                },
-              }}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              key="modal"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
             >
-              <CloseIcon />
-            </IconButton>
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{
-                  width: "auto",
-                  height: "90vh", // Height fits within the viewport height
-                  maxWidth: "100%", // Ensure width fits within the viewport width
-                  objectFit: "contain",
-                  display: "block",
-                  margin: "auto",
-                  borderRadius: "12px",
+              <Box
+                sx={{
+                  position: "relative",
+                  maxWidth: "90vw",
+                  maxHeight: "90vh",
                 }}
-              />
-            )}
-          </Box>
-        </Fade>
+              >
+                {selectedImage && (
+                  <motion.div
+                    whileHover={{ scale: 1.02 }} // Hover animation on modal image
+                    transition={{ type: "spring", stiffness: 200 }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={selectedImage}
+                      alt="Selected"
+                      style={{
+                        width: "auto",
+                        height: "90vh", // Height fits within the viewport height
+                        maxWidth: "100%", // Ensure width fits within the viewport width
+                        objectFit: "contain",
+                        display: "block",
+                        margin: "auto",
+                        borderRadius: "12px",
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </Box>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Modal>
     </>
   );

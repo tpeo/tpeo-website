@@ -3,13 +3,18 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Button,
   useTheme,
-  Link as MuiLink,
   Divider,
+  Button,
+  Link as MuiLink,
 } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/vectorImages/logo.png";
+import { motion } from "framer-motion";
+
+// Create motion-enabled components
+const MotionLink = motion(MuiLink);
+const MotionButton = motion(Button);
 
 function Header() {
   const theme = useTheme(); // To access the theme values
@@ -30,11 +35,11 @@ function Header() {
       case "/new-fellow":
         return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`;
       case "/clients":
-        return `linear-gradient(to left, rgba(26, 32, 44, 1) 40%, #825835 100%)`; 
+        return `linear-gradient(to left, rgba(26, 32, 44, 1) 40%, #825835 100%)`;
       case "/sponsors":
-        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #44372f 100%)`; 
+        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #44372f 100%)`;
       case "/contact":
-        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`; 
+        return `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`;
       default:
         return theme.palette.background.default;
     }
@@ -55,10 +60,9 @@ function Header() {
         position="fixed"
         style={{
           background: determineBackground(),
-          backgroundColor: theme.palette.background.default,
+          //backgroundColor: theme.palette.background.default, // Removed to fix console warning
           boxShadow: "none",
           height: "13%",
-          //transition: "background 0.5s ease-in-out",
         }}
       >
         <Toolbar
@@ -100,13 +104,13 @@ function Header() {
             }}
           >
             {navItems.map(({ path, text }) => (
-              <MuiLink
-              component="button" // Changed to a button to handle onClick
-              onClick={() => handleNavigation(path)}
+              <MotionLink
+                component="button"
+                onClick={() => handleNavigation(path)}
+                key={path}
                 sx={{
                   textDecoration: "none",
                   color: theme.palette.text.primary,
-                  fontFamily: "Helvetica Neue, Arial, sans-serif",
                   fontSize: "1.2vw",
                   borderRadius: "12px",
                   padding: "10px 10px",
@@ -118,26 +122,26 @@ function Header() {
                   letterSpacing:
                     location.pathname === path ? "normal" : "normal",
                   transition:
-                    "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease", // Add transitions for background-color and letter-spacing
+                    "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                   "&:hover": {
-                    //   fontWeight: "bold",
                     letterSpacing: "0.03em",
                     background: "rgba(236, 145, 62, 0.4)",
                     transition:
-                      "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease", // Ensure transitions apply on hover as well
+                      "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                   },
                 }}
+                whileHover={{ y: -5 }}
+                transition={{ type: "spring", stiffness: 300 }}
               >
                 {text}
-              </MuiLink>
+              </MotionLink>
             ))}
 
-            <Button
+            <MotionButton
               variant="contained"
               onClick={() => handleNavigation("/contact")}
               sx={{
                 color: theme.palette.text.primary,
-                fontFamily: "Helvetica Neue, Arial, sans-serif",
                 fontSize: "1.2vw",
                 borderRadius: "10px",
                 padding: "5px 20px",
@@ -153,12 +157,14 @@ function Header() {
                     "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                 },
               }}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               Contact Us
-            </Button>
+            </MotionButton>
           </div>
         </Toolbar>
-        <Divider sx={{ backgroundColor: "white" }}></Divider>
+        <Divider sx={{ backgroundColor: "white" }} />
       </AppBar>
     </>
   );

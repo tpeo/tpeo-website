@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themes/theme";
 
 // Import pages
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages//homePage/HomePage";
 import NewFellowPage from "./pages/NewFellowPage";
 import TeamPage from "./pages/teamPage/TeamPage";
 import ClientPage from "./pages/ClientPage";

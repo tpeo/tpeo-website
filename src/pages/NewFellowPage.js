@@ -13,15 +13,18 @@ import LockIcon from "@mui/icons-material/Lock";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import FAQ from "./sponsorsPage/FAQ";
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import companies from "../assets/companiesNew.png";
-import leaf from "../assets/leaf.png";
+import leaf from "../assets/vectorImages/leaf.png";
 import ProjectCard from "../components/ProjectCard";
 import CloseIcon from "@mui/icons-material/Close";
-import Hively from "../assets/Hively.png";
+import Hively from "../assets/projectImages/Hively.png";
+import Thoughtless from "../assets/projectImages/Thoughtless.png";
+import TPEOProcess from "../assets/vectorImages/TPEOProcess.png";
+import notionLogo from '../assets/iconImages/notion_logo.png';
+import githubLogo from '../assets/iconImages/github_logo.png';
+import slackLogo from '../assets/iconImages/slack_logo.png';
 
 function NewFellowPage() {
   const theme = useTheme();
@@ -102,7 +105,6 @@ function NewFellowPage() {
           <Typography
             variant="h5"
             sx={{
-              fontFamily: "DM Sans",
               fontWeight: 400,
               fontSize: "2vw",
               color: theme.palette.text.primary,
@@ -111,8 +113,8 @@ function NewFellowPage() {
               width: "50vw",
             }}
           >
-            We teach freshmen and sophomore yada yada yada Our New Fellow
-            Curriculum goes hard
+            Teach full-stack engineering, UI/UX design, and product management
+            in semester-long courses to UT Austin students of all majors!
           </Typography>
         </Fade>
 
@@ -133,7 +135,8 @@ function NewFellowPage() {
                   variant="body1"
                   sx={{ fontWeight: 400, fontSize: "0.95vw" }}
                 >
-                  Cool stuff
+                  Learn Figma, product lifecycle, React and more that can be
+                  used in industry!
                 </Typography>
               </Box>
             </Grid>
@@ -172,7 +175,8 @@ function NewFellowPage() {
                   variant="body1"
                   sx={{ fontWeight: 400, fontSize: "0.95vw" }}
                 >
-                  Cool stuff
+                  Build production-ready projects for Austin-area nonprofit
+                  organizations
                 </Typography>
               </Box>
             </Grid>
@@ -191,7 +195,7 @@ function NewFellowPage() {
                   variant="body1"
                   sx={{ fontWeight: 400, fontSize: "0.95vw" }}
                 >
-                  Work with other fellows outside of respective disciplines
+                  Work with other fellows outside of your respective discipline
                 </Typography>
               </Box>
             </Grid>
@@ -232,7 +236,6 @@ function NewFellowPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
@@ -240,7 +243,17 @@ function NewFellowPage() {
           >
             Our process. We only do Fall Recruitment!
           </Typography>
+          
         </Box>
+        <Box
+            component="img"
+            src={TPEOProcess}
+            alt="Our Process"
+            sx={{
+              width: "100%",
+              marginTop: "5vh",
+            }}
+          />
         {/* Socials carousel section */}
         <Box
           sx={{
@@ -264,7 +277,6 @@ function NewFellowPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
@@ -333,7 +345,6 @@ function NewFellowPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
@@ -366,7 +377,7 @@ function NewFellowPage() {
           />
           <ProjectCard
             name="Thoughtless"
-            imageLink={companies}
+            imageLink={Thoughtless}
             brief="Thoughtless is a site that reimagines the way student organizations can grade applications. It comes with a built-in spreadsheet 
             crawler to process information from third-party application platforms and organizes applicant data in an aesthetic, easy-to-read format. 
             With integrated scoring and comments, graders can easily provide accurate scores and thoughtful feedback. Thoughtless is how we will make 
@@ -399,7 +410,6 @@ function NewFellowPage() {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "",
               fontWeight: 400,
               fontSize: "1.3vw",
               color: theme.palette.text.primary,
@@ -419,28 +429,31 @@ function NewFellowPage() {
           }}
         >
           <ProjectCard
-            name="Notion Embed"
-            imageLink={companies}
-            brief="Project Brief"
+            name="Notion"
+            imageLink={notionLogo}
+            brief="All of this semester's current slides and recordings"
             iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
+            link="https://amber-toad-552.notion.site/Full-stack-Curriculum-c8ca7a55be514fa78606c55565a1cd82"
           />
           <ProjectCard
-            name="Youtube Embed"
-            imageLink={companies}
-            brief="Project Brief"
+            name="GitHub"
+            imageLink={githubLogo}
+            brief="Our previous recordings from years past!"
             iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
+            link='https://github.com/tpeo/full-stack-curriculum-2024'
           />
           <ProjectCard
-            name="Slack Embed"
-            imageLink={companies}
-            brief="Project Brief"
+            name="Slack"
+            imageLink={slackLogo}
+            brief="Join #tpeo-engineering-curriculum-2024 for any and all updates!"
             iconImage={leaf}
             height="35" // Height in vh
             width="25" // Width in vw
+            link="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug"
           />
         </Box>
       </Box>

@@ -19,10 +19,10 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Helvetica Neue, Arial, sans-serif',  // Updated font family
+    fontFamily: 'Roboto, Arial, sans-serif',  // Updated font family
     fontSize: 14,  // Base font size
     h6: {
-      fontSize: 20, // Sets the font size for h6 variants (like your links)
+      fontSize: 20, // Sets the font size for h6 variants (like links)
     }
   },
   components: {

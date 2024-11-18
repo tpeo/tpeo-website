@@ -3,17 +3,22 @@ import {
   Divider,
   Box,
   Typography,
-  Button,
-  IconButton,
   useTheme,
+  Button,
+  IconButton
 } from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email"; // Example icon, replace with actual ones
+import EmailIcon from "@mui/icons-material/Email"; // Replace with actual icons
 import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GroupIcon from "@mui/icons-material/Group";
 import TPEOLogoGradient from "../assets/TPEOLogoGradient.png";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+// Create motion-enabled components
+const MotionButton = motion(Button);
+const MotionIconButton = motion(IconButton);
 
 const Footer = () => {
   const theme = useTheme();
@@ -45,7 +50,6 @@ const Footer = () => {
           <Typography
             variant="h6"
             sx={{
-              fontFamily: "DM Sans",
               fontWeight: 700,
               fontSize: "3.8vw",
               mb: "5vh",
@@ -63,7 +67,7 @@ const Footer = () => {
               cursor: "pointer",
             }}
             onClick={() => {
-              navigate('/');
+              navigate("/");
               window.scrollTo(0, 0); // Scroll to the top after navigation
             }}
           />
@@ -93,17 +97,18 @@ const Footer = () => {
             marginTop: "10vh",
           }}
         >
-          <Button
+          <MotionButton
             variant="contained"
             onClick={() => {
               navigate("/join");
               window.scrollTo(0, 0); // Scroll to the top after navigation
             }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
             sx={{
               width: "16.4vw",
               height: "10vh",
               color: theme.palette.text.primary,
-              fontFamily: "Helvetica Neue, Arial, sans-serif",
               fontSize: "2vw",
               fontWeight: 700,
               borderRadius: "10px",
@@ -121,7 +126,7 @@ const Footer = () => {
             }}
           >
             Join TPEO
-          </Button>
+          </MotionButton>
           <Box
             sx={{
               display: "flex",
@@ -130,23 +135,27 @@ const Footer = () => {
               gap: "2vw",
             }}
           >
-            <IconButton
+            <MotionIconButton
               color="inherit"
-              href="mailto:example@example.com"
+              href="mailto:tpeoteam@gmail.com"
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
                 backgroundColor: theme.palette.primary.main, // Set the background color to orange
                 "&:hover": {
-                  backgroundColor: theme.palette.primary.dark, // Darker on hover, adjust color as needed
+                  backgroundColor: theme.palette.primary.dark, // Darker on hover
                 },
               }}
             >
               <EmailIcon sx={{ width: "80%", height: "80%" }} />
-            </IconButton>
-            <IconButton
+            </MotionIconButton>
+            <MotionIconButton
               color="inherit"
               href="https://www.instagram.com/txproduct"
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -154,15 +163,17 @@ const Footer = () => {
                 "&:hover": {
                   backgroundColor: theme.palette.primary.dark,
                   transition:
-                  "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
+                    "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
                 },
               }}
             >
               <InstagramIcon sx={{ width: "80%", height: "80%" }} />
-            </IconButton>
-            <IconButton
+            </MotionIconButton>
+            <MotionIconButton
               color="inherit"
               href="https://www.linkedin.com/in/tpeo"
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -173,10 +184,12 @@ const Footer = () => {
               }}
             >
               <LinkedInIcon sx={{ width: "80%", height: "80%" }} />
-            </IconButton>
-            <IconButton
+            </MotionIconButton>
+            <MotionIconButton
               color="inherit"
               href="https://www.youtube.com/channel/tpeo"
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -187,10 +200,12 @@ const Footer = () => {
               }}
             >
               <YouTubeIcon sx={{ width: "80%", height: "80%" }} />
-            </IconButton>
-            <IconButton
+            </MotionIconButton>
+            <MotionIconButton
               color="inherit"
               href="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug"
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
               sx={{
                 width: "4.8vw",
                 height: "4.8vw",
@@ -201,7 +216,7 @@ const Footer = () => {
               }}
             >
               <GroupIcon sx={{ width: "80%", height: "80%" }} />
-            </IconButton>
+            </MotionIconButton>
           </Box>
         </Box>
       </Box>

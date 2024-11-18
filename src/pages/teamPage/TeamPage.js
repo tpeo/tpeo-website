@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
   useTheme,
-  Fade,
   Modal,
-  IconButton,
 } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Cohort from "./Cohort";
-import CloseIcon from "@mui/icons-material/Close";
+import { motion, AnimatePresence } from "framer-motion";
 
 function TeamPage() {
   const theme = useTheme();
@@ -28,7 +26,7 @@ function TeamPage() {
     require.context(
       "../../assets/socialImages",
       false,
-      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/
+      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/i
     )
   );
 
@@ -73,7 +71,11 @@ function TeamPage() {
             width: "100%",
           }}
         >
-          <Fade in={true} timeout={600}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <Typography
               variant="h4"
               sx={{
@@ -90,9 +92,13 @@ function TeamPage() {
             >
               Introducing Team TPEO
             </Typography>
-          </Fade>
+          </motion.div>
         </Box>
-        <Fade in={true} timeout={1200}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+        >
           <Box
             sx={{
               width: "80%",
@@ -105,15 +111,17 @@ function TeamPage() {
             <Slider {...settings}>
               {images.map((image) => (
                 <div key={image.id} onClick={() => handleOpen(image.url)}>
-                  <Box
-                    sx={{
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 100 }}
+                    style={{
                       width: "100%",
                       maxWidth: "25vw",
                       height: "25vw",
-                      backgroundColor: "#D9D9D9",
                       borderRadius: "15px",
                       overflow: "hidden",
                       margin: "auto",
+                      cursor: "pointer",
                     }}
                   >
                     <img
@@ -125,14 +133,14 @@ function TeamPage() {
                         objectFit: "cover",
                       }}
                     />
-                  </Box>
+                  </motion.div>
                 </div>
               ))}
             </Slider>
           </Box>
-        </Fade>
+        </motion.div>
       </Box>
-      <Cohort></Cohort>
+      <Cohort />
       <Modal
         open={open}
         onClose={handleClose}
@@ -144,48 +152,51 @@ function TeamPage() {
           backdropFilter: "none",
         }}
       >
-        <Fade in={open}>
-          <Box
-            sx={{
-              position: "relative",
-              maxWidth: "90vw",
-              maxHeight: "90vh",
-            }}
-          >
-            <IconButton
-              onClick={handleClose}
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                bgcolor: "rgba(0, 0, 0, 0.7)", // Slightly darker background for visibility
-                color: "#fff",
-                borderRadius: "50%",
-                p: 1,
-                "&:hover": {
-                  bgcolor: "rgba(0, 0, 0, 0.7)", // Keep the background solid on hover
-                },
-              }}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              key="modal"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
             >
-              <CloseIcon />
-            </IconButton>
-            {selectedImage && (
-              <img
-                src={selectedImage}
-                alt="Selected"
-                style={{
-                  width: "auto",
-                  height: "90vh", // Height fits within the viewport height
-                  maxWidth: "100%", // Ensure width fits within the viewport width
-                  objectFit: "contain",
-                  display: "block",
-                  margin: "auto",
-                  borderRadius: "12px",
+              <Box
+                sx={{
+                  position: "relative",
+                  maxWidth: "90vw",
+                  maxHeight: "90vh",
                 }}
-              />
-            )}
-          </Box>
-        </Fade>
+              >
+                {selectedImage && (
+                  <motion.div
+                    whileHover={{ scale: 1.02 }} // Hover animation on modal image
+                    transition={{ type: "spring", stiffness: 200 }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={selectedImage}
+                      alt="Selected"
+                      style={{
+                        width: "auto",
+                        height: "90vh", // Height fits within the viewport height
+                        maxWidth: "100%", // Ensure width fits within the viewport width
+                        objectFit: "contain",
+                        display: "block",
+                        margin: "auto",
+                        borderRadius: "12px",
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </Box>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Modal>
     </>
   );
