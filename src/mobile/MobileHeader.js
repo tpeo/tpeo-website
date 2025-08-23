@@ -80,7 +80,7 @@ const MobileHeader = () => {
           </IconButton>
         </Box>
         <List>
-          {["Our Team", "Fellows", "Clients", "Sponsors"].map((text) => (
+          {["Our Team", "Fellowships", "Clients", "Sponsors"].map((text) => (
             <ListItem key={text} sx={{ padding: "4vh 8vw" }}>
               <ListItemText
                 primary={text}

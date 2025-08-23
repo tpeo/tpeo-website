@@ -3,8 +3,7 @@ import { Box, Typography, useTheme, Grid, Fade } from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import LockIcon from "@mui/icons-material/Lock";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import Sponsors from "./Sponsors";
+// import Sponsors from "./Sponsors";
 import FAQ from "./FAQ";
 
 function SponsorsPage() {
@@ -107,23 +106,9 @@ function SponsorsPage() {
               </Box>
             </Grid>
           </Fade>
-          <Fade in={true} timeout={1300}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Box sx={{ color: theme.palette.text.primary, width: "16vw" }}>
-                <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                  Design-a-thon
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                  Sponsors have the opportunity to be featured as a speaker in
-                  TPEO’s flagship premiere event
-                </Typography>
-              </Box>
-            </Grid>
-          </Fade>
         </Grid>
       </Box>
-      <Sponsors></Sponsors>
+      {/* <Sponsors></Sponsors> */} {/* Can be added back once we have sponsors */}
       <FAQ type="Sponsor"></FAQ>
     </>
   );

@@ -52,7 +52,7 @@ function ContactUsPage() {
             Have any questions as a prospective member? As a previous client? If
             you are a current or prospective member, client, or sponsor, please
             reach out to us at:{" "}
-            <span style={{ fontWeight: 1000 }}>txproduct@gmail.com</span>
+            <span style={{ fontWeight: 1000 }}>tpeoteam@gmail.com</span>
           </Typography>
         </Fade>
 
@@ -135,7 +135,7 @@ function ContactUsPage() {
                 }}
               >
                 For communication post handover, tech maintenance, or potential clients:{" "}
-                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
               </Typography>
             </Paper>
           </Fade>
@@ -173,7 +173,7 @@ function ContactUsPage() {
                 }}
               >
                 For current/future sponsor communication, partnerships director reaching out:{" "}
-                <span style={{ fontWeight: 700 }}>txproduct@gmail.com</span>
+                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
               </Typography>
             </Paper>
           </Fade>

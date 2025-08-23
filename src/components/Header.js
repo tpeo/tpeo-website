@@ -48,7 +48,7 @@ function Header() {
   // List of navigation items
   const navItems = [
     { path: "/team", text: "Our Team" },
-    { path: "/new-fellow", text: "Fellows" },
+    { path: "/new-fellow", text: "Fellowships" },
     { path: "/clients", text: "Clients" },
     { path: "/sponsors", text: "Sponsors" },
     { path: "/join", text: "Join TPEO" },

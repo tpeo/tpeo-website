@@ -121,7 +121,7 @@ function JoinTPEOPage() {
               alignItems: "flex-end", // Align items to the right
             }}
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
@@ -146,7 +146,7 @@ function JoinTPEOPage() {
               >
                 Link to Application
               </MotionButton>
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
