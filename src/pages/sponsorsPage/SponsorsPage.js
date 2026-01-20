@@ -3,7 +3,7 @@ import { Box, Typography, useTheme, Grid, Fade } from "@mui/material";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import LockIcon from "@mui/icons-material/Lock";
 import AdsClickIcon from "@mui/icons-material/AdsClick";
-// import Sponsors from "./Sponsors";
+import Sponsors from "./Sponsors";
 import FAQ from "./FAQ";
 
 function SponsorsPage() {
@@ -108,7 +108,7 @@ function SponsorsPage() {
           </Fade>
         </Grid>
       </Box>
-      {/* <Sponsors></Sponsors> */} {/* Can be added back once we have sponsors */}
+      <Sponsors></Sponsors> {/* Can be added back once we have sponsors */}
       <FAQ type="Sponsor"></FAQ>
     </>
   );

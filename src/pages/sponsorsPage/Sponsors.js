@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import companies from "../../assets/roblox.png";
+import companies from "../../assets/serpapi.png";
 
 function Sponsors() {
   const theme = useTheme();
@@ -39,7 +39,8 @@ function Sponsors() {
           <img
             src={companies}
             alt="Tenet Vector"
-            style={{ }}
+            style={{ width: "20vh", height: "auto" }}
+            title="SerpApi"
           />
         </Box>
       </Box>

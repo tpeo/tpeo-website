@@ -96,7 +96,7 @@ function JoinTPEOPage() {
                 Interested in joining{" "}
                 <span style={{ color: theme.palette.primary.main }}>TPEO</span>?
               </Typography>
-              <Typography
+              {/* <Typography
                 variant="body1"
                 sx={{
                   fontFamily: "DM Sans",
@@ -108,7 +108,7 @@ function JoinTPEOPage() {
                 }}
               >
                 We're like really cool! Join us
-              </Typography>
+              </Typography> */}
             </Box>
           </motion.div>
 
@@ -121,7 +121,7 @@ function JoinTPEOPage() {
               alignItems: "flex-end", // Align items to the right
             }}
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
@@ -150,7 +150,7 @@ function JoinTPEOPage() {
               >
                 Link to Application
               </MotionButton>
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
