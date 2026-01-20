@@ -4,13 +4,13 @@ import WhatWeDo from "./WhatWeDo";
 import WhereWeveWorked from "./WhereWeveWorked";
 import Carousel from "../../components/Carousel";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const MotionButton = motion(Button);
 
 function HomePage() {
   const theme = useTheme();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>

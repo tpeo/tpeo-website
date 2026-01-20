@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import JoinTPEOPage from "./pages/JoinTPEOPage";
 import ContactUsPage from "./pages/ContactUs";
 
-import MobileHeader from "./mobile/MobileHeader";
+// import MobileHeader from "./mobile/MobileHeader";
 import MobileHomePage from "./mobile/MobileHomePage";
 import MobileFooter from "./mobile/MobileFooter";
 

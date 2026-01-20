@@ -4,7 +4,7 @@ import {
   Box,
   Typography,
   useTheme,
-  Button,
+  // Button,
   IconButton,
 } from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 // Create motion-enabled components
-const MotionButton = motion(Button);
+// const MotionButton = motion(Button);
 const MotionIconButton = motion(IconButton);
 
 const MobileFooter = () => {
