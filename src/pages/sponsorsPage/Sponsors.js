@@ -36,12 +36,17 @@ function Sponsors() {
           >
             Our Sponsors
           </Typography>
-          <img
-            src={companies}
-            alt="Tenet Vector"
-            style={{ width: "20vh", height: "auto" }}
-            title="SerpApi"
-          />
+          <a
+            href="https://serpapi.com/?gad_source=1&gad_campaignid=21563825039&gbraid=0AAAAADD8kqOSeVUaMTT7qKY6RUeQDjQLm&gclid=CjwKCAiAssfLBhBDEiwAcLpwftReUeYdndzGfgVE41fL-miQEaeYaUB8UkcaTZU7jjGogw1kwqEJPBoC2wsQAvD_BwE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src={companies}
+              alt="SerpApi Logo"
+              style={{ width: "20vh", height: "auto" }}
+            />
+          </a>
         </Box>
       </Box>
     </>
