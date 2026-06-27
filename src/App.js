@@ -4,11 +4,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./themes/theme";
 
 // Import pages
-import HomePage from "./pages//homePage/HomePage";
 import NewFellowPage from "./pages/NewFellowPage";
 import TeamPage from "./pages/teamPage/TeamPage";
 import ClientPage from "./pages/ClientPage";
 import SponsorsPage from "./pages/sponsorsPage/SponsorsPage";
+import AboutPage from "./pages/AboutPage";
 
 // Import components
 import Header from "./components/Header";
@@ -16,7 +16,6 @@ import Footer from "./components/Footer";
 import JoinTPEOPage from "./pages/JoinTPEOPage";
 import ContactUsPage from "./pages/ContactUs";
 
-// import MobileHeader from "./mobile/MobileHeader";
 import MobileHomePage from "./mobile/MobileHomePage";
 import MobileFooter from "./mobile/MobileFooter";
 
@@ -28,7 +27,6 @@ function App() {
       <Router>
         {isMobile ? (
           <>
-            {/* <MobileHeader /> */}
             <Routes>
               <Route path="/" element={<MobileHomePage />} />
               {/* Add other mobile-specific routes here */}
@@ -39,7 +37,7 @@ function App() {
           <>
             <Header />
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<AboutPage />} />
               <Route path="/new-fellow" element={<NewFellowPage />} />
               <Route path="/team" element={<TeamPage />} />
               <Route path="/clients" element={<ClientPage />} />

@@ -1,226 +1,211 @@
 import React from "react";
-import {
-  Divider,
-  Box,
-  Typography,
-  useTheme,
-  Button,
-  IconButton
-} from "@mui/material";
-import EmailIcon from "@mui/icons-material/Email"; // Replace with actual icons
-import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import GroupIcon from "@mui/icons-material/Group";
-import TPEOLogoGradient from "../assets/TPEOLogoGradient.png";
+import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import tpeoLogoGradient from "../assets/aboutIcons/tpeo-logo-gradient-footer.svg";
+import socialEmail from "../assets/aboutIcons/social-email.svg";
+import socialInstagram from "../assets/aboutIcons/social-instagram.svg";
+import socialLinkedin from "../assets/aboutIcons/social-linkedin.svg";
+import socialYoutube from "../assets/aboutIcons/social-youtube.svg";
 
-// Create motion-enabled components
-const MotionButton = motion(Button);
-const MotionIconButton = motion(IconButton);
+const footerNavItems = [
+  { path: "/team", text: "Our Team" },
+  { path: "/new-fellow", text: "Fellowship" },
+  { path: "/clients", text: "Projects" },
+  { path: "/sponsors", text: "Partners" },
+];
+
+const socialIcons = [
+  { src: socialEmail, alt: "Email", href: "mailto:tpeoteam@gmail.com" },
+  { src: socialInstagram, alt: "Instagram", href: "https://www.instagram.com/txproduct" },
+  { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/txproduct" },
+  { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/channel/tpeo" },
+];
 
 const Footer = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
+
+  const handleNavigation = (path) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <>
-      <Divider sx={{ backgroundColor: "white" }} />
+    <Box
+      sx={{
+        backgroundColor: "#101010",
+        borderTop: "1px solid #444",
+        position: "relative",
+        width: "100%",
+      }}
+    >
+      {/* Main footer content — positioned to match Figma exactly */}
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "row",
-          height: "48vh",
-          backgroundColor: theme.palette.background.default,
-          color: "#FFFFFF",
-          padding: "20px",
+          position: "relative",
+          px: "102px",
+          pt: "128px",
+          pb: "60px",
         }}
       >
-        {/* Left content */}
+        {/* Row 1: Logo (left) + Join TPEO button (right) */}
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            alignItems: "flex-start", // Aligns items to the left
-            marginLeft: "6.7vw",
-            marginTop: "10vh",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 700,
-              fontSize: "3.8vw",
-              mb: "5vh",
-            }}
-          >
-            Interested?
-          </Typography>
-          <img
-            src={TPEOLogoGradient}
+          {/* TPEO gradient logo — 211×67.794px, at top:158-128=30px from content top */}
+          <Box
+            component="img"
+            src={tpeoLogoGradient}
             alt="TPEO Logo"
-            style={{
-              width: "12vw",
-              height: "auto",
-              maxWidth: "100%",
+            onClick={() => handleNavigation("/")}
+            sx={{
+              width: "211px",
+              height: "67.794px",
+              objectFit: "contain",
               cursor: "pointer",
-            }}
-            onClick={() => {
-              navigate("/");
-              window.scrollTo(0, 0); // Scroll to the top after navigation
+              mt: "30px",
             }}
           />
-          <Typography
+
+          {/* Join TPEO button — at top:146-128=18px from content top */}
+          <Box
+            onClick={() => handleNavigation("/join")}
             sx={{
-              fontWeight: 400,
-              fontSize: "0.8vw",
-              maxWidth: "100%",
-              textAlign: "left",
-              marginY: 3,
-              color: "grey",
-            }}
-          >
-            © 2024 Texas Product Engineering Organization. All rights reserved
-          </Typography>
-        </Box>
-        {/* Right content */}
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            paddingLeft: "20px", // Adds spacing between the two main columns
-            marginRight: "6.7vw",
-            marginTop: "10vh",
-          }}
-        >
-          <MotionButton
-            variant="contained"
-            onClick={() => {
-              navigate("/join");
-              window.scrollTo(0, 0); // Scroll to the top after navigation
-            }}
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            sx={{
-              width: "16.4vw",
-              height: "10vh",
-              color: theme.palette.text.primary,
-              fontSize: "2vw",
+              backgroundColor: "#F3801A",
+              color: "#101010",
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 700,
-              borderRadius: "10px",
-              padding: "10px 30px",
-              backgroundColor: "#FB8C14",
-              boxShadow: "none",
-              transition:
-                "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
-              "&:hover": {
-                backgroundColor: "#FB8C14",
-                letterSpacing: "0.03em",
-                transition:
-                  "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
-              },
+              fontSize: "28px",
+              lineHeight: "36px",
+              borderRadius: "13.782px",
+              px: "28.943px",
+              py: "21.707px",
+              cursor: "pointer",
+              whiteSpace: "nowrap",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              mt: "18px",
+              "&:hover": { backgroundColor: "#FB8C14" },
             }}
           >
             Join TPEO
-          </MotionButton>
+          </Box>
+        </Box>
+
+        {/* Row 2: Nav links (left) + Social icons (right) */}
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            mt: "67.59px",
+          }}
+        >
+          {/* Nav links */}
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              marginBottom: "10vh",
-              gap: "2vw",
+              gap: "60.204px",
+              alignItems: "center",
             }}
           >
-            <MotionIconButton
-              color="inherit"
-              href="mailto:tpeoteam@gmail.com"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
+            {footerNavItems.map(({ path, text }) => (
+              <Typography
+                key={path}
+                onClick={() => handleNavigation(path)}
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "22.52px",
+                  lineHeight: "normal",
+                  color: "#FFFFFF",
+                  cursor: "pointer",
+                  whiteSpace: "nowrap",
+                  "&:hover": { opacity: 0.8 },
+                }}
+              >
+                {text}
+              </Typography>
+            ))}
+            <Typography
+              onClick={() => handleNavigation("/contact")}
               sx={{
-                width: "4.8vw",
-                height: "4.8vw",
-                backgroundColor: theme.palette.primary.main, // Set the background color to orange
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark, // Darker on hover
-                },
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 700,
+                fontSize: "22.52px",
+                lineHeight: "normal",
+                color: "#F3801A",
+                textDecoration: "underline",
+                textDecorationSkipInk: "none",
+                textUnderlinePosition: "from-font",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                "&:hover": { opacity: 0.8 },
               }}
             >
-              <EmailIcon sx={{ width: "80%", height: "80%" }} />
-            </MotionIconButton>
-            <MotionIconButton
-              color="inherit"
-              href="https://www.instagram.com/txproduct"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              sx={{
-                width: "4.8vw",
-                height: "4.8vw",
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                  transition:
-                    "background-color 0.3s ease, letter-spacing 0.3s ease, font-weight 0.3s ease",
-                },
-              }}
-            >
-              <InstagramIcon sx={{ width: "80%", height: "80%" }} />
-            </MotionIconButton>
-            <MotionIconButton
-              color="inherit"
-              href="https://www.linkedin.com/in/tpeo"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              sx={{
-                width: "4.8vw",
-                height: "4.8vw",
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                },
-              }}
-            >
-              <LinkedInIcon sx={{ width: "80%", height: "80%" }} />
-            </MotionIconButton>
-            <MotionIconButton
-              color="inherit"
-              href="https://www.youtube.com/channel/tpeo"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              sx={{
-                width: "4.8vw",
-                height: "4.8vw",
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                },
-              }}
-            >
-              <YouTubeIcon sx={{ width: "80%", height: "80%" }} />
-            </MotionIconButton>
-            <MotionIconButton
-              color="inherit"
-              href="https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug"
-              whileHover={{ y: -5 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              sx={{
-                width: "4.8vw",
-                height: "4.8vw",
-                backgroundColor: theme.palette.primary.main,
-                "&:hover": {
-                  backgroundColor: theme.palette.primary.dark,
-                },
-              }}
-            >
-              <GroupIcon sx={{ width: "80%", height: "80%" }} />
-            </MotionIconButton>
+              Contact Us
+            </Typography>
+          </Box>
+
+          {/* Social icons — Figma assets, 65.933px each, gap 11.246px */}
+          <Box
+            sx={{
+              display: "flex",
+              gap: "11.246px",
+              alignItems: "flex-start",
+            }}
+          >
+            {socialIcons.map(({ src, alt, href }) => (
+              <Box
+                key={alt}
+                component="a"
+                href={href}
+                target={href.startsWith("mailto") ? undefined : "_blank"}
+                rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                sx={{
+                  width: "65.933px",
+                  height: "65.933px",
+                  display: "block",
+                  flexShrink: 0,
+                  "&:hover": { opacity: 0.8 },
+                }}
+              >
+                <Box
+                  component="img"
+                  src={src}
+                  alt={alt}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    display: "block",
+                  }}
+                />
+              </Box>
+            ))}
           </Box>
         </Box>
+
+        {/* Copyright — left-aligned per Figma */}
+        <Typography
+          sx={{
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontWeight: 400,
+            fontSize: "18.898px",
+            lineHeight: "normal",
+            color: "#D7D7D7",
+            textAlign: "left",
+            mt: "78.59px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          @ 2026 Texas Product Engineering Organization. All rights reserved.
+        </Typography>
       </Box>
-    </>
+    </Box>
   );
 };
 
