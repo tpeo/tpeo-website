@@ -1,185 +1,244 @@
 import React from "react";
-import { Box, Typography, useTheme, Paper, Fade } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import imgDoodles from "../assets/aboutIcons/contact-doodles.svg";
+import imgEnvelope from "../assets/aboutIcons/envelope.svg";
+import socialEmail from "../assets/aboutIcons/social-email.svg";
+import socialInstagram from "../assets/aboutIcons/social-instagram.svg";
+import socialLinkedin from "../assets/aboutIcons/social-linkedin.svg";
+import socialYoutube from "../assets/aboutIcons/social-youtube.svg";
+import socialMedium from "../assets/aboutIcons/social-medium.svg";
 
-function ContactUsPage() {
-  const theme = useTheme();
+const socialIcons = [
+  { src: socialEmail, alt: "Email", href: "mailto:tpeoteam@gmail.com" },
+  { src: socialInstagram, alt: "Instagram", href: "https://www.instagram.com/txproduct" },
+  { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/txproduct" },
+  { src: socialMedium, alt: "Medium", href: "https://medium.com/@txproduct" },
+  { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/channel/tpeo" },
+];
 
+function ContactInput({ label, placeholder, multiline = false }) {
   return (
-    <>
-      <Box
+    <Box sx={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+      <Typography
         sx={{
-          height: "100vh",
-          background: `linear-gradient(to right, rgba(26, 32, 44, 1) 40%, #825835 100%)`,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          paddingLeft: "10vw",
-          paddingRight: "10vw",
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 500,
+          fontSize: "28px",
+          lineHeight: "39px",
+          color: "#D7D7D7",
         }}
       >
-        {/* Main Contact Us Heading */}
-        <Fade in={true} timeout={600}>
-          <Typography
-            variant="h3"
-            sx={{
-              fontFamily: "DM Sans",
-              fontWeight: 700,
-              fontSize: "3.5vw",
-              color: theme.palette.text.primary,
-              textAlign: "left",
-              marginBottom: "5vh",
-              paddingTop: "25vh",
-            }}
-          >
-            Contact Us
-          </Typography>
-        </Fade>
+        {label}
+      </Typography>
+      <Box
+        component={multiline ? "textarea" : "input"}
+        placeholder={placeholder}
+        sx={{
+          backgroundColor: "#191919",
+          border: "1px solid #444",
+          borderRadius: "10px",
+          px: "19px",
+          py: "15px",
+          color: "#FFFFFF",
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontSize: "24px",
+          outline: "none",
+          width: "100%",
+          boxSizing: "border-box",
+          "&::placeholder": {
+            color: "#444",
+          },
+          ...(multiline && {
+            minHeight: "150px",
+            resize: "vertical",
+          }),
+        }}
+      />
+    </Box>
+  );
+}
 
-        {/* Subheading with Contact Information */}
-        <Fade in={true} timeout={900}>
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 400,
-              fontSize: "1.5vw",
-              color: theme.palette.text.primary,
-              textAlign: "left",
-              marginBottom: "5vh",
-              lineHeight: "1.5em",
-              width: "45vw",
-            }}
-          >
-            Have any questions as a prospective member? As a previous client? If
-            you are a current or prospective member, client, or sponsor, please
-            reach out to us at:{" "}
-            <span style={{ fontWeight: 1000 }}>tpeoteam@gmail.com</span>
-          </Typography>
-        </Fade>
+function ContactUsPage() {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#101010",
+        width: "100%",
+        minHeight: "100vh",
+        overflowX: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* Background Doodles */}
+      <Box
+        component="img"
+        src={imgDoodles}
+        alt=""
+        sx={{
+          position: "absolute",
+          top: "714px",
+          left: "1132px",
+          width: "355px",
+          height: "356px",
+          pointerEvents: "none",
+          mixBlendMode: "lighten",
+          transform: "rotate(-4.17deg)",
+          zIndex: 0,
+        }}
+      />
 
-        {/* Cards Section */}
+      {/* Main Content */}
+      <Box
+        sx={{
+          pt: "257px",
+          pb: "128px",
+          px: "79px",
+          display: "flex",
+          gap: "60px",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Left Side: Let's Connect */}
+        <Box sx={{ flex: 1, maxWidth: "770px", display: "flex", flexDirection: "column", gap: "61px" }}>
+          {/* Hero Content */}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+            <Typography
+              sx={{
+                fontFamily: "DM Sans, sans-serif",
+                fontWeight: 700,
+                fontSize: "64px",
+                lineHeight: "normal",
+                color: "#FFFFFF",
+              }}
+            >
+              let’s connect.
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "28px",
+                lineHeight: "39px",
+                color: "#D7D7D7",
+                maxWidth: "770px",
+              }}
+            >
+              Have a question or want to work with us? We’d love to hear from you.
+            </Typography>
+          </Box>
+
+          {/* Email Info */}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <Box component="img" src={imgEnvelope} alt="" sx={{ width: "40px", height: "40px" }} />
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "28px",
+                  lineHeight: "39px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Email
+              </Typography>
+            </Box>
+            <Typography
+              component="a"
+              href="mailto:tpeoteam@gmail.com"
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 500,
+                fontSize: "28px",
+                lineHeight: "39px",
+                color: "#F3801A",
+                textDecoration: "underline",
+                cursor: "pointer",
+                width: "fit-content",
+              }}
+            >
+              tpeoteam@gmail.com
+            </Typography>
+          </Box>
+
+          {/* Follow Us */}
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 500,
+                fontSize: "28px",
+                lineHeight: "39px",
+                color: "#D7D7D7",
+              }}
+            >
+              Follow Us
+            </Typography>
+            <Box sx={{ display: "flex", gap: "11px" }}>
+              {socialIcons.map((icon) => (
+                <Box
+                  key={icon.alt}
+                  component="a"
+                  href={icon.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    width: "66px",
+                    height: "66px",
+                    "&:hover": { opacity: 0.8 },
+                  }}
+                >
+                  <Box component="img" src={icon.src} alt={icon.alt} sx={{ width: "100%", height: "100%" }} />
+                </Box>
+              ))}
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Right Side: Contact Form */}
         <Box
           sx={{
+            backgroundColor: "#191919",
+            border: "1px solid #444",
+            borderRadius: "12px",
+            p: "40px 32px",
+            width: "642px",
             display: "flex",
-            justifyContent: "space-around",
-            width: "100%",
+            flexDirection: "column",
+            gap: "60px",
+            height: "fit-content",
           }}
         >
-          {/* Members Card */}
-          <Fade in={true} timeout={1100}>
-            <Paper
-              sx={{
-                padding: "2vw",
-                backgroundColor: "#202938",
-                borderRadius: "12px",
-                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-                textAlign: "left",
-                color: theme.palette.text.primary,
-                width: "25%",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "DM Sans",
-                  fontWeight: 700,
-                  fontSize: "1.5vw",
-                  marginBottom: "1vh",
-                  marginTop: "2vh",
-                }}
-              >
-                Members
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "1.2vw",
-                }}
-              >
-                If you are a current or prospective member, reach out to us at:{" "}
-                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
-              </Typography>
-            </Paper>
-          </Fade>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+            <ContactInput label="Name" placeholder="Your name" />
+            <ContactInput label="Email" placeholder="Your email" />
+            <ContactInput label="Subject" placeholder="What’s this about?" />
+            <ContactInput label="Message" placeholder="Tell us more...." multiline />
+          </Box>
 
-          {/* Clients Card */}
-          <Fade in={true} timeout={1200}>
-            <Paper
-              sx={{
-                padding: "2vw",
-                backgroundColor: "#202938",
-                borderRadius: "12px",
-                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-                textAlign: "left",
-                color: theme.palette.text.primary,
-                width: "25%",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "DM Sans",
-                  fontWeight: 700,
-                  fontSize: "1.5vw",
-                  marginBottom: "1vh",
-                  marginTop: "2vh",
-                }}
-              >
-                Clients
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "1.2vw",
-                }}
-              >
-                For communication post handover, tech maintenance, or potential clients:{" "}
-                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
-              </Typography>
-            </Paper>
-          </Fade>
-
-          {/* Sponsors Card */}
-          <Fade in={true} timeout={1300}>
-            <Paper
-              sx={{
-                padding: "2vw",
-                backgroundColor: "#202938",
-                borderRadius: "12px",
-                border: "2px solid rgba(255, 255, 255, 0.2)", // White border with 20% opacity
-                textAlign: "left",
-                color: theme.palette.text.primary,
-                width: "25%",
-              }}
-            >
-              <Typography
-                variant="h6"
-                sx={{
-                  fontFamily: "DM Sans",
-                  fontWeight: 700,
-                  fontSize: "1.5vw",
-                  marginBottom: "1vh",
-                  marginTop: "2vh",
-                }}
-              >
-                Sponsors
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  fontWeight: 400,
-                  fontSize: "1.2vw",
-                }}
-              >
-                For current/future sponsor communication, partnerships director reaching out:{" "}
-                <span style={{ fontWeight: 700 }}>tpeoteam@gmail.com</span>
-              </Typography>
-            </Paper>
-          </Fade>
+          <Button
+            sx={{
+              backgroundColor: "#F3801A",
+              color: "#101010",
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "20px",
+              textTransform: "none",
+              borderRadius: "12px",
+              px: "24px",
+              py: "20px",
+              width: "fit-content",
+              "&:hover": {
+                backgroundColor: "#FB8C14",
+              },
+            }}
+          >
+            Send Message
+          </Button>
         </Box>
       </Box>
-    </>
+    </Box>
   );
 }
 

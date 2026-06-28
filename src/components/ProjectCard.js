@@ -1,7 +1,6 @@
-// ProjectCard.js
-
 import React from "react";
-import { Paper, Box, Divider, IconButton, Typography } from "@mui/material";
+import PropTypes from "prop-types";
+import { Paper, Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const ProjectCard = ({
@@ -31,15 +30,15 @@ const ProjectCard = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          borderRadius: "12px",
-          border: "1px solid #FFFFFF",
+          borderRadius: "16px",
+          border: "1px solid #444",
           width: "100%", // Use full width of the motion.div
-          backgroundColor: "#202938",
+          backgroundColor: "#191919",
           color: "#FFFFFF",
           paddingBottom: "3vh",
           overflow: "hidden", // Prevent content overflow
         }}
-        elevation={3} // Add some elevation (shadow)
+        elevation={0}
       >
         {/* Image Section */}
         <Box
@@ -47,10 +46,8 @@ const ProjectCard = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: `${parseInt(height) * 0.7}vh`, // Adjust as needed
+            height: `${Number.parseInt(height) * 0.7}vh`, // Adjust as needed
             backgroundColor: "#1A1F27",
-            borderTopLeftRadius: "12px",
-            borderTopRightRadius: "12px",
             overflow: "hidden",
           }}
         >
@@ -58,51 +55,56 @@ const ProjectCard = ({
             src={imageLink}
             alt={name}
             style={{
-              maxWidth: "80%",
-              maxHeight: "80%",
-              objectFit: "contain",
+              maxWidth: "100%",
+              maxHeight: "100%",
+              objectFit: "cover",
               display: "block",
             }}
           />
         </Box>
 
-        {/* Divider */}
-        <Divider sx={{ borderColor: "#FFFFFF" }} />
-
         {/* Content Section */}
         <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          padding: "5px",
-        }}
-      >
-          <IconButton color="inherit" sx={{ padding: "0", margin: "2vh" }}>
-          <img
-            src={iconImage}
-            alt={`${name} Icon`}
-            style={{ width: "4vh", height: "4vh" }}
-          />
-        </IconButton>
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            padding: "24px",
+            gap: "16px",
+          }}
+        >
+          <Box sx={{ flexShrink: 0 }}>
+            <Box
+              component="img"
+              src={iconImage}
+              alt={`${name} Icon`}
+              sx={{ width: "40px", height: "40px" }}
+            />
+          </Box>
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
-              marginLeft: "10px",
-            width: "90%"
+              gap: "8px",
             }}
           >
             <Typography
-            variant="subtitle1"
-            sx={{
-              fontSize: "1.3vw",
-              fontWeight: 700,
-              marginTop: "2vh",
-            }}
-          >
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontSize: "24px",
+                fontWeight: 700,
+                color: "#FFFFFF",
+              }}
+            >
               {name}
             </Typography>
-            <Typography variant="body2" sx={{ color: "#CCCCCC" }}>
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontSize: "18px",
+                lineHeight: "1.5",
+                color: "#AAAAAA",
+              }}
+            >
               {brief}
             </Typography>
           </Box>
@@ -110,6 +112,16 @@ const ProjectCard = ({
       </Paper>
     </motion.div>
   );
+};
+
+ProjectCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  imageLink: PropTypes.string.isRequired,
+  brief: PropTypes.string.isRequired,
+  iconImage: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  width: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default ProjectCard;

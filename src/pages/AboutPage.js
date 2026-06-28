@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { Box, Typography, Button, Divider } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import SectionHeader from "../components/SectionHeader";
 import imgLaptop from "../assets/aboutIcons/laptop.svg";
 import imgPenNib from "../assets/aboutIcons/pennib.svg";
 import imgMegaphone from "../assets/aboutIcons/megaphone.svg";
-import imgLightbulb from "../assets/aboutIcons/lightbulb-complete.png";
+import imgLightbulb from "../assets/aboutIcons/lightbulb-complete.svg";
 import imgFellowshipsSection from "../assets/aboutIcons/fellowships-section.png";
 import imgCompanyLogos from "../assets/aboutIcons/company-logos-grid.png";
 import imgVector14 from "../assets/aboutIcons/vector-14.svg";
@@ -77,43 +78,6 @@ DisciplinePill.propTypes = {
   imgSrc: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   rotation: PropTypes.number,
-};
-
-// Section Header component
-function SectionHeader({ title, description, mb = 0 }) {
-  return (
-    <Box sx={{ textAlign: "center", maxWidth: "816px", mb }}>
-      <Typography
-        sx={{
-          fontFamily: "DM Sans, sans-serif",
-          fontWeight: 700,
-          fontSize: "48px",
-          lineHeight: "36px",
-          color: "#F3801A",
-          mb: 3,
-        }}
-      >
-        {title}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-          fontWeight: 400,
-          fontSize: "28px",
-          lineHeight: "36px",
-          color: "#FFFFFF",
-        }}
-      >
-        {description}
-      </Typography>
-    </Box>
-  );
-}
-
-SectionHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.node.isRequired,
-  mb: PropTypes.number,
 };
 
 // Feature Card component

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Box, Typography, IconButton, Collapse, useTheme } from "@mui/material";
+import PropTypes from "prop-types";
+import { Box, Typography, IconButton, Collapse } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-function FAQ({ type }) {
-  const theme = useTheme();
-
+function Faq({ type }) {
   const faqData = [
     {
       question: "When does TPEO recruit?",
@@ -79,7 +78,7 @@ function FAQ({ type }) {
     },
     {
       question:
-        "Who is the point of contact during the project and how much involvement is needed from the stakeholder?",
+        "Who is the point of contact during the project and how much involvement is needed?",
       answer:
         "The point of contact will be the team's project manager. Involvement is dependent on the size of the project, but likely once a week one hour meetings to go over progress.",
       type: "Client",
@@ -124,104 +123,121 @@ function FAQ({ type }) {
     }
   };
 
-  // Filter the faqData based on the type prop
   const filteredFaqData = faqData.filter((faq) => faq.type === type);
 
   return (
     <Box
       sx={{
-        backgroundColor: theme.palette.background.default,
-        padding: "5vh 10vw",
-        paddingBottom: "10vh",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
       }}
     >
-      <Typography
-        variant="h3"
-        sx={{
-          fontFamily: "DM Sans",
-          fontWeight: 700,
-          fontSize: "3vw",
-          color: theme.palette.secondary.main,
-          marginBottom: "2vh",
-          textAlign: "center",
-        }}
-      >
-        FAQ
-      </Typography>
-      <Typography
-        variant="h6"
-        sx={{
-          fontFamily: "DM Sans",
-          fontWeight: 400,
-          fontSize: "1.5vw",
-          color: "#FFFFFF",
-          marginBottom: "5vh",
-          textAlign: "center",
-        }}
-      >
-        More questions? Contact Us!
-      </Typography>
-
-      {filteredFaqData.map((faq, index) => (
-        <Box
-          key={index}
+      <Box sx={{ textAlign: "center", mb: "52.7px", display: "flex", flexDirection: "column", gap: "18.67px" }}>
+        <Typography
           sx={{
-            width: "80%",
-            borderBottom: "1px solid #555", // Subtle line to separate questions
-            padding: "4vh",
-            marginBottom: "0vh",
+            fontFamily: "DM Sans, sans-serif",
+            fontWeight: 700,
+            fontSize: "48px",
+            lineHeight: "1.5",
+            color: "#F3801A",
           }}
         >
+          FAQ
+        </Typography>
+        <Typography
+          sx={{
+            fontFamily: "DM Sans, sans-serif",
+            fontWeight: 400,
+            fontSize: "28px",
+            lineHeight: "1.5",
+            color: "#FFFFFF",
+            maxWidth: "895px",
+          }}
+        >
+          More questions? Contact Us!
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "18.67px",
+          width: "100%",
+          maxWidth: "1353px",
+          pb: "91px",
+        }}
+      >
+        {filteredFaqData.map((faq, index) => (
           <Box
+            key={faq.question}
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              cursor: "pointer",
+              backgroundColor: "#191919",
+              border: "1.57px solid #444",
+              borderRadius: "12px",
+              overflow: "hidden",
             }}
-            onClick={() => toggleAnswer(index)}
           >
-            <Typography
-              variant="h6"
+            <Box
               sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                fontSize: "1.2vw",
-                color: "#FFFFFF",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                cursor: "pointer",
+                px: "37.77px",
+                py: "31.48px",
               }}
+              onClick={() => toggleAnswer(index)}
             >
-              {faq.question}
-            </Typography>
-            <IconButton sx={{ color: theme.palette.secondary.main }}>
-              {openIndexes.includes(index) ? <RemoveIcon /> : <AddIcon />}
-            </IconButton>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "28px",
+                  lineHeight: "37.77px",
+                  color: "#FFFFFF",
+                }}
+              >
+                {faq.question}
+              </Typography>
+              <IconButton sx={{ color: "#F3801A", p: 0 }}>
+                {openIndexes.includes(index) ? (
+                  <RemoveIcon sx={{ fontSize: "28.33px" }} />
+                ) : (
+                  <AddIcon sx={{ fontSize: "28.33px" }} />
+                )}
+              </IconButton>
+            </Box>
+            <Collapse
+              in={openIndexes.includes(index)}
+              timeout="auto"
+              unmountOnExit
+            >
+              <Box sx={{ px: "37.77px", pb: "31.48px" }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                    fontWeight: 400,
+                    fontSize: "24px",
+                    lineHeight: "1.5",
+                    color: "#AAAAAA",
+                  }}
+                >
+                  {faq.answer}
+                </Typography>
+              </Box>
+            </Collapse>
           </Box>
-          <Collapse
-            in={openIndexes.includes(index)}
-            timeout="auto"
-            unmountOnExit
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 400,
-                fontSize: "1.0vw",
-                color: "#FFFFFF",
-                marginTop: "1vh",
-                width: "90%"
-              }}
-            >
-              {faq.answer}
-            </Typography>
-          </Collapse>
-        </Box>
-      ))}
+        ))}
+      </Box>
     </Box>
   );
 }
 
-export default FAQ;
+Faq.propTypes = {
+  type: PropTypes.string.isRequired,
+};
+
+export default Faq;

@@ -1,336 +1,469 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  useTheme,
-  Grid,
-  Paper,
-  Fade,
-} from "@mui/material";
-import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
-import LockIcon from "@mui/icons-material/Lock";
-import AdsClickIcon from "@mui/icons-material/AdsClick";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import FAQ from "./sponsorsPage/FAQ";
-import { motion } from 'framer-motion';
-import ClientProcess from '../assets/vectorImages/ClientProcess.png'
-import thoughtlessImage from '../assets/projectImages/Thoughtless.png'
-import apaImage from '../assets/projectImages/apa_logo.png'
-import bigAustinImage from '../assets/projectImages/bigaustin_logo.png'
+import PropTypes from "prop-types";
+import { Box, Typography, Divider } from "@mui/material";
+import Faq from "./sponsorsPage/FAQ";
+import imgDoodles from "../assets/aboutIcons/client-doodles.svg";
+import iconActiveComm from "../assets/aboutIcons/icon-active-comm.svg";
+import iconProBono from "../assets/aboutIcons/icon-pro-bono.svg";
+import iconBuiltClient from "../assets/aboutIcons/icon-built-client.svg";
+import iconBuiltFuture from "../assets/aboutIcons/icon-built-future.svg";
 
-// Sample JSON data for the clients
-const clients = [
+const initialValueProps = [
   {
-    name: 'BiGAUSTIN',
-    description: ['Full-stack Website Redesign', 'Headless CRM application'],
-    tags: ['Non-profit', 'Website Redesign'],
-    image: bigAustinImage,
-    link: 'https://medium.com/@channurichinmayee/tpeo-showcase-this-is-how-we-redesigned-a-nonprofits-website-end-to-end-86a36864844c',
+    icon: iconActiveComm,
+    title: "Active \nCommunication",
+    description: "Receive real-time updates and stay in the loop at every stage of your project.",
   },
   {
-    name: 'Austin Pets Alive',
-    description: ['Process Optimization', 'Volunteer Management System'],
-    tags: ['Animal Shelter', 'Process Improvement'],
-    image: apaImage,
-    link: 'https://medium.com/@channurichinmayee/tpeo-showcase-heres-how-we-optimized-an-austin-animal-shelter-s-end-to-end-processes-890e2d94e866',
+    icon: iconProBono,
+    title: "Pro-Bono Work",
+    description: "All work is completed entirely pro-bono. No charges or fees, ever.",
   },
   {
-    name: 'Thoughtless',
-    description: ['Product Development', 'Community Engagement Platform'],
-    tags: ['Student Organization', 'Product Launch'],
-    image: thoughtlessImage,
-    link: 'https://medium.com/@channurichinmayee/introducing-thoughtless-a-product-for-student-orgs-made-by-a-student-org-cc8a643b9fa0',
+    icon: iconBuiltClient,
+    title: "Built for the \nClient",
+    description: "Designs are developed with your mission in mind, integrating seamlessly with your existing systems.",
+  },
+  {
+    icon: iconBuiltFuture,
+    title: "Built for the \nFuture",
+    description: "We build with scalability in mind so your product lasts.",
   },
 ];
 
-// Card component for client information
-function ClientCard({ client }) {
-  const theme = useTheme();
+const clientData = [
+  {
+    title: "Texas Cultural Trust",
+    subtitle: "Accessibility Platform",
+    description:
+      "Designed a centralized statewide events calendar, improving event discoverability and creating a more accessible way for Texans to explore cultural experiences across the state.",
+    tags: ["Web", "Mobile"],
+  },
+  {
+    title: "SAFE",
+    subtitle: "Web Redesign",
+    description:
+      "Redesigned SAFE’s donation experience to increase contributions and better communicate its mission of supporting survivors of sexual assault and abuse",
+    tags: ["Web", "Branding"],
+  },
+  {
+    title: "BIGAustin",
+    subtitle: "Web Redesign",
+    description:
+      "Redesigned their web presence from the ground up — boosting engagement and clearly communicating their small-business mission.",
+    tags: ["Web", "Branding"],
+  },
+  {
+    title: "Austin Public Library",
+    subtitle: "Accessibility Platform",
+    description:
+      "Built accessible tools to help patrons discover resources and navigate library services with ease.",
+    tags: ["Web", "Branding"],
+  },
+];
 
-  const handleCardClick = () => {
-    window.open(client.link, '_blank');
-  };
+const processSteps = [
+  {
+    number: "01",
+    title: "Meet the Team",
+    description: "Initial discussions with the Product Manager, Designer, and Developer who will work with you throughout the entire project.",
+  },
+  {
+    number: "02",
+    title: "Begin Project",
+    description: "From here we accept the project proposal and our PM, Designers, and Engineers begin working to scope a solution.",
+  },
+  {
+    number: "03",
+    title: "Start Building",
+    description: "Once a plan is laid out, we move into active development with regular syncs and feedback sessions along the way.",
+  },
+  {
+    number: "04",
+    title: "Deployment",
+    description: "After all rounds of testing and final approvals, we hand off fully deployed, documented, ready-to-use software.",
+  },
+];
 
+function ValuePropCard({ icon, title, description }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      style={{ width: '38vw', margin: '1rem', cursor: 'pointer' }}
-      onClick={handleCardClick}
-    >
-      <Paper
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", width: "100%", maxWidth: "300px" }}>
+      <Box sx={{ width: "78px", height: "78px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Box component="img" src={icon} alt="" sx={{ width: "54.6px", height: "54.6px" }} />
+      </Box>
+      <Typography
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '2vw',
-          backgroundColor: '#202938',
-          borderRadius: '12px',
-          border: '2px solid rgba(255, 255, 255, 0.2)',
-          color: theme.palette.text.primary,
-          height: '23vh',
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 700,
+          fontSize: "32px",
+          lineHeight: "35.98px",
+          color: "#FFFFFF",
+          textAlign: "center",
+          whiteSpace: "pre-line",
         }}
-        elevation={3}
       >
-        {/* Content Section */}
-        <Box sx={{ flex: 1 }}>
-          <Typography variant="h5" sx={{ fontWeight: 700, marginBottom: '1vh' }}>
-            {client.name}
-          </Typography>
-          {client.description.map((line, index) => (
-            <Typography key={index} variant="body1" sx={{ marginBottom: '0.5vh' }}>
-              {line}
-            </Typography>
-          ))}
-          <Box sx={{ display: 'flex', gap: '1vw', marginTop: '2vh', flexWrap: 'wrap' }}>
-            {client.tags.map((tag, index) => (
-              <Box
-                key={index}
-                sx={{
-                  backgroundColor: '#D9D9D9',
-                  color: '#000',
-                  fontSize: '0.8vw',
-                  padding: '0.2vw 1vw',
-                  borderRadius: '5px',
-                  fontWeight: 700,
-                }}
-              >
-                {tag}
-              </Box>
-            ))}
-          </Box>
-        </Box>
-        {/* Image Section */}
-        <Box sx={{ flexShrink: 0, marginLeft: '1vw' }}>
-          <img
-            src={client.image}
-            alt={client.name}
-            style={{
-              width: '100%',
-              maxWidth: "16vw",
-              height: 'auto',
-              maxHeight: '18vh',
-              objectFit: 'contain',
+        {title}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 400,
+          fontSize: "28px",
+          lineHeight: "31.9px",
+          color: "#888888",
+          textAlign: "center",
+          width: "290.46px",
+        }}
+      >
+        {description}
+      </Typography>
+    </Box>
+  );
+}
+
+function ClientCard({ title, subtitle, description, tags }) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#191919",
+        border: "1.32px solid #444",
+        borderRadius: "15.83px",
+        p: "43.53px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "24px",
+        width: "623px",
+        minHeight: "350px",
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+        <Typography
+          sx={{
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontWeight: 700,
+            fontSize: "28px",
+            lineHeight: "43.53px",
+            color: "#FFFFFF",
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          sx={{
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontWeight: 500,
+            fontSize: "24px",
+            lineHeight: "29.68px",
+            color: "#F3801A",
+          }}
+        >
+          {subtitle}
+        </Typography>
+      </Box>
+
+      <Typography
+        sx={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 400,
+          fontSize: "24px",
+          lineHeight: "32.16px",
+          color: "#AAAAAA",
+          width: "535.6px",
+          flexGrow: 1,
+        }}
+      >
+        {description}
+      </Typography>
+
+      <Box sx={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+        {tags.map((tag) => (
+          <Box
+            key={tag}
+            sx={{
+              border: "1.32px solid #444",
+              borderRadius: "100px",
+              px: "17px",
+              py: "6px",
             }}
-          />
-        </Box>
-      </Paper>
-    </motion.div>
+          >
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 500,
+                fontSize: "24px",
+                lineHeight: "25.73px",
+                color: "#D7D7D7",
+              }}
+            >
+              {tag}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+}
+
+function ProcessCard({ number, title, description }) {
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#191919",
+        border: "1.32px solid #444",
+        borderRadius: "15.83px",
+        p: "43.53px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "21.11px",
+        width: "300px",
+      }}
+    >
+      <Typography
+        sx={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 700,
+          fontSize: "40px",
+          lineHeight: "63.32px",
+          color: "#F3801A",
+        }}
+      >
+        {number}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 700,
+          fontSize: "28px",
+          lineHeight: "35.62px",
+          color: "#FFFFFF",
+        }}
+      >
+        {title}
+      </Typography>
+      <Typography
+        sx={{
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          fontWeight: 400,
+          fontSize: "24px",
+          lineHeight: "32.16px",
+          color: "#888888",
+          width: "208.44px",
+        }}
+      >
+        {description}
+      </Typography>
+    </Box>
   );
 }
 
 function ClientPage() {
-  const theme = useTheme();
-
   return (
-    <>
+    <Box
+      sx={{
+        backgroundColor: "#101010",
+        width: "100%",
+        overflowX: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* Background Doodles */}
+      <Box
+        component="img"
+        src={imgDoodles}
+        alt=""
+        sx={{
+          position: "absolute",
+          top: "56px",
+          right: "-123px",
+          width: "613px",
+          height: "614px",
+          pointerEvents: "none",
+          mixBlendMode: "lighten",
+          opacity: 0.8,
+          zIndex: 0,
+        }}
+      />
+
+      {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
-          height: "100vh",
-          background: `linear-gradient(to left, rgba(26, 32, 44, 1) 40%, #825835 100%)`, // Adjusted gradient direction and colors
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "start",
-          alignItems: "start",
-          paddingLeft: "4vw",
+          pt: "257px",
+          px: "79px",
+          position: "relative",
+          zIndex: 1,
         }}
       >
-        <Fade in={true} timeout={600}>
+        {/* Title Group */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "40.32px", mb: "60px" }}>
           <Typography
-            variant="h2"
             sx={{
-              fontFamily: "DM Sans",
+              fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "4vw",
-              color: theme.palette.text.primary,
-              marginBottom: "2vh",
-              marginTop: "30vh",
-              textAlign: "left",
-              width: "100%",
-              maxWidth: "1200px",
+              fontSize: "64px",
+              lineHeight: "normal",
+              color: "#FFFFFF",
             }}
           >
-            clients
+            <span style={{ color: "#F3801A" }}>TPEO</span>’s amazing clients.
           </Typography>
-        </Fade>
-
-        <Fade in={true} timeout={800}>
           <Typography
-            variant="h5"
             sx={{
+              fontFamily: "DM Sans, sans-serif",
               fontWeight: 400,
-              fontSize: "2vw",
-              color: theme.palette.text.primary,
-              marginBottom: "0vh",
-              textAlign: "left",
-              width: "100%",
-              maxWidth: "1200px",
+              fontSize: "28px",
+              lineHeight: "39.06px",
+              color: "#D7D7D7",
             }}
           >
-            We love our nonprofit partners! Here's the cool stuff we have done for them
-          </Typography>
-        </Fade>
-
-        <Grid
-          container
-          spacing={4}
-          sx={{ maxWidth: "1200px", paddingTop: "12vh" }}
-        >
-          <Fade in={true} timeout={1000}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Box sx={{ color: theme.palette.text.primary }}>
-                <EnergySavingsLeafIcon
-                  sx={{ fontSize: "2vw", marginBottom: 2 }}
-                />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw"}}>
-                  Active Communication
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                Personal point of contact for each client project!
-                </Typography>
-              </Box>
-            </Grid>
-          </Fade>
-          <Fade in={true} timeout={1100}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Box sx={{ color: theme.palette.text.primary }}>
-                <AdsClickIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                Pro-Bono Work
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                Access to experienced engineers, designers, and product managers
-                </Typography>
-              </Box>
-            </Grid>
-          </Fade>
-          <Fade in={true} timeout={1200}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Box sx={{ color: theme.palette.text.primary }}>
-                <LockIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                Build for the Client
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                Projects are designed with the client in mind. We integrate out work  to existing systems
-                </Typography>
-              </Box>
-            </Grid>
-          </Fade>
-          <Fade in={true} timeout={1300}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Box sx={{ color: theme.palette.text.primary }}>
-                <NotificationsIcon sx={{ fontSize: "2vw", marginBottom: 2 }} />
-                <Typography variant="h6" sx={{ fontWeight: 700, fontSize: "1.25vw" }}>
-                Built for the Future
-                </Typography>
-                <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "0.95vw" }}>
-                Our projects are designed and built to last
-                </Typography>
-              </Box>
-            </Grid>
-          </Fade>
-        </Grid>
-      </Box>
-      <Box
-        sx={{
-          backgroundColor: theme.palette.background.default,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "start",
-          alignItems: "center",
-          height: "auto",
-          paddingX: "3vw", // Add padding here instead of on the Grid
-        }}
-      >
-        <Box
-          sx={{
-            textAlign: "center",
-            width: "55%",
-            marginTop: "10vh",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "DM Sans",
-              fontWeight: 700,
-              fontSize: "3.8vw",
-              color: theme.palette.secondary.main,
-              marginBottom: "20px",
-            }}
-          >
-            Our past clientele
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 400,
-              fontSize: "1.3vw",
-              color: theme.palette.text.primary,
-            }}
-          >
-            We've worked with numerous local Austin startups, non-profits, and
-            companies to aid them with technological solutions
+            We love our clients! Here is the cool stuff we’ve done for them.
           </Typography>
         </Box>
-        <Grid
-          container
-          spacing={4}
-          justifyContent="center" // Center the grid items
-          sx={{ paddingTop: "5vh", marginX: "auto" }} // Center and limit width
+
+        {/* Value Props Grid */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: "40px",
+            maxWidth: "1335.85px",
+            pb: "91.68px", // Adjusted to match y:1011 for linebr
+          }}
         >
-          {clients.map((client, index) => (
-            <Grid item xs={12} sm={6} md={6} key={index}>
-              <ClientCard client={client} />
-            </Grid>
+          {initialValueProps.map((prop) => (
+            <ValuePropCard key={prop.title} {...prop} />
           ))}
-        </Grid>
-        <Box
-          sx={{
-            textAlign: "center",
-            width: "55%",
-            marginTop: "10vh",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{
-              fontFamily: "DM Sans",
-              fontWeight: 700,
-              fontSize: "3.8vw",
-              color: theme.palette.secondary.main,
-              marginBottom: "20px",
-            }}
-          >
-            What we do
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 400,
-              fontSize: "1.3vw",
-              color: theme.palette.text.primary,
-              marginBottom: "2vh",
-            }}
-          >
-            All Client projects are paired with a team of experienced
-            students—Product Manager, Designers, Engineers—who have participated
-            in our rigorous training curriculum.
-          </Typography>
         </Box>
-        <Box
-            component="img"
-            src={ClientProcess}
-            alt="Our Process"
-            sx={{
-              width: "100%",
-              marginY: "5vh",
-            }}
-          />
       </Box>
 
-      <FAQ type="Client"></FAQ>
-    </>
+      {/* linebr at y:1011 */}
+      <Divider sx={{ backgroundColor: "#444", mx: "0px" }} />
+
+      {/* ========== CLIENT INFO CONTAINER ========== */}
+      <Box
+        sx={{
+          px: "79px",
+          pt: "84px", // Gap from linebr (1095 - 1011 = 84)
+          display: "flex",
+          flexDirection: "column",
+          gap: "100px",
+        }}
+      >
+        {/* ========== PAST CLIENTELE SECTION ========== */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "60px",
+          }}
+        >
+          <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px" }}>
+            <Typography
+              sx={{
+                fontFamily: "DM Sans, sans-serif",
+                fontWeight: 700,
+                fontSize: "48px",
+                lineHeight: "1.5",
+                color: "#F3801A",
+              }}
+            >
+              Our past clientele
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "DM Sans, sans-serif",
+                fontWeight: 400,
+                fontSize: "24px",
+                lineHeight: "1.5",
+                color: "#FFFFFF",
+              }}
+            >
+              We’ve worked with numerous local Austin startups, non-profits, and companies to aid them with technological solutions
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "30px",
+              width: "100%",
+              maxWidth: "1276.67px",
+            }}
+          >
+            {/* Row 1 */}
+            <Box sx={{ display: "flex", gap: "31px" }}>
+              <ClientCard {...clientData[0]} />
+              <ClientCard {...clientData[1]} />
+            </Box>
+            {/* Row 2 */}
+            <Box sx={{ display: "flex", gap: "31px" }}>
+              <ClientCard {...clientData[2]} />
+              <ClientCard {...clientData[3]} />
+            </Box>
+          </Box>
+        </Box>
+
+        {/* linebr at 1083.98 relative to container */}
+        <Divider sx={{ backgroundColor: "#444" }} />
+
+        {/* ========== WHAT WE DO SECTION ========== */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "60px",
+          }}
+        >
+          <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px" }}>
+            <Typography
+              sx={{
+                fontFamily: "DM Sans, sans-serif",
+                fontWeight: 700,
+                fontSize: "48px",
+                lineHeight: "1.5",
+                color: "#F3801A",
+              }}
+            >
+              What we do
+            </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "28px",
+                lineHeight: "1.5",
+                color: "#FFFFFF",
+              }}
+            >
+              All Client projects are paired with a team of experienced students—Product Manager, Designers, Engineers—who have participated in our rigorous training curriculum.
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              gap: "31.25px",
+              width: "100%",
+              maxWidth: "1300px",
+              justifyContent: "center",
+            }}
+          >
+            {processSteps.map((step) => (
+              <ProcessCard key={step.number} {...step} />
+            ))}
+          </Box>
+        </Box>
+
+        {/* linebr at 2007.98 relative to container */}
+        <Divider sx={{ backgroundColor: "#444" }} />
+
+        {/* ========== FAQ SECTION ========== */}
+        <Box sx={{ pb: "100px" }}>
+          <Faq type="Client" />
+        </Box>
+      </Box>
+    </Box>
   );
 }
 

@@ -1,204 +1,282 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  useTheme,
-  Modal,
-} from "@mui/material";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Cohort from "./Cohort";
-import { motion, AnimatePresence } from "framer-motion";
+import PropTypes from "prop-types";
+import { Box, Typography } from "@mui/material";
+import Footer from "../../components/Footer";
+import imgTeamDoodle1 from "../../assets/aboutIcons/team-doodle-1.svg";
+import imgTeamDoodle2 from "../../assets/aboutIcons/team-doodle-2.svg";
+import imgDefaultProfile from "../../assets/aboutIcons/megaphone.png"; // Placeholder
 
-function TeamPage() {
-  const theme = useTheme();
+const categories = ["Leadership", "Product", "Design", "Engineering", "Alumni"];
 
-  // Dynamically import all images from the specified directory
-  const importAll = (r) =>
-    r.keys().map((key, index) => ({
-      id: index + 1,
-      url: r(key),
-      alt: `Carousel Slide ${index + 1}`,
-    }));
+const teamData = {
+  Leadership: [
+    { name: "Vaishnuv Thiagarajan", role: "President", fellowship: "Product Fellow", image: "https://www.figma.com/api/mcp/asset/1db5e6d4-af7b-41c5-b7d4-346da573ec06" },
+    { name: "Vickie Hu", role: "Projects Director", fellowship: "Product Fellow", image: imgDefaultProfile },
+    { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgDefaultProfile },
+    { name: "Krish Parkih", role: "Engineering Director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+    { name: "Isa Melendez", role: "Design Director", fellowship: "Design Fellow", image: imgDefaultProfile },
+    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgDefaultProfile },
+    { name: "Asha Kay Rountree", role: "Corporate Director", fellowship: "Design Fellow", image: imgDefaultProfile },
+    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgDefaultProfile },
+    { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Fellow", image: imgDefaultProfile },
+    { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+    { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+    { name: "Archana Arangil", role: "Events Co-director", fellowship: "Product Fellow", image: imgDefaultProfile },
+    { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+  ],
+  Product: [
+    { name: "Member Name", role: "Product Manager", fellowship: "Product Fellow", image: imgDefaultProfile },
+  ],
+  Design: [
+    { name: "Member Name", role: "Lead Designer", fellowship: "Design Fellow", image: imgDefaultProfile },
+  ],
+  Engineering: [
+    { name: "Member Name", role: "Full Stack Engineer", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+  ],
+  Alumni: [
+    { name: "Alumni Name", role: "Past President", fellowship: "Alumni", image: imgDefaultProfile },
+  ],
+};
 
-  const images = importAll(
-    require.context(
-      "../../assets/socialImages",
-      false,
-      /\.(png|jpg|jpeg|svg|JPG|JPEG)$/i
-    )
-  );
-
-  const [open, setOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleOpen = (image) => {
-    setSelectedImage(image);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    setSelectedImage(null);
-  };
-
-  const settings = {
-    dots: false,
-    infinite: true, // Consider keeping infinite regardless of image count for a continuous feel
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
-
+function MemberCard({ name, role, fellowship, image }) {
   return (
-    <>
+    <Box sx={{ width: "293px", display: "flex", flexDirection: "column", gap: "1px" }}>
       <Box
         sx={{
-          height: "110vh",
-          background: `
-          linear-gradient(0deg, rgba(236, 145, 62, 0.7), rgba(236, 145, 62, 0) 65%),
-          #1A202C`, // Dark background as the base layer
-          display: "flex",
-          flexDirection: "column",
+          height: "250px",
+          width: "293px",
+          borderRadius: "20px 20px 0 0",
+          overflow: "hidden",
         }}
       >
         <Box
+          component="img"
+          src={image}
+          alt={name}
           sx={{
-            textAlign: "center",
             width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Typography
-              variant="h4"
-              sx={{
-                fontFamily: "DM Sans",
-                fontWeight: 700,
-                fontSize: "3.8vw",
-                color: theme.palette.text.primary,
-                marginBottom: "20px",
-                marginTop: "12%",
-                marginLeft: "5vw",
-                width: "30%",
-                textAlign: "left",
-              }}
-            >
-              Introducing Team TPEO
-            </Typography>
-          </motion.div>
-        </Box>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2 }}
-        >
-          <Box
-            sx={{
-              width: "80%",
-              alignItems: "center",
-              justifyContent: "center",
-              mx: "auto",
-              mt: "5vh",
-            }}
-          >
-            <Slider {...settings}>
-              {images.map((image) => (
-                <div key={image.id} onClick={() => handleOpen(image.url)}>
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 100 }}
-                    style={{
-                      width: "100%",
-                      maxWidth: "25vw",
-                      height: "25vw",
-                      borderRadius: "15px",
-                      overflow: "hidden",
-                      margin: "auto",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <img
-                      src={image.url}
-                      alt={image.alt}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </motion.div>
-                </div>
-              ))}
-            </Slider>
-          </Box>
-        </motion.div>
+        />
       </Box>
-      <Cohort />
-      <Modal
-        open={open}
-        onClose={handleClose}
+      <Box
         sx={{
+          backgroundColor: "#191919",
+          border: "1px solid #444",
+          borderRadius: "0 0 20px 20px",
+          p: "28px 32px",
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "transparent",
-          backdropFilter: "none",
+          flexDirection: "column",
+          gap: "16px",
         }}
       >
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              key="modal"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
+        <Typography
+          sx={{
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontWeight: 700,
+            fontSize: "28px",
+            lineHeight: "39px",
+            color: "#FFFFFF",
+          }}
+        >
+          {name}
+        </Typography>
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 400,
+              fontSize: "24px",
+              lineHeight: "32px",
+              color: "#D7D7D7",
+            }}
+          >
+            {role}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 400,
+              fontSize: "24px",
+              lineHeight: "32px",
+              color: "#D7D7D7",
+            }}
+          >
+            {fellowship}
+          </Typography>
+        </Box>
+      </Box>
+    </Box>
+  );
+}
+
+MemberCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
+  fellowship: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
+function TeamPage() {
+  const [selectedCategory, setSelectedCategory] = useState("Leadership");
+
+  return (
+    <Box
+      sx={{
+        backgroundColor: "#101010",
+        width: "100%",
+        minHeight: "100vh",
+        overflowX: "hidden",
+        position: "relative",
+      }}
+    >
+      {/* Background Doodles */}
+      <Box
+        component="img"
+        src={imgTeamDoodle1}
+        alt=""
+        sx={{
+          position: "absolute",
+          top: "266px",
+          right: "-50px",
+          width: "262px",
+          height: "262px",
+          pointerEvents: "none",
+          mixBlendMode: "lighten",
+          zIndex: 0,
+        }}
+      />
+      <Box
+        component="img"
+        src={imgTeamDoodle2}
+        alt=""
+        sx={{
+          position: "absolute",
+          top: "152px",
+          left: "504px",
+          width: "256px",
+          height: "257px",
+          pointerEvents: "none",
+          mixBlendMode: "lighten",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ========== HERO SECTION ========== */}
+      <Box
+        sx={{
+          pt: "257px",
+          px: "79px",
+          pb: "47px",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "40.32px" }}>
+          <Typography
+            sx={{
+              fontFamily: "DM Sans, sans-serif",
+              fontWeight: 700,
+              fontSize: "64px",
+              lineHeight: "normal",
+              color: "#FFFFFF",
+            }}
+          >
+            meet team <span style={{ color: "#F3801A" }}>TPEO</span>.
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Roboto, sans-serif",
+              fontWeight: 400,
+              fontSize: "28px",
+              lineHeight: "39.06px",
+              color: "#D7D7D7",
+              maxWidth: "770px",
+            }}
+          >
+            We’re a passionate group of students building real world projects, learning, and growing together.
+          </Typography>
+        </Box>
+      </Box>
+
+      {/* ========== CATEGORY SELECTOR ========== */}
+      <Box sx={{ px: "77px", mb: "43px", position: "relative", zIndex: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderBottom: "1px solid #444",
+            pb: "0px",
+          }}
+        >
+          {categories.map((cat) => {
+            const isSelected = selectedCategory === cat;
+            return (
               <Box
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
                 sx={{
+                  flex: 1,
+                  textAlign: "center",
+                  cursor: "pointer",
+                  py: "15px",
                   position: "relative",
-                  maxWidth: "90vw",
-                  maxHeight: "90vh",
+                  "&::after": isSelected
+                    ? {
+                        content: '""',
+                        position: "absolute",
+                        bottom: "-1px",
+                        left: 0,
+                        right: 0,
+                        height: "3px",
+                        background: "linear-gradient(90deg, #FB8C14 0%, #F6A606 100%)",
+                      }
+                    : {},
                 }}
               >
-                {selectedImage && (
-                  <motion.div
-                    whileHover={{ scale: 1.02 }} // Hover animation on modal image
-                    transition={{ type: "spring", stiffness: 200 }}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <img
-                      src={selectedImage}
-                      alt="Selected"
-                      style={{
-                        width: "auto",
-                        height: "90vh", // Height fits within the viewport height
-                        maxWidth: "100%", // Ensure width fits within the viewport width
-                        objectFit: "contain",
-                        display: "block",
-                        margin: "auto",
-                        borderRadius: "12px",
-                      }}
-                    />
-                  </motion.div>
-                )}
+                <Typography
+                  sx={{
+                    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                    fontWeight: isSelected ? 700 : 500,
+                    fontSize: "28px",
+                    lineHeight: "36px",
+                    color: isSelected ? "transparent" : "#FFFFFF",
+                    ...(isSelected && {
+                      backgroundImage: "linear-gradient(90deg, #FB8C14 0%, #F6A606 100%)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }),
+                  }}
+                >
+                  {cat}
+                </Typography>
               </Box>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Modal>
-    </>
+            );
+          })}
+        </Box>
+      </Box>
+
+      {/* ========== MEMBERS GRID ========== */}
+      <Box
+        sx={{
+          px: "79px",
+          pb: "128px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, 293px)",
+          gap: "40px",
+          justifyContent: "center",
+          minHeight: "400px",
+        }}
+      >
+        {teamData[selectedCategory].map((member, index) => (
+          <MemberCard key={`${member.name}-${index}`} {...member} />
+        ))}
+      </Box>
+
+      <Footer />
+    </Box>
   );
 }
 
