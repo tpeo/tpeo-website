@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Typography, Button, Divider } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import SectionHeader from "../components/SectionHeader";
+import JoinCTA from "../components/JoinCTA";
 import imgLaptop from "../assets/aboutIcons/laptop.svg";
 import imgPenNib from "../assets/aboutIcons/pennib.svg";
 import imgMegaphone from "../assets/aboutIcons/megaphone.svg";
@@ -164,7 +165,7 @@ function AboutPage() {
       {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
-          backgroundColor: "#191919",
+          background: "linear-gradient(180deg, #191919 76.95%, #101010 100%)",
           width: "100%",
           position: "relative",
           height: "836px",
@@ -231,7 +232,7 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "732px",
+            left: "772px",
             top: "141px",
             width: "606px",
             height: "606px",
@@ -259,7 +260,7 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "1173.83px",
+            left: "1213.83px",
             top: "272px",
             display: "flex",
             alignItems: "center",
@@ -277,7 +278,7 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "1173.11px",
+            left: "1213.11px",
             top: "380px",
             display: "flex",
             alignItems: "center",
@@ -295,7 +296,7 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "1211.18px",
+            left: "1251.18px",
             top: "486.94px",
             display: "flex",
             alignItems: "center",
@@ -316,7 +317,7 @@ function AboutPage() {
           alt=""
           sx={{
             position: "absolute",
-            left: "1321px",
+            left: "1361px",
             top: "182.5px",
             width: "140px",
             height: "auto",
@@ -330,7 +331,7 @@ function AboutPage() {
           alt=""
           sx={{
             position: "absolute",
-            left: "1269.66px",
+            left: "1309.66px",
             top: "601px",
             width: "95px",
             height: "auto",
@@ -558,142 +559,7 @@ function AboutPage() {
 
       <Divider sx={{ backgroundColor: "#444" }} />
 
-      {/* ========== JOIN CTA ========== */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          py: "80px",
-          px: "5%",
-        }}
-      >
-        <Box
-          sx={{
-            backgroundColor: "#191919",
-            border: "1px solid #444",
-            borderRadius: "24px",
-            p: "65px",
-            maxWidth: "1128px",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            sx={{
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 500,
-              fontSize: "32px",
-              color: "#F3801A",
-              textTransform: "uppercase",
-              letterSpacing: "1.2px",
-              mb: 2,
-            }}
-          >
-            Apply now
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: "DM Sans, sans-serif",
-              fontWeight: 700,
-              fontSize: "48px",
-              lineHeight: "60px",
-              color: "#FFFFFF",
-              maxWidth: "512px",
-              mb: 2,
-            }}
-          >
-            Interested in joining TPEO?
-          </Typography>
-          <Box sx={{ maxWidth: "540px", mb: 5 }}>
-            <Typography
-              sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 400,
-                fontSize: "28px",
-                lineHeight: "31.9px",
-                color: "#D7D7D7",
-              }}
-            >
-              We're really cool -- join us!
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 400,
-                fontSize: "28px",
-                lineHeight: "31.9px",
-                color: "#D7D7D7",
-              }}
-            >
-              Applications open every Fall semester.
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 400,
-                fontSize: "28px",
-                lineHeight: "31.9px",
-                color: "#D7D7D7",
-              }}
-            >
-              Get in early, spots are limited.
-            </Typography>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              gap: "40px",
-              alignItems: "center",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
-            <Button
-              variant="contained"
-              endIcon={<OpenInNewIcon />}
-              sx={{
-                backgroundColor: "#F3801A",
-                color: "#101010",
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 500,
-                fontSize: "28px",
-                lineHeight: "24px",
-                borderRadius: "12px",
-                px: "32px",
-                py: "12px",
-                textTransform: "none",
-                "&:hover": { backgroundColor: "#FB8C14" },
-              }}
-            >
-              Link to Application
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                borderColor: "#444",
-                color: "#FFFFFF",
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 500,
-                fontSize: "28px",
-                lineHeight: "24px",
-                borderRadius: "12px",
-                px: "33px",
-                py: "13px",
-                textTransform: "none",
-                "&:hover": {
-                  borderColor: "#F3801A",
-                  color: "#F3801A",
-                },
-              }}
-            >
-              Join our Slack
-            </Button>
-          </Box>
-        </Box>
-      </Box>
+      <JoinCTA />
     </Box>
   );
 }

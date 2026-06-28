@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { Box, Typography, IconButton, Collapse } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
-function Faq({ type }) {
+function Faq({ type, iconStyle = "plus" }) {
   const faqData = [
     {
       question: "When does TPEO recruit?",
@@ -36,32 +38,26 @@ function Faq({ type }) {
       type: "General",
     },
     {
-      question: "Who do we recruit?",
+      question: "What does TPEO recruit?",
       answer: "We recruit incoming freshmen and sophomores of all majors!",
       type: "NewFellow",
     },
     {
-      question: "How much experience is needed to be a fellow?",
+      question: "When do applications open?",
       answer:
-        "The great thing about TPEO is that you don't need much! If you are applying for engineering, we ask that you have a basic understanding of object-oriented programming as the course is rigorous. For design and product, we will teach you everything you need to know from scratch.",
+        "Applications open every Fall semester. At the beginning of the fall semester we host coffee chats and information sessions—follow @txproduct on Instagram for updates!",
       type: "NewFellow",
     },
     {
-      question: "What is the recruitment timeline?",
+      question: "How much time does the fellowship require?",
       answer:
-        "At the beginning of the fall semester we will host coffee chats and information sessions for you to use as an opportunity to get to know what TPEO is all about! Our application opens at the time. If you are selected, there is a follow-up interview round, and then decisions are released shortly after.",
+        "New fellows participate in semester-long courses and a new fellow project. Expect a meaningful weekly commitment during the academic year, including classes, project work, and team meetings.",
       type: "NewFellow",
     },
     {
-      question: "What do we look for in TPEO Applicants?",
+      question: "Is there compensation?",
       answer:
-        "Passion! We are looking for someone who can dedicate themselves to TPEO and is ready to learn!",
-      type: "NewFellow",
-    },
-    {
-      question: "Where can we find updates?",
-      answer:
-        "For updates on TPEO, drop us a follow on instagram @txproduct! All recruiting and workshop updates will be posted there!",
+        "TPEO is a student organization. The fellowship is unpaid, but fellows gain hands-on experience, mentorship, and access to our alumni network.",
       type: "NewFellow",
     },
     {
@@ -203,7 +199,13 @@ function Faq({ type }) {
                 {faq.question}
               </Typography>
               <IconButton sx={{ color: "#F3801A", p: 0 }}>
-                {openIndexes.includes(index) ? (
+                {iconStyle === "chevron" ? (
+                  openIndexes.includes(index) ? (
+                    <ExpandLessIcon sx={{ fontSize: "28.33px" }} />
+                  ) : (
+                    <ExpandMoreIcon sx={{ fontSize: "28.33px" }} />
+                  )
+                ) : openIndexes.includes(index) ? (
                   <RemoveIcon sx={{ fontSize: "28.33px" }} />
                 ) : (
                   <AddIcon sx={{ fontSize: "28.33px" }} />
@@ -238,6 +240,7 @@ function Faq({ type }) {
 
 Faq.propTypes = {
   type: PropTypes.string.isRequired,
+  iconStyle: PropTypes.oneOf(["plus", "chevron"]),
 };
 
 export default Faq;

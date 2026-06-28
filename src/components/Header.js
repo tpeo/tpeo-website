@@ -34,18 +34,26 @@ function Header() {
         boxShadow: "none",
         zIndex: 1200,
         border: "none",
+        borderBottom: "1px solid #444",
       }}
     >
       <Toolbar
+        disableGutters
         sx={{
-          justifyContent: "space-between",
-          alignItems: "center",
-          px: "60px",
           pt: "42px",
           pb: "24px",
           minHeight: "0 !important",
         }}
       >
+        <Box
+          sx={{
+            width: "calc(100% - 100px)",
+            mx: "auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
         {/* Logo */}
         <Link
           to="/"
@@ -163,6 +171,7 @@ function Header() {
               Join TPEO
             </Box>
           </Box>
+        </Box>
         </Box>
       </Toolbar>
     </AppBar>

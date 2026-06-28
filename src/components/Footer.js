@@ -198,7 +198,7 @@ const Footer = () => {
             lineHeight: "normal",
             color: "#D7D7D7",
             textAlign: "left",
-            mt: "78.59px",
+            mt: "44px",
             whiteSpace: "nowrap",
           }}
         >

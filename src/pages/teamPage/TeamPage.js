@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
-import Footer from "../../components/Footer";
 import imgTeamDoodle1 from "../../assets/aboutIcons/team-doodle-1.svg";
 import imgTeamDoodle2 from "../../assets/aboutIcons/team-doodle-2.svg";
+import imgTeamSquiggle from "../../assets/aboutIcons/team-squiggle.png";
 import imgDefaultProfile from "../../assets/aboutIcons/megaphone.png"; // Placeholder
 
 const categories = ["Leadership", "Product", "Design", "Engineering", "Alumni"];
@@ -154,7 +154,7 @@ function TeamPage() {
         sx={{
           position: "absolute",
           top: "152px",
-          left: "504px",
+          left: "560px",
           width: "256px",
           height: "257px",
           pointerEvents: "none",
@@ -185,18 +185,44 @@ function TeamPage() {
           >
             meet team <span style={{ color: "#F3801A" }}>TPEO</span>.
           </Typography>
-          <Typography
+          <Box
             sx={{
-              fontFamily: "Roboto, sans-serif",
-              fontWeight: 400,
-              fontSize: "28px",
-              lineHeight: "39.06px",
-              color: "#D7D7D7",
-              maxWidth: "770px",
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              gap: "24px",
             }}
           >
-            We’re a passionate group of students building real world projects, learning, and growing together.
-          </Typography>
+            <Typography
+              sx={{
+                fontFamily: "Roboto, sans-serif",
+                fontWeight: 400,
+                fontSize: "28px",
+                lineHeight: "39.06px",
+                color: "#D7D7D7",
+                maxWidth: "770px",
+                flex: "0 1 770px",
+              }}
+            >
+              We’re a passionate group of students building real world projects, learning, and growing together.
+            </Typography>
+            <Box
+              component="img"
+              src={imgTeamSquiggle}
+              alt=""
+              sx={{
+                flex: "1 1 auto",
+                width: "100%",
+                maxWidth: "420px",
+                minWidth: "220px",
+                height: "auto",
+                ml: "auto",
+                mr: "-60px",
+                pointerEvents: "none",
+                alignSelf: "center",
+              }}
+            />
+          </Box>
         </Box>
       </Box>
 
@@ -274,8 +300,6 @@ function TeamPage() {
           <MemberCard key={`${member.name}-${index}`} {...member} />
         ))}
       </Box>
-
-      <Footer />
     </Box>
   );
 }
