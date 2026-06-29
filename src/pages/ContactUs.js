@@ -76,14 +76,13 @@ function ContactUsPage() {
         alt=""
         sx={{
           position: "absolute",
-          top: "714px",
-          left: "1132px",
-          width: "355px",
-          height: "356px",
+          top: "850px",
+          left: "1290px",
+          width: "380px",
+          height: "381px",
           pointerEvents: "none",
           mixBlendMode: "lighten",
-          transform: "rotate(-4.17deg)",
-          zIndex: 0,
+          zIndex: 2,
         }}
       />
 

@@ -260,8 +260,8 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "1213.83px",
-            top: "272px",
+            left: "1203.83px",
+            top: "276px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -278,7 +278,7 @@ function AboutPage() {
         <Box
           sx={{
             position: "absolute",
-            left: "1213.11px",
+            left: "1203.11px",
             top: "380px",
             display: "flex",
             alignItems: "center",
@@ -478,7 +478,7 @@ function AboutPage() {
             sx={{
               backgroundColor: "#191919",
               border: "1px solid #444",
-              borderRadius: "12px",
+              borderRadius: "12px 0 0 12px",
               p: "60px",
               display: "flex",
               flexDirection: "column",

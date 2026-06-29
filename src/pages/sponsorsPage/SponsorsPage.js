@@ -417,13 +417,25 @@ function SponsorsPage() {
         </Typography>
         <Box
           sx={{
-            px: "24px",
-            py: "28px",
-            width: "100%",
-            maxWidth: "200px",
+            backgroundColor: "#191919",
+            border: "1.27px solid #444",
+            borderRadius: "20.36px",
+            p: "50.9px",
+            gap: "30.54px",
+            width: "384px",
+            height: "373px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxSizing: "border-box",
           }}
         >
-          <Box component="img" src={imgCurrentSponsors} alt="Current Sponsors" sx={{ width: "100%", height: "auto" }} />
+          <Box
+            component="img"
+            src={imgCurrentSponsors}
+            alt="Current Sponsors"
+            sx={{ maxWidth: "100%", maxHeight: "100%", height: "auto", objectFit: "contain" }}
+          />
         </Box>
       </Box>
 
@@ -459,10 +471,9 @@ function SponsorsPage() {
             alt=""
             sx={{
               position: "absolute",
-              right: "40px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: "150px",
+              right: "540px",
+              top: "116px",
+              width: "238px",
               height: "auto",
               pointerEvents: "none",
               mixBlendMode: "lighten",

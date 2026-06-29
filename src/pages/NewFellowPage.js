@@ -6,10 +6,10 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Faq from "./sponsorsPage/FAQ";
-import imgDoodle1 from "../assets/aboutIcons/fellow-doodle-1.svg"; // website-04 (arrow)
+import imgDoodle1 from "../assets/aboutIcons/fellow-socials-arrow.png"; // website-04 (arrow)
 import imgDoodle2 from "../assets/aboutIcons/fellow-doodle-2.svg"; // website-11
-import imgDoodle4 from "../assets/aboutIcons/fellow-doodle-4.svg"; // website-12
-import imgDoodle9 from "../assets/aboutIcons/fellow-doodle-9.svg"; // website-09 (star)
+import imgDoodle4 from "../assets/aboutIcons/fellow-works-sparkle.png"; // website-12 (sparkle)
+import imgDoodle9 from "../assets/aboutIcons/fellow-socials-star.png"; // website-09 (star)
 import imgDoodle11 from "../assets/aboutIcons/fellow-doodle-11.svg"; // doodles-tpeo-18
 import imgDoodle12 from "../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
 import imgDoodle13 from "../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
@@ -107,7 +107,7 @@ function FellowProjectCard({ title, description, link }) {
         sx={{
           backgroundColor: "#191919",
           border: "1px solid #444",
-          borderRadius: "12px",
+          borderRadius: "12px 0 0 12px",
           p: "60px",
           display: "flex",
           flexDirection: "column",
@@ -396,8 +396,26 @@ function NewFellowPage() {
           flexDirection: "column",
           alignItems: "center",
           gap: "100px",
+          position: "relative",
+          zIndex: 1,
         }}
       >
+        {/* Curved arrow squiggle in the bottom-left of the section */}
+        <Box
+          component="img"
+          src={imgDoodle1}
+          alt=""
+          sx={{
+            position: "absolute",
+            bottom: { xs: "20px", md: "30px" },
+            left: "-20px",
+            width: { xs: "160px", md: "250px" },
+            height: "auto",
+            pointerEvents: "none",
+            mixBlendMode: "lighten",
+            zIndex: 0,
+          }}
+        />
         <SectionHeader
           title="How TPEO fellowship works"
           description="Our process over two years. We recruit every fall!"
@@ -434,32 +452,16 @@ function NewFellowPage() {
           zIndex: 1,
         }}
       >
-        {/* Curved arrow doodle pointing up toward the fellowship steps */}
-        <Box
-          component="img"
-          src={imgDoodle1}
-          alt=""
-          sx={{
-            position: "absolute",
-            top: { xs: "-30px", md: "0px" },
-            left: { xs: "8px", md: "40px" },
-            width: { xs: "160px", md: "250px" },
-            height: "auto",
-            pointerEvents: "none",
-            mixBlendMode: "lighten",
-            zIndex: 0,
-          }}
-        />
-        {/* Star doodle to the right of the heading */}
+        {/* Star doodle inline with the heading text */}
         <Box
           component="img"
           src={imgDoodle9}
           alt=""
           sx={{
             position: "absolute",
-            top: { xs: "40px", md: "60px" },
-            right: { xs: "8px", md: "60px" },
-            width: { xs: "100px", md: "150px" },
+            top: { xs: "70px", md: "110px" },
+            right: { xs: "20px", md: "180px" },
+            width: { xs: "120px", md: "185px" },
             height: "auto",
             pointerEvents: "none",
             mixBlendMode: "lighten",

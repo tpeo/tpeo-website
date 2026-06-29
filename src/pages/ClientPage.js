@@ -415,7 +415,7 @@ function ClientPage() {
             gap: "60px",
           }}
         >
-          <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px" }}>
+          <Box sx={{ textAlign: "center", maxWidth: "1100px", display: "flex", flexDirection: "column", gap: "20px" }}>
             <Typography
               sx={{
                 fontFamily: "DM Sans, sans-serif",
@@ -429,9 +429,9 @@ function ClientPage() {
             </Typography>
             <Typography
               sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontFamily: "DM Sans, sans-serif",
                 fontWeight: 400,
-                fontSize: "28px",
+                fontSize: "24px",
                 lineHeight: "1.5",
                 color: "#FFFFFF",
               }}
