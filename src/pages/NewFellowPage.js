@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -14,6 +14,14 @@ import imgDoodle11 from "../assets/aboutIcons/fellow-doodle-11.svg"; // doodles-
 import imgDoodle12 from "../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
 import imgDoodle13 from "../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
 import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
+
+const socialImageContext = require.context(
+  "../assets/socialImages/2026",
+  false,
+  /\.(png|jpg|jpeg|JPG|JPEG)$/i
+);
+const SOCIAL_CAROUSEL_IMAGES = socialImageContext.keys().map((key) => socialImageContext(key));
+const SOCIAL_CAROUSEL_VISIBLE_COUNT = 3;
 
 const fellowshipSteps = [
   {
@@ -54,9 +62,24 @@ const fellowProjects = [
 ];
 
 const curriculumItems = [
-  { title: "Notion Embed", subtitle: "Project Brief" },
-  { title: "YouTube Embed", subtitle: "Project Brief" },
-  { title: "Slack Embed", subtitle: "Project Brief" },
+  {
+    title: "Notion",
+    subtitle: "Full-stack Curriculum",
+    href: "https://www.notion.so/texas-product-engineering-organization/Full-stack-Curriculum-204af3f6e92a812da4a7fdeec617f563",
+    embedType: "notion",
+  },
+  {
+    title: "YouTube",
+    subtitle: "Curriculum Playlists",
+    href: "https://www.youtube.com/@texasproductengineeringorg5958/playlists",
+    embedType: "youtube",
+  },
+  {
+    title: "Slack",
+    subtitle: "Join our community",
+    href: "https://join.slack.com/t/txproduct/shared_invite/zt-42fbr578h-YmUuip2vPVGB5j7C3rfxfQ",
+    embedType: "slack",
+  },
 ];
 
 function SectionHeader({ title, description }) {
@@ -197,9 +220,35 @@ FellowProjectCard.propTypes = {
   link: PropTypes.string.isRequired,
 };
 
-function CurriculumCard({ title, subtitle }) {
+function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" }) {
+  const isLinkCard = ["slack", "notion", "youtube"].includes(embedType) && href;
+
+  const previewContainerSx = {
+    width: "100%",
+    height: "100%",
+    minHeight: "197px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    boxSizing: "border-box",
+    px: "20px",
+    py: "18px",
+  };
+
+  const previewCtaSx = {
+    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+    fontWeight: 500,
+    fontSize: "14px",
+    lineHeight: 1.3,
+    color: "#F3801A",
+  };
+
   return (
     <Box
+      component={isLinkCard ? "a" : "div"}
+      href={isLinkCard ? href : undefined}
+      target={isLinkCard ? "_blank" : undefined}
+      rel={isLinkCard ? "noopener noreferrer" : undefined}
       sx={{
         flex: "1 1 0",
         backgroundColor: "#191919",
@@ -208,6 +257,14 @@ function CurriculumCard({ title, subtitle }) {
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        textDecoration: "none",
+        color: "inherit",
+        transition: "border-color 0.2s ease",
+        "&:hover": isLinkCard
+          ? {
+              borderColor: "#F3801A",
+            }
+          : undefined,
       }}
     >
       <Box
@@ -215,8 +272,148 @@ function CurriculumCard({ title, subtitle }) {
           height: "197px",
           backgroundColor: "#0D0D0D",
           borderBottom: "1px solid #444",
+          position: "relative",
+          overflow: "hidden",
         }}
-      />
+      >
+        {embedType === "iframe" && embedSrc ? (
+          <Box
+            component="iframe"
+            src={embedSrc}
+            title={`${title} embed`}
+            sx={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+              display: "block",
+            }}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        ) : embedType === "notion" ? (
+          <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <Box
+                sx={{
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "4px",
+                  backgroundColor: "#101010",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "14px",
+                  fontWeight: 700,
+                }}
+              >
+                N
+              </Box>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  lineHeight: 1.3,
+                  color: "#101010",
+                }}
+              >
+                Full-stack Curriculum
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+              </Box>
+            </Box>
+            <Typography sx={previewCtaSx}>Open in Notion →</Typography>
+          </Box>
+        ) : embedType === "youtube" ? (
+          <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <Box
+                sx={{
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "4px",
+                  backgroundColor: "#FF0000",
+                  color: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                }}
+              >
+                ▶
+              </Box>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  lineHeight: 1.3,
+                  color: "#101010",
+                }}
+              >
+                Curriculum Playlists
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+              </Box>
+            </Box>
+            <Typography sx={previewCtaSx}>Open on YouTube →</Typography>
+          </Box>
+        ) : embedType === "slack" ? (
+          <Box
+            sx={{
+              ...previewContainerSx,
+              alignItems: "center",
+              textAlign: "center",
+              background: "linear-gradient(135deg, #4A154B 0%, #611f69 100%)",
+            }}
+          >
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "100%" }}>
+              <Box
+                sx={{
+                  width: "28px",
+                  height: "28px",
+                  borderRadius: "4px",
+                  backgroundColor: "#FFFFFF",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  color: "#4A154B",
+                }}
+              >
+                #
+              </Box>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "16px",
+                  lineHeight: 1.3,
+                  color: "#FFFFFF",
+                }}
+              >
+                Join TPEO on Slack
+              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px", width: "100%", alignItems: "center" }}>
+                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+              </Box>
+            </Box>
+            <Typography sx={{ ...previewCtaSx, color: "#FFFFFF", width: "100%" }}>Open in Slack →</Typography>
+          </Box>
+        ) : null}
+      </Box>
       <Box
         sx={{
           display: "flex",
@@ -251,17 +448,38 @@ function CurriculumCard({ title, subtitle }) {
           >
             {title}
           </Typography>
-          <Typography
-            sx={{
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 400,
-              fontSize: "14px",
-              lineHeight: 1.4,
-              color: "#AAAAAA",
-            }}
-          >
-            {subtitle}
-          </Typography>
+          {href && embedType === "iframe" ? (
+            <Typography
+              component="a"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: 1.4,
+                color: "#F3801A",
+                textDecoration: "none",
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+              {subtitle}
+            </Typography>
+          ) : (
+            <Typography
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: 1.4,
+                color: "#AAAAAA",
+              }}
+            >
+              {subtitle}
+            </Typography>
+          )}
         </Box>
       </Box>
     </Box>
@@ -271,6 +489,9 @@ function CurriculumCard({ title, subtitle }) {
 CurriculumCard.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
+  href: PropTypes.string,
+  embedSrc: PropTypes.string,
+  embedType: PropTypes.oneOf(["iframe", "slack", "notion", "youtube"]),
 };
 
 function StepCard({ number, title, description }) {
@@ -333,6 +554,25 @@ StepCard.propTypes = {
 };
 
 function NewFellowPage() {
+  const [socialCarouselIndex, setSocialCarouselIndex] = useState(0);
+
+  const visibleSocialImages = Array.from({ length: SOCIAL_CAROUSEL_VISIBLE_COUNT }, (_, i) => {
+    if (SOCIAL_CAROUSEL_IMAGES.length === 0) return null;
+    return SOCIAL_CAROUSEL_IMAGES[(socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length];
+  });
+
+  const handleSocialCarouselPrev = () => {
+    if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
+    setSocialCarouselIndex(
+      (prev) => (prev - SOCIAL_CAROUSEL_VISIBLE_COUNT + SOCIAL_CAROUSEL_IMAGES.length) % SOCIAL_CAROUSEL_IMAGES.length
+    );
+  };
+
+  const handleSocialCarouselNext = () => {
+    if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
+    setSocialCarouselIndex((prev) => (prev + SOCIAL_CAROUSEL_VISIBLE_COUNT) % SOCIAL_CAROUSEL_IMAGES.length);
+  };
+
   return (
     <Box
       sx={{
@@ -514,6 +754,8 @@ function NewFellowPage() {
         >
           <IconButton
             aria-label="Previous"
+            onClick={handleSocialCarouselPrev}
+            disabled={SOCIAL_CAROUSEL_IMAGES.length === 0}
             sx={{
               flexShrink: 0,
               width: "39px",
@@ -521,21 +763,26 @@ function NewFellowPage() {
               backgroundColor: "#F3801A",
               color: "#FFFFFF",
               "&:hover": { backgroundColor: "#d96f12" },
+              "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
           >
             <ChevronLeftIcon />
           </IconButton>
 
           <Box sx={{ display: "flex", gap: { xs: "16px", md: "41px" }, flex: 1, minWidth: 0 }}>
-            {[0, 1, 2].map((i) => (
+            {visibleSocialImages.map((image, i) => (
               <Box
-                key={i}
+                key={`${socialCarouselIndex}-${i}`}
+                component="img"
+                src={image}
+                alt={`TPEO social event ${((socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length) + 1}`}
                 sx={{
                   flex: "1 1 0",
                   aspectRatio: "1 / 1",
                   borderRadius: "20px",
-                  backgroundColor: "#191919",
                   border: "1px solid #444",
+                  objectFit: "cover",
+                  minWidth: 0,
                 }}
               />
             ))}
@@ -543,6 +790,8 @@ function NewFellowPage() {
 
           <IconButton
             aria-label="Next"
+            onClick={handleSocialCarouselNext}
+            disabled={SOCIAL_CAROUSEL_IMAGES.length === 0}
             sx={{
               flexShrink: 0,
               width: "39px",
@@ -550,6 +799,7 @@ function NewFellowPage() {
               backgroundColor: "#F3801A",
               color: "#FFFFFF",
               "&:hover": { backgroundColor: "#d96f12" },
+              "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
           >
             <ChevronRightIcon />

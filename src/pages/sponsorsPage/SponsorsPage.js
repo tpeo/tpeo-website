@@ -447,7 +447,7 @@ function SponsorsPage() {
       </Box>
 
       {/* ========== SPONSOR REACH OUT ========== */}
-      <Box sx={{ py: "100px", px: "106px", display: "flex", justifyContent: "center" }}>
+      <Box sx={{ py: "100px", px: "79px", display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
             backgroundColor: "#101010",
@@ -456,7 +456,7 @@ function SponsorsPage() {
             px: "108.8px",
             py: "87.3px",
             width: "100%",
-            maxWidth: "1295px",
+            maxWidth: "1128px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
