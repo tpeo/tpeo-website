@@ -8,7 +8,7 @@ import SectionHeader from "../../components/SectionHeader";
 // Asset Imports
 import imgPartnerDoodles1 from "../../assets/partnerIcons/hero-doodle-1.png";
 import imgPartnerDoodles2 from "../../assets/partnerIcons/hero-doodle-2.png";
-import imgPartnerDoodles3 from "../../assets/partnerIcons/hero-doodle-3.png";
+import imgPartnerDoodles3 from "../../assets/partnerIcons/hero-star.png";
 import imgFaqDoodle from "../../assets/partnerIcons/faq-doodle.png";
 import imgReachOutDoodle from "../../assets/partnerIcons/reach-out-doodle.png";
 import imgCaseStudyTx from "../../assets/partnerIcons/case-study-tx.png";
@@ -258,15 +258,17 @@ function WhySponsorCard({ icon, title, description }) {
         backgroundColor: "#191919",
         border: "1.47px solid #444",
         borderRadius: "23.47px",
-        p: "60.14px",
+        pt: "60.14px",
+        px: "60.14px",
+        pb: "40px",
         width: "435px",
         display: "flex",
         flexDirection: "column",
         gap: "29.34px",
-        height: "454px",
+        height: "400px",
       }}
     >
-      <Box sx={{ width: "58.67px", height: "58.67px" }}>
+      <Box sx={{ width: "58.67px", height: "58.67px", alignSelf: "center" }}>
         <Box component="img" src={icon} alt="" sx={{ width: "100%", height: "100%" }} />
       </Box>
       <Typography
@@ -335,7 +337,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
       >
         {name}
       </Typography>
-      <Box sx={{ display: "flex", gap: "8px", alignItems: "baseline" }}>
+      <Box sx={{ display: "flex", gap: "8px", alignItems: "baseline", flexWrap: "nowrap" }}>
         <Typography
           sx={{
             fontFamily: "DM Sans, sans-serif",
@@ -343,6 +345,8 @@ function TierCard({ name, price, benefits, color, isGradient }) {
             fontSize: "64px",
             lineHeight: "normal",
             color: "#FFFFFF",
+            flexShrink: 0,
+            whiteSpace: "nowrap",
           }}
         >
           {price}
@@ -354,6 +358,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
             fontSize: "28px",
             lineHeight: "36px",
             color: "#D7D7D7",
+            whiteSpace: "nowrap",
           }}
         >
           / year
@@ -442,8 +447,8 @@ function SponsorsPage() {
           position: "absolute",
           top: "425.52px",
           left: "1362.99px",
-          width: "64px",
-          height: "82.56px",
+          width: "72px",
+          height: "auto",
           pointerEvents: "none",
           mixBlendMode: "lighten",
           zIndex: 0,
@@ -470,7 +475,7 @@ function SponsorsPage() {
               color: "#FFFFFF",
             }}
           >
-            Partner with <span style={{ color: "#F3801A" }}>TPEO</span>.
+            Partner with <span style={{ color: "#F3801A" }}>TPEO</span>
           </Typography>
           <Typography
             sx={{
@@ -497,7 +502,7 @@ function SponsorsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "124px", // Meticulous design gap
+          gap: "60px",
         }}
       >
         <SectionHeader
@@ -531,7 +536,7 @@ function SponsorsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "188px", // Meticulous design gap
+          gap: "60px",
         }}
       >
         <SectionHeader
@@ -565,7 +570,7 @@ function SponsorsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "177px", // Meticulous design gap
+          gap: "60px",
         }}
       >
         <SectionHeader
@@ -599,7 +604,7 @@ function SponsorsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "161px", // Meticulous design gap
+          gap: "60px",
         }}
       >
         <SectionHeader
@@ -639,7 +644,7 @@ function SponsorsPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "161px", // Meticulous design gap
+          gap: "60px",
         }}
       >
         <SectionHeader
@@ -662,8 +667,8 @@ function SponsorsPage() {
           {/* Row 1 */}
           <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
             <Box component="img" src={imgPartnerLogo1} sx={{ width: "272px" }} />
-            <Box component="img" src={imgPartnerLogo2} sx={{ width: "242px" }} />
-            <Box component="img" src={imgPartnerLogo3} sx={{ width: "242px" }} />
+            <Box component="img" src={imgPartnerLogo2} sx={{ width: "242px", borderRadius: "20px" }} />
+            <Box component="img" src={imgPartnerLogo3} sx={{ width: "242px", borderRadius: "20px" }} />
           </Box>
           {/* Row 2 */}
           <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
@@ -671,11 +676,11 @@ function SponsorsPage() {
             <Box component="img" src={imgPartnerLogo5} sx={{ width: "728px" }} />
           </Box>
           {/* Row 3 */}
-          <Box component="img" src={imgPartnerLogo6} sx={{ width: "501px" }} />
+          <Box component="img" src={imgPartnerLogo6} sx={{ width: "501px", borderRadius: "20px" }} />
           {/* Row 4 */}
           <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
-            <Box component="img" src={imgPartnerLogo7} sx={{ width: "479px" }} />
-            <Box component="img" src={imgPartnerLogo8} sx={{ width: "513px" }} />
+            <Box component="img" src={imgPartnerLogo7} sx={{ width: "479px", borderRadius: "20px" }} />
+            <Box component="img" src={imgPartnerLogo8} sx={{ width: "513px", borderRadius: "20px" }} />
           </Box>
         </Box>
       </Box>
@@ -699,13 +704,12 @@ function SponsorsPage() {
           maxWidth="816px"
         />
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", alignItems: "center", width: "100%" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", width: "100%", maxWidth: "1304px" }}>
           <Box
             sx={{
               display: "flex",
               alignItems: "stretch",
               width: "100%",
-              maxWidth: "1277px",
             }}
           >
             <Box
@@ -780,35 +784,37 @@ function SponsorsPage() {
                 ml: "-15px",
                 borderRadius: "0 12px 12px 0",
                 overflow: "hidden",
+                minHeight: "373px",
               }}
             >
               <Box component="img" src={imgCaseStudyTx} sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </Box>
           </Box>
 
-          <Button
-            component="a"
-            href="/clients"
-            endIcon={<ArrowForwardIcon sx={{ color: "#FFFFFF" }} />}
-            sx={{
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 400,
-              fontSize: "28px",
-              color: "#FFFFFF",
-              backgroundColor: "#191919",
-              border: "1px solid #444",
-              borderRadius: "10px",
-              px: "32px",
-              py: "16px",
-              textTransform: "none",
-              ml: "auto", // Align to right as per design "items-end"
-              "&:hover": {
-                backgroundColor: "#222222",
-              },
-            }}
-          >
-            View more projects
-          </Button>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+            <Button
+              component="a"
+              href="/clients"
+              endIcon={<ArrowForwardIcon sx={{ color: "#FFFFFF" }} />}
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "28px",
+                color: "#FFFFFF",
+                backgroundColor: "#191919",
+                border: "1px solid #444",
+                borderRadius: "10px",
+                px: "32px",
+                py: "16px",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#222222",
+                },
+              }}
+            >
+              View more projects
+            </Button>
+          </Box>
         </Box>
       </Box>
 
@@ -924,7 +930,8 @@ function SponsorsPage() {
             alignSelf: "flex-end",
             mr: "50px",
             position: "relative",
-            zIndex: 0,
+            zIndex: 2,
+            pointerEvents: "none",
           }}
         >
           <Box

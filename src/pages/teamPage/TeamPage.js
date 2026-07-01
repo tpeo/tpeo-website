@@ -5,24 +5,37 @@ import imgTeamDoodle1 from "../../assets/aboutIcons/team-doodle-1.svg";
 import imgTeamDoodle2 from "../../assets/aboutIcons/team-doodle-2.svg";
 import imgTeamSquiggle from "../../assets/aboutIcons/team-squiggle.png";
 import imgDefaultProfile from "../../assets/aboutIcons/megaphone.png"; // Placeholder
+import imgVaishnuvThiagarajan from "../../assets/teamMembers/vaishnuv-thiagarajan.png";
+import imgVickieHu from "../../assets/teamMembers/vickie-hu.png";
+import imgVenkatSundaram from "../../assets/teamMembers/venkat-sundaram.png";
+import imgKrishParkih from "../../assets/teamMembers/krish-parkih.png";
+import imgIsaMelendez from "../../assets/teamMembers/isa-melendez.png";
+import imgShrutiNair from "../../assets/teamMembers/shruti-nair.png";
+import imgAshaKayRountree from "../../assets/teamMembers/asha-kay-rountree.png";
+import imgNikithaKumar from "../../assets/teamMembers/nikitha-kumar.png";
+import imgKatieVo from "../../assets/teamMembers/katie-vo.png";
+import imgVietDang from "../../assets/teamMembers/viet-dang.png";
+import imgShriyaaBalaji from "../../assets/teamMembers/shriyaa-balaji.png";
+import imgArchanaArangil from "../../assets/teamMembers/archana-arangil.png";
+import imgAayushIshware from "../../assets/teamMembers/aayush-ishware.png";
 
 const categories = ["Leadership", "Product", "Design", "Engineering", "Alumni"];
 
 const teamData = {
   Leadership: [
-    { name: "Vaishnuv Thiagarajan", role: "President", fellowship: "Product Fellow", image: "https://www.figma.com/api/mcp/asset/1db5e6d4-af7b-41c5-b7d4-346da573ec06" },
-    { name: "Vickie Hu", role: "Projects Director", fellowship: "Product Fellow", image: imgDefaultProfile },
-    { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgDefaultProfile },
-    { name: "Krish Parkih", role: "Engineering Director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
-    { name: "Isa Melendez", role: "Design Director", fellowship: "Design Fellow", image: imgDefaultProfile },
-    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgDefaultProfile },
-    { name: "Asha Kay Rountree", role: "Corporate Director", fellowship: "Design Fellow", image: imgDefaultProfile },
-    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgDefaultProfile },
-    { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Fellow", image: imgDefaultProfile },
-    { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
-    { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
-    { name: "Archana Arangil", role: "Events Co-director", fellowship: "Product Fellow", image: imgDefaultProfile },
-    { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgDefaultProfile },
+    { name: "Vaishnuv Thiagarajan", role: "President", fellowship: "Product Fellow", image: imgVaishnuvThiagarajan },
+    { name: "Vickie Hu", role: "Projects Director", fellowship: "Product Fellow", image: imgVickieHu },
+    { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgVenkatSundaram },
+    { name: "Krish Parkih", role: "Engineering Director", fellowship: "Engineering Fellow", image: imgKrishParkih },
+    { name: "Isa Melendez", role: "Design Director", fellowship: "Design Fellow", image: imgIsaMelendez },
+    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgShrutiNair },
+    { name: "Asha Kay Rountree", role: "Corporate Director", fellowship: "Design Fellow", image: imgAshaKayRountree },
+    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgNikithaKumar },
+    { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Fellow", image: imgKatieVo },
+    { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgVietDang },
+    { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgShriyaaBalaji },
+    { name: "Archana Arangil", role: "Events Co-director", fellowship: "Product Fellow", image: imgArchanaArangil },
+    { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgAayushIshware },
   ],
   Product: [
     { name: "Member Name", role: "Product Manager", fellowship: "Product Fellow", image: imgDefaultProfile },

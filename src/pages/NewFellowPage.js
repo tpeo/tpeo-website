@@ -14,7 +14,6 @@ import imgDoodle12 from "../assets/aboutIcons/fellow-doodle-12.svg"; // website-
 import imgDoodle13 from "../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
 import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
 import imgCaseStudyTx from "../assets/partnerIcons/case-study-tx.png";
-import imgCaseStudySafe from "../assets/aboutIcons/company-logos.png"; // Placeholder for second project as SAFE logo is in this grid
 
 const socialImageContext = require.context(
   "../assets/socialImages/2026",
@@ -60,7 +59,7 @@ const fellowProjects = [
     description:
       "Redesigned the donation experience for SAFE to increase contributions and better communicate its mission of supporting survivors.",
     link: "/clients",
-    image: imgCaseStudySafe,
+    image: imgCaseStudyTx,
   },
 ];
 
@@ -763,7 +762,7 @@ function NewFellowPage() {
               width: "39px",
               height: "39px",
               backgroundColor: "#F3801A",
-              color: "#FFFFFF",
+              color: "#101010",
               "&:hover": { backgroundColor: "#d96f12" },
               "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
@@ -799,7 +798,7 @@ function NewFellowPage() {
               width: "39px",
               height: "39px",
               backgroundColor: "#F3801A",
-              color: "#FFFFFF",
+              color: "#101010",
               "&:hover": { backgroundColor: "#d96f12" },
               "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
