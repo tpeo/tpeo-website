@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import SectionHeader from "../components/SectionHeader";
 import JoinCTA from "../components/JoinCTA";
 import imgLaptop from "../assets/aboutIcons/laptop.svg";
@@ -13,23 +11,30 @@ import imgFellowshipsSection from "../assets/aboutIcons/fellowships-section.png"
 import imgCompanyLogos from "../assets/aboutIcons/company-logos-grid.png";
 import imgVector14 from "../assets/aboutIcons/vector-14.svg";
 import imgVector15 from "../assets/aboutIcons/vector-15.svg";
+import imgDoodle11 from "../assets/aboutIcons/fellow-doodle-11.svg";
+import imgIncubate from "../assets/projectImages/incubate_new.png";
+import imgImprove from "../assets/projectImages/improve_new.png";
+import imgInnovate from "../assets/projectImages/innovate_new.png";
 
 // Feature card data
 const featureCards = [
   {
     title: "Incubate",
     description:
-      "Teach full-stack engineering, UI/UX design, and product management in semester long courses",
+      "Teach full-stack engineering, UX/UI design, and product management in semester long courses",
+    image: imgIncubate,
   },
   {
     title: "Improve",
     description:
       "Provide hands-on experience through non-profit and startup client partnerships",
+    image: imgImprove,
   },
   {
     title: "Innovate",
     description:
       "Foster a community of innovators and builders who are going to change the world",
+    image: imgInnovate,
   },
 ];
 
@@ -82,7 +87,7 @@ DisciplinePill.propTypes = {
 };
 
 // Feature Card component
-function FeatureCard({ title, description }) {
+function FeatureCard({ title, description, image }) {
   return (
     <Box
       sx={{
@@ -93,31 +98,42 @@ function FeatureCard({ title, description }) {
         height: "592px",
         position: "relative",
         overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        pt: "53px",
       }}
     >
-      {/* Image placeholder */}
+      {/* Image Container */}
       <Box
         sx={{
-          position: "absolute",
-          left: "39px",
-          top: "53px",
           width: "323px",
           height: "308px",
-          backgroundColor: "#252525",
           borderRadius: "8px",
+          overflow: "hidden",
+          mb: "38px",
         }}
-      />
+      >
+        <Box
+          component="img"
+          src={image}
+          alt={title}
+          sx={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      </Box>
       {/* Text content */}
       <Box
         sx={{
-          position: "absolute",
-          left: "22px",
-          top: "399px",
           display: "flex",
           flexDirection: "column",
           gap: "9px",
           alignItems: "center",
           textAlign: "center",
+          px: "22px",
         }}
       >
         <Typography
@@ -151,6 +167,7 @@ function FeatureCard({ title, description }) {
 FeatureCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 function AboutPage() {
@@ -191,9 +208,25 @@ function AboutPage() {
               fontSize: "64px",
               lineHeight: "normal",
               color: "#FFFFFF",
+              position: "relative",
+              display: "inline-block",
             }}
           >
             We are <span style={{ color: "#F3801A" }}>TPEO</span>
+            <Box
+              component="img"
+              src={imgDoodle11}
+              alt=""
+              sx={{
+                position: "absolute",
+                top: "-80px",
+                left: "330px",
+                width: "208px",
+                height: "208px",
+                pointerEvents: "none",
+                mixBlendMode: "lighten",
+              }}
+            />
           </Typography>
           <Typography
             sx={{
@@ -371,6 +404,7 @@ function AboutPage() {
               key={card.title}
               title={card.title}
               description={card.description}
+              image={card.image}
             />
           ))}
         </Box>
@@ -384,13 +418,13 @@ function AboutPage() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "80px",
+          gap: "40px", // Reduced gap to match Figma
           py: "80px",
           px: "5%",
         }}
       >
         <SectionHeader
-          title="Our three fellowships"
+          title="Our Three Fellowships"
           description={
             <>
               At the core of TPEO lies the intersection of
@@ -402,16 +436,121 @@ function AboutPage() {
 
         {/* Fellowships graphic — rendered from Figma with connecting arrows */}
         <Box
-          component="img"
-          src={imgFellowshipsSection}
-          alt="Product, Design, and Engineering fellowships"
           sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "24px", // Tightened gap between graphic and text
             width: "100%",
-            maxWidth: "1370px",
-            height: "auto",
-            objectFit: "contain",
+            maxWidth: "1370px", // Restored to previous width
           }}
-        />
+        >
+          <Box
+            sx={{
+              width: "100%",
+              height: "auto",
+              aspectRatio: "2741 / 420", // Tighter crop to remove more from the bottom
+              overflow: "hidden",
+            }}
+          >
+            <Box
+              component="img"
+              src={imgFellowshipsSection}
+              alt="Product, Design, and Engineering fellowships"
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "top", // Uncut the top
+              }}
+            />
+          </Box>
+
+          {/* Fellowship Blurbs */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+              gap: "10px",
+            }}
+          >
+            <Box sx={{ flex: 1, textAlign: "center", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+              <Typography
+                sx={{
+                  fontFamily: "DM Sans, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "32px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Product
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "28px",
+                  color: "#D7D7D7",
+                  maxWidth: "240px", // Reduced width for tighter wrap
+                }}
+              >
+                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+              </Typography>
+            </Box>
+
+            <Box sx={{ flex: 1, textAlign: "center", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+              <Typography
+                sx={{
+                  fontFamily: "DM Sans, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "32px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Design
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "28px",
+                  color: "#D7D7D7",
+                  maxWidth: "240px",
+                }}
+              >
+                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+              </Typography>
+            </Box>
+
+            <Box sx={{ flex: 1, textAlign: "center", display: "flex", flexDirection: "column", gap: "8px", alignItems: "center" }}>
+              <Typography
+                sx={{
+                  fontFamily: "DM Sans, sans-serif",
+                  fontWeight: 700,
+                  fontSize: "32px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Engineering
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "20px",
+                  lineHeight: "28px",
+                  color: "#D7D7D7",
+                  maxWidth: "240px",
+                }}
+              >
+                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />
@@ -444,117 +583,6 @@ function AboutPage() {
             objectFit: "contain",
           }}
         />
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== PROJECT SPOTLIGHT ========== */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "40px",
-          py: "80px",
-          px: "5%",
-        }}
-      >
-        <SectionHeader
-          title="Project Spotlight"
-          description="A look at our recent work."
-        />
-
-        {/* Case study card */}
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "flex-end",
-            maxWidth: "1300px",
-            width: "100%",
-          }}
-        >
-          {/* Text side */}
-          <Box
-            sx={{
-              backgroundColor: "#191919",
-              border: "1px solid #444",
-              borderRadius: "12px 0 0 12px",
-              p: "60px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "32px",
-              flex: 1,
-              zIndex: 1,
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "23px",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "36px",
-                  lineHeight: 1.5,
-                  color: "#FFFFFF",
-                }}
-              >
-                Texas Cultural Trust
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 400,
-                  fontSize: "24px",
-                  lineHeight: 1.5,
-                  color: "#D7D7D7",
-                }}
-              >
-                Designed & implemented a centralized statewide Events Calendar
-                to help users discover arts and cultural events across Texas in
-                one place.
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-                cursor: "pointer",
-                "&:hover": { opacity: 0.8 },
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "24px",
-                  lineHeight: 1.5,
-                  color: "#F3801A",
-                }}
-              >
-                View case study
-              </Typography>
-              <ArrowForwardIcon sx={{ color: "#F3801A", fontSize: 24 }} />
-            </Box>
-          </Box>
-
-          {/* Image side */}
-          <Box
-            sx={{
-              width: "468px",
-              height: "373px",
-              borderRadius: "0 12px 12px 0",
-              backgroundColor: "#252525",
-              flexShrink: 0,
-              ml: "-15px",
-            }}
-          />
-        </Box>
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />

@@ -6,14 +6,15 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Faq from "./sponsorsPage/FAQ";
+// Asset Imports
 import imgDoodle1 from "../assets/aboutIcons/fellow-socials-arrow.png"; // website-04 (arrow)
 import imgDoodle2 from "../assets/aboutIcons/fellow-doodle-2.svg"; // website-11
-import imgDoodle4 from "../assets/aboutIcons/fellow-works-sparkle.png"; // website-12 (sparkle)
-import imgDoodle9 from "../assets/aboutIcons/fellow-socials-star.png"; // website-09 (star)
-import imgDoodle11 from "../assets/aboutIcons/fellow-doodle-11.svg"; // doodles-tpeo-18
+import imgDoodle9 from "../assets/aboutIcons/fellow-socials-star.svg"; // website-09 (star)
 import imgDoodle12 from "../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
 import imgDoodle13 from "../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
 import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
+import imgCaseStudyTx from "../assets/partnerIcons/case-study-tx.png";
+import imgCaseStudySafe from "../assets/aboutIcons/company-logos.png"; // Placeholder for second project as SAFE logo is in this grid
 
 const socialImageContext = require.context(
   "../assets/socialImages/2026",
@@ -27,7 +28,7 @@ const fellowshipSteps = [
   {
     number: "1",
     title: "Learn",
-    description: "6 month Full-stack Engineering, Product Design, Product Management curriculum",
+    description: "6 month Full-stack Engineering, Product Design, or Product Management curriculum",
   },
   {
     number: "2",
@@ -48,16 +49,18 @@ const fellowshipSteps = [
 
 const fellowProjects = [
   {
-    title: "Texas Cultural Trust",
+    title: "New Fellow Project #1",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
+      "Designed and implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
     link: "/clients",
+    image: imgCaseStudyTx,
   },
   {
-    title: "Texas Cultural Trust",
+    title: "New Fellow Project #2",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
+      "Redesigned the donation experience for SAFE to increase contributions and better communicate its mission of supporting survivors.",
     link: "/clients",
+    image: imgCaseStudySafe,
   },
 ];
 
@@ -113,10 +116,10 @@ function SectionHeader({ title, description }) {
 
 SectionHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
 };
 
-function FellowProjectCard({ title, description, link }) {
+function FellowProjectCard({ title, description, link, image }) {
   return (
     <Box
       sx={{
@@ -199,14 +202,14 @@ function FellowProjectCard({ title, description, link }) {
           borderRadius: "0 12px 12px 0",
           overflow: "hidden",
           backgroundColor: "#252525",
-          backgroundImage: `
+          backgroundImage: image ? `url(${image})` : `
             linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
             linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
             linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
             linear-gradient(-45deg, transparent 75%, #2a2a2a 75%)
           `,
-          backgroundSize: "24px 24px",
-          backgroundPosition: "0 0, 0 12px, 12px -12px, -12px 0",
+          backgroundSize: image ? "cover" : "24px 24px",
+          backgroundPosition: image ? "center" : "0 0, 0 12px, 12px -12px, -12px 0",
           minHeight: "373px",
         }}
       />
@@ -218,6 +221,7 @@ FellowProjectCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };
 
 function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" }) {
@@ -583,10 +587,8 @@ function NewFellowPage() {
       }}
     >
       {/* Background Doodles (positions/sizes mirror the Figma "New Fellows" frame) */}
-      <Box component="img" src={imgDoodle11} alt="" sx={{ position: "absolute", top: "171px", left: "560px", width: "224px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
       <Box component="img" src={imgDoodle12} alt="" sx={{ position: "absolute", top: "214px", left: "997px", width: "312px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
       <Box component="img" src={imgDoodle13} alt="" sx={{ position: "absolute", top: "357px", left: "1189px", width: "246.5px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
-      <Box component="img" src={imgDoodle4} alt="" sx={{ position: "absolute", top: "710px", left: "1210px", width: "246.5px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
 
       {/* ========== HERO SECTION ========== */}
       <Box
@@ -704,7 +706,7 @@ function NewFellowPage() {
             width: { xs: "120px", md: "185px" },
             height: "auto",
             pointerEvents: "none",
-            mixBlendMode: "lighten",
+            mixBlendMode: "screen",
             zIndex: 0,
           }}
         />
@@ -824,7 +826,7 @@ function NewFellowPage() {
       >
         <SectionHeader
           title="Past new fellow projects"
-          description="Here's some cool things that our new fellows have built in the past!"
+          description="Here’s some cool things that our new fellows have built in the past!"
         />
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: "40px", width: "100%", alignItems: "center" }}>

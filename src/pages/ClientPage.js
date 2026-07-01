@@ -121,6 +121,12 @@ function ValuePropCard({ icon, title, description }) {
   );
 }
 
+ValuePropCard.propTypes = {
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
+
 function ClientCard({ title, subtitle, description, tags }) {
   return (
     <Box
@@ -204,6 +210,13 @@ function ClientCard({ title, subtitle, description, tags }) {
   );
 }
 
+ClientCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 function ProcessCard({ number, title, description }) {
   return (
     <Box
@@ -255,6 +268,12 @@ function ProcessCard({ number, title, description }) {
     </Box>
   );
 }
+
+ProcessCard.propTypes = {
+  number: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
 
 function ClientPage() {
   return (

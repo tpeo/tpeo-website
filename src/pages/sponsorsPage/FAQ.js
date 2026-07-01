@@ -81,7 +81,7 @@ function Faq({ type, iconStyle = "plus" }) {
     },
     {
       question: "How do I reach out about collaborating with TPEO?",
-      answer: "Email tpeoteam@gmail.com",
+      answer: "Email team@txproduct.org",
       type: "Client",
     },
     {
@@ -119,7 +119,12 @@ function Faq({ type, iconStyle = "plus" }) {
     }
   };
 
-  const filteredFaqData = faqData.filter((faq) => faq.type === type);
+  const filteredFaqData = faqData.filter((faq) => {
+    if (type === "Partners") {
+      return faq.type === "Sponsor" || faq.type === "Client";
+    }
+    return faq.type === type;
+  });
 
   return (
     <Box
