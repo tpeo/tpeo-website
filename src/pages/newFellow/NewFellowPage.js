@@ -6,6 +6,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Faq from "../../components/FAQ";
+import { fellowProjects } from "../../data/fellowProjects";
 import { pageRootSx, sectionPx, heroPt, heroTitleFont, heroContentGap, decorativeBgSx, cardRowSx, threeColCardSx } from "../../styles/pageLayout";
 // Asset Imports
 import imgDoodle1 from "../../assets/aboutIcons/fellow-socials-arrow.png"; // website-04 (arrow)
@@ -13,7 +14,6 @@ import imgDoodle2 from "../../assets/aboutIcons/fellow-doodle-2.svg"; // website
 import imgDoodle9 from "../../assets/aboutIcons/fellow-socials-star.svg"; // website-09 (star)
 import imgDoodle12 from "../../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
 import imgDoodle13 from "../../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
-import imgCaseStudyTx from "../../assets/partnerIcons/case-study-tx.png";
 
 const socialImageContext = require.context(
   "../../assets/socialImages/2026",
@@ -43,23 +43,6 @@ const fellowshipSteps = [
     number: "4",
     title: "Lifelong Community",
     description: "Join the global TPEO alumni network—mentors, founders, and builders invested in your growth long after the program ends",
-  },
-];
-
-const fellowProjects = [
-  {
-    title: "New Fellow Project #1",
-    description:
-      "Designed and implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/clients",
-    image: imgCaseStudyTx,
-  },
-  {
-    title: "New Fellow Project #2",
-    description:
-      "Redesigned the donation experience for SAFE to increase contributions and better communicate its mission of supporting survivors.",
-    link: "/clients",
-    image: imgCaseStudyTx,
   },
 ];
 
@@ -815,7 +798,7 @@ function NewFellowPage() {
         />
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: "40px", width: "100%", alignItems: "center" }}>
-          {fellowProjects.map((project, index) => (
+          {fellowProjects.slice(0, 2).map((project, index) => (
             <FellowProjectCard key={`${project.title}-${index}`} {...project} />
           ))}
         </Box>

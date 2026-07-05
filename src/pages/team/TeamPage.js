@@ -24,6 +24,11 @@ import imgAshwikaKatiyar from "../../assets/teamMembers/ashwika-katiyar.png";
 import imgKrishPatelShah from "../../assets/teamMembers/krish-patel-shah.png";
 import imgMohammadAlMasalmeh from "../../assets/teamMembers/mohammad-al-masalmeh.png";
 import imgStellaLi from "../../assets/teamMembers/stella-li.png";
+import imgRohanYelandur from "../../assets/teamMembers/rohan-yelandur.png";
+import imgAdvaithNair from "../../assets/teamMembers/advaith-nair.png";
+import imgKateLock from "../../assets/teamMembers/kate-lock.png";
+import imgYasmineTsan from "../../assets/teamMembers/yasmine-tsan.png";
+import imgNicoCampanell from "../../assets/teamMembers/nico-campanell.png";
 import {
   pageRootSx,
   sectionPx,
@@ -51,17 +56,17 @@ const teamData = {
     { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgAayushIshware },
   ],
   Product: [
-    { name: "Rohan Yelandur", role: "Product Lead", image: imgDefaultProfile },
+    { name: "Rohan Yelandur", role: "Product Lead", image: imgRohanYelandur },
     { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Lead", image: imgKatieVo },
     { name: "Archana Arangil", role: "Product Lead", image: imgArchanaArangil },
-    { name: "Advaith Nair", role: "Product Fellow", image: imgDefaultProfile },
-    { name: "Kate Lock", role: "Product Fellow", image: imgDefaultProfile },
+    { name: "Advaith Nair", role: "Product Fellow", image: imgAdvaithNair },
+    { name: "Kate Lock", role: "Product Fellow", image: imgKateLock },
   ],
   Design: [
     { name: "Lotus Pascale", role: "Design Lead", image: imgDefaultProfile },
-    { name: "Yasmine Tsan", role: "Design Lead", image: imgDefaultProfile },
+    { name: "Yasmine Tsan", role: "Design Lead", image: imgYasmineTsan },
     { name: "Asha Kay Rountree", role: "Design Lead", image: imgAshaKayRountree },
-    { name: "Nico Campanell", role: "Design Member", image: imgDefaultProfile },
+    { name: "Nico Campanell", role: "Design Member", image: imgNicoCampanell },
   ],
   Engineering: [
     { name: "Jenna Lee", role: "Engineering Lead", image: imgJennaLee },

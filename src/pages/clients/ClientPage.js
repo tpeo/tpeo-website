@@ -5,6 +5,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Faq from "../../components/FAQ";
 import SectionHeader from "../../components/SectionHeader";
+import { fellowProjects } from "../../data/fellowProjects";
 import imgHeroDoodle from "../../assets/aboutIcons/projects-hero-doodle.png";
 import imgCaseStudyTx from "../../assets/partnerIcons/case-study-tx-client.png";
 import imgCaseStudyTx2 from "../../assets/partnerIcons/case-study-tx-2-client.png";
@@ -50,23 +51,6 @@ const clientProjects = [
       "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
     link: "/clients",
     image: imgCaseStudyTheArc,
-  },
-];
-
-const fellowProjects = [
-  {
-    title: "New Fellow Project",
-    description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/new-fellow",
-    image: null,
-  },
-  {
-    title: "New Fellow Project #2",
-    description:
-      "Redesigned the donation experience for SAFE to increase contributions and better communicate its mission of supporting survivors.",
-    link: "/new-fellow",
-    image: null,
   },
 ];
 
