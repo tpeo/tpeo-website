@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Typography, Divider, Button, IconButton } from "@mui/material";
+import { Box, Typography, Divider, Button, IconButton, useMediaQuery, useTheme } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Faq from "../../components/FAQ";
+import SectionHeader from "../../components/SectionHeader";
 import { fellowProjects } from "../../data/fellowProjects";
 import { pageRootSx, sectionPx, heroPt, heroTitleFont, heroContentGap, decorativeBgSx, cardRowSx, threeColCardSx } from "../../styles/pageLayout";
 // Asset Imports
@@ -67,40 +68,6 @@ const curriculumItems = [
   },
 ];
 
-function SectionHeader({ title, description }) {
-  return (
-    <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px" }}>
-      <Typography
-        sx={{
-          fontFamily: "DM Sans, sans-serif",
-          fontWeight: 700,
-          fontSize: "48px",
-          lineHeight: "36px",
-          color: "#F3801A",
-        }}
-      >
-        {title}
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-          fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "36px",
-          color: "#FFFFFF",
-        }}
-      >
-        {description}
-      </Typography>
-    </Box>
-  );
-}
-
-SectionHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.node.isRequired,
-};
-
 function FellowProjectCard({ title, description, link, image, imagePosition = "left center" }) {
   return (
     <Box
@@ -116,22 +83,22 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
         sx={{
           backgroundColor: "#191919",
           border: "1px solid #444",
-          borderRadius: { xs: "12px", md: "12px 0 0 12px" },
-          p: { xs: "32px", md: "60px" },
+          borderRadius: { xs: "12px 12px 0 0", md: "12px 0 0 12px" },
+          p: { xs: "24px", sm: "32px", md: "60px" },
           display: "flex",
           flexDirection: "column",
-          gap: "32px",
+          gap: { xs: "20px", md: "32px" },
           flex: 1,
           zIndex: 1,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "23px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "16px", md: "23px" } }}>
           <Typography
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "36px",
-              lineHeight: 1.5,
+              fontSize: { xs: "24px", sm: "28px", md: "36px" },
+              lineHeight: 1.4,
               color: "#FFFFFF",
             }}
           >
@@ -141,7 +108,7 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: { xs: "16px", sm: "18px", md: "24px" },
               lineHeight: 1.5,
               color: "#D7D7D7",
             }}
@@ -166,14 +133,14 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "24px",
+              fontSize: { xs: "18px", md: "24px" },
               lineHeight: 1.5,
               color: "#F3801A",
             }}
           >
             View case study
           </Typography>
-          <ArrowForwardIcon sx={{ color: "#F3801A", fontSize: 24 }} />
+          <ArrowForwardIcon sx={{ color: "#F3801A", fontSize: { xs: 20, md: 24 } }} />
         </Box>
       </Box>
 
@@ -189,7 +156,7 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
             borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
             objectFit: "cover",
             objectPosition: imagePosition,
-            minHeight: "373px",
+            minHeight: { xs: "250px", md: "373px" },
             alignSelf: "stretch",
           }}
         />
@@ -210,7 +177,7 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
           `,
             backgroundSize: "24px 24px",
             backgroundPosition: "0 0, 0 12px, 12px -12px, -12px 0",
-            minHeight: "373px",
+            minHeight: { xs: "250px", md: "373px" },
           }}
         />
       )}
@@ -226,13 +193,177 @@ FellowProjectCard.propTypes = {
   imagePosition: PropTypes.string,
 };
 
+function CurriculumPreview({ title, embedSrc, embedType, previewContainerSx, previewCtaSx }) {
+  if (embedType === "iframe" && embedSrc) {
+    return (
+      <Box
+        component="iframe"
+        src={embedSrc}
+        title={`${title} embed`}
+        sx={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          display: "block",
+        }}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      />
+    );
+  }
+
+  if (embedType === "notion") {
+    return (
+      <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Box
+            sx={{
+              width: "28px",
+              height: "28px",
+              borderRadius: "4px",
+              backgroundColor: "#101010",
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "14px",
+              fontWeight: 700,
+            }}
+          >
+            N
+          </Box>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: 1.3,
+              color: "#101010",
+            }}
+          >
+            Full-stack Curriculum
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+            <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+            <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+          </Box>
+        </Box>
+        <Typography sx={previewCtaSx}>Open in Notion →</Typography>
+      </Box>
+    );
+  }
+
+  if (embedType === "youtube") {
+    return (
+      <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <Box
+            sx={{
+              width: "28px",
+              height: "28px",
+              borderRadius: "4px",
+              backgroundColor: "#FF0000",
+              color: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "12px",
+              fontWeight: 700,
+            }}
+          >
+            ▶
+          </Box>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: 1.3,
+              color: "#101010",
+            }}
+          >
+            Curriculum Playlists
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+            <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+            <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+            <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
+          </Box>
+        </Box>
+        <Typography sx={previewCtaSx}>Open on YouTube →</Typography>
+      </Box>
+    );
+  }
+
+  if (embedType === "slack") {
+    return (
+      <Box
+        sx={{
+          ...previewContainerSx,
+          alignItems: "center",
+          textAlign: "center",
+          background: "linear-gradient(135deg, #4A154B 0%, #611f69 100%)",
+        }}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "100%" }}>
+          <Box
+            sx={{
+              width: "28px",
+              height: "28px",
+              borderRadius: "4px",
+              backgroundColor: "#FFFFFF",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              color: "#4A154B",
+            }}
+          >
+            #
+          </Box>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 700,
+              fontSize: "16px",
+              lineHeight: 1.3,
+              color: "#FFFFFF",
+            }}
+          >
+            Join TPEO on Slack
+          </Typography>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: "6px", width: "100%", alignItems: "center" }}>
+            <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+            <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+            <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
+          </Box>
+        </Box>
+        <Typography sx={{ ...previewCtaSx, color: "#FFFFFF", width: "100%" }}>Open in Slack →</Typography>
+      </Box>
+    );
+  }
+
+  return null;
+}
+
+CurriculumPreview.propTypes = {
+  title: PropTypes.string,
+  embedSrc: PropTypes.string,
+  embedType: PropTypes.string,
+  previewContainerSx: PropTypes.object,
+  previewCtaSx: PropTypes.object,
+};
+
 function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" }) {
   const isLinkCard = ["slack", "notion", "youtube"].includes(embedType) && href;
 
   const previewContainerSx = {
     width: "100%",
     height: "100%",
-    minHeight: "197px",
+    minHeight: { xs: "150px", md: "197px" },
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -275,150 +406,20 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
     >
       <Box
         sx={{
-          height: "197px",
+          height: { xs: "150px", md: "197px" },
           backgroundColor: "#0D0D0D",
           borderBottom: "1px solid #444",
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {embedType === "iframe" && embedSrc ? (
-          <Box
-            component="iframe"
-            src={embedSrc}
-            title={`${title} embed`}
-            sx={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              display: "block",
-            }}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-          />
-        ) : embedType === "notion" ? (
-          <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <Box
-                sx={{
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "4px",
-                  backgroundColor: "#101010",
-                  color: "#FFFFFF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "14px",
-                  fontWeight: 700,
-                }}
-              >
-                N
-              </Box>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  lineHeight: 1.3,
-                  color: "#101010",
-                }}
-              >
-                Full-stack Curriculum
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-              </Box>
-            </Box>
-            <Typography sx={previewCtaSx}>Open in Notion →</Typography>
-          </Box>
-        ) : embedType === "youtube" ? (
-          <Box sx={{ ...previewContainerSx, backgroundColor: "#FFFFFF" }}>
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <Box
-                sx={{
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "4px",
-                  backgroundColor: "#FF0000",
-                  color: "#FFFFFF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "12px",
-                  fontWeight: 700,
-                }}
-              >
-                ▶
-              </Box>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  lineHeight: 1.3,
-                  color: "#101010",
-                }}
-              >
-                Curriculum Playlists
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "#E8E8E8" }} />
-              </Box>
-            </Box>
-            <Typography sx={previewCtaSx}>Open on YouTube →</Typography>
-          </Box>
-        ) : embedType === "slack" ? (
-          <Box
-            sx={{
-              ...previewContainerSx,
-              alignItems: "center",
-              textAlign: "center",
-              background: "linear-gradient(135deg, #4A154B 0%, #611f69 100%)",
-            }}
-          >
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center", width: "100%" }}>
-              <Box
-                sx={{
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "4px",
-                  backgroundColor: "#FFFFFF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  color: "#4A154B",
-                }}
-              >
-                #
-              </Box>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 700,
-                  fontSize: "16px",
-                  lineHeight: 1.3,
-                  color: "#FFFFFF",
-                }}
-              >
-                Join TPEO on Slack
-              </Typography>
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "6px", width: "100%", alignItems: "center" }}>
-                <Box sx={{ width: "72%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
-                <Box sx={{ width: "56%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
-                <Box sx={{ width: "64%", height: "8px", borderRadius: "4px", backgroundColor: "rgba(255, 255, 255, 0.25)" }} />
-              </Box>
-            </Box>
-            <Typography sx={{ ...previewCtaSx, color: "#FFFFFF", width: "100%" }}>Open in Slack →</Typography>
-          </Box>
-        ) : null}
+        <CurriculumPreview
+          title={title}
+          embedSrc={embedSrc}
+          embedType={embedType}
+          previewContainerSx={previewContainerSx}
+          previewCtaSx={previewCtaSx}
+        />
       </Box>
       <Box
         sx={{
@@ -442,12 +443,12 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
         >
           <EditOutlinedIcon sx={{ fontSize: 18, color: "#101010" }} />
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "4px", md: "2px" } }}>
           <Typography
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "22px",
+              fontSize: { xs: "20px", md: "22px" },
               lineHeight: "normal",
               color: "#FFFFFF",
             }}
@@ -464,7 +465,7 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
               sx={{
                 fontFamily: "DM Sans, sans-serif",
                 fontWeight: 400,
-                fontSize: "17px",
+                fontSize: { xs: "15px", md: "17px" },
                 lineHeight: 1.3,
                 color: "#F3801A",
                 textDecoration: "none",
@@ -478,7 +479,7 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
               sx={{
                 fontFamily: "DM Sans, sans-serif",
                 fontWeight: 400,
-                fontSize: "17px",
+                fontSize: { xs: "15px", md: "17px" },
                 lineHeight: 1.3,
                 color: "#AAAAAA",
               }}
@@ -502,11 +503,11 @@ CurriculumCard.propTypes = {
 
 function StepCard({ number, title, description }) {
   return (
-    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", gap: "48px", alignItems: "center", textAlign: "center", maxWidth: { xs: "274px", md: "none" } }}>
+    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", gap: { xs: "24px", md: "48px" }, alignItems: "center", textAlign: "center", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}>
       <Box
         sx={{
-          width: "60px",
-          height: "60px",
+          width: { xs: "48px", md: "60px" },
+          height: { xs: "48px", md: "60px" },
           borderRadius: "50%",
           border: "2px solid #F3801A",
           display: "flex",
@@ -518,7 +519,7 @@ function StepCard({ number, title, description }) {
           sx={{
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 700,
-            fontSize: "36px",
+            fontSize: { xs: "24px", md: "36px" },
             lineHeight: "24px",
             color: "#F3801A",
           }}
@@ -526,13 +527,13 @@ function StepCard({ number, title, description }) {
           {number}
         </Typography>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "16px", md: "32px" } }}>
         <Typography
           sx={{
             fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
-            fontSize: "32px",
-            lineHeight: "36px",
+            fontSize: { xs: "24px", md: "32px" },
+            lineHeight: 1.2,
             color: "#FFFFFF",
           }}
         >
@@ -542,8 +543,8 @@ function StepCard({ number, title, description }) {
           sx={{
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 400,
-            fontSize: "24px",
-            lineHeight: "36px",
+            fontSize: { xs: "16px", md: "24px" },
+            lineHeight: 1.5,
             color: "#D7D7D7",
           }}
         >
@@ -561,9 +562,19 @@ StepCard.propTypes = {
 };
 
 function NewFellowPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
+  let visibleCount = 3;
+  if (isMobile) {
+    visibleCount = 1;
+  } else if (isTablet) {
+    visibleCount = 2;
+  }
+
   const [socialCarouselIndex, setSocialCarouselIndex] = useState(0);
 
-  const visibleSocialImages = Array.from({ length: SOCIAL_CAROUSEL_VISIBLE_COUNT }, (_, i) => {
+  const visibleSocialImages = Array.from({ length: visibleCount }, (_, i) => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return null;
     return SOCIAL_CAROUSEL_IMAGES[(socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length];
   });
@@ -571,13 +582,13 @@ function NewFellowPage() {
   const handleSocialCarouselPrev = () => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
     setSocialCarouselIndex(
-      (prev) => (prev - SOCIAL_CAROUSEL_VISIBLE_COUNT + SOCIAL_CAROUSEL_IMAGES.length) % SOCIAL_CAROUSEL_IMAGES.length
+      (prev) => (prev - visibleCount + SOCIAL_CAROUSEL_IMAGES.length) % SOCIAL_CAROUSEL_IMAGES.length
     );
   };
 
   const handleSocialCarouselNext = () => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
-    setSocialCarouselIndex((prev) => (prev + SOCIAL_CAROUSEL_VISIBLE_COUNT) % SOCIAL_CAROUSEL_IMAGES.length);
+    setSocialCarouselIndex((prev) => (prev + visibleCount) % SOCIAL_CAROUSEL_IMAGES.length);
   };
 
   return (
@@ -591,7 +602,7 @@ function NewFellowPage() {
         sx={{
           pt: heroPt,
           px: sectionPx,
-          pb: { xs: "80px", md: "160px" },
+          pb: { xs: "60px", md: "160px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -612,8 +623,8 @@ function NewFellowPage() {
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: { xs: "28px", md: "36px" },
               color: "#D7D7D7",
               maxWidth: "770px",
             }}
@@ -628,12 +639,12 @@ function NewFellowPage() {
       {/* ========== FELLOWSHIP PROCESS SECTION ========== */}
       <Box
         sx={{
-          pt: "96px", // 715 - 619 = 96
+          pt: { xs: "60px", md: "96px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "100px",
+          gap: { xs: "40px", md: "100px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -647,11 +658,12 @@ function NewFellowPage() {
             position: "absolute",
             bottom: { xs: "20px", md: "30px" },
             left: "-20px",
-            width: { xs: "160px", md: "250px" },
+            width: { xs: "100px", md: "250px" },
             height: "auto",
             pointerEvents: "none",
             mixBlendMode: "lighten",
             zIndex: 0,
+            display: { xs: "none", sm: "block" },
           }}
         />
         <SectionHeader
@@ -659,7 +671,7 @@ function NewFellowPage() {
           description="Our process over two years. We recruit every fall!"
         />
 
-        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "60px" }, maxWidth: "1304px", pb: "92px" }}>
+        <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "60px" }, maxWidth: "1304px", pb: { xs: "60px", md: "92px" } }}>
           {fellowshipSteps.map((step) => (
             <StepCard key={step.number} {...step} />
           ))}
@@ -671,12 +683,12 @@ function NewFellowPage() {
       {/* ========== SOCIALS SECTION ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -688,13 +700,14 @@ function NewFellowPage() {
           alt=""
           sx={{
             position: "absolute",
-            top: { xs: "70px", md: "110px" },
-            right: { xs: "20px", md: "180px" },
-            width: { xs: "120px", md: "185px" },
+            top: { xs: "40px", md: "110px" },
+            right: { xs: "10px", md: "180px" },
+            width: { xs: "80px", md: "185px" },
             height: "auto",
             pointerEvents: "none",
             mixBlendMode: "screen",
             zIndex: 0,
+            display: { xs: "none", sm: "block" },
           }}
         />
         <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px", position: "relative", zIndex: 1 }}>
@@ -702,8 +715,8 @@ function NewFellowPage() {
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "48px",
-              lineHeight: "36px",
+              fontSize: { xs: "32px", md: "48px" },
+              lineHeight: "normal",
               color: "#F3801A",
             }}
           >
@@ -713,8 +726,8 @@ function NewFellowPage() {
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: { xs: "28px", md: "36px" },
               color: "#FFFFFF",
             }}
           >
@@ -736,7 +749,7 @@ function NewFellowPage() {
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: { xs: "16px", md: "23px" },
+            gap: { xs: "12px", md: "23px" },
             width: "100%",
             maxWidth: "1408px",
           }}
@@ -747,18 +760,18 @@ function NewFellowPage() {
             disabled={SOCIAL_CAROUSEL_IMAGES.length === 0}
             sx={{
               flexShrink: 0,
-              width: "39px",
-              height: "39px",
+              width: { xs: "32px", md: "39px" },
+              height: { xs: "32px", md: "39px" },
               backgroundColor: "#F3801A",
               color: "#101010",
               "&:hover": { backgroundColor: "#d96f12" },
               "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
           >
-            <ChevronLeftIcon />
+            <ChevronLeftIcon fontSize={isMobile ? "small" : "medium"} />
           </IconButton>
 
-          <Box sx={{ display: "flex", gap: { xs: "16px", md: "41px" }, flex: 1, minWidth: 0 }}>
+          <Box sx={{ display: "flex", gap: { xs: "12px", md: "41px" }, flex: 1, minWidth: 0 }}>
             {visibleSocialImages.map((image, i) => (
               <Box
                 key={`${socialCarouselIndex}-${i}`}
@@ -768,7 +781,7 @@ function NewFellowPage() {
                 sx={{
                   flex: "1 1 0",
                   aspectRatio: "1 / 1",
-                  borderRadius: "20px",
+                  borderRadius: { xs: "12px", md: "20px" },
                   border: "1px solid #444",
                   objectFit: "cover",
                   minWidth: 0,
@@ -783,15 +796,15 @@ function NewFellowPage() {
             disabled={SOCIAL_CAROUSEL_IMAGES.length === 0}
             sx={{
               flexShrink: 0,
-              width: "39px",
-              height: "39px",
+              width: { xs: "32px", md: "39px" },
+              height: { xs: "32px", md: "39px" },
               backgroundColor: "#F3801A",
               color: "#101010",
               "&:hover": { backgroundColor: "#d96f12" },
               "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
             }}
           >
-            <ChevronRightIcon />
+            <ChevronRightIcon fontSize={isMobile ? "small" : "medium"} />
           </IconButton>
         </Box>
       </Box>
@@ -801,12 +814,12 @@ function NewFellowPage() {
       {/* ========== PAST NEW FELLOW PROJECTS ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -816,7 +829,7 @@ function NewFellowPage() {
           description="Here’s some cool things that our new fellows have built in the past!"
         />
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "40px", width: "100%", alignItems: "center" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "24px", md: "40px" }, width: "100%", alignItems: "center" }}>
           {fellowProjects.slice(0, 2).map((project, index) => (
             <FellowProjectCard key={`${project.title}-${index}`} {...project} />
           ))}
@@ -827,9 +840,9 @@ function NewFellowPage() {
             width: "100%",
             maxWidth: "1304px",
             position: "relative",
-            minHeight: "80px",
+            minHeight: { xs: "60px", md: "80px" },
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: { xs: "center", sm: "flex-end" },
             alignItems: "flex-start",
           }}
         >
@@ -841,31 +854,33 @@ function NewFellowPage() {
               position: "absolute",
               top: "12px",
               right: { xs: "120px", md: "230px" },
-              width: { xs: "150px", md: "210px" },
+              width: { xs: "120px", md: "210px" },
               height: "auto",
               pointerEvents: "none",
               mixBlendMode: "lighten",
               zIndex: 0,
+              display: { xs: "none", sm: "block" },
             }}
           />
           <Button
             component="a"
             href="/clients"
-            endIcon={<ArrowForwardIcon sx={{ color: "#F3801A" }} />}
+            endIcon={<ArrowForwardIcon sx={{ color: "#F3801A", fontSize: { xs: 20, md: 24 } } } />}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "28px",
+              fontSize: { xs: "18px", md: "28px" },
               lineHeight: "normal",
               color: "#FFFFFF",
               backgroundColor: "#191919",
               border: "1px solid #444",
               borderRadius: "12px",
-              px: "32px",
-              py: "16px",
+              px: { xs: "24px", md: "32px" },
+              py: { xs: "12px", md: "16px" },
               textTransform: "none",
               position: "relative",
               zIndex: 1,
+              width: { xs: "100%", sm: "auto" },
               "&:hover": {
                 backgroundColor: "#222222",
                 borderColor: "#555",
@@ -882,12 +897,12 @@ function NewFellowPage() {
       {/* ========== ENGINEERING CURRICULUM ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
           position: "relative",
           zIndex: 1,
         }}

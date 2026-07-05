@@ -8,6 +8,26 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
 import { sectionPx } from "../styles/pageLayout";
 
+function FaqIcon({ iconStyle, isExpanded }) {
+  if (iconStyle === "chevron") {
+    return isExpanded ? (
+      <ExpandLessIcon sx={{ fontSize: "28.33px" }} />
+    ) : (
+      <ExpandMoreIcon sx={{ fontSize: "28.33px" }} />
+    );
+  }
+  return isExpanded ? (
+    <RemoveIcon sx={{ fontSize: "28.33px" }} />
+  ) : (
+    <AddIcon sx={{ fontSize: "28.33px" }} />
+  );
+}
+
+FaqIcon.propTypes = {
+  iconStyle: PropTypes.string.isRequired,
+  isExpanded: PropTypes.bool.isRequired,
+};
+
 function Faq({ type, iconStyle = "plus" }) {
   const faqData = [
     {
@@ -65,7 +85,7 @@ function Faq({ type, iconStyle = "plus" }) {
     {
       question: "What type of projects does TPEO take on?",
       answer:
-        "We take on projects to support nonprofits that include backend and frontend work. We like to focus on enhancing, such as adding features, rather than building a new website from scratch.",
+        "We take on projects to build apps that solve a solution in our community.",
       type: "Client",
     },
     {
@@ -166,7 +186,7 @@ function Faq({ type, iconStyle = "plus" }) {
             src={imgFaqLightbulb}
             alt=""
             sx={{
-              width: "110px",
+              width: { xs: "80px", md: "110px" },
               height: "auto",
               pointerEvents: "none",
               mixBlendMode: "lighten",
@@ -254,17 +274,7 @@ function Faq({ type, iconStyle = "plus" }) {
                   {faq.question}
                 </Typography>
                 <IconButton sx={{ color: "#F3801A", p: 0, flexShrink: 0 }}>
-                  {iconStyle === "chevron" ? (
-                    openIndexes.includes(index) ? (
-                      <ExpandLessIcon sx={{ fontSize: "28.33px" }} />
-                    ) : (
-                      <ExpandMoreIcon sx={{ fontSize: "28.33px" }} />
-                    )
-                  ) : openIndexes.includes(index) ? (
-                    <RemoveIcon sx={{ fontSize: "28.33px" }} />
-                  ) : (
-                    <AddIcon sx={{ fontSize: "28.33px" }} />
-                  )}
+                  <FaqIcon iconStyle={iconStyle} isExpanded={openIndexes.includes(index)} />
                 </IconButton>
               </Box>
               <Collapse in={openIndexes.includes(index)} timeout="auto" unmountOnExit>

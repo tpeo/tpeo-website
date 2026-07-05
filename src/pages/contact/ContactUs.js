@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Box, Typography, Button } from "@mui/material";
 import imgDoodles from "../../assets/aboutIcons/contact-doodles.svg";
 import imgEnvelope from "../../assets/aboutIcons/envelope.svg";
@@ -27,13 +28,13 @@ const socialIcons = [
 
 function ContactInput({ label, placeholder, multiline = false }) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "6px", md: "12px" }, width: "100%" }}>
       <Typography
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 500,
-          fontSize: "28px",
-          lineHeight: "39px",
+          fontSize: { xs: "16px", md: "28px" },
+          lineHeight: 1.2,
           color: "#D7D7D7",
         }}
       >
@@ -46,11 +47,11 @@ function ContactInput({ label, placeholder, multiline = false }) {
           backgroundColor: "#191919",
           border: "1px solid #444",
           borderRadius: "10px",
-          px: "19px",
-          py: "15px",
+          px: { xs: "12px", md: "19px" },
+          py: { xs: "10px", md: "15px" },
           color: "#FFFFFF",
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-          fontSize: "24px",
+          fontSize: { xs: "16px", md: "24px" },
           outline: "none",
           width: "100%",
           boxSizing: "border-box",
@@ -58,7 +59,7 @@ function ContactInput({ label, placeholder, multiline = false }) {
             color: "#444",
           },
           ...(multiline && {
-            minHeight: "150px",
+            minHeight: { xs: "100px", md: "150px" },
             resize: "vertical",
           }),
         }}
@@ -66,6 +67,12 @@ function ContactInput({ label, placeholder, multiline = false }) {
     </Box>
   );
 }
+
+ContactInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  multiline: PropTypes.bool,
+};
 
 function ContactUsPage() {
   return (
@@ -89,25 +96,27 @@ function ContactUsPage() {
       <Box
         sx={{
           pt: heroPt,
-          pb: "128px",
-          px: sectionPx,
+          pb: { xs: "48px", md: "128px" },
+          px: { xs: "48px", sm: "40px", md: sectionPx.md, lg: sectionPx.lg },
           display: "flex",
           flexDirection: { xs: "column", lg: "row" },
-          gap: { xs: "48px", lg: "60px" },
+          gap: { xs: "32px", lg: "60px" },
           position: "relative",
           zIndex: 1,
           boxSizing: "border-box",
+          width: "100%",
+          alignItems: "center",
         }}
       >
         {/* Left Side: Let's Connect */}
-        <Box sx={{ flex: 1, maxWidth: { lg: "770px" }, width: "100%", display: "flex", flexDirection: "column", gap: "61px" }}>
+        <Box sx={{ flex: 1, maxWidth: { lg: "770px" }, width: "100%", display: "flex", flexDirection: "column", gap: { xs: "32px", md: "61px" } }}>
           {/* Hero Content */}
           <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap }}>
             <Typography
               sx={{
                 fontFamily: "DM Sans, sans-serif",
                 fontWeight: 700,
-                fontSize: heroTitleFont,
+                fontSize: { xs: "32px", md: heroTitleFont },
                 lineHeight: "normal",
                 color: "#FFFFFF",
               }}
@@ -118,8 +127,8 @@ function ContactUsPage() {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: { xs: "22px", md: "28px" },
-                lineHeight: "39px",
+                fontSize: { xs: "16px", md: "28px" },
+                lineHeight: { xs: "24px", md: "39px" },
                 color: "#D7D7D7",
               }}
             >
@@ -129,14 +138,14 @@ function ContactUsPage() {
 
           {/* Email Info */}
           <Box sx={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-            <Box sx={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <Box component="img" src={imgEnvelope} alt="" sx={{ width: "40px", height: "40px" }} />
+            <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
+              <Box component="img" src={imgEnvelope} alt="" sx={{ width: { xs: "28px", md: "40px" }, height: { xs: "28px", md: "40px" } }} />
               <Typography
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 500,
-                  fontSize: "28px",
-                  lineHeight: "39px",
+                  fontSize: { xs: "16px", md: "28px" },
+                  lineHeight: 1.2,
                   color: "#FFFFFF",
                 }}
               >
@@ -149,8 +158,8 @@ function ContactUsPage() {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 500,
-                fontSize: "28px",
-                lineHeight: "39px",
+                fontSize: { xs: "16px", md: "28px" },
+                lineHeight: 1.2,
                 color: "#F3801A",
                 textDecoration: "underline",
                 cursor: "pointer",
@@ -162,19 +171,19 @@ function ContactUsPage() {
           </Box>
 
           {/* Follow Us */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "10px", md: "16px" } }}>
             <Typography
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 500,
-                fontSize: "28px",
-                lineHeight: "39px",
+                fontSize: { xs: "16px", md: "28px" },
+                lineHeight: 1.2,
                 color: "#D7D7D7",
               }}
             >
               Follow Us
             </Typography>
-            <Box sx={{ display: "flex", gap: "11px" }}>
+            <Box sx={{ display: "flex", gap: { xs: "4px", md: "8px" } }}>
               {socialIcons.map((icon) => (
                 <Box
                   key={icon.alt}
@@ -183,8 +192,8 @@ function ContactUsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   sx={{
-                    width: "66px",
-                    height: "66px",
+                    width: { xs: "36px", md: "66px" },
+                    height: { xs: "36px", md: "66px" },
                     "&:hover": { opacity: 0.8 },
                   }}
                 >
@@ -201,20 +210,20 @@ function ContactUsPage() {
             backgroundColor: "#191919",
             border: "1px solid #444",
             borderRadius: "12px",
-            p: "40px 32px",
+            p: { xs: "20px", sm: "32px", md: "40px 32px" },
             width: { xs: "100%", lg: "642px" },
             maxWidth: "642px",
             flexShrink: 0,
             display: "flex",
             flexDirection: "column",
-            gap: "60px",
+            gap: { xs: "24px", md: "60px" },
             height: "fit-content",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "16px", md: "24px" } }}>
             <ContactInput label="Name" placeholder="Your name" />
             <ContactInput label="Email" placeholder="Your email" />
-            <ContactInput label="Subject" placeholder="What’s this about?" />
+            <ContactInput label="Subject" placeholder="What's this about?" />
             <ContactInput label="Message" placeholder="Tell us more...." multiline />
           </Box>
 
@@ -224,12 +233,12 @@ function ContactUsPage() {
               color: "#101010",
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "20px",
+              fontSize: { xs: "16px", md: "20px" },
               textTransform: "none",
               borderRadius: "12px",
-              px: "24px",
-              py: "20px",
-              width: "fit-content",
+              px: { xs: "20px", md: "24px" },
+              py: { xs: "10px", md: "20px" },
+              width: { xs: "100%", sm: "fit-content" },
               "&:hover": {
                 backgroundColor: "#FB8C14",
               },

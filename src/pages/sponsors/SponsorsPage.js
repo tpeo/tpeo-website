@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Typography, Divider, Button } from "@mui/material";
+import { Box, Typography, Divider, Button, useTheme, useMediaQuery } from "@mui/material";
 import Faq from "../../components/FAQ";
 import SectionHeader from "../../components/SectionHeader";
 import {
@@ -10,7 +10,6 @@ import {
   heroTitleFont,
   cardRowSx,
   decorativeBgSx,
-  figmaTop,
   threeColCardSx,
 } from "../../styles/pageLayout";
 
@@ -230,22 +229,22 @@ function ProjectSpotlightCard({ title, description, link, image }) {
       <Box
         sx={{
           backgroundColor: "#191919",
-          borderRadius: "12px 0 0 12px",
-          p: "60px",
+          borderRadius: { xs: "12px 12px 0 0", md: "12px 0 0 12px" },
+          p: { xs: "32px", md: "60px" },
           display: "flex",
           flexDirection: "column",
-          gap: "32px",
+          gap: { xs: "24px", md: "32px" },
           flex: 1,
           zIndex: 1,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "23px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "16px", md: "23px" } }}>
           <Typography
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "36px",
-              lineHeight: 1.5,
+              fontSize: { xs: "24px", md: "36px" },
+              lineHeight: 1.4,
               color: "#FFFFFF",
             }}
           >
@@ -255,7 +254,7 @@ function ProjectSpotlightCard({ title, description, link, image }) {
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
+              fontSize: { xs: "16px", md: "24px" },
               lineHeight: 1.5,
               color: "#D7D7D7",
             }}
@@ -280,7 +279,7 @@ function ProjectSpotlightCard({ title, description, link, image }) {
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "24px",
+              fontSize: { xs: "18px", md: "24px" },
               lineHeight: 1.5,
               color: "#F3801A",
             }}
@@ -293,17 +292,17 @@ function ProjectSpotlightCard({ title, description, link, image }) {
 
       <Box
         sx={{
-          width: { xs: "200px", md: "468px" },
+          width: { xs: "100%", md: "468px" },
           flexShrink: 0,
-          ml: "-15px",
-          borderRadius: "0 12px 12px 0",
+          ml: { xs: 0, md: "-15px" },
+          borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
           overflow: "hidden",
           backgroundColor: "#FFFFFF",
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          minHeight: "373px",
+          minHeight: { xs: "250px", md: "373px" },
         }}
       />
     </Box>
@@ -319,17 +318,17 @@ ProjectSpotlightCard.propTypes = {
 
 function OfferingCard({ icon, title, description }) {
   return (
-    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "290px", md: "none" } }}>
-      <Box sx={{ width: "78px", height: "78px", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Box component="img" src={icon} alt="" sx={{ width: "54.6px", height: "54.6px" }} />
+    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}>
+      <Box sx={{ width: { xs: "60px", md: "78px" }, height: { xs: "60px", md: "78px" }, display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <Box component="img" src={icon} alt="" sx={{ width: { xs: "40px", md: "54.6px" }, height: { xs: "40px", md: "54.6px" } }} />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "0px", alignItems: "center" }}>
         <Typography
           sx={{
             fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
-            fontSize: "28px",
-            lineHeight: "36px",
+            fontSize: { xs: "22px", md: "28px" },
+            lineHeight: { xs: "28px", md: "36px" },
             color: "#FFFFFF",
             textAlign: "center",
             whiteSpace: "pre-line",
@@ -342,8 +341,8 @@ function OfferingCard({ icon, title, description }) {
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "36px",
+          fontSize: { xs: "16px", md: "24px" },
+          lineHeight: { xs: "24px", md: "36px" },
           color: "#D7D7D7",
           textAlign: "center",
           width: "100%",
@@ -370,18 +369,18 @@ function StepCard({ number, title, description }) {
         backgroundColor: "#191919",
         border: "1.32px solid #444",
         borderRadius: "15.83px",
-        p: "41.32px",
+        p: { xs: "24px", md: "41.32px" },
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        maxWidth: { xs: "296px", md: "none" },
+        maxWidth: { xs: "100%", sm: "320px", md: "none" },
         alignItems: "center",
       }}
     >
       <Box
         sx={{
-          width: "60px",
-          height: "60px",
+          width: { xs: "48px", md: "60px" },
+          height: { xs: "48px", md: "60px" },
           borderRadius: "50%",
           border: "2px solid #F3801A",
           display: "flex",
@@ -393,7 +392,7 @@ function StepCard({ number, title, description }) {
           sx={{
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 700,
-            fontSize: "36px",
+            fontSize: { xs: "24px", md: "36px" },
             color: "#F3801A",
             lineHeight: "24px",
           }}
@@ -405,8 +404,8 @@ function StepCard({ number, title, description }) {
         sx={{
           fontFamily: "DM Sans, sans-serif",
           fontWeight: 700,
-          fontSize: "28px",
-          lineHeight: "36px",
+          fontSize: { xs: "22px", md: "28px" },
+          lineHeight: { xs: "28px", md: "36px" },
           color: "#FFFFFF",
           textAlign: "center",
         }}
@@ -417,8 +416,8 @@ function StepCard({ number, title, description }) {
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "36px",
+          fontSize: { xs: "16px", md: "24px" },
+          lineHeight: { xs: "24px", md: "36px" },
           color: "#D7D7D7",
           textAlign: "center",
           width: "100%",
@@ -445,25 +444,25 @@ function WhySponsorCard({ icon, title, description }) {
         backgroundColor: "#191919",
         border: "1.47px solid #444",
         borderRadius: "23.47px",
-        pt: "60.14px",
-        px: "60.14px",
-        pb: "60.14px",
-        maxWidth: { xs: "435px", md: "none" },
+        pt: { xs: "40px", md: "60.14px" },
+        px: { xs: "24px", md: "60.14px" },
+        pb: { xs: "40px", md: "60.14px" },
+        maxWidth: { xs: "100%", sm: "435px", md: "none" },
         display: "flex",
         flexDirection: "column",
         gap: "29.34px",
         alignItems: "center",
       }}
     >
-      <Box sx={{ width: "58.67px", height: "58.67px", alignSelf: "center" }}>
+      <Box sx={{ width: { xs: "48px", md: "58.67px" }, height: { xs: "48px", md: "58.67px" }, alignSelf: "center" }}>
         <Box component="img" src={icon} alt="" sx={{ width: "100%", height: "100%" }} />
       </Box>
       <Typography
         sx={{
           fontFamily: "DM Sans, sans-serif",
           fontWeight: 700,
-          fontSize: "32px",
-          lineHeight: "36px",
+          fontSize: { xs: "24px", md: "32px" },
+          lineHeight: { xs: "32px", md: "36px" },
           color: "#FFFFFF",
           textAlign: "center",
         }}
@@ -474,8 +473,8 @@ function WhySponsorCard({ icon, title, description }) {
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "36px",
+          fontSize: { xs: "16px", md: "24px" },
+          lineHeight: { xs: "24px", md: "36px" },
           color: "#D7D7D7",
           width: "100%",
           maxWidth: "315px",
@@ -502,8 +501,8 @@ function TierCard({ name, price, benefits, color, isGradient }) {
         backgroundColor: "#191919",
         border: "1.27px solid #444",
         borderRadius: "20.36px",
-        p: "51.27px",
-        maxWidth: { xs: "380px", md: "none" },
+        p: { xs: "32px", md: "51.27px" },
+        maxWidth: { xs: "100%", sm: "380px", md: "none" },
         height: { xs: "auto", md: "597px" },
         display: "flex",
         flexDirection: "column",
@@ -514,7 +513,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
         sx={{
           fontFamily: "DM Sans, sans-serif",
           fontWeight: 700,
-          fontSize: "48px",
+          fontSize: { xs: "36px", md: "48px" },
           lineHeight: "36px",
           ...(isGradient
             ? {
@@ -533,7 +532,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
           sx={{
             fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
-            fontSize: "64px",
+            fontSize: { xs: "48px", md: "64px" },
             lineHeight: "normal",
             color: "#FFFFFF",
             flexShrink: 0,
@@ -546,7 +545,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
           sx={{
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 400,
-            fontSize: "28px",
+            fontSize: { xs: "20px", md: "28px" },
             lineHeight: "36px",
             color: "#D7D7D7",
             whiteSpace: "nowrap",
@@ -566,7 +565,7 @@ function TierCard({ name, price, benefits, color, isGradient }) {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 500,
-                fontSize: "20px",
+                fontSize: { xs: "16px", md: "20px" },
                 lineHeight: "normal",
                 color: "#D7D7D7",
               }}
@@ -589,6 +588,9 @@ TierCard.propTypes = {
 };
 
 function SponsorsPage() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box sx={pageRootSx}>
       {/* Background Doodles */}
@@ -635,7 +637,7 @@ function SponsorsPage() {
         sx={{
           pt: heroPt,
           px: sectionPx,
-          pb: { xs: "80px", md: "182px" },
+          pb: { xs: "60px", md: "182px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -656,26 +658,26 @@ function SponsorsPage() {
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: { xs: "28px", md: "36px" },
               color: "#D7D7D7",
               maxWidth: "680px",
             }}
           >
             Interested in sponsoring and/or working with us as a client? Here is what a partnership with us will look like!
           </Typography>
-          <Box sx={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+          <Box sx={{ display: "flex", gap: { xs: "16px", md: "24px" }, flexWrap: "wrap" }}>
             <Button
               onClick={() => scrollToSection("client-projects")}
               endIcon={<HeroDownArrow />}
-              sx={heroNavButtonSx}
+              sx={{ ...heroNavButtonSx, fontSize: { xs: "20px", md: "28px" }, px: { xs: "24px", md: "32px" }, py: { xs: "16px", md: "24px" }, width: { xs: "100%", sm: "auto" } }}
             >
               View client projects
             </Button>
             <Button
               onClick={() => scrollToSection("sponsorship")}
               endIcon={<HeroDownArrow />}
-              sx={heroNavButtonSx}
+              sx={{ ...heroNavButtonSx, fontSize: { xs: "20px", md: "28px" }, px: { xs: "24px", md: "32px" }, py: { xs: "16px", md: "24px" }, width: { xs: "100%", sm: "auto" } }}
             >
               Sponsorship
             </Button>
@@ -689,12 +691,12 @@ function SponsorsPage() {
       <Box
         id="client-projects"
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
           scrollMarginTop: `${HEADER_OFFSET}px`,
         }}
       >
@@ -704,7 +706,7 @@ function SponsorsPage() {
           maxWidth="971px"
         />
 
-        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "58px" }, maxWidth: "1422px" }}>
+        <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "58px" }, maxWidth: "1422px" }}>
           {clientOfferingsData.map((item) => (
             <OfferingCard key={item.title} {...item} />
           ))}
@@ -716,12 +718,12 @@ function SponsorsPage() {
       {/* ========== HOW OUR PROJECTS WORK SECTION ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
         }}
       >
         <SectionHeader
@@ -730,7 +732,7 @@ function SponsorsPage() {
           maxWidth="971px"
         />
 
-        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "31px" }, maxWidth: "1277px" }}>
+        <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "31px" }, maxWidth: "1277px" }}>
           {processStepsData.map((step) => (
             <StepCard key={step.number} {...step} />
           ))}
@@ -741,7 +743,7 @@ function SponsorsPage() {
       <Box
         sx={{
           px: sectionPx,
-          pb: "100px",
+          pb: { xs: "60px", md: "100px" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -753,27 +755,28 @@ function SponsorsPage() {
             backgroundColor: "#101010",
             border: "1px solid #444",
             borderRadius: "12px",
-            px: "108.8px",
-            py: "87.3px",
+            px: { xs: "24px", sm: "40px", md: "108.8px" },
+            py: { xs: "40px", sm: "60px", md: "87.3px" },
             width: "100%",
             maxWidth: "1295px",
             display: "flex",
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: { xs: "flex-start", md: "center" },
             position: "relative",
             overflow: "hidden",
-            mb: "-201px",
+            mb: { xs: "0", md: "-201px" },
             zIndex: 1,
             gap: "32px",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "21.6px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "12px", md: "21.6px" } }}>
             <Typography
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 700,
-                fontSize: "48px",
-                lineHeight: "80.88px",
+                fontSize: { xs: "28px", sm: "36px", md: "48px" },
+                lineHeight: { xs: 1.2, md: "80.88px" },
                 color: "#FFFFFF",
                 maxWidth: "841px",
               }}
@@ -784,8 +787,8 @@ function SponsorsPage() {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: "28px",
-                lineHeight: "40.44px",
+                fontSize: { xs: "18px", sm: "22px", md: "28px" },
+                lineHeight: { xs: 1.4, md: "40.44px" },
                 color: "#D7D7D7",
                 display: "flex",
                 gap: "8px",
@@ -799,7 +802,7 @@ function SponsorsPage() {
                 sx={{
                   color: "#F3801A",
                   textDecoration: "underline",
-                  fontSize: "28px",
+                  fontSize: "inherit",
                   fontWeight: 400,
                   fontFamily: "inherit",
                 }}
@@ -817,13 +820,14 @@ function SponsorsPage() {
               color: "#101010",
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 700,
-              fontSize: "28px",
+              fontSize: { xs: "18px", md: "28px" },
               textTransform: "none",
               borderRadius: "16px",
-              px: "43px",
-              py: "21.6px",
-              lineHeight: "40.44px",
+              px: { xs: "24px", md: "43px" },
+              py: { xs: "12px", md: "21.6px" },
+              lineHeight: 1.2,
               flexShrink: 0,
+              width: { xs: "100%", sm: "auto" },
               "&:hover": {
                 backgroundColor: "#FB8C14",
               },
@@ -835,13 +839,13 @@ function SponsorsPage() {
 
         <Box
           sx={{
-            width: "363.6px",
-            height: "363.8px",
-            display: "flex",
+            width: { xs: "200px", md: "363.6px" },
+            height: { xs: "200px", md: "363.8px" },
+            display: { xs: "none", sm: "flex" },
             alignItems: "center",
             justifyContent: "center",
             alignSelf: "flex-end",
-            mr: "50px",
+            mr: { xs: "20px", md: "50px" },
             position: "relative",
             zIndex: 2,
             pointerEvents: "none",
@@ -852,7 +856,7 @@ function SponsorsPage() {
             src={imgReachOutDoodle}
             alt=""
             sx={{
-              width: "324px",
+              width: { xs: "180px", md: "324px" },
               height: "auto",
               transform: "rotate(7.51deg)",
               mixBlendMode: "lighten",
@@ -867,12 +871,12 @@ function SponsorsPage() {
       <Box
         id="sponsorship"
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
           scrollMarginTop: `${HEADER_OFFSET}px`,
         }}
       >
@@ -882,7 +886,7 @@ function SponsorsPage() {
           maxWidth="816px"
         />
 
-        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "40px" }, maxWidth: "1423px" }}>
+        <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "40px" }, maxWidth: "1423px" }}>
           {whySponsorData.map((item) => (
             <WhySponsorCard key={item.title} {...item} />
           ))}
@@ -894,12 +898,12 @@ function SponsorsPage() {
       {/* ========== SPONSORSHIP TIERS SECTION ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
         }}
       >
         <SectionHeader
@@ -914,7 +918,7 @@ function SponsorsPage() {
           maxWidth="816px"
         />
 
-        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "45px" }, maxWidth: "1234px" }}>
+        <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "45px" }, maxWidth: "1234px" }}>
           {tierData.map((tier) => (
             <TierCard key={tier.name} {...tier} />
           ))}
@@ -926,12 +930,12 @@ function SponsorsPage() {
       {/* ========== RECENT PARTNERSHIPS SECTION ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
         }}
       >
         <SectionHeader
@@ -944,7 +948,7 @@ function SponsorsPage() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: "60px",
+            gap: { xs: "40px", md: "60px" },
             alignItems: "center",
             width: "100%",
             maxWidth: "1100px",
@@ -952,20 +956,20 @@ function SponsorsPage() {
           }}
         >
           {/* Row 1 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box component="img" src={imgPartnerLogo1} sx={{ width: { xs: "200px", md: "272px" }, maxWidth: "100%" }} />
-            <Box component="img" src={imgPartnerLogo2} sx={{ width: { xs: "200px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
-            <Box component="img" src={imgPartnerLogo3} sx={{ width: { xs: "200px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box component="img" src={imgPartnerLogo1} sx={{ width: { xs: "120px", md: "272px" }, maxWidth: "100%" }} />
+            <Box component="img" src={imgPartnerLogo2} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
+            <Box component="img" src={imgPartnerLogo3} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
           </Box>
           {/* Row 2 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box component="img" src={imgPartnerLogo4} sx={{ width: { xs: "220px", md: "301px" }, maxWidth: "100%" }} />
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box component="img" src={imgPartnerLogo4} sx={{ width: { xs: "140px", md: "301px" }, maxWidth: "100%" }} />
             <Box component="img" src={imgPartnerLogo5} sx={{ width: { xs: "100%", md: "728px" }, maxWidth: "728px" }} />
           </Box>
           {/* Row 3 */}
           <Box component="img" src={imgPartnerLogo6} sx={{ width: { xs: "100%", md: "501px" }, maxWidth: "501px", borderRadius: "20px" }} />
           {/* Row 4 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
             <Box component="img" src={imgPartnerLogo7} sx={{ width: { xs: "100%", md: "479px" }, maxWidth: "479px", borderRadius: "20px" }} />
             <Box component="img" src={imgPartnerLogo8} sx={{ width: { xs: "100%", md: "513px" }, maxWidth: "513px", borderRadius: "20px" }} />
           </Box>
@@ -977,12 +981,12 @@ function SponsorsPage() {
       {/* ========== OUR RECENT PROJECTS SECTION ========== */}
       <Box
         sx={{
-          py: "100px",
+          py: { xs: "60px", md: "100px" },
           px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          gap: { xs: "40px", md: "60px" },
         }}
       >
         <SectionHeader
@@ -991,25 +995,26 @@ function SponsorsPage() {
           maxWidth="816px"
         />
 
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", width: "100%", maxWidth: "1304px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "24px", md: "30px" }, width: "100%", maxWidth: "1304px" }}>
           <ProjectSpotlightCard {...recentProject} />
 
-          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+          <Box sx={{ display: "flex", justifyContent: { xs: "center", sm: "flex-end" }, width: "100%" }}>
             <Button
               component="a"
               href="/clients"
-              endIcon={<ArrowIcon src={imgViewMoreProjectsArrow} />}
+              endIcon={<ArrowIcon src={imgViewMoreProjectsArrow} size={isMobile ? "20px" : "24px"} />}
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: "28px",
+                fontSize: { xs: "18px", md: "28px" },
                 color: "#FFFFFF",
                 backgroundColor: "#191919",
                 border: "1px solid #444",
                 borderRadius: "10px",
-                px: "32px",
-                py: "16px",
+                px: { xs: "24px", md: "32px" },
+                py: { xs: "12px", md: "16px" },
                 textTransform: "none",
+                width: { xs: "100%", sm: "auto" },
                 "&:hover": {
                   backgroundColor: "#222222",
                 },
@@ -1026,8 +1031,8 @@ function SponsorsPage() {
       <Faq type="Partners" iconStyle="chevron" />
 
       <Divider sx={{ backgroundColor: "#444" }} />
-
       
+      <Box sx={{ py: { xs: "40px", md: "100px" } }} />
     </Box>
   );
 }

@@ -71,21 +71,21 @@ function ProjectSpotlightCard({ title, description, link, image, imagePosition =
         sx={{
           backgroundColor: "#191919",
           borderRadius: { xs: "12px 12px 0 0", md: "12px 0 0 12px" },
-          p: { xs: "32px", md: "60px" },
+          p: { xs: "24px", sm: "32px", md: "60px" },
           display: "flex",
           flexDirection: "column",
-          gap: "32px",
+          gap: { xs: "24px", md: "32px" },
           flex: 1,
           zIndex: 1,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "23px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "16px", md: "23px" } }}>
           <Typography
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "36px",
-              lineHeight: "54px",
+              fontSize: { xs: "24px", md: "36px" },
+              lineHeight: 1.4,
               color: "#FFFFFF",
             }}
           >
@@ -95,8 +95,8 @@ function ProjectSpotlightCard({ title, description, link, image, imagePosition =
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "16px", md: "24px" },
+              lineHeight: 1.5,
               color: "#D7D7D7",
             }}
           >
@@ -120,8 +120,8 @@ function ProjectSpotlightCard({ title, description, link, image, imagePosition =
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 500,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: 1.5,
               color: "#F3801A",
             }}
           >
@@ -131,7 +131,7 @@ function ProjectSpotlightCard({ title, description, link, image, imagePosition =
             component="img"
             src={imgViewMoreProjectsArrow}
             alt=""
-            sx={{ width: "24px", height: "24px", flexShrink: 0 }}
+            sx={{ width: { xs: "20px", md: "24px" }, height: { xs: "20px", md: "24px" }, flexShrink: 0 }}
           />
         </Box>
       </Box>
@@ -204,7 +204,7 @@ function SpotlightCarousel({ projects }) {
       sx={{
         display: "flex",
         alignItems: "center",
-        gap: { xs: "16px", md: "23px" },
+        gap: { xs: "12px", md: "23px" },
         width: "100%",
         maxWidth: "1408px",
       }}
@@ -215,15 +215,15 @@ function SpotlightCarousel({ projects }) {
         disabled={projects.length <= 1}
         sx={{
           flexShrink: 0,
-          width: "39px",
-          height: "39px",
+          width: { xs: "32px", md: "39px" },
+          height: { xs: "32px", md: "39px" },
           backgroundColor: "#F3801A",
           color: "#101010",
           "&:hover": { backgroundColor: "#d96f12" },
           "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
         }}
       >
-        <ChevronLeftIcon />
+        <ChevronLeftIcon fontSize="small" />
       </IconButton>
 
       <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -236,15 +236,15 @@ function SpotlightCarousel({ projects }) {
         disabled={projects.length <= 1}
         sx={{
           flexShrink: 0,
-          width: "39px",
-          height: "39px",
+          width: { xs: "32px", md: "39px" },
+          height: { xs: "32px", md: "39px" },
           backgroundColor: "#F3801A",
           color: "#101010",
           "&:hover": { backgroundColor: "#d96f12" },
           "&.Mui-disabled": { backgroundColor: "#444", color: "#888" },
         }}
       >
-        <ChevronRightIcon />
+        <ChevronRightIcon fontSize="small" />
       </IconButton>
     </Box>
   );
@@ -269,7 +269,7 @@ function ClientPage() {
       <Box
         sx={{
           pt: heroPt,
-          pb: sectionPy,
+          pb: { xs: "80px", md: "140px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -284,15 +284,14 @@ function ClientPage() {
               color: "#FFFFFF",
             }}
           >
-            <span style={{ color: "#F3801A" }}>TPEO</span>
-            &rsquo;s Amazing Projects
+            <span style={{ color: "#F3801A" }}>TPEO</span>&rsquo;s Amazing Projects
           </Typography>
           <Typography
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "18px", md: "24px" },
+              lineHeight: { xs: "28px", md: "36px" },
               color: "#D7D7D7",
               maxWidth: "770px",
             }}
@@ -314,6 +313,7 @@ function ClientPage() {
             pointerEvents: "none",
             mixBlendMode: "lighten",
             zIndex: 0,
+            display: { xs: "none", sm: "block" },
           }}
         />
       </Box>
@@ -390,8 +390,8 @@ function ClientPage() {
               backgroundColor: "#101010",
               border: "1px solid #444",
               borderRadius: "12px",
-              px: { xs: "32px", md: "60px" },
-              py: { xs: "40px", md: "60px" },
+              px: { xs: "24px", sm: "40px", md: "60px" },
+              py: { xs: "40px", sm: "60px", md: "60px" },
               width: "100%",
               boxSizing: "border-box",
               display: "flex",
@@ -400,15 +400,16 @@ function ClientPage() {
               flexDirection: { xs: "column", md: "row" },
               gap: "32px",
               position: "relative",
+              mb: { xs: "0", md: "-201px" },
               zIndex: 1,
             }}
           >
-            <Box sx={{ display: "flex", flexDirection: "column", gap: "21.6px", minWidth: 0, flex: 1 }}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "12px", md: "21.6px" }, minWidth: 0, flex: 1 }}>
               <Typography
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 700,
-                  fontSize: { xs: "36px", md: "48px" },
+                  fontSize: { xs: "28px", sm: "36px", md: "48px" },
                   lineHeight: 1.2,
                   color: "#FFFFFF",
                 }}
@@ -419,8 +420,8 @@ function ClientPage() {
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 400,
-                  fontSize: { xs: "24px", md: "28px" },
-                  lineHeight: "40.44px",
+                  fontSize: { xs: "18px", sm: "22px", md: "28px" },
+                  lineHeight: { xs: 1.4, md: "40.44px" },
                   color: "#D7D7D7",
                   display: "flex",
                   gap: "8px",
@@ -451,13 +452,14 @@ function ClientPage() {
                 color: "#101010",
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 700,
-                fontSize: "28px",
+                fontSize: { xs: "18px", md: "28px" },
                 textTransform: "none",
                 borderRadius: "16px",
-                px: "43px",
-                py: "21.6px",
-                lineHeight: "40.44px",
+                px: { xs: "24px", md: "43px" },
+                py: { xs: "12px", md: "21.6px" },
+                lineHeight: 1.2,
                 flexShrink: 0,
+                width: { xs: "100%", sm: "auto" },
                 alignSelf: { xs: "flex-start", md: "center" },
                 "&:hover": {
                   backgroundColor: "#FB8C14",
@@ -468,29 +470,33 @@ function ClientPage() {
             </Button>
           </Box>
 
+        </Box>
+
+        <Box
+          sx={{
+            width: { xs: "200px", md: "363.6px" },
+            height: { xs: "200px", md: "363.8px" },
+            display: { xs: "none", sm: "flex" },
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "flex-end",
+            mr: { xs: "20px", md: "50px" },
+            position: "relative",
+            zIndex: 2,
+            pointerEvents: "none",
+          }}
+        >
           <Box
+            component="img"
+            src={imgReachOutDoodle}
+            alt=""
             sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-              width: "100%",
-              mt: "-60px",
-              pr: { xs: 0, md: "24px" },
-              position: "relative",
-              zIndex: 2,
-              pointerEvents: "none",
+              width: { xs: "180px", md: "324px" },
+              height: "auto",
+              transform: "rotate(7.51deg)",
+              mixBlendMode: "lighten",
             }}
-          >
-            <Box
-              component="img"
-              src={imgReachOutDoodle}
-              alt=""
-              sx={{
-                width: { xs: "220px", md: "324px" },
-                height: "auto",
-                transform: "rotate(7.51deg)",
-              }}
-            />
-          </Box>
+          />
         </Box>
       </Box>
 

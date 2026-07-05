@@ -117,11 +117,11 @@ function MemberCard({ name, role, fellowship, image }) {
   const showFellowship = fellowship && fellowship !== role;
 
   return (
-    <Box sx={{ width: { xs: "100%", sm: "293px" }, maxWidth: "293px", display: "flex", flexDirection: "column", gap: "1px" }}>
+    <Box sx={{ width: "100%", maxWidth: { xs: "180px", sm: "293px" }, display: "flex", flexDirection: "column", gap: "1px", mx: "auto" }}>
       <Box
         sx={{
-          height: "250px",
-          width: "293px",
+          height: { xs: "160px", sm: "250px" },
+          width: "100%",
           borderRadius: "20px 20px 0 0",
           overflow: "hidden",
         }}
@@ -145,30 +145,30 @@ function MemberCard({ name, role, fellowship, image }) {
           backgroundColor: "#191919",
           border: "1px solid #444",
           borderRadius: "0 0 20px 20px",
-          p: "28px 32px",
+          p: { xs: "12px 16px", md: "28px 32px" },
           display: "flex",
           flexDirection: "column",
-          gap: "16px",
+          gap: { xs: "4px", md: "12px" },
         }}
       >
         <Typography
           sx={{
             fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
-            fontSize: "28px",
-            lineHeight: "36px",
+            fontSize: { xs: "16px", md: "28px" },
+            lineHeight: 1.2,
             color: "#FFFFFF",
           }}
         >
           {name}
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "2px", md: "4px" } }}>
           <Typography
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "24px",
-              lineHeight: "36px",
+              fontSize: { xs: "12px", md: "24px" },
+              lineHeight: 1.4,
               color: "#D7D7D7",
             }}
           >
@@ -179,8 +179,8 @@ function MemberCard({ name, role, fellowship, image }) {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: "24px",
-                lineHeight: "36px",
+                fontSize: { xs: "12px", md: "24px" },
+                lineHeight: 1.4,
                 color: "#D7D7D7",
               }}
             >
@@ -228,7 +228,7 @@ function TeamPage() {
         sx={{
           pt: heroPt,
           px: sectionPx,
-          pb: "47px",
+          pb: { xs: "40px", md: "47px" },
           position: "relative",
           zIndex: 1,
         }}
@@ -275,8 +275,8 @@ function TeamPage() {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: { xs: "20px", md: "24px" },
-                lineHeight: "36px",
+                fontSize: { xs: "18px", md: "24px" },
+                lineHeight: { xs: "28px", md: "36px" },
                 color: "#D7D7D7",
                 maxWidth: "770px",
                 flex: "1 1 auto",
@@ -289,14 +289,14 @@ function TeamPage() {
       </Box>
 
       {/* ========== CATEGORY SELECTOR ========== */}
-      <Box sx={{ px: sectionPx, mb: "43px", position: "relative", zIndex: 1, overflowX: "auto" }}>
+      <Box sx={{ px: sectionPx, mb: { xs: "24px", md: "43px" }, position: "relative", zIndex: 1, overflowX: "auto", "&::-webkit-scrollbar": { display: "none" }, msOverflowStyle: "none", scrollbarWidth: "none" }}>
         <Box
           sx={{
             display: "flex",
             justifyContent: { xs: "flex-start", md: "space-between" },
             borderBottom: "1px solid #444",
             pb: "0px",
-            minWidth: { xs: "600px", md: "auto" },
+            minWidth: { xs: "400px", md: "auto" },
           }}
         >
           {categories.map((cat) => {
@@ -309,7 +309,7 @@ function TeamPage() {
                   flex: 1,
                   textAlign: "center",
                   cursor: "pointer",
-                  py: "15px",
+                  py: { xs: "10px", md: "15px" },
                   position: "relative",
                   "&::after": isSelected
                     ? {
@@ -328,8 +328,8 @@ function TeamPage() {
                   sx={{
                     fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                     fontWeight: isSelected ? 700 : 400,
-                    fontSize: "28px",
-                    lineHeight: "36px",
+                    fontSize: { xs: "14px", md: "28px" },
+                    lineHeight: 1.2,
                     color: isSelected ? "transparent" : "#D7D7D7",
                     ...(isSelected && {
                       backgroundImage: "linear-gradient(90deg, #FB8C14 0%, #F6A606 100%)",
@@ -351,13 +351,13 @@ function TeamPage() {
       <Box
         sx={{
           px: sectionPx,
-          pb: "128px",
+          pb: { xs: "60px", md: "128px" },
           display: "grid",
           gridTemplateColumns: {
-            xs: "1fr",
+            xs: "repeat(auto-fill, minmax(130px, 1fr))",
             sm: "repeat(auto-fill, minmax(260px, 293px))",
           },
-          gap: "40px",
+          gap: { xs: "12px", md: "40px" },
           justifyContent: "center",
           minHeight: "400px",
         }}

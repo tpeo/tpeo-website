@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import tpeoLogoGradient from "../assets/aboutIcons/tpeo-logo-gradient-footer.svg";
@@ -29,55 +30,20 @@ function FooterMobile({ onNavigate }) {
         flexDirection: "column",
         alignItems: "center",
         px: "24px",
-        pt: "56px",
-        pb: "40px",
+        pt: "40px",
+        pb: "32px",
         width: "100%",
         boxSizing: "border-box",
       }}
     >
       <Box
-        component="img"
-        src={tpeoLogoGradient}
-        alt="TPEO Logo"
-        onClick={() => onNavigate("/")}
         sx={{
-          width: "180px",
-          height: "auto",
-          objectFit: "contain",
-          cursor: "pointer",
-        }}
-      />
-
-      <Box
-        onClick={() => onNavigate("/join")}
-        sx={{
-          mt: "28px",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "16px 20px",
+          mb: "32px",
           width: "100%",
-          maxWidth: "320px",
-          backgroundColor: "#F3801A",
-          color: "#101010",
-          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-          fontWeight: 700,
-          fontSize: "18px",
-          lineHeight: "36px",
-          borderRadius: "12px",
-          py: "16px",
-          textAlign: "center",
-          cursor: "pointer",
-          "&:hover": { backgroundColor: "#FB8C14" },
-        }}
-      >
-        Join TPEO
-      </Box>
-
-      <Box
-        sx={{
-          mt: "40px",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "20px 16px",
-          width: "100%",
-          maxWidth: "320px",
         }}
       >
         {footerNavItems.map(({ path, text }) => (
@@ -86,12 +52,11 @@ function FooterMobile({ onNavigate }) {
             onClick={() => onNavigate(path)}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              fontSize: "16px",
-              lineHeight: "22px",
+              fontWeight: 500,
+              fontSize: "13px",
               color: "#FFFFFF",
               cursor: "pointer",
-              textAlign: "center",
+              whiteSpace: "nowrap",
               "&:hover": { opacity: 0.8 },
             }}
           >
@@ -101,15 +66,13 @@ function FooterMobile({ onNavigate }) {
         <Typography
           onClick={() => onNavigate("/contact")}
           sx={{
-            gridColumn: "1 / -1",
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-            fontWeight: 700,
-            fontSize: "16px",
-            lineHeight: "22px",
+            fontWeight: 500,
+            fontSize: "13px",
             color: "#F3801A",
             textDecoration: "underline",
             cursor: "pointer",
-            textAlign: "center",
+            whiteSpace: "nowrap",
             "&:hover": { opacity: 0.8 },
           }}
         >
@@ -119,50 +82,51 @@ function FooterMobile({ onNavigate }) {
 
       <Box
         sx={{
-          mt: "36px",
           display: "flex",
-          gap: "12px",
+          width: "100%",
+          flexDirection: "column",
           alignItems: "center",
-          justifyContent: "center",
+          gap: "24px",
         }}
       >
-        {socialIcons.map(({ src, alt, href }) => (
-          <Box
-            key={alt}
-            component="a"
-            href={href}
-            target={href.startsWith("mailto") ? undefined : "_blank"}
-            rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-            sx={{
-              width: "48px",
-              height: "48px",
-              display: "block",
-              flexShrink: 0,
-              "&:hover": { opacity: 0.8 },
-            }}
-          >
-            <Box component="img" src={src} alt={alt} sx={{ width: "100%", height: "100%", display: "block" }} />
-          </Box>
-        ))}
-      </Box>
+        <Box sx={{ display: "flex", gap: "20px" }}>
+          {socialIcons.map(({ src, alt, href }) => (
+            <Box
+              key={alt}
+              component="a"
+              href={href}
+              target={href.startsWith("mailto") ? undefined : "_blank"}
+              rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+              sx={{
+                width: "24px",
+                height: "24px",
+                "&:hover": { opacity: 0.8 },
+              }}
+            >
+              <Box component="img" src={src} alt={alt} sx={{ width: "100%", height: "100%" }} />
+            </Box>
+          ))}
+        </Box>
 
-      <Typography
-        sx={{
-          mt: "36px",
-          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-          fontWeight: 400,
-          fontSize: "13px",
-          lineHeight: "20px",
-          color: "#D7D7D7",
-          textAlign: "center",
-          maxWidth: "300px",
-        }}
-      >
-        @ 2026 Texas Product Engineering Organization. All rights reserved.
-      </Typography>
+        <Typography
+          sx={{
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontWeight: 400,
+            fontSize: "11px",
+            color: "#888888",
+            textAlign: "center",
+          }}
+        >
+          © 2026 Texas Product Engineering Organization
+        </Typography>
+      </Box>
     </Box>
   );
 }
+
+FooterMobile.propTypes = {
+  onNavigate: PropTypes.func.isRequired,
+};
 
 function FooterDesktop({ onNavigate }) {
   return (
@@ -188,8 +152,8 @@ function FooterDesktop({ onNavigate }) {
           alt="TPEO Logo"
           onClick={() => onNavigate("/")}
           sx={{
-            width: "211px",
-            height: "67.794px",
+            height: "80px",
+            width: "auto",
             objectFit: "contain",
             cursor: "pointer",
             mt: "30px",
@@ -307,6 +271,10 @@ function FooterDesktop({ onNavigate }) {
     </Box>
   );
 }
+
+FooterDesktop.propTypes = {
+  onNavigate: PropTypes.func.isRequired,
+};
 
 const Footer = () => {
   const navigate = useNavigate();

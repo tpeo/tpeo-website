@@ -10,7 +10,6 @@ import {
   sectionGap,
   heroTitleFont,
   heroPt,
-  heroContentGap,
   cardRowSx,
   threeColCardSx,
 } from "../../styles/pageLayout";
@@ -211,7 +210,7 @@ function AboutPage() {
           overflowY: "visible",
           minHeight: { xs: "auto", lg: "836px" },
           pt: { xs: heroPt.xs, sm: heroPt.sm, md: heroPt.md, lg: 0 },
-          pb: { xs: "56px", lg: 0 },
+          pb: { xs: "60px", lg: 0 },
           px: { xs: "24px", sm: "32px", md: "48px", lg: 0 },
           boxSizing: "border-box",
         }}
@@ -221,20 +220,19 @@ function AboutPage() {
           sx={{
             display: { xs: "flex", lg: "none" },
             flexDirection: "column",
-            gap: { xs: "28px", sm: "32px" },
+            gap: { xs: "32px", sm: "48px" },
             position: "relative",
             zIndex: 1,
             width: "100%",
-            maxWidth: "480px",
-            mx: "auto",
+            alignItems: "flex-start",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap, width: "100%" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "20px", sm: "24px" }, width: "100%", maxWidth: "540px" }}>
             <Box
               sx={{
                 position: "relative",
-                width: "100%",
-                pr: "48px",
+                width: "fit-content",
+                pr: { xs: "40px", sm: "60px" },
               }}
             >
               <Typography
@@ -257,9 +255,9 @@ function AboutPage() {
                 sx={{
                   position: "absolute",
                   left: "100%",
-                  top: { xs: "-12px", sm: "-20px" },
-                  ml: { xs: "-8px", sm: "4px" },
-                  width: { xs: "56px", sm: "80px" },
+                  top: { xs: "-15px", sm: "-15px" },
+                  ml: { xs: "-51px", sm: "-56px" },
+                  width: { xs: "64px", sm: "100px" },
                   height: "auto",
                   pointerEvents: "none",
                   mixBlendMode: "lighten",
@@ -275,8 +273,6 @@ function AboutPage() {
                 color: "#D7D7D7",
                 width: "100%",
                 maxWidth: "100%",
-                overflowWrap: "break-word",
-                wordBreak: "break-word",
               }}
             >
               The Texas Product Engineering Organization is UT Austin's premier
@@ -284,18 +280,23 @@ function AboutPage() {
               science, business, and UX design.
             </Typography>
             <Box
+              component="a"
+              href="/join"
               sx={{
                 backgroundColor: "#F3801A",
                 color: "#101010",
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 700,
-                fontSize: { xs: "18px", sm: "20px", md: "24px" },
-                lineHeight: "36px",
-                borderRadius: "12px",
-                px: { xs: "20px", md: "24px" },
-                py: { xs: "14px", md: "20px" },
+                fontSize: { xs: "16px", md: "20px" },
+                lineHeight: "24px",
+                borderRadius: "10px",
+                px: { xs: "24px", md: "32px" },
+                py: { xs: "12px", md: "14px" },
                 width: "fit-content",
+                textAlign: "center",
                 cursor: "pointer",
+                textDecoration: "none",
+                display: "block",
                 "&:hover": { backgroundColor: "#FB8C14" },
               }}
             >
@@ -307,14 +308,14 @@ function AboutPage() {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               gap: { xs: "8px", sm: "16px" },
               width: "100%",
             }}
           >
             <Box
               sx={{
-                flex: "1 1 0",
+                flex: "0 1 auto",
                 minWidth: 0,
                 maxWidth: { xs: "160px", sm: "200px" },
               }}
@@ -337,10 +338,10 @@ function AboutPage() {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                gap: { xs: "8px", sm: "10px" },
+                gap: { xs: "10px", sm: "12px" },
                 flex: "0 0 auto",
                 minWidth: 0,
-                maxWidth: "140px",
+                maxWidth: { xs: "130px", sm: "160px" },
               }}
             >
               <DisciplinePill compact imgSrc={imgMegaphone} label="product" rotation={-0.24} />
@@ -417,18 +418,22 @@ function AboutPage() {
               science, business, and UX design.
             </Typography>
             <Box
+              component="a"
+              href="/join"
               sx={{
                 backgroundColor: "#F3801A",
                 color: "#101010",
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 700,
-                fontSize: "24px",
-                lineHeight: "36px",
-                borderRadius: "12px",
+                fontWeight: 500,
+                fontSize: "16px",
+                lineHeight: "24px",
+                borderRadius: "10px",
                 px: "24px",
-                py: "20px",
+                py: "14px",
                 width: "fit-content",
                 cursor: "pointer",
+                textDecoration: "none",
+                display: "block",
                 "&:hover": { backgroundColor: "#FB8C14" },
               }}
             >
@@ -581,15 +586,16 @@ function AboutPage() {
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
               justifyContent: { xs: "flex-start", md: "space-between" },
-              alignItems: { xs: "stretch", md: "flex-start" },
+              alignItems: { xs: "center", md: "flex-start" },
               width: "100%",
-              gap: { xs: "28px", md: 0 },
+              gap: { xs: "40px", md: 0 },
+              mt: { xs: "20px", md: 0 },
             }}
           >
             <Box
               sx={{
                 flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "100%", md: "295px" },
+                maxWidth: { xs: "280px", md: "295px" },
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -601,8 +607,8 @@ function AboutPage() {
                 sx={{
                   fontFamily: "DM Sans, sans-serif",
                   fontWeight: 700,
-                  fontSize: { xs: "22px", md: "28px" },
-                  lineHeight: "36px",
+                  fontSize: { xs: "24px", md: "28px" },
+                  lineHeight: 1.2,
                   color: "#FFFFFF",
                 }}
               >
@@ -612,10 +618,9 @@ function AboutPage() {
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 400,
-                  fontSize: { xs: "18px", md: "24px" },
-                  lineHeight: { xs: "28px", md: "36px" },
+                  fontSize: { xs: "16px", md: "24px" },
+                  lineHeight: { xs: 1.4, md: "36px" },
                   color: "#D7D7D7",
-                  maxWidth: { xs: "100%", md: "295px" },
                 }}
               >
                 Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
@@ -625,7 +630,7 @@ function AboutPage() {
             <Box
               sx={{
                 flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "100%", md: "295px" },
+                maxWidth: { xs: "280px", md: "295px" },
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -637,8 +642,8 @@ function AboutPage() {
                 sx={{
                   fontFamily: "DM Sans, sans-serif",
                   fontWeight: 700,
-                  fontSize: { xs: "22px", md: "28px" },
-                  lineHeight: "36px",
+                  fontSize: { xs: "24px", md: "28px" },
+                  lineHeight: 1.2,
                   color: "#FFFFFF",
                 }}
               >
@@ -648,10 +653,9 @@ function AboutPage() {
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 400,
-                  fontSize: { xs: "18px", md: "24px" },
-                  lineHeight: { xs: "28px", md: "36px" },
+                  fontSize: { xs: "16px", md: "24px" },
+                  lineHeight: { xs: 1.4, md: "36px" },
                   color: "#D7D7D7",
-                  maxWidth: { xs: "100%", md: "295px" },
                 }}
               >
                 Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
@@ -661,7 +665,7 @@ function AboutPage() {
             <Box
               sx={{
                 flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "100%", md: "295px" },
+                maxWidth: { xs: "280px", md: "295px" },
                 textAlign: "center",
                 display: "flex",
                 flexDirection: "column",
@@ -673,8 +677,8 @@ function AboutPage() {
                 sx={{
                   fontFamily: "DM Sans, sans-serif",
                   fontWeight: 700,
-                  fontSize: { xs: "22px", md: "28px" },
-                  lineHeight: "36px",
+                  fontSize: { xs: "24px", md: "28px" },
+                  lineHeight: 1.2,
                   color: "#FFFFFF",
                 }}
               >
@@ -684,10 +688,9 @@ function AboutPage() {
                 sx={{
                   fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                   fontWeight: 400,
-                  fontSize: { xs: "18px", md: "24px" },
-                  lineHeight: { xs: "28px", md: "36px" },
+                  fontSize: { xs: "16px", md: "24px" },
+                  lineHeight: { xs: 1.4, md: "36px" },
                   color: "#D7D7D7",
-                  maxWidth: { xs: "100%", md: "295px" },
                 }}
               >
                 Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
