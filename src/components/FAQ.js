@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, IconButton, Collapse } from "@mui/material";
+import { motion } from "framer-motion";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -242,6 +243,9 @@ function Faq({ type, iconStyle = "plus" }) {
           {filteredFaqData.map((faq, index) => (
             <Box
               key={faq.question}
+              component={motion.div}
+              whileHover={{ borderColor: "#F3801A" }}
+              transition={{ duration: 0.2 }}
               sx={{
                 backgroundColor: "#191919",
                 border: "1.57px solid #444",

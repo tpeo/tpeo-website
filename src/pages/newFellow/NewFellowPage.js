@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton, useMediaQuery, useTheme } from "@mui/material";
+import { motion } from "framer-motion";
+import AnimatedPage from "../../components/AnimatedPage";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -71,6 +73,9 @@ const curriculumItems = [
 function FellowProjectCard({ title, description, link, image, imagePosition = "left center" }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ scale: 1.01 }}
+      transition={{ duration: 0.3 }}
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -592,7 +597,8 @@ function NewFellowPage() {
   };
 
   return (
-    <Box sx={pageRootSx}>
+    <AnimatedPage>
+      <Box sx={pageRootSx}>
       {/* Background Doodles (positions/sizes mirror the Figma "New Fellows" frame) */}
       <Box component="img" src={imgDoodle12} alt="" sx={{ ...decorativeBgSx, top: { lg: "62px" }, right: { lg: "14.9%", xl: "225px" }, width: { lg: "240px", xl: "312px" }, height: "auto" }} />
       <Box component="img" src={imgDoodle13} alt="" sx={{ ...decorativeBgSx, top: { lg: "166px" }, right: { lg: "6.8%", xl: "103px" }, width: { lg: "180px", xl: "246px" }, height: "auto" }} />
@@ -923,6 +929,7 @@ function NewFellowPage() {
 
       <Faq type="NewFellow" iconStyle="chevron" />
     </Box>
+    </AnimatedPage>
   );
 }
 

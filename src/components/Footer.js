@@ -57,7 +57,11 @@ function FooterMobile({ onNavigate }) {
               color: "#FFFFFF",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              "&:hover": { opacity: 0.8 },
+              transition: "all 0.2s ease-in-out",
+              "&:hover": { 
+                color: "#F3801A",
+                transform: "translateY(-2px)"
+              },
             }}
           >
             {text}
@@ -73,7 +77,11 @@ function FooterMobile({ onNavigate }) {
             textDecoration: "underline",
             cursor: "pointer",
             whiteSpace: "nowrap",
-            "&:hover": { opacity: 0.8 },
+            transition: "all 0.2s ease-in-out",
+            "&:hover": { 
+              color: "#FB8C14",
+              transform: "translateY(-2px)"
+            },
           }}
         >
           Contact Us
@@ -206,7 +214,11 @@ function FooterDesktop({ onNavigate }) {
                 color: "#FFFFFF",
                 cursor: "pointer",
                 whiteSpace: "nowrap",
-                "&:hover": { opacity: 0.8 },
+                transition: "all 0.2s ease-in-out",
+                "&:hover": { 
+                  color: "#F3801A",
+                  transform: "translateY(-2px)"
+                },
               }}
             >
               {text}
@@ -225,7 +237,11 @@ function FooterDesktop({ onNavigate }) {
               textUnderlinePosition: "from-font",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              "&:hover": { opacity: 0.8 },
+              transition: "all 0.2s ease-in-out",
+              "&:hover": { 
+                color: "#FB8C14",
+                transform: "translateY(-2px)"
+              },
             }}
           >
             Contact Us

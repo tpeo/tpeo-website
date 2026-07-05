@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, useTheme, useMediaQuery } from "@mui/material";
+import { motion } from "framer-motion";
+import AnimatedPage from "../../components/AnimatedPage";
 import Faq from "../../components/FAQ";
 import SectionHeader from "../../components/SectionHeader";
 import {
@@ -318,7 +320,12 @@ ProjectSpotlightCard.propTypes = {
 
 function OfferingCard({ icon, title, description }) {
   return (
-    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}>
+    <Box
+      component={motion.div}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.2 }}
+      sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}
+    >
       <Box sx={{ width: { xs: "60px", md: "78px" }, height: { xs: "60px", md: "78px" }, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Box component="img" src={icon} alt="" sx={{ width: { xs: "40px", md: "54.6px" }, height: { xs: "40px", md: "54.6px" } }} />
       </Box>
@@ -496,6 +503,9 @@ WhySponsorCard.propTypes = {
 function TierCard({ name, price, benefits, color, isGradient }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ scale: 1.02, borderColor: "#F3801A" }}
+      transition={{ duration: 0.2 }}
       sx={{
         ...threeColCardSx,
         backgroundColor: "#191919",
@@ -592,7 +602,8 @@ function SponsorsPage() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={pageRootSx}>
+    <AnimatedPage>
+      <Box sx={pageRootSx}>
       {/* Background Doodles */}
       <Box
         component="img"
@@ -1034,6 +1045,7 @@ function SponsorsPage() {
       
       <Box sx={{ py: { xs: "40px", md: "100px" } }} />
     </Box>
+    </AnimatedPage>
   );
 }
 

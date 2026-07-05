@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
+import { motion } from "framer-motion";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import { sectionPx } from "../styles/pageLayout";
@@ -22,20 +23,26 @@ function JoinCTA() {
         }}
       >
       <Box
-      sx={{
-        backgroundColor: "#191919",
-        border: "1px solid #444",
-        borderRadius: { xs: "12px", md: "24px" },
-        py: { xs: "32px", sm: "48px", md: "65px" },
-        px: { xs: "16px", sm: "32px", md: "40px" },
-        maxWidth: "1128px",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
+        component={motion.div}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.3 }}
+        sx={{
+          backgroundColor: "#191919",
+          border: "1px solid #444",
+          borderRadius: { xs: "12px", md: "24px" },
+          py: { xs: "32px", sm: "48px", md: "65px" },
+          px: { xs: "16px", sm: "32px", md: "40px" },
+          maxWidth: "1128px",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          "&:hover": {
+            borderColor: "#F3801A",
+          },
+        }}
+      >
       <Box
         sx={{
           display: "flex",

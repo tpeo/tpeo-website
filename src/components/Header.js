@@ -54,7 +54,12 @@ function Header() {
           backgroundClip: "text",
         }
       : { color: "#FFFFFF" }),
-    "&:hover": { opacity: 0.8 },
+    "&:hover": { 
+      opacity: 1,
+      transform: "translateY(-2px)",
+      transition: "all 0.2s ease-in-out"
+    },
+    transition: "all 0.2s ease-in-out"
   });
 
   const drawer = (
@@ -186,7 +191,12 @@ function Header() {
                       textDecoration: "underline",
                       cursor: "pointer",
                       whiteSpace: "nowrap",
-                      "&:hover": { opacity: 0.8 },
+                      "&:hover": { 
+                        opacity: 1,
+                        transform: "translateY(-2px)",
+                        transition: "all 0.2s ease-in-out"
+                      },
+                      transition: "all 0.2s ease-in-out"
                     }}
                   >
                     Contact Us

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Button } from "@mui/material";
+import AnimatedPage from "../../components/AnimatedPage";
 import imgDoodles from "../../assets/aboutIcons/contact-doodles.svg";
 import imgEnvelope from "../../assets/aboutIcons/envelope.svg";
 import socialEmail from "../../assets/aboutIcons/social-email.svg";
@@ -76,7 +77,8 @@ ContactInput.propTypes = {
 
 function ContactUsPage() {
   return (
-    <Box sx={pageRootSx}>
+    <AnimatedPage>
+      <Box sx={pageRootSx}>
       {/* Background Doodles */}
       <Box
         component="img"
@@ -249,6 +251,7 @@ function ContactUsPage() {
         </Box>
       </Box>
     </Box>
+    </AnimatedPage>
   );
 }
 

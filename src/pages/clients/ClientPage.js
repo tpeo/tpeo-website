@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton } from "@mui/material";
+import { motion } from "framer-motion";
+import AnimatedPage from "../../components/AnimatedPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Faq from "../../components/FAQ";
@@ -57,6 +59,9 @@ const clientProjects = [
 function ProjectSpotlightCard({ title, description, link, image, imagePosition = "center center" }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ scale: 1.01 }}
+      transition={{ duration: 0.3 }}
       sx={{
         display: "flex",
         alignItems: "stretch",
@@ -264,7 +269,8 @@ SpotlightCarousel.propTypes = {
 
 function ClientPage() {
   return (
-    <Box sx={pageRootSx}>
+    <AnimatedPage>
+      <Box sx={pageRootSx}>
       {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
@@ -504,6 +510,7 @@ function ClientPage() {
 
       <Faq type="Client" iconStyle="chevron" />
     </Box>
+    </AnimatedPage>
   );
 }
 

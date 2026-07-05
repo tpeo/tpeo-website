@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider } from "@mui/material";
+import { motion } from "framer-motion";
+import AnimatedPage from "../../components/AnimatedPage";
 import SectionHeader from "../../components/SectionHeader";
 import JoinCTA from "../../components/JoinCTA";
 import {
@@ -63,6 +65,9 @@ const featureCards = [
 function DisciplinePill({ imgSrc, label, rotation = 0, compact = false }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ scale: 1.05, borderColor: "#F3801A" }}
+      transition={{ type: "spring", stiffness: 400, damping: 10 }}
       sx={{
         display: "flex",
         alignItems: "center",
@@ -113,6 +118,9 @@ DisciplinePill.propTypes = {
 function FeatureCard({ title, description, image }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
       sx={{
         ...threeColCardSx,
         backgroundColor: "#191919",
@@ -127,6 +135,10 @@ function FeatureCard({ title, description, image }) {
         pt: { xs: "32px", md: "54px" },
         pb: { xs: "36px", md: "60px" },
         gap: { xs: "28px", md: "52px" },
+        cursor: "default",
+        "&:hover": {
+          borderColor: "#F3801A",
+        },
       }}
     >
       {/* Image Container */}
@@ -199,7 +211,8 @@ FeatureCard.propTypes = {
 
 function AboutPage() {
   return (
-    <Box sx={pageRootSx}>
+    <AnimatedPage>
+      <Box sx={pageRootSx}>
       {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
@@ -727,6 +740,7 @@ function AboutPage() {
 
       <JoinCTA />
     </Box>
+    </AnimatedPage>
   );
 }
 

@@ -1,10 +1,12 @@
 import React from "react";
 import { Box } from "@mui/material";
+import AnimatedPage from "../../components/AnimatedPage";
 import JoinCTA from "../../components/JoinCTA";
 
 function JoinTPEOPage() {
   return (
-    <Box
+    <AnimatedPage>
+      <Box
       sx={{
         backgroundColor: "#101010",
         minHeight: "100vh",
@@ -14,7 +16,8 @@ function JoinTPEOPage() {
       }}
     >
       <JoinCTA />
-    </Box>
+      </Box>
+    </AnimatedPage>
   );
 }
 

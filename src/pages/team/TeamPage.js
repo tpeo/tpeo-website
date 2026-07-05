@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
+import AnimatedPage from "../../components/AnimatedPage";
 import imgTeamStar from "../../assets/aboutIcons/team-doodle-2.png";
 import imgTeamSquiggle from "../../assets/aboutIcons/team-squiggle.png";
 import imgDefaultProfile from "../../assets/aboutIcons/megaphone.png"; // Placeholder
@@ -117,7 +119,12 @@ function MemberCard({ name, role, fellowship, image }) {
   const showFellowship = fellowship && fellowship !== role;
 
   return (
-    <Box sx={{ width: "100%", maxWidth: { xs: "180px", sm: "293px" }, display: "flex", flexDirection: "column", gap: "1px", mx: "auto" }}>
+    <Box
+      component={motion.div}
+      whileHover={{ y: -8 }}
+      transition={{ duration: 0.3 }}
+      sx={{ width: "100%", maxWidth: { xs: "180px", sm: "293px" }, display: "flex", flexDirection: "column", gap: "1px", mx: "auto" }}
+    >
       <Box
         sx={{
           height: { xs: "160px", sm: "250px" },
@@ -204,7 +211,8 @@ function TeamPage() {
   const [selectedCategory, setSelectedCategory] = useState("Leadership");
 
   return (
-    <Box sx={{ ...pageRootSx, overflowX: { xs: "hidden", md: "visible" } }}>
+    <AnimatedPage>
+      <Box sx={{ ...pageRootSx, overflowX: { xs: "hidden", md: "visible" } }}>
       {/* Background Doodles */}
       <Box
         component="img"
@@ -367,6 +375,7 @@ function TeamPage() {
         ))}
       </Box>
     </Box>
+    </AnimatedPage>
   );
 }
 
