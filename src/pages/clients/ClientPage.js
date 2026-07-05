@@ -54,7 +54,7 @@ const clientProjects = [
   },
 ];
 
-function ProjectSpotlightCard({ title, description, link, image }) {
+function ProjectSpotlightCard({ title, description, link, image, imagePosition = "center center" }) {
   return (
     <Box
       sx={{
@@ -147,6 +147,7 @@ function ProjectSpotlightCard({ title, description, link, image }) {
             ml: { xs: 0, md: "-15px" },
             borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
             objectFit: "cover",
+            objectPosition: imagePosition,
             minHeight: { xs: "240px", md: "373px" },
             alignSelf: "stretch",
           }}
@@ -183,6 +184,7 @@ ProjectSpotlightCard.propTypes = {
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
+  imagePosition: PropTypes.string,
 };
 
 function SpotlightCarousel({ projects }) {
@@ -255,6 +257,7 @@ SpotlightCarousel.propTypes = {
       description: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
       image: PropTypes.string,
+      imagePosition: PropTypes.string,
     })
   ).isRequired,
 };

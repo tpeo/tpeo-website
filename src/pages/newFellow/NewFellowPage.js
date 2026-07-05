@@ -101,7 +101,7 @@ SectionHeader.propTypes = {
   description: PropTypes.node.isRequired,
 };
 
-function FellowProjectCard({ title, description, link, image }) {
+function FellowProjectCard({ title, description, link, image, imagePosition = "left center" }) {
   return (
     <Box
       sx={{
@@ -177,25 +177,43 @@ function FellowProjectCard({ title, description, link, image }) {
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          width: { xs: "100%", md: "468px" },
-          flexShrink: 0,
-          ml: { xs: 0, md: "-15px" },
-          borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
-          overflow: "hidden",
-          backgroundColor: "#252525",
-          backgroundImage: image ? `url(${image})` : `
+      {image ? (
+        <Box
+          component="img"
+          src={image}
+          alt=""
+          sx={{
+            width: { xs: "100%", md: "468px" },
+            flexShrink: 0,
+            ml: { xs: 0, md: "-15px" },
+            borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
+            objectFit: "cover",
+            objectPosition: imagePosition,
+            minHeight: "373px",
+            alignSelf: "stretch",
+          }}
+        />
+      ) : (
+        <Box
+          sx={{
+            width: { xs: "100%", md: "468px" },
+            flexShrink: 0,
+            ml: { xs: 0, md: "-15px" },
+            borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
+            overflow: "hidden",
+            backgroundColor: "#252525",
+            backgroundImage: `
             linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
             linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
             linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
             linear-gradient(-45deg, transparent 75%, #2a2a2a 75%)
           `,
-          backgroundSize: image ? "cover" : "24px 24px",
-          backgroundPosition: image ? "center" : "0 0, 0 12px, 12px -12px, -12px 0",
-          minHeight: "373px",
-        }}
-      />
+            backgroundSize: "24px 24px",
+            backgroundPosition: "0 0, 0 12px, 12px -12px, -12px 0",
+            minHeight: "373px",
+          }}
+        />
+      )}
     </Box>
   );
 }
@@ -205,6 +223,7 @@ FellowProjectCard.propTypes = {
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
+  imagePosition: PropTypes.string,
 };
 
 function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" }) {

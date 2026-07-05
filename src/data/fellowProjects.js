@@ -1,15 +1,22 @@
+import imgVia from "../assets/projectImages/via.png";
+import imgWampPlus from "../assets/projectImages/wamp-plus.png";
+
 export const fellowProjects = [
   {
     title: "Via Campus Navigation App",
     description:
       "Designed and implemented Via, a campus navigation app that helps UT Austin students find safer and faster routes across campus, including indoor navigation, construction detours, and weather-friendly paths.",
     link: "/clients",
+    image: imgVia,
+    imagePosition: "left center",
   },
   {
-    title: "Wamplus Housing Transparency Platform",
+    title: "Wamp+ Housing Transparency Platform",
     description:
-      "Designed and implemented Wamplus, a West Campus housing platform that helps UT Austin students compare apartments by true monthly cost, hidden fees, building reliability, and real resident experiences.",
+      "Designed and implemented Wamp+, a West Campus housing platform that helps UT Austin students compare apartments by true monthly cost, hidden fees, building reliability, and real resident experiences.",
     link: "/clients",
+    image: imgWampPlus,
+    imagePosition: "left center",
   },
   {
     title: "UT Compass Student Opportunity Planner",
