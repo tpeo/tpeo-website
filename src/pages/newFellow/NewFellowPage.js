@@ -5,18 +5,18 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import Faq from "./sponsorsPage/FAQ";
+import Faq from "../../components/FAQ";
+import { pageRootSx, sectionPx, heroPt, heroTitleFont, heroContentGap, decorativeBgSx, cardRowSx, threeColCardSx } from "../../styles/pageLayout";
 // Asset Imports
-import imgDoodle1 from "../assets/aboutIcons/fellow-socials-arrow.png"; // website-04 (arrow)
-import imgDoodle2 from "../assets/aboutIcons/fellow-doodle-2.svg"; // website-11
-import imgDoodle9 from "../assets/aboutIcons/fellow-socials-star.svg"; // website-09 (star)
-import imgDoodle12 from "../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
-import imgDoodle13 from "../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
-import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
-import imgCaseStudyTx from "../assets/partnerIcons/case-study-tx.png";
+import imgDoodle1 from "../../assets/aboutIcons/fellow-socials-arrow.png"; // website-04 (arrow)
+import imgDoodle2 from "../../assets/aboutIcons/fellow-doodle-2.svg"; // website-11
+import imgDoodle9 from "../../assets/aboutIcons/fellow-socials-star.svg"; // website-09 (star)
+import imgDoodle12 from "../../assets/aboutIcons/fellow-doodle-12.svg"; // website-02
+import imgDoodle13 from "../../assets/aboutIcons/fellow-doodle-13.svg"; // doodles-tpeo-20
+import imgCaseStudyTx from "../../assets/partnerIcons/case-study-tx.png";
 
 const socialImageContext = require.context(
-  "../assets/socialImages/2026",
+  "../../assets/socialImages/2026",
   false,
   /\.(png|jpg|jpeg|JPG|JPEG)$/i
 );
@@ -86,13 +86,13 @@ const curriculumItems = [
 
 function SectionHeader({ title, description }) {
   return (
-    <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "17px" }}>
+    <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px" }}>
       <Typography
         sx={{
           fontFamily: "DM Sans, sans-serif",
           fontWeight: 700,
           fontSize: "48px",
-          lineHeight: "1.5",
+          lineHeight: "36px",
           color: "#F3801A",
         }}
       >
@@ -100,10 +100,10 @@ function SectionHeader({ title, description }) {
       </Typography>
       <Typography
         sx={{
-          fontFamily: "Roboto, sans-serif",
+          fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
           fontSize: "24px",
-          lineHeight: "1.5",
+          lineHeight: "36px",
           color: "#FFFFFF",
         }}
       >
@@ -123,6 +123,7 @@ function FellowProjectCard({ title, description, link, image }) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "stretch",
         width: "100%",
         maxWidth: "1304px",
@@ -132,8 +133,8 @@ function FellowProjectCard({ title, description, link, image }) {
         sx={{
           backgroundColor: "#191919",
           border: "1px solid #444",
-          borderRadius: "12px 0 0 12px",
-          p: "60px",
+          borderRadius: { xs: "12px", md: "12px 0 0 12px" },
+          p: { xs: "32px", md: "60px" },
           display: "flex",
           flexDirection: "column",
           gap: "32px",
@@ -195,10 +196,10 @@ function FellowProjectCard({ title, description, link, image }) {
 
       <Box
         sx={{
-          width: "468px",
+          width: { xs: "100%", md: "468px" },
           flexShrink: 0,
-          ml: "-15px",
-          borderRadius: "0 12px 12px 0",
+          ml: { xs: 0, md: "-15px" },
+          borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
           overflow: "hidden",
           backgroundColor: "#252525",
           backgroundImage: image ? `url(${image})` : `
@@ -253,7 +254,7 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
       target={isLinkCard ? "_blank" : undefined}
       rel={isLinkCard ? "noopener noreferrer" : undefined}
       sx={{
-        flex: "1 1 0",
+        ...threeColCardSx,
         backgroundColor: "#191919",
         border: "1px solid #444",
         borderRadius: "12px",
@@ -442,10 +443,10 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
         <Box sx={{ display: "flex", flexDirection: "column", gap: "2px" }}>
           <Typography
             sx={{
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "20px",
-              lineHeight: 1.3,
+              fontSize: "22px",
+              lineHeight: "normal",
               color: "#FFFFFF",
             }}
           >
@@ -459,10 +460,10 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontFamily: "DM Sans, sans-serif",
                 fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: 1.4,
+                fontSize: "17px",
+                lineHeight: 1.3,
                 color: "#F3801A",
                 textDecoration: "none",
                 "&:hover": { textDecoration: "underline" },
@@ -473,10 +474,10 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
           ) : (
             <Typography
               sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontFamily: "DM Sans, sans-serif",
                 fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: 1.4,
+                fontSize: "17px",
+                lineHeight: 1.3,
                 color: "#AAAAAA",
               }}
             >
@@ -499,7 +500,7 @@ CurriculumCard.propTypes = {
 
 function StepCard({ number, title, description }) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: "48px", alignItems: "center", textAlign: "center", width: "100%", maxWidth: "274px" }}>
+    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", gap: "48px", alignItems: "center", textAlign: "center", maxWidth: { xs: "274px", md: "none" } }}>
       <Box
         sx={{
           width: "60px",
@@ -516,6 +517,7 @@ function StepCard({ number, title, description }) {
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 700,
             fontSize: "36px",
+            lineHeight: "24px",
             color: "#F3801A",
           }}
         >
@@ -525,10 +527,10 @@ function StepCard({ number, title, description }) {
       <Box sx={{ display: "flex", flexDirection: "column", gap: "32px" }}>
         <Typography
           sx={{
-            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+            fontFamily: "DM Sans, sans-serif",
             fontWeight: 700,
-            fontSize: "36px",
-            lineHeight: "1.2",
+            fontSize: "32px",
+            lineHeight: "36px",
             color: "#FFFFFF",
           }}
         >
@@ -538,8 +540,8 @@ function StepCard({ number, title, description }) {
           sx={{
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
             fontWeight: 400,
-            fontSize: "28px",
-            lineHeight: "1.4",
+            fontSize: "24px",
+            lineHeight: "36px",
             color: "#D7D7D7",
           }}
         >
@@ -577,34 +579,27 @@ function NewFellowPage() {
   };
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#101010",
-        width: "100%",
-        overflowX: "hidden",
-        position: "relative",
-      }}
-    >
+    <Box sx={pageRootSx}>
       {/* Background Doodles (positions/sizes mirror the Figma "New Fellows" frame) */}
-      <Box component="img" src={imgDoodle12} alt="" sx={{ position: "absolute", top: "214px", left: "997px", width: "312px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
-      <Box component="img" src={imgDoodle13} alt="" sx={{ position: "absolute", top: "357px", left: "1189px", width: "246.5px", height: "auto", pointerEvents: "none", mixBlendMode: "lighten", zIndex: 0 }} />
+      <Box component="img" src={imgDoodle12} alt="" sx={{ ...decorativeBgSx, top: { lg: "62px" }, right: { lg: "14.9%", xl: "225px" }, width: { lg: "240px", xl: "312px" }, height: "auto" }} />
+      <Box component="img" src={imgDoodle13} alt="" sx={{ ...decorativeBgSx, top: { lg: "166px" }, right: { lg: "6.8%", xl: "103px" }, width: { lg: "180px", xl: "246px" }, height: "auto" }} />
 
       {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
-          pt: "257px",
-          px: "79px",
-          pb: "160px", // 619 - 257 - 202.32 = 159.68
+          pt: heroPt,
+          px: sectionPx,
+          pb: { xs: "80px", md: "160px" },
           position: "relative",
           zIndex: 1,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "40.32px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap }}>
           <Typography
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "72px",
+              fontSize: heroTitleFont,
               lineHeight: "normal",
               color: "#FFFFFF",
             }}
@@ -613,10 +608,10 @@ function NewFellowPage() {
           </Typography>
           <Typography
             sx={{
-              fontFamily: "Roboto, sans-serif",
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
-              fontSize: "28px",
-              lineHeight: "39.06px",
+              fontSize: "24px",
+              lineHeight: "36px",
               color: "#D7D7D7",
               maxWidth: "770px",
             }}
@@ -632,7 +627,7 @@ function NewFellowPage() {
       <Box
         sx={{
           pt: "96px", // 715 - 619 = 96
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -662,16 +657,7 @@ function NewFellowPage() {
           description="Our process over two years. We recruit every fall!"
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            gap: "60px",
-            width: "100%",
-            maxWidth: "1304px",
-            justifyContent: "center",
-            pb: "92px",
-          }}
-        >
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "60px" }, maxWidth: "1304px", pb: "92px" }}>
           {fellowshipSteps.map((step) => (
             <StepCard key={step.number} {...step} />
           ))}
@@ -684,7 +670,7 @@ function NewFellowPage() {
       <Box
         sx={{
           py: "100px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -709,13 +695,13 @@ function NewFellowPage() {
             zIndex: 0,
           }}
         />
-        <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "17px", position: "relative", zIndex: 1 }}>
+        <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px", position: "relative", zIndex: 1 }}>
           <Typography
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
               fontSize: "48px",
-              lineHeight: "1.5",
+              lineHeight: "36px",
               color: "#F3801A",
             }}
           >
@@ -723,10 +709,10 @@ function NewFellowPage() {
           </Typography>
           <Typography
             sx={{
-              fontFamily: "Roboto, sans-serif",
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
               fontSize: "24px",
-              lineHeight: "1.5",
+              lineHeight: "36px",
               color: "#FFFFFF",
             }}
           >
@@ -736,7 +722,7 @@ function NewFellowPage() {
               href="https://www.instagram.com/txproduct"
               target="_blank"
               rel="noopener noreferrer"
-              sx={{ color: "#F3801A", fontWeight: 700, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
+              sx={{ color: "#F3801A", fontWeight: 400, textDecoration: "none", "&:hover": { textDecoration: "underline" } }}
             >
               @txproduct
             </Box>{" "}
@@ -814,7 +800,7 @@ function NewFellowPage() {
       <Box
         sx={{
           py: "100px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -866,9 +852,9 @@ function NewFellowPage() {
             endIcon={<ArrowForwardIcon sx={{ color: "#F3801A" }} />}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 500,
-              fontSize: "24px",
-              lineHeight: 1.5,
+              fontWeight: 400,
+              fontSize: "28px",
+              lineHeight: "normal",
               color: "#FFFFFF",
               backgroundColor: "#191919",
               border: "1px solid #444",
@@ -895,7 +881,7 @@ function NewFellowPage() {
       <Box
         sx={{
           py: "100px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -909,14 +895,7 @@ function NewFellowPage() {
           description="Get a taste of how it is to be a new fellow!"
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            gap: "32px",
-            width: "100%",
-            maxWidth: "1304px",
-          }}
-        >
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "32px" }, maxWidth: "1304px" }}>
           {curriculumItems.map((item) => (
             <CurriculumCard key={item.title} {...item} />
           ))}
@@ -925,23 +904,7 @@ function NewFellowPage() {
 
       <Divider sx={{ backgroundColor: "#444" }} />
 
-      {/* ========== FAQ SECTION ========== */}
-      <Box sx={{ py: "100px", px: "79px", position: "relative", zIndex: 1 }}>
-        <Box sx={{ display: "flex", justifyContent: "center", mb: "8px" }}>
-          <Box
-            component="img"
-            src={imgFaqLightbulb}
-            alt=""
-            sx={{
-              width: "110px",
-              height: "auto",
-              pointerEvents: "none",
-              mixBlendMode: "lighten",
-            }}
-          />
-        </Box>
-        <Faq type="NewFellow" iconStyle="chevron" />
-      </Box>
+      <Faq type="NewFellow" iconStyle="chevron" />
     </Box>
   );
 }

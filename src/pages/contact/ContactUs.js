@@ -1,12 +1,21 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
-import imgDoodles from "../assets/aboutIcons/contact-doodles.svg";
-import imgEnvelope from "../assets/aboutIcons/envelope.svg";
-import socialEmail from "../assets/aboutIcons/social-email.svg";
-import socialInstagram from "../assets/aboutIcons/social-instagram.svg";
-import socialLinkedin from "../assets/aboutIcons/social-linkedin.svg";
-import socialYoutube from "../assets/aboutIcons/social-youtube.svg";
-import socialMedium from "../assets/aboutIcons/social-medium.svg";
+import imgDoodles from "../../assets/aboutIcons/contact-doodles.svg";
+import imgEnvelope from "../../assets/aboutIcons/envelope.svg";
+import socialEmail from "../../assets/aboutIcons/social-email.svg";
+import socialInstagram from "../../assets/aboutIcons/social-instagram.svg";
+import socialLinkedin from "../../assets/aboutIcons/social-linkedin.svg";
+import socialYoutube from "../../assets/aboutIcons/social-youtube.svg";
+import socialMedium from "../../assets/aboutIcons/social-medium.svg";
+
+import {
+  pageRootSx,
+  sectionPx,
+  heroPt,
+  heroTitleFont,
+  heroContentGap,
+  decorativeBgSx,
+} from "../../styles/pageLayout";
 
 const socialIcons = [
   { src: socialEmail, alt: "Email", href: "mailto:tpeoteam@gmail.com" },
@@ -60,28 +69,18 @@ function ContactInput({ label, placeholder, multiline = false }) {
 
 function ContactUsPage() {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#101010",
-        width: "100%",
-        minHeight: "100vh",
-        overflowX: "hidden",
-        position: "relative",
-      }}
-    >
+    <Box sx={pageRootSx}>
       {/* Background Doodles */}
       <Box
         component="img"
         src={imgDoodles}
         alt=""
         sx={{
-          position: "absolute",
-          top: "850px",
-          left: "1290px",
-          width: "380px",
-          height: "381px",
-          pointerEvents: "none",
-          mixBlendMode: "lighten",
+          ...decorativeBgSx,
+          top: "60%",
+          right: "0",
+          width: { lg: "300px", xl: "380px" },
+          height: "auto",
           zIndex: 2,
         }}
       />
@@ -89,24 +88,26 @@ function ContactUsPage() {
       {/* Main Content */}
       <Box
         sx={{
-          pt: "257px",
+          pt: heroPt,
           pb: "128px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
-          gap: "60px",
+          flexDirection: { xs: "column", lg: "row" },
+          gap: { xs: "48px", lg: "60px" },
           position: "relative",
           zIndex: 1,
+          boxSizing: "border-box",
         }}
       >
         {/* Left Side: Let's Connect */}
-        <Box sx={{ flex: 1, maxWidth: "770px", display: "flex", flexDirection: "column", gap: "61px" }}>
+        <Box sx={{ flex: 1, maxWidth: { lg: "770px" }, width: "100%", display: "flex", flexDirection: "column", gap: "61px" }}>
           {/* Hero Content */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "40px" }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap }}>
             <Typography
               sx={{
                 fontFamily: "DM Sans, sans-serif",
                 fontWeight: 700,
-                fontSize: "64px",
+                fontSize: heroTitleFont,
                 lineHeight: "normal",
                 color: "#FFFFFF",
               }}
@@ -117,10 +118,9 @@ function ContactUsPage() {
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 400,
-                fontSize: "28px",
+                fontSize: { xs: "22px", md: "28px" },
                 lineHeight: "39px",
                 color: "#D7D7D7",
-                maxWidth: "770px",
               }}
             >
               Have a question or want to work with us? We’d love to hear from you.
@@ -202,7 +202,9 @@ function ContactUsPage() {
             border: "1px solid #444",
             borderRadius: "12px",
             p: "40px 32px",
-            width: "642px",
+            width: { xs: "100%", lg: "642px" },
+            maxWidth: "642px",
+            flexShrink: 0,
             display: "flex",
             flexDirection: "column",
             gap: "60px",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import JoinCTA from "../components/JoinCTA";
+import JoinCTA from "../../components/JoinCTA";
 
 function JoinTPEOPage() {
   return (
@@ -10,7 +10,6 @@ function JoinTPEOPage() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        pt: "141px",
         boxSizing: "border-box",
       }}
     >

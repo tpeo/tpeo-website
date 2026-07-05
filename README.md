@@ -1,25 +1,55 @@
 # TPEO Website
 
-## Running the Website
+Marketing site for Texas Product Engineering Organization, built with React and Material UI.
 
-In the project directory, you can run:
+## Getting started
 
-```npm start```
+**Requirements:** Node.js 18+ and npm
 
-This will run the app in development mode. Open http://localhost:300 to view it in your browser. 
+```bash
+# Install dependencies
+npm install
 
-The page will automatically reload when you make changes.
+# Start the dev server
+npm start
+```
 
-## Deploying the Website as a New Contributor
+Open [http://localhost:3000](http://localhost:3000). The page reloads when you save changes.
 
-The main website repo is under the TPEO organization on GitHub. This means that Vercle cannot deploy the website from it, unless we pay additional costs. 
+### Other commands
 
-To workaround this, clone the repo under your personal GitHub account and use your personal Vercel account to host the cloned repository. 
+```bash
+npm run build   # Production build (output in /build)
+npm test        # Run tests
+```
 
-To obtain the domain (https://txproduct.org) for the site, reach out to the previous contributor. There are a couple of steps you will need to take to obtain the domain:
+## Project structure
 
-1. The previous contributor will remove the domain from their Vercel project.
-2. You will add the domain to your Vercel project.
-3. Vercel will require you to add the TXT record to prove you own the domain. To resolve this issue, log into Namecheap (our domain registrar) using the TPEO credentials in the Notion. Then, navigate to the DNS dashboard, add the TXT record, and save.
-4. Vercel should approve the domain once you have completed these steps and the domain will now be under your Vercel project!
+```
+src/
+├── App.js              # Routes
+├── components/         # Shared UI (Header, Footer, FAQ, etc.)
+├── pages/              # One folder per route
+│   ├── about/          # /
+│   ├── newFellow/      # /new-fellow
+│   ├── team/           # /team
+│   ├── clients/        # /clients
+│   ├── sponsors/       # /sponsors
+│   ├── join/           # /join
+│   └── contact/        # /contact
+├── styles/             # Shared layout tokens (pageLayout.js)
+├── assets/             # Images and icons
+└── themes/             # MUI theme
+```
 
+| Route | File |
+|-------|------|
+| `/` | `pages/about/AboutPage.js` |
+| `/new-fellow` | `pages/newFellow/NewFellowPage.js` |
+| `/team` | `pages/team/TeamPage.js` |
+| `/clients` | `pages/clients/ClientPage.js` |
+| `/sponsors` | `pages/sponsors/SponsorsPage.js` |
+| `/join` | `pages/join/JoinTPEOPage.js` |
+| `/contact` | `pages/contact/ContactUs.js` |
+
+Every page uses the shared `Header` and `Footer`. Page files import from `../../components/`, `../../styles/`, and `../../assets/`.

@@ -2,17 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
 
-function SectionHeader({ title, description, mb = 0, textAlign = "center", maxWidth = "1370px" }) {
+function SectionHeader({ title, description, mb = 0, textAlign = "center", maxWidth = "816px" }) {
   return (
-    <Box sx={{ textAlign, maxWidth, mb, mx: textAlign === "center" ? "auto" : 0 }}>
+    <Box
+      sx={{
+        textAlign,
+        maxWidth,
+        mb,
+        mx: textAlign === "center" ? "auto" : 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+      }}
+    >
       <Typography
         sx={{
           fontFamily: "DM Sans, sans-serif",
           fontWeight: 700,
-          fontSize: "48px",
-          lineHeight: "1.2",
+          fontSize: { xs: "32px", sm: "40px", md: "48px" },
+          lineHeight: { xs: "36px", md: "36px" },
           color: "#F3801A",
-          mb: 2,
         }}
       >
         {title}
@@ -21,8 +30,8 @@ function SectionHeader({ title, description, mb = 0, textAlign = "center", maxWi
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
-          fontSize: "24px",
-          lineHeight: "36px",
+          fontSize: { xs: "18px", md: "24px" },
+          lineHeight: { xs: "28px", md: "36px" },
           color: "#FFFFFF",
         }}
       >

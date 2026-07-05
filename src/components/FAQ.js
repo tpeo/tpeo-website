@@ -5,6 +5,8 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import imgFaqLightbulb from "../assets/aboutIcons/fellow-faq-lightbulb.png";
+import { sectionPx } from "../styles/pageLayout";
 
 function Faq({ type, iconStyle = "plus" }) {
   const faqData = [
@@ -109,6 +111,17 @@ function Faq({ type, iconStyle = "plus" }) {
     },
   ];
 
+  const partnersFaqOrder = [
+    "How do I become a sponsor?",
+    "What are the benefits of sponsoring TPEO?",
+    "What type of projects does TPEO take on?",
+    "What are the teams?",
+    "Who is the point of contact during the project and how much involvement is needed?",
+    "How do I reach out about collaborating with TPEO?",
+    "What does it cost to work with TPEO?",
+    "What are project timelines?",
+  ];
+
   const [openIndexes, setOpenIndexes] = useState([]);
 
   const toggleAnswer = (index) => {
@@ -119,125 +132,159 @@ function Faq({ type, iconStyle = "plus" }) {
     }
   };
 
-  const filteredFaqData = faqData.filter((faq) => {
+  const filteredFaqData = (() => {
     if (type === "Partners") {
-      return faq.type === "Sponsor" || faq.type === "Client";
+      return partnersFaqOrder
+        .map((question) => faqData.find((faq) => faq.question === question))
+        .filter(Boolean);
     }
-    return faq.type === type;
-  });
+    return faqData.filter((faq) => faq.type === type);
+  })();
 
   return (
     <Box
       sx={{
+        py: { xs: "64px", md: "100px" },
+        px: sectionPx,
+        position: "relative",
+        zIndex: 1,
         width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
+        boxSizing: "border-box",
       }}
     >
-      <Box sx={{ textAlign: "center", mb: "52.7px", display: "flex", flexDirection: "column", gap: "18.67px" }}>
-        <Typography
-          sx={{
-            fontFamily: "DM Sans, sans-serif",
-            fontWeight: 700,
-            fontSize: "48px",
-            lineHeight: "1.5",
-            color: "#F3801A",
-          }}
-        >
-          FAQ
-        </Typography>
-        <Typography
-          sx={{
-            fontFamily: "DM Sans, sans-serif",
-            fontWeight: 400,
-            fontSize: "28px",
-            lineHeight: "1.5",
-            color: "#FFFFFF",
-            maxWidth: "895px",
-          }}
-        >
-          More questions? Contact Us!
-        </Typography>
-      </Box>
-
       <Box
         sx={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: "18.67px",
-          width: "100%",
-          maxWidth: "1353px",
-          pb: "91px",
+          alignItems: "center",
         }}
       >
-        {filteredFaqData.map((faq, index) => (
+        <Box sx={{ display: "flex", justifyContent: "center", mb: "8px", width: "100%" }}>
           <Box
-            key={faq.question}
+            component="img"
+            src={imgFaqLightbulb}
+            alt=""
             sx={{
-              backgroundColor: "#191919",
-              border: "1.57px solid #444",
-              borderRadius: "12px",
-              overflow: "hidden",
+              width: "110px",
+              height: "auto",
+              pointerEvents: "none",
+              mixBlendMode: "lighten",
+            }}
+          />
+        </Box>
+
+        <Box
+          sx={{
+            textAlign: "center",
+            mb: "52.7px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "18.67px",
+            width: "100%",
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: "DM Sans, sans-serif",
+              fontWeight: 700,
+              fontSize: { xs: "32px", md: "48px" },
+              lineHeight: "36px",
+              color: "#F3801A",
             }}
           >
+            FAQ
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 400,
+              fontSize: { xs: "20px", md: "28px" },
+              lineHeight: "36px",
+              color: "#FFFFFF",
+              maxWidth: "895px",
+              mx: "auto",
+            }}
+          >
+            More questions? Contact Us!
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "18.67px",
+            width: "100%",
+            maxWidth: "1353px",
+          }}
+        >
+          {filteredFaqData.map((faq, index) => (
             <Box
+              key={faq.question}
               sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                cursor: "pointer",
-                px: "37.77px",
-                py: "31.48px",
+                backgroundColor: "#191919",
+                border: "1.57px solid #444",
+                borderRadius: "12px",
+                overflow: "hidden",
               }}
-              onClick={() => toggleAnswer(index)}
             >
-              <Typography
+              <Box
                 sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 500,
-                  fontSize: "28px",
-                  lineHeight: "37.77px",
-                  color: "#FFFFFF",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  px: { xs: "20px", md: "37.77px" },
+                  py: { xs: "20px", md: "31.48px" },
+                  gap: "16px",
                 }}
+                onClick={() => toggleAnswer(index)}
               >
-                {faq.question}
-              </Typography>
-              <IconButton sx={{ color: "#F3801A", p: 0 }}>
-                {iconStyle === "chevron" ? (
-                  openIndexes.includes(index) ? (
-                    <ExpandLessIcon sx={{ fontSize: "28.33px" }} />
-                  ) : (
-                    <ExpandMoreIcon sx={{ fontSize: "28.33px" }} />
-                  )
-                ) : openIndexes.includes(index) ? (
-                  <RemoveIcon sx={{ fontSize: "28.33px" }} />
-                ) : (
-                  <AddIcon sx={{ fontSize: "28.33px" }} />
-                )}
-              </IconButton>
-            </Box>
-            <Collapse
-              in={openIndexes.includes(index)}
-              timeout="auto"
-              unmountOnExit
-            >
-              <Box sx={{ px: "37.77px", pb: "31.48px" }}>
                 <Typography
                   sx={{
                     fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                    fontWeight: 400,
-                    fontSize: "24px",
-                    lineHeight: "1.5",
-                    color: "#AAAAAA",
+                    fontWeight: 500,
+                    fontSize: { xs: "20px", md: "28px" },
+                    lineHeight: { xs: "28px", md: "37.77px" },
+                    color: "#FFFFFF",
+                    textAlign: "left",
                   }}
                 >
-                  {faq.answer}
+                  {faq.question}
                 </Typography>
+                <IconButton sx={{ color: "#F3801A", p: 0, flexShrink: 0 }}>
+                  {iconStyle === "chevron" ? (
+                    openIndexes.includes(index) ? (
+                      <ExpandLessIcon sx={{ fontSize: "28.33px" }} />
+                    ) : (
+                      <ExpandMoreIcon sx={{ fontSize: "28.33px" }} />
+                    )
+                  ) : openIndexes.includes(index) ? (
+                    <RemoveIcon sx={{ fontSize: "28.33px" }} />
+                  ) : (
+                    <AddIcon sx={{ fontSize: "28.33px" }} />
+                  )}
+                </IconButton>
               </Box>
-            </Collapse>
-          </Box>
-        ))}
+              <Collapse in={openIndexes.includes(index)} timeout="auto" unmountOnExit>
+                <Box sx={{ px: { xs: "20px", md: "37.77px" }, pb: { xs: "20px", md: "31.48px" } }}>
+                  <Typography
+                    sx={{
+                      fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                      fontWeight: 400,
+                      fontSize: { xs: "18px", md: "24px" },
+                      lineHeight: "36px",
+                      color: "#AAAAAA",
+                    }}
+                  >
+                    {faq.answer}
+                  </Typography>
+                </Box>
+              </Collapse>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </Box>
   );

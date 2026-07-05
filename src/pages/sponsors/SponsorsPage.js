@@ -1,17 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button } from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Faq from "./FAQ";
+import Faq from "../../components/FAQ";
 import SectionHeader from "../../components/SectionHeader";
+import {
+  pageRootSx,
+  sectionPx,
+  heroPt,
+  heroTitleFont,
+  cardRowSx,
+  decorativeBgSx,
+  figmaTop,
+  threeColCardSx,
+} from "../../styles/pageLayout";
 
 // Asset Imports
 import imgPartnerDoodles1 from "../../assets/partnerIcons/hero-doodle-1.png";
 import imgPartnerDoodles2 from "../../assets/partnerIcons/hero-doodle-2.png";
 import imgPartnerDoodles3 from "../../assets/partnerIcons/hero-star.png";
-import imgFaqDoodle from "../../assets/partnerIcons/faq-doodle.png";
 import imgReachOutDoodle from "../../assets/partnerIcons/reach-out-doodle.png";
-import imgCaseStudyTx from "../../assets/partnerIcons/case-study-tx.png";
+import imgCaseStudyTx2 from "../../assets/partnerIcons/case-study-tx-2-client.png";
+import imgHeroArrowRight from "../../assets/partnerIcons/hero-arrow-right.svg";
+import imgViewMoreProjectsArrow from "../../assets/partnerIcons/view-more-projects-arrow.svg";
 
 import imgPartnerLogo1 from "../../assets/partnerIcons/partner-logo-1.png";
 import imgPartnerLogo2 from "../../assets/partnerIcons/partner-logo-2.png";
@@ -26,6 +36,7 @@ import iconTalent from "../../assets/aboutIcons/icon-talent.svg";
 import iconImpact from "../../assets/aboutIcons/icon-impact.svg";
 import iconExposure from "../../assets/aboutIcons/icon-exposure.svg";
 import iconCheck from "../../assets/aboutIcons/icon-check.svg";
+import iconSocialEnterprise from "../../assets/partnerIcons/icon-social-enterprise.svg";
 
 import iconCommunication from "../../assets/aboutIcons/icon-active-comm.svg";
 import iconClientFocused from "../../assets/aboutIcons/icon-built-client.svg";
@@ -38,7 +49,7 @@ const clientOfferingsData = [
     description: "Receive frequent updates through weekly check-ins at every stage of the project",
   },
   {
-    icon: iconImpact,
+    icon: iconSocialEnterprise,
     title: "Social &\nEnterprise Impact",
     description: "All work is completed either pro-bono for our nonprofit clients, or at an extremely low cost for our enterprise clients.",
   },
@@ -133,9 +144,182 @@ const partnershipLogos = [
   imgPartnerLogo7, imgPartnerLogo8
 ];
 
+const recentProject = {
+  title: "Texas Cultural Trust #2",
+  description:
+    "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
+  link: "/clients",
+  image: imgCaseStudyTx2,
+};
+
+const HEADER_OFFSET = 100;
+
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (!element) return;
+
+  const top =
+    element.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
+const heroNavButtonSx = {
+  backgroundColor: "#191919",
+  border: "1px solid #444",
+  borderRadius: "10px",
+  px: "32px",
+  py: "24px",
+  color: "#FFFFFF",
+  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+  fontWeight: 400,
+  fontSize: "28px",
+  lineHeight: "normal",
+  textTransform: "none",
+  gap: "8px",
+  "&:hover": {
+    backgroundColor: "#252525",
+    borderColor: "#444",
+  },
+};
+
+function HeroDownArrow() {
+  return (
+    <Box
+      component="img"
+      src={imgHeroArrowRight}
+      alt=""
+      sx={{
+        width: "30px",
+        height: "30px",
+        transform: "rotate(90deg)",
+        flexShrink: 0,
+      }}
+    />
+  );
+}
+
+function ArrowIcon({ src, size = "30px" }) {
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt=""
+      sx={{ width: size, height: size, flexShrink: 0 }}
+    />
+  );
+}
+
+ArrowIcon.propTypes = {
+  src: PropTypes.string.isRequired,
+  size: PropTypes.string,
+};
+
+function ProjectSpotlightCard({ title, description, link, image }) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "stretch",
+        width: "100%",
+        flexDirection: { xs: "column", md: "row" },
+        border: "1px solid #444",
+        borderRadius: "12px",
+        overflow: "hidden",
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: "#191919",
+          borderRadius: "12px 0 0 12px",
+          p: "60px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "32px",
+          flex: 1,
+          zIndex: 1,
+        }}
+      >
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "23px" }}>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "36px",
+              lineHeight: 1.5,
+              color: "#FFFFFF",
+            }}
+          >
+            {title}
+          </Typography>
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 400,
+              fontSize: "24px",
+              lineHeight: 1.5,
+              color: "#D7D7D7",
+            }}
+          >
+            {description}
+          </Typography>
+        </Box>
+        <Box
+          component="a"
+          href={link}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            textDecoration: "none",
+            cursor: "pointer",
+            width: "fit-content",
+            "&:hover": { opacity: 0.8 },
+          }}
+        >
+          <Typography
+            sx={{
+              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+              fontWeight: 500,
+              fontSize: "24px",
+              lineHeight: 1.5,
+              color: "#F3801A",
+            }}
+          >
+            View case study
+          </Typography>
+          <ArrowIcon src={imgViewMoreProjectsArrow} size="24px" />
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          width: { xs: "200px", md: "468px" },
+          flexShrink: 0,
+          ml: "-15px",
+          borderRadius: "0 12px 12px 0",
+          overflow: "hidden",
+          backgroundColor: "#FFFFFF",
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          minHeight: "373px",
+        }}
+      />
+    </Box>
+  );
+}
+
+ProjectSpotlightCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+};
+
 function OfferingCard({ icon, title, description }) {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", width: "290.46px" }}>
+    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "290px", md: "none" } }}>
       <Box sx={{ width: "78px", height: "78px", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Box component="img" src={icon} alt="" sx={{ width: "54.6px", height: "54.6px" }} />
       </Box>
@@ -162,7 +346,8 @@ function OfferingCard({ icon, title, description }) {
           lineHeight: "36px",
           color: "#D7D7D7",
           textAlign: "center",
-          width: "290.46px",
+          width: "100%",
+          maxWidth: "290px",
         }}
       >
         {description}
@@ -181,6 +366,7 @@ function StepCard({ number, title, description }) {
   return (
     <Box
       sx={{
+        ...threeColCardSx,
         backgroundColor: "#191919",
         border: "1.32px solid #444",
         borderRadius: "15.83px",
@@ -188,8 +374,7 @@ function StepCard({ number, title, description }) {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
-        width: "296px",
-        height: "500px",
+        maxWidth: { xs: "296px", md: "none" },
         alignItems: "center",
       }}
     >
@@ -236,7 +421,8 @@ function StepCard({ number, title, description }) {
           lineHeight: "36px",
           color: "#D7D7D7",
           textAlign: "center",
-          width: "208.44px",
+          width: "100%",
+          maxWidth: "208px",
         }}
       >
         {description}
@@ -255,17 +441,18 @@ function WhySponsorCard({ icon, title, description }) {
   return (
     <Box
       sx={{
+        ...threeColCardSx,
         backgroundColor: "#191919",
         border: "1.47px solid #444",
         borderRadius: "23.47px",
         pt: "60.14px",
         px: "60.14px",
-        pb: "40px",
-        width: "435px",
+        pb: "60.14px",
+        maxWidth: { xs: "435px", md: "none" },
         display: "flex",
         flexDirection: "column",
         gap: "29.34px",
-        height: "400px",
+        alignItems: "center",
       }}
     >
       <Box sx={{ width: "58.67px", height: "58.67px", alignSelf: "center" }}>
@@ -278,6 +465,7 @@ function WhySponsorCard({ icon, title, description }) {
           fontSize: "32px",
           lineHeight: "36px",
           color: "#FFFFFF",
+          textAlign: "center",
         }}
       >
         {title}
@@ -289,7 +477,9 @@ function WhySponsorCard({ icon, title, description }) {
           fontSize: "24px",
           lineHeight: "36px",
           color: "#D7D7D7",
-          width: "315.37px",
+          width: "100%",
+          maxWidth: "315px",
+          textAlign: "center",
         }}
       >
         {description}
@@ -308,12 +498,13 @@ function TierCard({ name, price, benefits, color, isGradient }) {
   return (
     <Box
       sx={{
+        ...threeColCardSx,
         backgroundColor: "#191919",
         border: "1.27px solid #444",
         borderRadius: "20.36px",
         p: "51.27px",
-        width: "380px",
-        height: "597px",
+        maxWidth: { xs: "380px", md: "none" },
+        height: { xs: "auto", md: "597px" },
         display: "flex",
         flexDirection: "column",
         gap: "32px",
@@ -399,28 +590,18 @@ TierCard.propTypes = {
 
 function SponsorsPage() {
   return (
-    <Box
-      sx={{
-        backgroundColor: "#101010",
-        width: "100%",
-        overflowX: "hidden",
-        position: "relative",
-      }}
-    >
+    <Box sx={pageRootSx}>
       {/* Background Doodles */}
       <Box
         component="img"
         src={imgPartnerDoodles1}
         alt=""
         sx={{
-          position: "absolute",
-          top: "172.3px",
-          left: "948.64px",
-          width: "403.37px",
-          height: "403.7px",
-          pointerEvents: "none",
-          mixBlendMode: "lighten",
-          zIndex: 0,
+          ...decorativeBgSx,
+          top: { lg: "130px" },
+          right: { lg: "6%", xl: "132px" },
+          width: { lg: "320px", xl: "403px" },
+          height: "auto",
         }}
       />
       <Box
@@ -428,14 +609,11 @@ function SponsorsPage() {
         src={imgPartnerDoodles2}
         alt=""
         sx={{
-          position: "absolute",
-          top: "141px",
-          left: "862.92px",
-          width: "258px",
-          height: "258.15px",
-          pointerEvents: "none",
-          mixBlendMode: "lighten",
-          zIndex: 0,
+          ...decorativeBgSx,
+          top: { lg: "95px" },
+          right: { lg: "22%", xl: "340px" },
+          width: { lg: "200px", xl: "258px" },
+          height: "auto",
           transform: "rotate(13.48deg)",
         }}
       />
@@ -444,33 +622,30 @@ function SponsorsPage() {
         src={imgPartnerDoodles3}
         alt=""
         sx={{
-          position: "absolute",
-          top: "425.52px",
-          left: "1362.99px",
+          ...decorativeBgSx,
+          top: { lg: "290px" },
+          right: { lg: "3%", xl: "48px" },
           width: "72px",
           height: "auto",
-          pointerEvents: "none",
-          mixBlendMode: "lighten",
-          zIndex: 0,
         }}
       />
 
       {/* ========== HERO SECTION ========== */}
       <Box
         sx={{
-          pt: "257px",
-          px: "79px",
-          pb: "182px",
+          pt: heroPt,
+          px: sectionPx,
+          pb: { xs: "80px", md: "182px" },
           position: "relative",
           zIndex: 1,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "900px" }}>
           <Typography
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
-              fontSize: "64px",
+              fontSize: heroTitleFont,
               lineHeight: "normal",
               color: "#FFFFFF",
             }}
@@ -489,6 +664,22 @@ function SponsorsPage() {
           >
             Interested in sponsoring and/or working with us as a client? Here is what a partnership with us will look like!
           </Typography>
+          <Box sx={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
+            <Button
+              onClick={() => scrollToSection("client-projects")}
+              endIcon={<HeroDownArrow />}
+              sx={heroNavButtonSx}
+            >
+              View client projects
+            </Button>
+            <Button
+              onClick={() => scrollToSection("sponsorship")}
+              endIcon={<HeroDownArrow />}
+              sx={heroNavButtonSx}
+            >
+              Sponsorship
+            </Button>
+          </Box>
         </Box>
       </Box>
 
@@ -496,13 +687,15 @@ function SponsorsPage() {
 
       {/* ========== CLIENT PROJECTS SECTION ========== */}
       <Box
+        id="client-projects"
         sx={{
           py: "100px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           gap: "60px",
+          scrollMarginTop: `${HEADER_OFFSET}px`,
         }}
       >
         <SectionHeader
@@ -511,15 +704,7 @@ function SponsorsPage() {
           maxWidth="971px"
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            gap: "58px",
-            width: "100%",
-            maxWidth: "1422.84px",
-            justifyContent: "center",
-          }}
-        >
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "58px" }, maxWidth: "1422px" }}>
           {clientOfferingsData.map((item) => (
             <OfferingCard key={item.title} {...item} />
           ))}
@@ -532,7 +717,7 @@ function SponsorsPage() {
       <Box
         sx={{
           py: "100px",
-          px: "79px",
+          px: sectionPx,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -545,318 +730,41 @@ function SponsorsPage() {
           maxWidth="971px"
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            gap: "31px",
-            width: "100%",
-            maxWidth: "1277px",
-            justifyContent: "center",
-          }}
-        >
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "31px" }, maxWidth: "1277px" }}>
           {processStepsData.map((step) => (
             <StepCard key={step.number} {...step} />
           ))}
         </Box>
       </Box>
 
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== WHY SPONSOR US SECTION ========== */}
+      {/* ========== PROPOSE A PROJECT ========== */}
       <Box
         sx={{
-          py: "100px",
-          px: "79px",
+          px: sectionPx,
+          pb: "100px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "60px",
+          position: "relative",
         }}
       >
-        <SectionHeader
-          title="Sponsorship: Why TPEO?"
-          description="Gain exclusive access to UT Austin’s most selective tech pipeline, representing the strongest talent from multiple top-10 programs."
-          maxWidth="816px"
-        />
-
-        <Box
-          sx={{
-            display: "flex",
-            gap: "40px",
-            width: "100%",
-            maxWidth: "1423px",
-            justifyContent: "center",
-          }}
-        >
-          {whySponsorData.map((item) => (
-            <WhySponsorCard key={item.title} {...item} />
-          ))}
-        </Box>
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== SPONSORSHIP TIERS SECTION ========== */}
-      <Box
-        sx={{
-          py: "100px",
-          px: "79px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "60px",
-        }}
-      >
-        <SectionHeader
-          title="Sponsorship Tiers"
-          description={
-            <>
-              Choose the level that fits your goals and budget.
-              <br />
-              Feel free to reach out as well - we’re always flexible!
-            </>
-          }
-          maxWidth="816px"
-        />
-
-        <Box
-          sx={{
-            display: "flex",
-            gap: "45px", // Meticulous design gap
-            width: "100%",
-            maxWidth: "1234.21px",
-            justifyContent: "center",
-          }}
-        >
-          {tierData.map((tier) => (
-            <TierCard key={tier.name} {...tier} />
-          ))}
-        </Box>
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== RECENT PARTNERSHIPS SECTION ========== */}
-      <Box
-        sx={{
-          py: "100px",
-          px: "79px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "60px",
-        }}
-      >
-        <SectionHeader
-          title="Recent Partnerships"
-          description="Sponsors and clients have direct a pipeline to TPEO’s talent"
-          maxWidth="816px"
-        />
-
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "60px",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: "1100px",
-            "& img": { height: "auto", objectFit: "contain" }
-          }}
-        >
-          {/* Row 1 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
-            <Box component="img" src={imgPartnerLogo1} sx={{ width: "272px" }} />
-            <Box component="img" src={imgPartnerLogo2} sx={{ width: "242px", borderRadius: "20px" }} />
-            <Box component="img" src={imgPartnerLogo3} sx={{ width: "242px", borderRadius: "20px" }} />
-          </Box>
-          {/* Row 2 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
-            <Box component="img" src={imgPartnerLogo4} sx={{ width: "301px" }} />
-            <Box component="img" src={imgPartnerLogo5} sx={{ width: "728px" }} />
-          </Box>
-          {/* Row 3 */}
-          <Box component="img" src={imgPartnerLogo6} sx={{ width: "501px", borderRadius: "20px" }} />
-          {/* Row 4 */}
-          <Box sx={{ display: "flex", gap: "60px", alignItems: "center" }}>
-            <Box component="img" src={imgPartnerLogo7} sx={{ width: "479px", borderRadius: "20px" }} />
-            <Box component="img" src={imgPartnerLogo8} sx={{ width: "513px", borderRadius: "20px" }} />
-          </Box>
-        </Box>
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== OUR RECENT PROJECTS SECTION ========== */}
-      <Box
-        sx={{
-          py: "100px",
-          px: "79px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "60px",
-        }}
-      >
-        <SectionHeader
-          title="Our Recent Projects"
-          description="We’ve worked with numerous local Austin startups, non-profits, and companies to aid them with software solutions"
-          maxWidth="816px"
-        />
-
-        <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", width: "100%", maxWidth: "1304px" }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "stretch",
-              width: "100%",
-            }}
-          >
-            <Box
-              sx={{
-                backgroundColor: "#191919",
-                border: "1px solid #444",
-                borderRadius: "12px 0 0 12px",
-                p: "60px",
-                display: "flex",
-                flexDirection: "column",
-                gap: "32px",
-                flex: 1,
-                zIndex: 1,
-              }}
-            >
-              <Box sx={{ display: "flex", flexDirection: "column", gap: "23px" }}>
-                <Typography
-                  sx={{
-                    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                    fontWeight: 500,
-                    fontSize: "36px",
-                    lineHeight: 1.5,
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Texas Cultural Trust #2
-                </Typography>
-                <Typography
-                  sx={{
-                    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                    fontWeight: 400,
-                    fontSize: "24px",
-                    lineHeight: 1.5,
-                    color: "#D7D7D7",
-                  }}
-                >
-                  Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.
-                </Typography>
-              </Box>
-              <Box
-                component="a"
-                href="/clients"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  textDecoration: "none",
-                  cursor: "pointer",
-                  width: "fit-content",
-                  "&:hover": { opacity: 0.8 },
-                }}
-              >
-                <Typography
-                  sx={{
-                    fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                    fontWeight: 500,
-                    fontSize: "24px",
-                    lineHeight: 1.5,
-                    color: "#F3801A",
-                  }}
-                >
-                  View case study
-                </Typography>
-                <ArrowForwardIcon sx={{ color: "#F3801A", fontSize: 24 }} />
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                width: "468px",
-                flexShrink: 0,
-                ml: "-15px",
-                borderRadius: "0 12px 12px 0",
-                overflow: "hidden",
-                minHeight: "373px",
-              }}
-            >
-              <Box component="img" src={imgCaseStudyTx} sx={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </Box>
-          </Box>
-
-          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
-            <Button
-              component="a"
-              href="/clients"
-              endIcon={<ArrowForwardIcon sx={{ color: "#FFFFFF" }} />}
-              sx={{
-                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 400,
-                fontSize: "28px",
-                color: "#FFFFFF",
-                backgroundColor: "#191919",
-                border: "1px solid #444",
-                borderRadius: "10px",
-                px: "32px",
-                py: "16px",
-                textTransform: "none",
-                "&:hover": {
-                  backgroundColor: "#222222",
-                },
-              }}
-            >
-              View more projects
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== FAQ SECTION ========== */}
-      <Box sx={{ py: "100px", px: "79px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Box
-          component="img"
-          src={imgFaqDoodle}
-          alt=""
-          sx={{
-            width: "130px",
-            height: "auto",
-            mb: "20px",
-            transform: "rotate(5.44deg)",
-            mixBlendMode: "lighten",
-          }}
-        />
-        <Faq type="Partners" />
-      </Box>
-
-      <Divider sx={{ backgroundColor: "#444" }} />
-
-      {/* ========== SPONSOR REACH OUT ========== */}
-      <Box sx={{ py: "100px", px: "79px", display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
         <Box
           sx={{
             backgroundColor: "#101010",
             border: "1px solid #444",
             borderRadius: "12px",
-            px: "108.8px", // Meticulous design padding
+            px: "108.8px",
             py: "87.3px",
             width: "100%",
-            maxWidth: "1295px", // Meticulous design width
+            maxWidth: "1295px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
             position: "relative",
             overflow: "hidden",
-            mb: "-201px", // Design overlap
+            mb: "-201px",
             zIndex: 1,
+            gap: "32px",
           }}
         >
           <Box sx={{ display: "flex", flexDirection: "column", gap: "21.6px" }}>
@@ -870,7 +778,7 @@ function SponsorsPage() {
                 maxWidth: "841px",
               }}
             >
-              Interested in becoming a sponsor?
+              Interested in proposing a project?
             </Typography>
             <Box
               sx={{
@@ -881,6 +789,7 @@ function SponsorsPage() {
                 color: "#D7D7D7",
                 display: "flex",
                 gap: "8px",
+                flexWrap: "wrap",
               }}
             >
               Reach out to us at
@@ -897,9 +806,12 @@ function SponsorsPage() {
               >
                 team@txproduct.org
               </Typography>
+              or fill out this form!
             </Box>
           </Box>
           <Button
+            component="a"
+            href="/contact"
             sx={{
               backgroundColor: "#F3801A",
               color: "#101010",
@@ -911,12 +823,13 @@ function SponsorsPage() {
               px: "43px",
               py: "21.6px",
               lineHeight: "40.44px",
+              flexShrink: 0,
               "&:hover": {
                 backgroundColor: "#FB8C14",
               },
             }}
           >
-            Contact Us
+            Link to Form
           </Button>
         </Box>
 
@@ -947,6 +860,174 @@ function SponsorsPage() {
           />
         </Box>
       </Box>
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      {/* ========== WHY SPONSOR US SECTION ========== */}
+      <Box
+        id="sponsorship"
+        sx={{
+          py: "100px",
+          px: sectionPx,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "60px",
+          scrollMarginTop: `${HEADER_OFFSET}px`,
+        }}
+      >
+        <SectionHeader
+          title="Sponsorship: Why TPEO?"
+          description="Gain exclusive access to UT Austin’s most selective tech pipeline, representing the strongest talent from multiple top-10 programs."
+          maxWidth="816px"
+        />
+
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "40px" }, maxWidth: "1423px" }}>
+          {whySponsorData.map((item) => (
+            <WhySponsorCard key={item.title} {...item} />
+          ))}
+        </Box>
+      </Box>
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      {/* ========== SPONSORSHIP TIERS SECTION ========== */}
+      <Box
+        sx={{
+          py: "100px",
+          px: sectionPx,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "60px",
+        }}
+      >
+        <SectionHeader
+          title="Sponsorship Tiers"
+          description={
+            <>
+              Choose the level that fits your goals and budget.
+              <br />
+              Feel free to reach out as well - we’re always flexible!
+            </>
+          }
+          maxWidth="816px"
+        />
+
+        <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "45px" }, maxWidth: "1234px" }}>
+          {tierData.map((tier) => (
+            <TierCard key={tier.name} {...tier} />
+          ))}
+        </Box>
+      </Box>
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      {/* ========== RECENT PARTNERSHIPS SECTION ========== */}
+      <Box
+        sx={{
+          py: "100px",
+          px: sectionPx,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "60px",
+        }}
+      >
+        <SectionHeader
+          title="Recent Partnerships"
+          description="Sponsors and clients have direct a pipeline to TPEO’s talent"
+          maxWidth="816px"
+        />
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "60px",
+            alignItems: "center",
+            width: "100%",
+            maxWidth: "1100px",
+            "& img": { height: "auto", objectFit: "contain" }
+          }}
+        >
+          {/* Row 1 */}
+          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box component="img" src={imgPartnerLogo1} sx={{ width: { xs: "200px", md: "272px" }, maxWidth: "100%" }} />
+            <Box component="img" src={imgPartnerLogo2} sx={{ width: { xs: "200px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
+            <Box component="img" src={imgPartnerLogo3} sx={{ width: { xs: "200px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
+          </Box>
+          {/* Row 2 */}
+          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box component="img" src={imgPartnerLogo4} sx={{ width: { xs: "220px", md: "301px" }, maxWidth: "100%" }} />
+            <Box component="img" src={imgPartnerLogo5} sx={{ width: { xs: "100%", md: "728px" }, maxWidth: "728px" }} />
+          </Box>
+          {/* Row 3 */}
+          <Box component="img" src={imgPartnerLogo6} sx={{ width: { xs: "100%", md: "501px" }, maxWidth: "501px", borderRadius: "20px" }} />
+          {/* Row 4 */}
+          <Box sx={{ display: "flex", gap: "60px", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box component="img" src={imgPartnerLogo7} sx={{ width: { xs: "100%", md: "479px" }, maxWidth: "479px", borderRadius: "20px" }} />
+            <Box component="img" src={imgPartnerLogo8} sx={{ width: { xs: "100%", md: "513px" }, maxWidth: "513px", borderRadius: "20px" }} />
+          </Box>
+        </Box>
+      </Box>
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      {/* ========== OUR RECENT PROJECTS SECTION ========== */}
+      <Box
+        sx={{
+          py: "100px",
+          px: sectionPx,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "60px",
+        }}
+      >
+        <SectionHeader
+          title="Our Recent Projects"
+          description="We’ve worked with numerous local Austin startups, non-profits, and companies to aid them with software solutions"
+          maxWidth="816px"
+        />
+
+        <Box sx={{ display: "flex", flexDirection: "column", gap: "30px", width: "100%", maxWidth: "1304px" }}>
+          <ProjectSpotlightCard {...recentProject} />
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+            <Button
+              component="a"
+              href="/clients"
+              endIcon={<ArrowIcon src={imgViewMoreProjectsArrow} />}
+              sx={{
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 400,
+                fontSize: "28px",
+                color: "#FFFFFF",
+                backgroundColor: "#191919",
+                border: "1px solid #444",
+                borderRadius: "10px",
+                px: "32px",
+                py: "16px",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#222222",
+                },
+              }}
+            >
+              View more projects
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      <Faq type="Partners" iconStyle="chevron" />
+
+      <Divider sx={{ backgroundColor: "#444" }} />
+
+      
     </Box>
   );
 }

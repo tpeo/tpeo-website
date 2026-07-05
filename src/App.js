@@ -1,41 +1,35 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material/styles";
+import { Box } from "@mui/material";
 import theme from "./themes/theme";
 
-// Import pages
-import NewFellowPage from "./pages/NewFellowPage";
-import TeamPage from "./pages/teamPage/TeamPage";
-import ClientPage from "./pages/ClientPage";
-import SponsorsPage from "./pages/sponsorsPage/SponsorsPage";
-import AboutPage from "./pages/AboutPage";
+import AboutPage from "./pages/about/AboutPage";
+import NewFellowPage from "./pages/newFellow/NewFellowPage";
+import TeamPage from "./pages/team/TeamPage";
+import ClientPage from "./pages/clients/ClientPage";
+import SponsorsPage from "./pages/sponsors/SponsorsPage";
+import JoinTPEOPage from "./pages/join/JoinTPEOPage";
+import ContactUsPage from "./pages/contact/ContactUs";
 
-// Import components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import JoinTPEOPage from "./pages/JoinTPEOPage";
-import ContactUsPage from "./pages/ContactUs";
-
-import MobileHomePage from "./mobile/MobileHomePage";
-import MobileFooter from "./mobile/MobileFooter";
 
 function App() {
-  const isMobile = window.innerWidth <= 768;
-
   return (
     <ThemeProvider theme={theme}>
       <Router>
-        {isMobile ? (
-          <>
-            <Routes>
-              <Route path="/" element={<MobileHomePage />} />
-              {/* Add other mobile-specific routes here */}
-            </Routes>
-            <MobileFooter></MobileFooter>
-          </>
-        ) : (
-          <>
-            <Header />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+            width: "100%",
+            overflowX: "hidden",
+          }}
+        >
+          <Header />
+          <Box component="main" sx={{ flex: "1 0 auto", width: "100%" }}>
             <Routes>
               <Route path="/" element={<AboutPage />} />
               <Route path="/new-fellow" element={<NewFellowPage />} />
@@ -45,9 +39,9 @@ function App() {
               <Route path="/join" element={<JoinTPEOPage />} />
               <Route path="/contact" element={<ContactUsPage />} />
             </Routes>
-            <Footer />
-          </>
-        )}
+          </Box>
+          <Footer />
+        </Box>
       </Router>
     </ThemeProvider>
   );
