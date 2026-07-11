@@ -61,7 +61,7 @@ function Faq({ type, iconStyle = "plus" }) {
       type: "General",
     },
     {
-      question: "What does TPEO recruit?",
+      question: "Who do we recruit?",
       answer: "We recruit incoming freshmen and sophomores of all majors!",
       type: "NewFellow",
     },
@@ -72,9 +72,15 @@ function Faq({ type, iconStyle = "plus" }) {
       type: "NewFellow",
     },
     {
-      question: "How much time does the fellowship require?",
+      question: "What is the time commitment?",
       answer:
         "New fellows participate in semester-long courses and a new fellow project. Expect a meaningful weekly commitment during the academic year, including classes, project work, and team meetings.",
+      type: "NewFellow",
+    },
+    {
+      question: "How long is the fellowship?",
+      answer:
+        "The fellowship is a two-year program. Fellows spend their first year in courses and a new fellow project, and their second year working on a client project.",
       type: "NewFellow",
     },
     {
@@ -86,20 +92,20 @@ function Faq({ type, iconStyle = "plus" }) {
     {
       question: "What type of projects does TPEO take on?",
       answer:
-        "We take on projects to build apps that solve a solution in our community.",
+        "Our new fellows complete a semester-long project in the spring of their first year. New fellow projects are focused on building apps/websites to solve a problem for the UT or greater Austin community. Second-year fellows will work with a client on a semester or year-long project, in which they will go through the full software development lifecycle to build a solution for their client.",
       type: "Client",
     },
     {
       question: "What are the teams?",
       answer:
-        "Teams working on the project will consist of one project manager, one designer, and three-four engineers.",
+        "Teams working on the project will consist of one product manager and two engineers.",
       type: "Client",
     },
     {
       question:
         "Who is the point of contact during the project and how much involvement is needed?",
       answer:
-        "The point of contact will be the team's project manager. Involvement is dependent on the size of the project, but likely once a week one hour meetings to go over progress.",
+        "Your team's product manager will be the main point of contact. Expect weekly 1-hour meetings to review progress.",
       type: "Client",
     },
     {
@@ -110,18 +116,18 @@ function Faq({ type, iconStyle = "plus" }) {
     {
       question: "What does it cost to work with TPEO?",
       answer:
-        "NOTHING! All TPEO work is pro-bono. The only costs that could be acquired are storage and website hosting costs.",
+        "Our nonprofit clients work with us for FREE! We don't charge to help the community :)\n\nOur corporate clients (startups, enterprises, etc.) donate to the club as payment for our services. The cost is based on the size of the team and duration of the project, but will always be low-cost and much cheaper than a typical internship rate.",
       type: "Client",
     },
     {
-      question: "What are project timelines?",
+      question: "What is the project duration?",
       answer:
-        "The project will be active from September - April of the following year.",
+        "New fellow projects are 1 semester. Client projects can range from 1 semester to the full school year (September - April).",
       type: "Client",
     },
     {
       question: "How do I become a sponsor?",
-      answer: "To become a sponsor, visit our sponsorship page for details.",
+      answer: "Email us at team@txproduct.org",
       type: "Sponsor",
     },
     {
@@ -137,10 +143,8 @@ function Faq({ type, iconStyle = "plus" }) {
     "What are the benefits of sponsoring TPEO?",
     "What type of projects does TPEO take on?",
     "What are the teams?",
-    "Who is the point of contact during the project and how much involvement is needed?",
-    "How do I reach out about collaborating with TPEO?",
     "What does it cost to work with TPEO?",
-    "What are project timelines?",
+    "What is the project duration?",
   ];
 
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -290,6 +294,7 @@ function Faq({ type, iconStyle = "plus" }) {
                       fontSize: { xs: "18px", md: "24px" },
                       lineHeight: "36px",
                       color: "#AAAAAA",
+                      whiteSpace: "pre-line",
                     }}
                   >
                     {faq.answer}

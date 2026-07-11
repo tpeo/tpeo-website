@@ -39,6 +39,57 @@ const aboutSectionSx = {
   boxSizing: "border-box",
 };
 
+const fellowshipBlurbTitleSx = {
+  fontFamily: "DM Sans, sans-serif",
+  fontWeight: 600,
+  fontSize: { xs: "20px", md: "24px" },
+  lineHeight: 1.2,
+  color: "#FFFFFF",
+};
+
+const fellowshipBlurbBodySx = {
+  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+  fontWeight: 400,
+  fontSize: { xs: "14px", md: "18px" },
+  lineHeight: { xs: 1.5, md: "28px" },
+  color: "#D7D7D7",
+};
+
+const fellowshipBlurbSx = {
+  width: "100%",
+  maxWidth: "100%",
+  textAlign: "center",
+  display: "flex",
+  flexDirection: "column",
+  gap: { xs: "12px", md: "16px" },
+  alignItems: "center",
+  justifySelf: "center",
+  cursor: "default",
+  p: { xs: "20px", md: "28px 24px" },
+  borderRadius: "16px",
+  border: "1px solid transparent",
+  backgroundColor: "transparent",
+  boxSizing: "border-box",
+  transition: "background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease",
+  "&:hover": {
+    background:
+      "linear-gradient(160deg, rgba(25, 25, 25, 0.92) 0%, rgba(243, 128, 26, 0.1) 50%, rgba(25, 25, 25, 0.88) 100%)",
+    borderColor: "rgba(243, 128, 26, 0.3)",
+    boxShadow:
+      "0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 28px rgba(243, 128, 26, 0.1)",
+    transform: "translateY(-4px)",
+    backdropFilter: "blur(6px)",
+  },
+};
+
+const fellowshipBlurbRowSx = {
+  display: "grid",
+  gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" },
+  width: "100%",
+  gap: { xs: "48px", md: "16px" },
+  mt: { xs: "20px", md: 0 },
+};
+
 // Feature card data
 const featureCards = [
   {
@@ -116,19 +167,44 @@ DisciplinePill.propTypes = {
 
 // Feature Card component
 function FeatureCard({ title, description, image }) {
+  const borderAnimationSx = {
+    "@keyframes featureBorderDraw": {
+      from: { strokeDashoffset: 1 },
+      to: { strokeDashoffset: 0 },
+    },
+    "& .feature-border-path-a, & .feature-border-path-b": {
+      fill: "none",
+      stroke: "#F3801A",
+      strokeDasharray: 1,
+      strokeDashoffset: 1,
+      opacity: 0,
+    },
+    "&:hover .feature-border-path-a, &:hover .feature-border-path-b": {
+      opacity: 1,
+      animation: "featureBorderDraw 0.8s ease forwards",
+    },
+    "&:not(:hover) .feature-border-path-a, &:not(:hover) .feature-border-path-b": {
+      animation: "none",
+      opacity: 0,
+      strokeDashoffset: 1,
+    },
+  };
+
   return (
     <Box
       component={motion.div}
+      className="feature-card"
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
       sx={{
         ...threeColCardSx,
+        ...borderAnimationSx,
         backgroundColor: "#191919",
         border: "1px solid #444",
         borderRadius: "12px",
         maxWidth: { xs: "100%", md: "407px" },
         position: "relative",
-        overflow: "hidden",
+        overflow: "visible",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -136,11 +212,48 @@ function FeatureCard({ title, description, image }) {
         pb: { xs: "36px", md: "60px" },
         gap: { xs: "28px", md: "52px" },
         cursor: "default",
-        "&:hover": {
-          borderColor: "#F3801A",
-        },
       }}
     >
+      <Box
+        component="svg"
+        aria-hidden
+        className="feature-border-svg"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        sx={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          pointerEvents: "none",
+          zIndex: 3,
+          overflow: "visible",
+        }}
+      >
+        {/* Top-left → top → top-right → right */}
+        <Box
+          component="path"
+          className="feature-border-path-a"
+          pathLength="1"
+          vectorEffect="nonScalingStroke"
+          strokeWidth="0.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M 0.5 3.45 A 2.95 2.95 0 0 1 3.45 0.5 H 96.55 A 2.95 2.95 0 0 1 99.5 3.45 V 96.55 A 2.95 2.95 0 0 1 96.55 99.5"
+        />
+        {/* Top-left → left → bottom-left → bottom */}
+        <Box
+          component="path"
+          className="feature-border-path-b"
+          pathLength="1"
+          vectorEffect="nonScalingStroke"
+          strokeWidth="0.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M 0.5 3.45 V 96.55 A 2.95 2.95 0 0 0 3.45 99.5 H 96.55"
+        />
+      </Box>
+
       {/* Image Container */}
       <Box
         sx={{
@@ -594,119 +707,25 @@ function AboutPage() {
           </Box>
 
           {/* Fellowship blurbs — aligned under each circle in the graphic */}
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: { xs: "column", md: "row" },
-              justifyContent: { xs: "flex-start", md: "space-between" },
-              alignItems: { xs: "center", md: "flex-start" },
-              width: "100%",
-              gap: { xs: "40px", md: 0 },
-              mt: { xs: "20px", md: 0 },
-            }}
-          >
-            <Box
-              sx={{
-                flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "280px", md: "295px" },
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontWeight: 700,
-                  fontSize: { xs: "24px", md: "28px" },
-                  lineHeight: 1.2,
-                  color: "#FFFFFF",
-                }}
-              >
-                Product
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 400,
-                  fontSize: { xs: "16px", md: "24px" },
-                  lineHeight: { xs: 1.4, md: "36px" },
-                  color: "#D7D7D7",
-                }}
-              >
-                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+          <Box sx={fellowshipBlurbRowSx}>
+            <Box sx={fellowshipBlurbSx}>
+              <Typography sx={fellowshipBlurbTitleSx}>Product</Typography>
+              <Typography sx={fellowshipBlurbBodySx}>
+                Product fellows will step into the shoes of a Product Manager, learning how to oversee the entire lifecycle of a product from ideation to launch, while collaborating with cross-functional teams to drive product vision and strategy.
               </Typography>
             </Box>
 
-            <Box
-              sx={{
-                flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "280px", md: "295px" },
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontWeight: 700,
-                  fontSize: { xs: "24px", md: "28px" },
-                  lineHeight: 1.2,
-                  color: "#FFFFFF",
-                }}
-              >
-                Design
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 400,
-                  fontSize: { xs: "16px", md: "24px" },
-                  lineHeight: { xs: 1.4, md: "36px" },
-                  color: "#D7D7D7",
-                }}
-              >
-                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+            <Box sx={fellowshipBlurbSx}>
+              <Typography sx={fellowshipBlurbTitleSx}>Design</Typography>
+              <Typography sx={fellowshipBlurbBodySx}>
+                Design fellows immerse themselves in the end-to-end design process, honing design thinking skills through collaboration and decision-making. We cultivate a real-world growth environment where fellows can push the boundaries of their craft through hands-on experience and teamwork.
               </Typography>
             </Box>
 
-            <Box
-              sx={{
-                flex: { xs: "0 0 auto", md: "0 0 295px" },
-                maxWidth: { xs: "280px", md: "295px" },
-                textAlign: "center",
-                display: "flex",
-                flexDirection: "column",
-                gap: "8px",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  fontFamily: "DM Sans, sans-serif",
-                  fontWeight: 700,
-                  fontSize: { xs: "24px", md: "28px" },
-                  lineHeight: 1.2,
-                  color: "#FFFFFF",
-                }}
-              >
-                Engineering
-              </Typography>
-              <Typography
-                sx={{
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                  fontWeight: 400,
-                  fontSize: { xs: "16px", md: "24px" },
-                  lineHeight: { xs: 1.4, md: "36px" },
-                  color: "#D7D7D7",
-                }}
-              >
-                Aliquam erat volutpat. Integer malesuada turpis id fringilla suscipit.
+            <Box sx={fellowshipBlurbSx}>
+              <Typography sx={fellowshipBlurbTitleSx}>Engineering</Typography>
+              <Typography sx={fellowshipBlurbBodySx}>
+                Engineering fellows dive deep into the full-stack development process, mastering the skills needed to build scalable, user-centric applications. From frontend interfaces to backend systems, they collaborate with designers and product managers to bring innovative ideas to life.
               </Typography>
             </Box>
           </Box>

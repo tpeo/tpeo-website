@@ -113,17 +113,17 @@ function ContactUsPage() {
         {/* Left Side: Let's Connect */}
         <Box sx={{ flex: 1, maxWidth: { lg: "770px" }, width: "100%", display: "flex", flexDirection: "column", gap: { xs: "32px", md: "61px" } }}>
           {/* Hero Content */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap, width: "100%", minWidth: 0 }}>
             <Typography
               sx={{
                 fontFamily: "DM Sans, sans-serif",
                 fontWeight: 700,
-                fontSize: { xs: "32px", md: heroTitleFont },
-                lineHeight: "normal",
+                fontSize: heroTitleFont,
+                lineHeight: 1.1,
                 color: "#FFFFFF",
               }}
             >
-              let’s connect.
+              let’s connect
             </Typography>
             <Typography
               sx={{
