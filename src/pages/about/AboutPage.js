@@ -217,14 +217,16 @@ function FeatureCard({ title, description, image }) {
       <Box
         component="svg"
         aria-hidden
-        className="feature-border-svg"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         sx={{
           position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
+          top: -0.5,
+          left: -0.5,
+          right: -0.5,
+          bottom: -0.5,
+          width: "calc(100% + 1px)",
+          height: "calc(100% + 1px)",
           pointerEvents: "none",
           zIndex: 3,
           overflow: "visible",
@@ -236,10 +238,10 @@ function FeatureCard({ title, description, image }) {
           className="feature-border-path-a"
           pathLength="1"
           vectorEffect="nonScalingStroke"
-          strokeWidth="0.5"
+          strokeWidth="0.4"
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M 0.5 3.45 A 2.95 2.95 0 0 1 3.45 0.5 H 96.55 A 2.95 2.95 0 0 1 99.5 3.45 V 96.55 A 2.95 2.95 0 0 1 96.55 99.5"
+          d="M 0.5 4.0 A 3.5 3.5 0 0 1 4.0 0.5 H 96.0 A 3.5 3.5 0 0 1 99.5 4.0 V 96.0 A 3.5 3.5 0 0 1 96.0 99.5"
         />
         {/* Top-left → left → bottom-left → bottom */}
         <Box
@@ -247,10 +249,10 @@ function FeatureCard({ title, description, image }) {
           className="feature-border-path-b"
           pathLength="1"
           vectorEffect="nonScalingStroke"
-          strokeWidth="0.5"
+          strokeWidth="0.4"
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M 0.5 3.45 V 96.55 A 2.95 2.95 0 0 0 3.45 99.5 H 96.55"
+          d="M 0.5 4.0 V 96.0 A 3.5 3.5 0 0 0 4.0 99.5 H 96.0"
         />
       </Box>
 

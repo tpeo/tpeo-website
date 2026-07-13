@@ -218,6 +218,8 @@ ArrowIcon.propTypes = {
 function ProjectSpotlightCard({ title, description, link, image }) {
   return (
     <Box
+      component={motion.div}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
       sx={{
         display: "flex",
         alignItems: "stretch",
@@ -226,6 +228,7 @@ function ProjectSpotlightCard({ title, description, link, image }) {
         border: "1px solid #444",
         borderRadius: "12px",
         overflow: "hidden",
+        cursor: "pointer",
       }}
     >
       <Box
@@ -318,13 +321,16 @@ ProjectSpotlightCard.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-function OfferingCard({ icon, title, description }) {
+function OfferingCard({ icon, title, description, index }) {
   return (
     <Box
       component={motion.div}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
-      sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.15 }}
+      whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+      sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", alignItems: "center", gap: "21.32px", maxWidth: { xs: "100%", sm: "320px", md: "none" }, cursor: "pointer" }}
     >
       <Box sx={{ width: { xs: "60px", md: "78px" }, height: { xs: "60px", md: "78px" }, display: "flex", alignItems: "center", justifyContent: "center" }}>
         <Box component="img" src={icon} alt="" sx={{ width: { xs: "40px", md: "54.6px" }, height: { xs: "40px", md: "54.6px" } }} />
@@ -366,11 +372,18 @@ OfferingCard.propTypes = {
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  index: PropTypes.number,
 };
 
-function StepCard({ number, title, description }) {
+function StepCard({ number, title, description, index }) {
   return (
     <Box
+      component={motion.div}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ scale: 1.05, transition: { type: "spring", stiffness: 300, damping: 15 } }}
       sx={{
         ...threeColCardSx,
         backgroundColor: "#191919",
@@ -382,6 +395,11 @@ function StepCard({ number, title, description }) {
         gap: "20px",
         maxWidth: { xs: "100%", sm: "320px", md: "none" },
         alignItems: "center",
+        cursor: "pointer",
+        transition: "background-color 0.3s ease",
+        "&:hover": {
+          backgroundColor: "rgba(243, 128, 26, 0.15)",
+        },
       }}
     >
       <Box
@@ -441,11 +459,18 @@ StepCard.propTypes = {
   number: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  index: PropTypes.number,
 };
 
-function WhySponsorCard({ icon, title, description }) {
+function WhySponsorCard({ icon, title, description, index }) {
   return (
     <Box
+      component={motion.div}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
+      whileHover={{ boxShadow: "0 0 30px rgba(243, 128, 26, 0.3)", transition: { duration: 0.3 } }}
       sx={{
         ...threeColCardSx,
         backgroundColor: "#191919",
@@ -459,6 +484,7 @@ function WhySponsorCard({ icon, title, description }) {
         flexDirection: "column",
         gap: "29.34px",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <Box sx={{ width: { xs: "48px", md: "58.67px" }, height: { xs: "48px", md: "58.67px" }, alignSelf: "center" }}>
@@ -498,16 +524,44 @@ WhySponsorCard.propTypes = {
   icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  index: PropTypes.number,
 };
 
-function TierCard({ name, price, benefits, color, isGradient }) {
+function TierCard({ name, price, benefits, color, isGradient, index }) {
+  const borderAnimationSx = {
+    "@keyframes tierBorderDraw": {
+      from: { strokeDashoffset: 1 },
+      to: { strokeDashoffset: 0 },
+    },
+    "& .tier-border-path-a, & .tier-border-path-b": {
+      fill: "none",
+      stroke: "#F3801A",
+      strokeDasharray: 1,
+      strokeDashoffset: 1,
+      opacity: 0,
+    },
+    "&:hover .tier-border-path-a, &:hover .tier-border-path-b": {
+      opacity: 1,
+      animation: "tierBorderDraw 0.8s ease forwards",
+    },
+    "&:not(:hover) .tier-border-path-a, &:not(:hover) .tier-border-path-b": {
+      animation: "none",
+      opacity: 0,
+      strokeDashoffset: 1,
+    },
+  };
+
   return (
     <Box
       component={motion.div}
-      whileHover={{ scale: 1.02, borderColor: "#F3801A" }}
-      transition={{ duration: 0.2 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay: index * 0.2 }}
+      whileHover={{ y: -12, scale: 1.02, transition: { duration: 0.3 } }}
       sx={{
         ...threeColCardSx,
+        ...borderAnimationSx,
         backgroundColor: "#191919",
         border: "1.27px solid #444",
         borderRadius: "20.36px",
@@ -517,8 +571,49 @@ function TierCard({ name, price, benefits, color, isGradient }) {
         display: "flex",
         flexDirection: "column",
         gap: "32px",
+        position: "relative",
+        overflow: "visible",
       }}
     >
+      <Box
+        component="svg"
+        aria-hidden
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        sx={{
+          position: "absolute",
+          top: -0.5,
+          left: -0.5,
+          right: -0.5,
+          bottom: -0.5,
+          width: "calc(100% + 1px)",
+          height: "calc(100% + 1px)",
+          pointerEvents: "none",
+          zIndex: 3,
+          overflow: "visible",
+        }}
+      >
+        <Box
+          component="path"
+          className="tier-border-path-a"
+          pathLength="1"
+          vectorEffect="nonScalingStroke"
+          strokeWidth="0.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M 0.5 4.0 A 3.5 3.5 0 0 1 4.0 0.5 H 96.0 A 3.5 3.5 0 0 1 99.5 4.0 V 96.0 A 3.5 3.5 0 0 1 96.0 99.5"
+        />
+        <Box
+          component="path"
+          className="tier-border-path-b"
+          pathLength="1"
+          vectorEffect="nonScalingStroke"
+          strokeWidth="0.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M 0.5 4.0 V 96.0 A 3.5 3.5 0 0 0 4.0 99.5 H 96.0"
+        />
+      </Box>
       <Typography
         sx={{
           fontFamily: "DM Sans, sans-serif",
@@ -595,6 +690,7 @@ TierCard.propTypes = {
   benefits: PropTypes.arrayOf(PropTypes.string).isRequired,
   color: PropTypes.string,
   isGradient: PropTypes.bool,
+  index: PropTypes.number,
 };
 
 function SponsorsPage() {
@@ -645,6 +741,10 @@ function SponsorsPage() {
 
       {/* ========== HERO SECTION ========== */}
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         sx={{
           pt: heroPt,
           px: sectionPx,
@@ -655,6 +755,10 @@ function SponsorsPage() {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: "24px", maxWidth: "900px" }}>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
@@ -666,6 +770,10 @@ function SponsorsPage() {
             Partner with <span style={{ color: "#F3801A" }}>TPEO</span>
           </Typography>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
@@ -677,7 +785,13 @@ function SponsorsPage() {
           >
             Interested in sponsoring and/or working with us as a client? Here is what a partnership with us will look like!
           </Typography>
-          <Box sx={{ display: "flex", gap: { xs: "16px", md: "24px" }, flexWrap: "wrap" }}>
+          <Box
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            sx={{ display: "flex", gap: { xs: "16px", md: "24px" }, flexWrap: "wrap" }}
+          >
             <Button
               onClick={() => scrollToSection("client-projects")}
               endIcon={<HeroDownArrow />}
@@ -718,8 +832,8 @@ function SponsorsPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "58px" }, maxWidth: "1422px" }}>
-          {clientOfferingsData.map((item) => (
-            <OfferingCard key={item.title} {...item} />
+          {clientOfferingsData.map((item, index) => (
+            <OfferingCard key={item.title} {...item} index={index} />
           ))}
         </Box>
       </Box>
@@ -744,8 +858,8 @@ function SponsorsPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "31px" }, maxWidth: "1277px" }}>
-          {processStepsData.map((step) => (
-            <StepCard key={step.number} {...step} />
+          {processStepsData.map((step, index) => (
+            <StepCard key={step.number} {...step} index={index} />
           ))}
         </Box>
       </Box>
@@ -898,8 +1012,8 @@ function SponsorsPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "40px" }, maxWidth: "1423px" }}>
-          {whySponsorData.map((item) => (
-            <WhySponsorCard key={item.title} {...item} />
+          {whySponsorData.map((item, index) => (
+            <WhySponsorCard key={item.title} {...item} index={index} />
           ))}
         </Box>
       </Box>
@@ -930,8 +1044,8 @@ function SponsorsPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "45px" }, maxWidth: "1234px" }}>
-          {tierData.map((tier) => (
-            <TierCard key={tier.name} {...tier} />
+          {tierData.map((tier, index) => (
+            <TierCard key={tier.name} {...tier} index={index} />
           ))}
         </Box>
       </Box>
@@ -968,21 +1082,21 @@ function SponsorsPage() {
         >
           {/* Row 1 */}
           <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box component="img" src={imgPartnerLogo1} sx={{ width: { xs: "120px", md: "272px" }, maxWidth: "100%" }} />
-            <Box component="img" src={imgPartnerLogo2} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
-            <Box component="img" src={imgPartnerLogo3} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", borderRadius: "20px" }} />
+            <Box component={motion.img} src={imgPartnerLogo1} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "272px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo2} whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo3} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
           </Box>
           {/* Row 2 */}
           <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box component="img" src={imgPartnerLogo4} sx={{ width: { xs: "140px", md: "301px" }, maxWidth: "100%" }} />
-            <Box component="img" src={imgPartnerLogo5} sx={{ width: { xs: "100%", md: "728px" }, maxWidth: "728px" }} />
+            <Box component={motion.img} src={imgPartnerLogo4} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "140px", md: "301px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo5} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "100%", md: "728px" }, maxWidth: "728px", cursor: "pointer" }} />
           </Box>
           {/* Row 3 */}
-          <Box component="img" src={imgPartnerLogo6} sx={{ width: { xs: "100%", md: "501px" }, maxWidth: "501px", borderRadius: "20px" }} />
+          <Box component={motion.img} src={imgPartnerLogo6} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "100%", md: "501px" }, maxWidth: "501px", cursor: "pointer" }} />
           {/* Row 4 */}
           <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box component="img" src={imgPartnerLogo7} sx={{ width: { xs: "100%", md: "479px" }, maxWidth: "479px", borderRadius: "20px" }} />
-            <Box component="img" src={imgPartnerLogo8} sx={{ width: { xs: "100%", md: "513px" }, maxWidth: "513px", borderRadius: "20px" }} />
+            <Box component={motion.img} src={imgPartnerLogo7} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "100%", md: "479px" }, maxWidth: "479px", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo8} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "100%", md: "513px" }, maxWidth: "513px", cursor: "pointer" }} />
           </Box>
         </Box>
       </Box>

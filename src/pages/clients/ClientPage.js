@@ -56,12 +56,16 @@ const clientProjects = [
   },
 ];
 
-function ProjectSpotlightCard({ title, description, link, image, imagePosition = "center center" }) {
+function ProjectSpotlightCard({ title, description, link, image, imagePosition = "center center", index, animationDirection = "left" }) {
+  const direction = animationDirection === "left" ? -50 : 50;
   return (
     <Box
       component={motion.div}
-      whileHover={{ scale: 1.01 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, x: direction }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.3 } }}
       sx={{
         display: "flex",
         alignItems: "stretch",
@@ -190,9 +194,11 @@ ProjectSpotlightCard.propTypes = {
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
   imagePosition: PropTypes.string,
+  index: PropTypes.number,
+  animationDirection: PropTypes.oneOf(["left", "right"]),
 };
 
-function SpotlightCarousel({ projects }) {
+function SpotlightCarousel({ projects, animationDirection = "left" }) {
   const [index, setIndex] = useState(0);
   const currentProject = projects[index];
 
@@ -232,7 +238,7 @@ function SpotlightCarousel({ projects }) {
       </IconButton>
 
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <ProjectSpotlightCard {...currentProject} />
+        <ProjectSpotlightCard {...currentProject} index={index} animationDirection={animationDirection} />
       </Box>
 
       <IconButton
@@ -265,6 +271,7 @@ SpotlightCarousel.propTypes = {
       imagePosition: PropTypes.string,
     })
   ).isRequired,
+  animationDirection: PropTypes.oneOf(["left", "right"]),
 };
 
 function ClientPage() {
@@ -273,6 +280,10 @@ function ClientPage() {
       <Box sx={pageRootSx}>
       {/* ========== HERO SECTION ========== */}
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         sx={{
           pt: heroPt,
           pb: { xs: "80px", md: "140px" },
@@ -282,6 +293,10 @@ function ClientPage() {
       >
         <Box sx={{ px: sectionPx, display: "flex", flexDirection: "column", gap: "24px", maxWidth: "900px" }}>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
@@ -293,6 +308,10 @@ function ClientPage() {
             <span style={{ color: "#F3801A" }}>TPEO</span>&rsquo;s Amazing Projects
           </Typography>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
@@ -342,7 +361,7 @@ function ClientPage() {
           description="A look at our recent client work."
           maxWidth="816px"
         />
-        <SpotlightCarousel projects={clientProjects} />
+        <SpotlightCarousel projects={clientProjects} animationDirection="left" />
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />
@@ -363,7 +382,7 @@ function ClientPage() {
           description="A look at our recent client work."
           maxWidth="816px"
         />
-        <SpotlightCarousel projects={fellowProjects} />
+        <SpotlightCarousel projects={fellowProjects} animationDirection="right" />
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />

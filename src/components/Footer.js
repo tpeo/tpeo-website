@@ -6,7 +6,7 @@ import tpeoLogoGradient from "../assets/aboutIcons/tpeo-logo-gradient-footer.svg
 import socialEmail from "../assets/aboutIcons/social-email.svg";
 import socialInstagram from "../assets/aboutIcons/social-instagram.svg";
 import socialLinkedin from "../assets/aboutIcons/social-linkedin.svg";
-import socialYoutube from "../assets/aboutIcons/social-youtube.svg";
+import socialYoutube from "../assets/aboutIcons/social-medium.svg";
 
 const footerNavItems = [
   { path: "/team", text: "Our Team" },
@@ -19,7 +19,7 @@ const socialIcons = [
   { src: socialEmail, alt: "Email", href: "mailto:tpeoteam@gmail.com" },
   { src: socialInstagram, alt: "Instagram", href: "https://www.instagram.com/txproduct" },
   { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/txproduct" },
-  { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/channel/tpeo" },
+  { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/@texasproductengineeringorg5958/featured" },
 ];
 
 function FooterMobile({ onNavigate }) {

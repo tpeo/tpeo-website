@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton, useMediaQuery, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedPage from "../../components/AnimatedPage";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -70,12 +70,15 @@ const curriculumItems = [
   },
 ];
 
-function FellowProjectCard({ title, description, link, image, imagePosition = "left center" }) {
+function FellowProjectCard({ title, description, link, image, imagePosition = "left center", index }) {
   return (
     <Box
       component={motion.div}
-      whileHover={{ scale: 1.01 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.2 }}
+      whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
       sx={{
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
@@ -196,6 +199,7 @@ FellowProjectCard.propTypes = {
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
   imagePosition: PropTypes.string,
+  index: PropTypes.number,
 };
 
 function CurriculumPreview({ title, embedSrc, embedType, previewContainerSx, previewCtaSx }) {
@@ -362,7 +366,7 @@ CurriculumPreview.propTypes = {
   previewCtaSx: PropTypes.object,
 };
 
-function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" }) {
+function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe", index }) {
   const isLinkCard = ["slack", "notion", "youtube"].includes(embedType) && href;
 
   const previewContainerSx = {
@@ -387,10 +391,12 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
 
   return (
     <Box
-      component={isLinkCard ? "a" : "div"}
-      href={isLinkCard ? href : undefined}
-      target={isLinkCard ? "_blank" : undefined}
-      rel={isLinkCard ? "noopener noreferrer" : undefined}
+      component={motion.div}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5, delay: index * 0.15 }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
       sx={{
         ...threeColCardSx,
         backgroundColor: "#191919",
@@ -401,12 +407,7 @@ function CurriculumCard({ title, subtitle, href, embedSrc, embedType = "iframe" 
         flexDirection: "column",
         textDecoration: "none",
         color: "inherit",
-        transition: "border-color 0.2s ease",
-        "&:hover": isLinkCard
-          ? {
-              borderColor: "#F3801A",
-            }
-          : undefined,
+        cursor: isLinkCard ? "pointer" : "default",
       }}
     >
       <Box
@@ -504,12 +505,24 @@ CurriculumCard.propTypes = {
   href: PropTypes.string,
   embedSrc: PropTypes.string,
   embedType: PropTypes.oneOf(["iframe", "slack", "notion", "youtube"]),
+  index: PropTypes.number,
 };
 
-function StepCard({ number, title, description }) {
+function StepCard({ number, title, description, index }) {
   return (
-    <Box sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", gap: { xs: "24px", md: "48px" }, alignItems: "center", textAlign: "center", maxWidth: { xs: "100%", sm: "320px", md: "none" } }}>
+    <Box
+      component={motion.div}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -10, transition: { duration: 0.3 } }}
+      sx={{ ...threeColCardSx, display: "flex", flexDirection: "column", gap: { xs: "24px", md: "48px" }, alignItems: "center", textAlign: "center", maxWidth: { xs: "100%", sm: "320px", md: "none" }, cursor: "pointer" }}
+    >
       <Box
+        component={motion.div}
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 300 }}
         sx={{
           width: { xs: "48px", md: "60px" },
           height: { xs: "48px", md: "60px" },
@@ -564,6 +577,7 @@ StepCard.propTypes = {
   number: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  index: PropTypes.number,
 };
 
 function NewFellowPage() {
@@ -605,6 +619,10 @@ function NewFellowPage() {
 
       {/* ========== HERO SECTION ========== */}
       <Box
+        component={motion.div}
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
         sx={{
           pt: heroPt,
           px: sectionPx,
@@ -615,6 +633,10 @@ function NewFellowPage() {
       >
         <Box sx={{ display: "flex", flexDirection: "column", gap: heroContentGap }}>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
@@ -626,6 +648,10 @@ function NewFellowPage() {
             <span style={{ color: "#F3801A" }}>TPEO</span> fellowship
           </Typography>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
@@ -678,8 +704,8 @@ function NewFellowPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "40px", lg: "60px" }, maxWidth: "1304px", pb: { xs: "60px", md: "92px" } }}>
-          {fellowshipSteps.map((step) => (
-            <StepCard key={step.number} {...step} />
+          {fellowshipSteps.map((step, index) => (
+            <StepCard key={step.number} {...step} index={index} />
           ))}
         </Box>
       </Box>
@@ -688,6 +714,11 @@ function NewFellowPage() {
 
       {/* ========== SOCIALS SECTION ========== */}
       <Box
+        component={motion.div}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
         sx={{
           py: { xs: "60px", md: "100px" },
           px: sectionPx,
@@ -701,7 +732,11 @@ function NewFellowPage() {
       >
         {/* Star doodle inline with the heading text */}
         <Box
-          component="img"
+          component={motion.img}
+          initial={{ rotate: 0, scale: 0.8 }}
+          whileInView={{ rotate: 360, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
           src={imgDoodle9}
           alt=""
           sx={{
@@ -718,6 +753,11 @@ function NewFellowPage() {
         />
         <Box sx={{ textAlign: "center", maxWidth: "816px", display: "flex", flexDirection: "column", gap: "20px", position: "relative", zIndex: 1 }}>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             sx={{
               fontFamily: "DM Sans, sans-serif",
               fontWeight: 700,
@@ -729,6 +769,11 @@ function NewFellowPage() {
             Socials
           </Typography>
           <Typography
+            component={motion.div}
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
               fontWeight: 400,
@@ -777,23 +822,29 @@ function NewFellowPage() {
             <ChevronLeftIcon fontSize={isMobile ? "small" : "medium"} />
           </IconButton>
 
-          <Box sx={{ display: "flex", gap: { xs: "12px", md: "41px" }, flex: 1, minWidth: 0 }}>
-            {visibleSocialImages.map((image, i) => (
-              <Box
-                key={`${socialCarouselIndex}-${i}`}
-                component="img"
-                src={image}
-                alt={`TPEO social event ${((socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length) + 1}`}
-                sx={{
-                  flex: "1 1 0",
-                  aspectRatio: "1 / 1",
-                  borderRadius: { xs: "12px", md: "20px" },
-                  border: "1px solid #444",
-                  objectFit: "cover",
-                  minWidth: 0,
-                }}
-              />
-            ))}
+          <Box sx={{ display: "flex", gap: { xs: "12px", md: "41px" }, flex: 1, minWidth: 0, overflow: "hidden" }}>
+            <AnimatePresence mode="popLayout">
+              {visibleSocialImages.map((image, i) => (
+                <Box
+                  key={`${socialCarouselIndex}-${i}`}
+                  component={motion.img}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  src={image}
+                  alt={`TPEO social event ${((socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length) + 1}`}
+                  sx={{
+                    flex: "1 1 0",
+                    aspectRatio: "1 / 1",
+                    borderRadius: { xs: "12px", md: "20px" },
+                    border: "1px solid #444",
+                    objectFit: "cover",
+                    minWidth: 0,
+                  }}
+                />
+              ))}
+            </AnimatePresence>
           </Box>
 
           <IconButton
@@ -837,7 +888,7 @@ function NewFellowPage() {
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "24px", md: "40px" }, width: "100%", alignItems: "center" }}>
           {fellowProjects.slice(0, 2).map((project, index) => (
-            <FellowProjectCard key={`${project.title}-${index}`} {...project} />
+            <FellowProjectCard key={`${project.title}-${index}`} {...project} index={index} />
           ))}
         </Box>
 
@@ -919,8 +970,8 @@ function NewFellowPage() {
         />
 
         <Box sx={{ ...cardRowSx, gap: { xs: "24px", lg: "32px" }, maxWidth: "1304px" }}>
-          {curriculumItems.map((item) => (
-            <CurriculumCard key={item.title} {...item} />
+          {curriculumItems.map((item, index) => (
+            <CurriculumCard key={item.title} {...item} index={index} />
           ))}
         </Box>
       </Box>
