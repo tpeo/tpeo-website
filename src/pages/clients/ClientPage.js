@@ -56,7 +56,16 @@ const clientProjects = [
   },
 ];
 
-function ProjectSpotlightCard({ title, description, link, image, imagePosition = "center center", index, animationDirection = "left" }) {
+function ProjectSpotlightCard({
+  title,
+  description,
+  link,
+  image,
+  imageFit = "cover",
+  imagePosition = "center center",
+  index,
+  animationDirection = "left",
+}) {
   const direction = animationDirection === "left" ? -50 : 50;
   return (
     <Box
@@ -155,8 +164,9 @@ function ProjectSpotlightCard({ title, description, link, image, imagePosition =
             flexShrink: 0,
             ml: { xs: 0, md: "-15px" },
             borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
-            objectFit: "cover",
+            objectFit: imageFit,
             objectPosition: imagePosition,
+            backgroundColor: "#FFFFFF",
             minHeight: { xs: "240px", md: "373px" },
             alignSelf: "stretch",
           }}
@@ -193,6 +203,7 @@ ProjectSpotlightCard.propTypes = {
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
+  imageFit: PropTypes.oneOf(["cover", "contain"]),
   imagePosition: PropTypes.string,
   index: PropTypes.number,
   animationDirection: PropTypes.oneOf(["left", "right"]),
@@ -268,6 +279,7 @@ SpotlightCarousel.propTypes = {
       description: PropTypes.string.isRequired,
       link: PropTypes.string.isRequired,
       image: PropTypes.string,
+      imageFit: PropTypes.oneOf(["cover", "contain"]),
       imagePosition: PropTypes.string,
     })
   ).isRequired,
