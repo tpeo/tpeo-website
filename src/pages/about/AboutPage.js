@@ -4,6 +4,7 @@ import { Box, Typography, Divider } from "@mui/material";
 import { motion } from "framer-motion";
 import AnimatedPage from "../../components/AnimatedPage";
 import SectionHeader from "../../components/SectionHeader";
+import MarqueeLogos from "../../components/MarqueeLogos";
 import JoinCTA from "../../components/JoinCTA";
 import {
   pageRootSx,
@@ -20,7 +21,6 @@ import imgPenNib from "../../assets/aboutIcons/pennib.svg";
 import imgMegaphone from "../../assets/aboutIcons/megaphone.svg";
 import imgLightbulb from "../../assets/aboutIcons/lightbulb-complete.svg";
 import imgFellowshipsSection from "../../assets/aboutIcons/fellowships-section.png";
-import imgCompanyLogos from "../../assets/aboutIcons/company-logos-grid.png";
 import imgVector14 from "../../assets/aboutIcons/vector-14.svg";
 import imgVector15 from "../../assets/aboutIcons/vector-15.svg";
 import imgDoodle11 from "../../assets/aboutIcons/fellow-doodle-11.svg";
@@ -737,24 +737,13 @@ function AboutPage() {
       <Divider sx={{ backgroundColor: "#444" }} />
 
       {/* ========== WHERE WE'VE WORKED ========== */}
-      <Box sx={{ ...aboutSectionSx, gap: { xs: "40px", md: "60px" } }}>
+      <Box sx={{ ...aboutSectionSx, gap: { xs: "20px", md: "30px" }, pb: 10 }}>
         <SectionHeader
           title="Where we've worked"
           description="Our members lead the world's top companies"
         />
 
-        <Box
-          component="img"
-          src={imgCompanyLogos}
-          alt="Company logos — Where TPEO members have worked"
-          sx={{
-            width: "100%",
-            maxWidth: "1400px",
-            height: "auto",
-            objectFit: "contain",
-            px: { xs: 0, sm: "8px" },
-          }}
-        />
+        <MarqueeLogos />
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />
