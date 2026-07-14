@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import AnimatedPage from "../../components/AnimatedPage";
 import imgTeamStar from "../../assets/aboutIcons/team-doodle-2.png";
 import imgTeamSquiggle from "../../assets/aboutIcons/team-squiggle.png";
@@ -31,6 +31,9 @@ import imgAdvaithNair from "../../assets/teamMembers/advaith-nair.png";
 import imgKateLock from "../../assets/teamMembers/kate-lock.png";
 import imgYasmineTsan from "../../assets/teamMembers/yasmine-tsan.png";
 import imgNicoCampanell from "../../assets/teamMembers/nico-campanell.png";
+import imgDrishtiGupta from "../../assets/MemberPictures/Drishti Gupta - Product Fellow.jpg";
+import imgIyanSonesra from "../../assets/MemberPictures/Iyan Sonesra - Product Fellow.png";
+import imgStephanieXia from "../../assets/MemberPictures/Stephanie Xia - Corporate Director, Product Lead.jpg";
 import {
   pageRootSx,
   sectionPx,
@@ -48,9 +51,7 @@ const teamData = {
     { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgVenkatSundaram },
     { name: "Krish Parkih", role: "Engineering Director", fellowship: "Engineering Fellow", image: imgKrishParkih },
     { name: "Isa Melendez", role: "Design Director", fellowship: "Design Fellow", image: imgIsaMelendez },
-    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgShrutiNair },
     { name: "Asha Kay Rountree", role: "Corporate Director", fellowship: "Design Fellow", image: imgAshaKayRountree },
-    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgNikithaKumar },
     { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Lead", image: imgKatieVo },
     { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgVietDang },
     { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgShriyaaBalaji },
@@ -58,16 +59,24 @@ const teamData = {
     { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgAayushIshware },
   ],
   Product: [
-    { name: "Rohan Yelandur", role: "Product Lead", image: imgRohanYelandur },
-    { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Lead", image: imgKatieVo },
+    { name: "Aadi Nair", role: "Product Fellow", image: imgAdvaithNair },
     { name: "Archana Arangil", role: "Product Lead", image: imgArchanaArangil },
-    { name: "Advaith Nair", role: "Product Fellow", image: imgAdvaithNair },
+    { name: "Drishti Gupta", role: "Product Fellow", image: imgDrishtiGupta },
+    { name: "Iyan Sonesra", role: "Product Fellow", image: imgIyanSonesra },
     { name: "Kate Lock", role: "Product Fellow", image: imgKateLock },
+    { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Lead", image: imgKatieVo },
+    { name: "Rohan Yelandur", role: "Product Lead", image: imgRohanYelandur },
+    { name: "Stephanie Xia", role: "Product Lead", image: imgStephanieXia, imagePosition: "center 65%" },
+    { name: "Vaishnuv Thiagarajan", role: "President", fellowship: "Product Fellow", image: imgVaishnuvThiagarajan },
+    { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgVenkatSundaram },
+    { name: "Vickie Hu", role: "Projects Director", fellowship: "Product Fellow", image: imgVickieHu },
   ],
   Design: [
     { name: "Lotus Pascale", role: "Design Lead", image: imgDefaultProfile },
     { name: "Yasmine Tsan", role: "Design Lead", image: imgYasmineTsan },
     { name: "Asha Kay Rountree", role: "Design Lead", image: imgAshaKayRountree },
+    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgShrutiNair },
+    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgNikithaKumar },
     { name: "Nico Campanell", role: "Design Member", image: imgNicoCampanell },
   ],
   Engineering: [
@@ -115,7 +124,7 @@ function getCategoryMembers(category) {
   });
 }
 
-function MemberCard({ name, role, fellowship, image }) {
+function MemberCard({ name, role, fellowship, image, imagePosition = "center top" }) {
   const showFellowship = fellowship && fellowship !== role;
 
   return (
@@ -143,7 +152,7 @@ function MemberCard({ name, role, fellowship, image }) {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            objectPosition: "center top",
+            objectPosition: imagePosition,
           }}
         />
       </Box>
@@ -205,6 +214,7 @@ MemberCard.propTypes = {
   role: PropTypes.string.isRequired,
   fellowship: PropTypes.string,
   image: PropTypes.string.isRequired,
+  imagePosition: PropTypes.string,
 };
 
 function TeamPage() {
@@ -319,17 +329,6 @@ function TeamPage() {
                   cursor: "pointer",
                   py: { xs: "10px", md: "15px" },
                   position: "relative",
-                  "&::after": isSelected
-                    ? {
-                        content: '""',
-                        position: "absolute",
-                        bottom: "-1px",
-                        left: 0,
-                        right: 0,
-                        height: "3px",
-                        background: "linear-gradient(90deg, #FB8C14 0%, #F6A606 100%)",
-                      }
-                    : {},
                 }}
               >
                 <Typography
@@ -349,6 +348,21 @@ function TeamPage() {
                 >
                   {cat}
                 </Typography>
+                {isSelected && (
+                  <Box
+                    component={motion.div}
+                    layoutId="team-category-underline"
+                    transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                    sx={{
+                      position: "absolute",
+                      bottom: "-1px",
+                      left: 0,
+                      right: 0,
+                      height: "3px",
+                      background: "linear-gradient(90deg, #FB8C14 0%, #F6A606 100%)",
+                    }}
+                  />
+                )}
               </Box>
             );
           })}
@@ -356,23 +370,30 @@ function TeamPage() {
       </Box>
 
       {/* ========== MEMBERS GRID ========== */}
-      <Box
-        sx={{
-          px: sectionPx,
-          pb: { xs: "60px", md: "128px" },
-          display: "grid",
-          gridTemplateColumns: {
-            xs: "repeat(auto-fill, minmax(130px, 1fr))",
-            sm: "repeat(auto-fill, minmax(260px, 293px))",
-          },
-          gap: { xs: "12px", md: "40px" },
-          justifyContent: "center",
-          minHeight: "400px",
-        }}
-      >
-        {getCategoryMembers(selectedCategory).map((member, index) => (
-          <MemberCard key={`${member.name}-${index}`} {...member} />
-        ))}
+      <Box sx={{ px: sectionPx, pb: { xs: "60px", md: "128px" }, minHeight: "400px" }}>
+        <AnimatePresence mode="wait">
+          <Box
+            key={selectedCategory}
+            component={motion.div}
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            sx={{
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "repeat(auto-fill, minmax(130px, 1fr))",
+                sm: "repeat(auto-fill, minmax(260px, 293px))",
+              },
+              gap: { xs: "12px", md: "40px" },
+              justifyContent: "center",
+            }}
+          >
+            {getCategoryMembers(selectedCategory).map((member, index) => (
+              <MemberCard key={`${member.name}-${index}`} {...member} />
+            ))}
+          </Box>
+        </AnimatePresence>
       </Box>
     </Box>
     </AnimatedPage>

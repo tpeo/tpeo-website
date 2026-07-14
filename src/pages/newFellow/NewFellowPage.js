@@ -70,7 +70,7 @@ const curriculumItems = [
   },
 ];
 
-function FellowProjectCard({ title, description, link, image, imagePosition = "left center", index }) {
+function FellowProjectCard({ title, description, link, image, imageFit = "cover", imagePosition = "left center", index }) {
   return (
     <Box
       component={motion.div}
@@ -162,8 +162,9 @@ function FellowProjectCard({ title, description, link, image, imagePosition = "l
             flexShrink: 0,
             ml: { xs: 0, md: "-15px" },
             borderRadius: { xs: "0 0 12px 12px", md: "0 12px 12px 0" },
-            objectFit: "cover",
+            objectFit: imageFit,
             objectPosition: imagePosition,
+            backgroundColor: "#FFFFFF",
             minHeight: { xs: "250px", md: "373px" },
             alignSelf: "stretch",
           }}
@@ -198,6 +199,7 @@ FellowProjectCard.propTypes = {
   description: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   image: PropTypes.string,
+  imageFit: PropTypes.oneOf(["cover", "contain"]),
   imagePosition: PropTypes.string,
   index: PropTypes.number,
 };
