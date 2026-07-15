@@ -132,7 +132,19 @@ function MemberCard({ name, role, fellowship, image, imagePosition = "center top
       component={motion.div}
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      sx={{ width: "100%", maxWidth: { xs: "180px", sm: "293px" }, display: "flex", flexDirection: "column", gap: "1px", mx: "auto" }}
+      sx={{
+        width: "100%",
+        maxWidth: { xs: "180px", sm: "293px" },
+        display: "flex",
+        flexDirection: "column",
+        gap: "1px",
+        mx: "auto",
+        borderRadius: "20px",
+        transition: "box-shadow 0.3s ease",
+        "&:hover": {
+          boxShadow: "0 10px 38px rgba(243, 128, 26, 0.48)",
+        },
+      }}
     >
       <Box
         sx={{
