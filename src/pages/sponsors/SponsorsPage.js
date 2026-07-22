@@ -32,6 +32,8 @@ import imgPartnerLogo5 from "../../assets/partnerIcons/partner-logo-5.png";
 import imgPartnerLogo6 from "../../assets/partnerIcons/partner-logo-6.png";
 import imgPartnerLogo7 from "../../assets/partnerIcons/partner-logo-7.png";
 import imgPartnerLogo8 from "../../assets/partnerIcons/partner-logo-8.png";
+import imgPartnerLogoCitadel from "../../assets/partnerIcons/partner-logo-citadel.png";
+import imgPartnerLogoServiceNow from "../../assets/partnerIcons/partner-logo-servicenow.png";
 
 import iconTalent from "../../assets/aboutIcons/icon-talent.svg";
 import iconImpact from "../../assets/aboutIcons/icon-impact.svg";
@@ -142,14 +144,15 @@ const tierData = [
 const partnershipLogos = [
   imgPartnerLogo1, imgPartnerLogo2, imgPartnerLogo3,
   imgPartnerLogo4, imgPartnerLogo5, imgPartnerLogo6,
-  imgPartnerLogo7, imgPartnerLogo8
+  imgPartnerLogo7, imgPartnerLogo8,
+  imgPartnerLogoCitadel, imgPartnerLogoServiceNow,
 ];
 
 const recentProject = {
   title: "Texas Cultural Trust #2",
   description:
-    "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-  link: "/clients",
+    "Built an Impact Page, Arts & Providers Map, and Events Calendar for Texas Cultural Trust’s WordPress site so users can explore impact, find arts organizations, and discover events statewide.",
+  link: "https://canva.link/ko7713jg4u5ywrw",
   image: imgCaseStudyTx2,
 };
 
@@ -270,6 +273,9 @@ function ProjectSpotlightCard({ title, description, link, image }) {
         <Box
           component="a"
           href={link}
+          {...(link.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -1091,6 +1097,12 @@ function SponsorsPage() {
               "&.partnership-logo--dim:hover": {
                 filter: "grayscale(0) brightness(1.1)",
               },
+              "&.partnership-logo--brighter": {
+                filter: "grayscale(1) brightness(2.8)",
+              },
+              "&.partnership-logo--brighter:hover": {
+                filter: "grayscale(0) brightness(1.4)",
+              },
               "&.partnership-logo--invert-black": {
                 filter: "grayscale(1) invert(1)",
                 padding: "12px 16px",
@@ -1122,6 +1134,11 @@ function SponsorsPage() {
             <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo6} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
             <Box component={motion.img} src={imgPartnerLogo7} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
             <Box component={motion.img} src={imgPartnerLogo8} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "300px" }, maxWidth: "100%", cursor: "pointer" }} />
+          </Box>
+          {/* Row 4 */}
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center", width: "100%" }}>
+            <Box className="partnership-logo--brighter" component={motion.img} src={imgPartnerLogoCitadel} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "360px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogoServiceNow} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "180px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
           </Box>
         </Box>
       </Box>

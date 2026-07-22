@@ -84,12 +84,6 @@ function Faq({ type, iconStyle = "plus" }) {
       type: "NewFellow",
     },
     {
-      question: "Is there compensation?",
-      answer:
-        "TPEO is a student organization. The fellowship is unpaid, but fellows gain hands-on experience, mentorship, and access to our alumni network.",
-      type: "NewFellow",
-    },
-    {
       question: "What type of projects does TPEO take on?",
       answer:
         "Our new fellows complete a semester-long project in the spring of their first year. New fellow projects are focused on building apps/websites to solve a problem for the UT or greater Austin community. Second-year fellows will work with a client on a semester or year-long project, in which they will go through the full software development lifecycle to build a solution for their client.",
@@ -98,7 +92,7 @@ function Faq({ type, iconStyle = "plus" }) {
     {
       question: "What are the teams?",
       answer:
-        "Teams working on the project will consist of one product manager and two engineers.",
+        "Teams working on the project will consist of one product manager, two engineers, and one designer.",
       type: "Client",
     },
     {

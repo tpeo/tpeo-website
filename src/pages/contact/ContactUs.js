@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Box, Typography, Button, Alert, CircularProgress } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import AnimatedPage from "../../components/AnimatedPage";
 import imgDoodles from "../../assets/aboutIcons/contact-doodles.svg";
 import imgEnvelope from "../../assets/aboutIcons/envelope.svg";
@@ -23,7 +23,7 @@ const socialIcons = [
   { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/@texasproductengineeringorg5958/featured" },
 ];
 
-function ContactInput({ label, placeholder, multiline = false, value, onChange, error }) {
+function ContactInput({ label, placeholder, multiline = false, name, value, onChange, error }) {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: "6px", md: "12px" }, width: "100%" }}>
       <Typography
@@ -39,6 +39,7 @@ function ContactInput({ label, placeholder, multiline = false, value, onChange, 
       </Typography>
       <Box
         component={multiline ? "textarea" : "input"}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
@@ -71,87 +72,76 @@ ContactInput.propTypes = {
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   multiline: PropTypes.bool,
+  name: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
   error: PropTypes.bool,
 };
 
+const CONTACT_EMAIL = "team@txproduct.org";
+
 function ContactUsPage() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     }
-    
+
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = "Please enter a valid email";
     }
-    
+
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
+      newErrors.subject = "Subject is required";
     }
-    
+
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-    
-    try {
-      // Using Formspree for form submission
-      // Replace 'YOUR_FORMSPREE_FORM_ID' with your actual Formspree form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORMSPREE_FORM_ID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+
+    const body = [
+      formData.message.trim(),
+      "",
+      "---",
+      `Name: ${formData.name.trim()}`,
+      `Email: ${formData.email.trim()}`,
+    ].join("\n");
+
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      formData.subject.trim()
+    )}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoUrl;
   };
 
   return (
@@ -234,7 +224,7 @@ function ContactUsPage() {
             </Box>
             <Typography
               component="a"
-              href="mailto:tpeoteam@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
                 fontWeight: 500,
@@ -246,7 +236,7 @@ function ContactUsPage() {
                 width: "fit-content",
               }}
             >
-              tpeoteam@gmail.com
+              {CONTACT_EMAIL}
             </Typography>
           </Box>
 
@@ -301,84 +291,61 @@ function ContactUsPage() {
           }}
         >
           <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: { xs: "12px", md: "16px" } }}>
-            <ContactInput 
-              label="Name" 
-              placeholder="Your name" 
+            <ContactInput
+              label="Name"
+              placeholder="Your name"
               name="name"
               value={formData.name}
               onChange={handleChange}
               error={!!errors.name}
             />
-            <ContactInput 
-              label="Email" 
-              placeholder="Your email" 
+            <ContactInput
+              label="Email"
+              placeholder="Your email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               error={!!errors.email}
             />
-            <ContactInput 
-              label="Subject" 
-              placeholder="What's this about?" 
+            <ContactInput
+              label="Subject"
+              placeholder="What's this about?"
               name="subject"
               value={formData.subject}
               onChange={handleChange}
               error={!!errors.subject}
             />
-            <ContactInput 
-              label="Message" 
-              placeholder="Tell us more...." 
-              multiline 
+            <ContactInput
+              label="Message"
+              placeholder="Tell us more...."
+              multiline
               name="message"
               value={formData.message}
               onChange={handleChange}
               error={!!errors.message}
             />
+            <Button
+              type="submit"
+              sx={{
+                backgroundColor: "#F3801A",
+                color: "#101010",
+                fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                fontWeight: 500,
+                fontSize: { xs: "14px", md: "16px" },
+                textTransform: "none",
+                borderRadius: "12px",
+                px: { xs: "16px", md: "20px" },
+                py: { xs: "8px", md: "12px" },
+                width: { xs: "100%", sm: "fit-content" },
+                mt: { xs: "4px", md: "8px" },
+                "&:hover": {
+                  backgroundColor: "#FB8C14",
+                },
+              }}
+            >
+              Send Message
+            </Button>
           </Box>
-
-          {submitStatus === 'success' && (
-            <Alert severity="success" sx={{ mt: 2 }}>
-              Message sent successfully! We'll get back to you soon.
-            </Alert>
-          )}
-          {submitStatus === 'error' && (
-            <Alert severity="error" sx={{ mt: 2 }}>
-              Failed to send message. Please try again or email us directly at team@txproduct.org
-            </Alert>
-          )}
-          <Button
-            type="submit"
-            disabled={isSubmitting}
-            onClick={handleSubmit}
-            sx={{
-              backgroundColor: "#F3801A",
-              color: "#101010",
-              fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 500,
-              fontSize: { xs: "14px", md: "16px" },
-              textTransform: "none",
-              borderRadius: "12px",
-              px: { xs: "16px", md: "20px" },
-              py: { xs: "8px", md: "12px" },
-              width: { xs: "100%", sm: "fit-content" },
-              "&:hover": {
-                backgroundColor: "#FB8C14",
-              },
-              "&:disabled": {
-                backgroundColor: "#888",
-                color: "#666",
-              },
-            }}
-          >
-            {isSubmitting ? (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CircularProgress size={16} sx={{ color: '#101010' }} />
-                Sending...
-              </Box>
-            ) : (
-              'Send Message'
-            )}
-          </Button>
         </Box>
       </Box>
     </Box>

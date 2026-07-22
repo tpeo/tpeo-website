@@ -1,34 +1,91 @@
+import logo2 from "../assets/workedLogos/logo_2.png";
+import logo3 from "../assets/workedLogos/logo_3.png";
+import logo4 from "../assets/workedLogos/logo_4.png";
+import logo5 from "../assets/workedLogos/logo_5.png";
+import logo6 from "../assets/workedLogos/logo_6.png";
+import logo7 from "../assets/workedLogos/logo_7.png";
+import logo8 from "../assets/workedLogos/logo_8.png";
+import logo9 from "../assets/workedLogos/logo_9.png";
+import logo10 from "../assets/workedLogos/logo_10.png";
+import logo11 from "../assets/workedLogos/logo_11.png";
+import logo12 from "../assets/workedLogos/logo_12.png";
+import logo13 from "../assets/workedLogos/logo_13.png";
+import logo14 from "../assets/workedLogos/logo_14.png";
+import logo15 from "../assets/workedLogos/logo_15.png";
+import logo16 from "../assets/workedLogos/logo_16.png";
+import logo17 from "../assets/workedLogos/logo_17.png";
+import logo18 from "../assets/workedLogos/logo_18.png";
+import logo19 from "../assets/workedLogos/logo_19.png";
+import logo20 from "../assets/workedLogos/logo_20.png";
+import logo21 from "../assets/workedLogos/logo_21.png";
+import logo22 from "../assets/workedLogos/logo_22.png";
+import logo23 from "../assets/workedLogos/logo_23.png";
+import logo24 from "../assets/workedLogos/logo_24.png";
+import logo25 from "../assets/workedLogos/logo_25.png";
+import logo26 from "../assets/workedLogos/logo_26.png";
+import logo27 from "../assets/workedLogos/logo_27.png";
+import logo28 from "../assets/workedLogos/logo_28.png";
+import logo29 from "../assets/workedLogos/logo_29.png";
+import logo30 from "../assets/workedLogos/logo_30.png";
+import logo31 from "../assets/workedLogos/logo_31.png";
+import logo32 from "../assets/workedLogos/logo_32.png";
+import logo33 from "../assets/workedLogos/logo_33.png";
+import logo34 from "../assets/workedLogos/logo_34.png";
+import logo35 from "../assets/workedLogos/logo_35.png";
+import logo36 from "../assets/workedLogos/logo_36.png";
+import logo37 from "../assets/workedLogos/logo_37.png";
+import logo38 from "../assets/workedLogos/logo_38.png";
+import logo39 from "../assets/workedLogos/logo_39.png";
+import logo40 from "../assets/workedLogos/logo_40.png";
+import logo41 from "../assets/workedLogos/logo_41.png";
+import logo42 from "../assets/workedLogos/logo_42.png";
+import logo43 from "../assets/workedLogos/logo_43.png";
+import logo44 from "../assets/workedLogos/logo_44.png";
+import logo45 from "../assets/workedLogos/logo_45.png";
+
 export const logoUrls = [
-  "https://www.figma.com/api/mcp/asset/97ddc33b-f5b4-4699-871b-2a6cc9da8bd5", // amazon
-  "https://www.figma.com/api/mcp/asset/92a7ea43-ee7d-41c6-b383-423cd609ed53", // meta
-  "https://www.figma.com/api/mcp/asset/285b5f72-99f5-490c-939e-f81770d1a385", // apple
-  "https://www.figma.com/api/mcp/asset/3234a720-ec55-4477-b6e7-027c1f9eb058", // microsoft
-  "https://www.figma.com/api/mcp/asset/e759037e-42f7-490f-a2ea-1c22a0f02ffd", // google
-  "https://www.figma.com/api/mcp/asset/2de56e0c-e5b9-44b0-b998-6408ba83f5de", // salesforce
-  "https://www.figma.com/api/mcp/asset/3ae32472-1164-4d45-ab75-d00df1b89070", // snowflake
-  "https://www.figma.com/api/mcp/asset/25937cc3-253d-4998-9b23-29aad0bec2f3", // citadel
-  "https://www.figma.com/api/mcp/asset/9ebadbf8-5325-4c37-b5e9-f01668d03385", // atlassian
-  "https://www.figma.com/api/mcp/asset/d2d26806-dfd9-4c56-9192-b91452f20f89", // databricks
-  "https://www.figma.com/api/mcp/asset/d4f4d62e-c9de-490f-9497-4ae5e994eeb6", // intuit
-  "https://www.figma.com/api/mcp/asset/1ae828cc-e5e4-4b22-93a3-bb850815ae1f", // linkedin
-  "https://www.figma.com/api/mcp/asset/0500f771-b113-4506-b7f1-a69a1f16631a", // slack
-  "https://www.figma.com/api/mcp/asset/268457e2-118a-4672-b418-d77c290a852e", // netflix (pinterest in figma?)
-  "https://www.figma.com/api/mcp/asset/69cde288-c0df-44c4-be3a-1b1c8fd21d41", // airbnb (aws in figma?)
-  "https://www.figma.com/api/mcp/asset/60fd3883-a02e-4275-a02e-ea068c2f3f74", // uber (instagram in figma?)
-  "https://www.figma.com/api/mcp/asset/bfadd3c4-1c60-4894-aec4-068f614686d4", // twitch
-  "https://www.figma.com/api/mcp/asset/c7eb6987-8a69-4823-8ecb-a6e25117c3c8", // datadog
-  "https://www.figma.com/api/mcp/asset/12227f71-f8a9-4b5f-bf98-182985bdcb9d", // dell
-  "https://www.figma.com/api/mcp/asset/9ff3d686-fbaa-4b30-b47c-4a7c113b8620", // benchling
-  "https://www.figma.com/api/mcp/asset/052777bc-9b70-4a76-a4cf-9b9d939cdf89", // palantir
-  "https://www.figma.com/api/mcp/asset/2b6442a2-a9d0-4bc5-90e0-41110844ee8f", // ramp
-  "https://www.figma.com/api/mcp/asset/37be4a5e-e8ea-4c6e-9500-b170f3623d61", // stripe
-  "https://www.figma.com/api/mcp/asset/3361fce2-2541-4f09-b91c-2fdb56de1c41", // bloomberg
-  "https://www.figma.com/api/mcp/asset/583a872e-015a-4247-b899-6f1b97727f50", // adobe
-  "https://www.figma.com/api/mcp/asset/0384a4b7-3dc5-4851-a2c2-6b9e7fd4e3d4", // duolingo
-  "https://www.figma.com/api/mcp/asset/84532bcd-7a1b-4940-b426-5823987c700a", // dropbox
-  "https://www.figma.com/api/mcp/asset/5fe17fcd-5fb4-4e23-95c6-b111e2828734", // roblox
-  "https://www.figma.com/api/mcp/asset/9892136b-1287-498e-aaec-a5d56570f5fd", // blackstone
-  "https://www.figma.com/api/mcp/asset/639e2215-351a-4b79-863f-09c58fa3241d", // mckinsey
-  "https://www.figma.com/api/mcp/asset/50f63d7e-b3dd-4ef6-996f-e51d4fe6e9cd", // bcg
-  "https://www.figma.com/api/mcp/asset/8b924423-c3bf-4d08-8960-1606476e9a80", // lockheed martin
+  logo2, // meta
+  logo3, // apple
+  logo4, // microsoft
+  logo5, // google
+  logo6, // salesforce
+  logo7, // snowflake
+  logo8, // citadel
+  logo9, // atlassian
+  logo10, // databricks
+  logo11, // intuit
+  logo12, // linkedin
+  logo13, // slack
+  logo14, // pinterest
+  logo15, // aws
+  logo16, // instagram
+  logo17, // twitch
+  logo18, // datadog
+  logo19, // dell
+  logo20, // benchling
+  logo21, // palantir
+  logo22, // ramp
+  logo23, // stripe
+  logo24, // bloomberg
+  logo25, // adobe
+  logo26, // duolingo
+  logo27, // dropbox
+  logo28, // roblox
+  logo29, // blackstone
+  logo30, // mckinsey
+  logo31, // bcg
+  logo32, // lockheed martin
+  logo33, // anthropic
+  logo34, // optiver
+  logo35, // jump
+  logo36, // american express
+  logo37, // gemini
+  logo38, // figma
+  logo39, // imc
+  logo40, // capital one
+  logo41, // two sigma
+  logo42, // ibm
+  logo43, // coinbase
+  logo44, // goldman sachs
+  logo45, // amd
 ];

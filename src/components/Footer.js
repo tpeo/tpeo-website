@@ -16,7 +16,7 @@ const footerNavItems = [
 ];
 
 const socialIcons = [
-  { src: socialEmail, alt: "Email", href: "mailto:tpeoteam@gmail.com" },
+  { src: socialEmail, alt: "Email", href: "mailto:team@txproduct.org" },
   { src: socialInstagram, alt: "Instagram", href: "https://www.instagram.com/txproduct" },
   { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/txproduct" },
   { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/@texasproductengineeringorg5958/featured" },
@@ -142,16 +142,16 @@ function FooterDesktop({ onNavigate }) {
       sx={{
         display: { xs: "none", lg: "block" },
         position: "relative",
-        px: "102px",
-        pt: "128px",
-        pb: "60px",
+        px: { lg: "72px", xl: "102px" },
+        pt: { lg: "56px", xl: "64px" },
+        pb: { lg: "36px", xl: "40px" },
       }}
     >
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "flex-start",
+          alignItems: "center",
         }}
       >
         <Box
@@ -160,11 +160,14 @@ function FooterDesktop({ onNavigate }) {
           alt="TPEO Logo"
           onClick={() => onNavigate("/")}
           sx={{
-            height: "80px",
+            height: { lg: "56px", xl: "64px" },
             width: "auto",
+            aspectRatio: "211 / 68",
             objectFit: "contain",
+            display: "block",
             cursor: "pointer",
-            mt: "30px",
+            transition: "opacity 0.2s ease",
+            "&:hover": { opacity: 0.85 },
           }}
         />
 
@@ -174,19 +177,22 @@ function FooterDesktop({ onNavigate }) {
             backgroundColor: "#F3801A",
             color: "#101010",
             fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-            fontWeight: 700,
-            fontSize: "28px",
-            lineHeight: "36px",
-            borderRadius: "13.782px",
-            px: "28.943px",
-            py: "21.707px",
+            fontWeight: 600,
+            fontSize: { lg: "15px", xl: "16px" },
+            lineHeight: 1.2,
+            borderRadius: "10px",
+            px: { lg: "20px", xl: "22px" },
+            py: { lg: "12px", xl: "13px" },
             cursor: "pointer",
             whiteSpace: "nowrap",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            mt: "18px",
-            "&:hover": { backgroundColor: "#FB8C14" },
+            transition: "background-color 0.2s ease, transform 0.2s ease",
+            "&:hover": {
+              backgroundColor: "#FB8C14",
+              transform: "translateY(-1px)",
+            },
           }}
         >
           Join TPEO
@@ -198,26 +204,32 @@ function FooterDesktop({ onNavigate }) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mt: "67.59px",
+          mt: { lg: "36px", xl: "40px" },
         }}
       >
-        <Box sx={{ display: "flex", gap: "60.204px", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: { lg: "32px", xl: "40px" },
+            alignItems: "center",
+          }}
+        >
           {footerNavItems.map(({ path, text }) => (
             <Typography
               key={path}
               onClick={() => onNavigate(path)}
               sx={{
                 fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                fontWeight: 700,
-                fontSize: "22.52px",
-                lineHeight: "normal",
-                color: "#FFFFFF",
+                fontWeight: 500,
+                fontSize: { lg: "15px", xl: "16px" },
+                lineHeight: 1.3,
+                color: "#D7D7D7",
                 cursor: "pointer",
                 whiteSpace: "nowrap",
-                transition: "all 0.2s ease-in-out",
-                "&:hover": { 
+                transition: "color 0.2s ease, transform 0.2s ease",
+                "&:hover": {
                   color: "#F3801A",
-                  transform: "translateY(-2px)"
+                  transform: "translateY(-1px)",
                 },
               }}
             >
@@ -228,19 +240,18 @@ function FooterDesktop({ onNavigate }) {
             onClick={() => onNavigate("/contact")}
             sx={{
               fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-              fontWeight: 700,
-              fontSize: "22.52px",
-              lineHeight: "normal",
+              fontWeight: 500,
+              fontSize: { lg: "15px", xl: "16px" },
+              lineHeight: 1.3,
               color: "#F3801A",
               textDecoration: "underline",
-              textDecorationSkipInk: "none",
-              textUnderlinePosition: "from-font",
+              textUnderlineOffset: "3px",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              transition: "all 0.2s ease-in-out",
-              "&:hover": { 
+              transition: "color 0.2s ease, transform 0.2s ease",
+              "&:hover": {
                 color: "#FB8C14",
-                transform: "translateY(-2px)"
+                transform: "translateY(-1px)",
               },
             }}
           >
@@ -248,7 +259,7 @@ function FooterDesktop({ onNavigate }) {
           </Typography>
         </Box>
 
-        <Box sx={{ display: "flex", gap: "11.246px", alignItems: "flex-start" }}>
+        <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
           {socialIcons.map(({ src, alt, href }) => (
             <Box
               key={alt}
@@ -257,14 +268,24 @@ function FooterDesktop({ onNavigate }) {
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
               sx={{
-                width: "65.933px",
-                height: "65.933px",
+                width: { lg: "36px", xl: "40px" },
+                height: { lg: "36px", xl: "40px" },
                 display: "block",
                 flexShrink: 0,
-                "&:hover": { opacity: 0.8 },
+                opacity: 0.9,
+                transition: "opacity 0.2s ease, transform 0.2s ease",
+                "&:hover": {
+                  opacity: 1,
+                  transform: "translateY(-1px)",
+                },
               }}
             >
-              <Box component="img" src={src} alt={alt} sx={{ width: "100%", height: "100%", display: "block" }} />
+              <Box
+                component="img"
+                src={src}
+                alt={alt}
+                sx={{ width: "100%", height: "100%", display: "block" }}
+              />
             </Box>
           ))}
         </Box>
@@ -274,15 +295,14 @@ function FooterDesktop({ onNavigate }) {
         sx={{
           fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
           fontWeight: 400,
-          fontSize: "18.898px",
-          lineHeight: "normal",
-          color: "#D7D7D7",
+          fontSize: "13px",
+          lineHeight: 1.4,
+          color: "#888888",
           textAlign: "left",
-          mt: "44px",
-          whiteSpace: "nowrap",
+          mt: { lg: "28px", xl: "32px" },
         }}
       >
-        @ 2026 Texas Product Engineering Organization. All rights reserved.
+        © 2026 Texas Product Engineering Organization. All rights reserved.
       </Typography>
     </Box>
   );

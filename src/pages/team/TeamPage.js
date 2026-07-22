@@ -34,6 +34,23 @@ import imgNicoCampanell from "../../assets/teamMembers/nico-campanell.png";
 import imgDrishtiGupta from "../../assets/MemberPictures/Drishti Gupta - Product Fellow.jpg";
 import imgIyanSonesra from "../../assets/MemberPictures/Iyan Sonesra - Product Fellow.png";
 import imgStephanieXia from "../../assets/MemberPictures/Stephanie Xia - Corporate Director, Product Lead.jpg";
+import imgMyshaeAllen from "../../assets/MemberPictures/Myshae Allen - Finance Director, Engineering Fellow.JPG";
+import imgRiannaSkaria from "../../assets/MemberPictures/Rianna Skaria - Engineering Fellow.jpg";
+import imgHantaoJin from "../../assets/MemberPictures/Hantao Jin - Engineering Fellow.jpg";
+import imgOliviaWang from "../../assets/MemberPictures/Olivia Wang - Social Co-Director, Engineering Fellow.jpg";
+import imgMelissaHuang from "../../assets/MemberPictures/Melissa Huang - Events Co-Director, Engineering Fellow.jpeg";
+import imgSarahDing from "../../assets/MemberPictures/Sarah Ding - Engineering Lead.jpg";
+import imgRishindraDavuluri from "../../assets/MemberPictures/Rishindra Davuluri - Engineering Fellow.jpg";
+import imgSahilChowdhury from "../../assets/MemberPictures/Sahil Chowdhury - Engineering Lead.jpg";
+import imgShivanshNikhra from "../../assets/MemberPictures/Shivansh Nikhra - Engineering Fellow.PNG";
+import imgRishiGandikota from "../../assets/MemberPictures/Rishi Gandikota - President, Engineering Fellow.jpeg";
+import imgEvanKuo from "../../assets/MemberPictures/Evan Kuo - Engineering Fellow.png";
+import imgYashKukrecha from "../../assets/MemberPictures/Yash Kukrecha - Engineering Director.jpg";
+import imgAarushiLakhi from "../../assets/MemberPictures/Aarushi Lakhi - Projects Director, Engineering Fellow.jpg";
+import imgAutumnYeats from "../../assets/MemberPictures/Autumn Yeats- Social Co-Director, Design Fellow.JPG";
+import imgSophiaTran from "../../assets/MemberPictures/Sophia Tran - Design Lead.jpg";
+import imgShriyaAtreya from "../../assets/MemberPictures/Shriya Atreya - Design Director.jpg";
+import teamLinkedIn from "../../data/teamLinkedIn";
 import {
   pageRootSx,
   sectionPx,
@@ -42,7 +59,7 @@ import {
   heroContentGap,
 } from "../../styles/pageLayout";
 
-const categories = ["Leadership", "Product", "Design", "Engineering", "Alumni"];
+const categories = ["Leadership", "Product", "Design", "Engineering"];
 
 const teamData = {
   Leadership: [
@@ -51,7 +68,9 @@ const teamData = {
     { name: "Venkat Sundaram", role: "Product Director", fellowship: "Product Fellow", image: imgVenkatSundaram },
     { name: "Krish Parkih", role: "Engineering Director", fellowship: "Engineering Fellow", image: imgKrishParkih },
     { name: "Isa Melendez", role: "Design Director", fellowship: "Design Fellow", image: imgIsaMelendez },
+    { name: "Shruti Nair", role: "Design Co-director", fellowship: "Design Fellow", image: imgShrutiNair },
     { name: "Asha Kay Rountree", role: "Corporate Director", fellowship: "Design Fellow", image: imgAshaKayRountree },
+    { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgNikithaKumar },
     { name: "Katie Vo", role: "Social Co-Director", fellowship: "Product Lead", image: imgKatieVo },
     { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgVietDang },
     { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgShriyaaBalaji },
@@ -74,15 +93,25 @@ const teamData = {
   Design: [
     { name: "Lotus Pascale", role: "Design Lead", image: imgDefaultProfile },
     { name: "Yasmine Tsan", role: "Design Lead", image: imgYasmineTsan },
+    { name: "Sophia Tran", role: "Design Fellow", image: imgSophiaTran },
     { name: "Asha Kay Rountree", role: "Design Lead", image: imgAshaKayRountree },
-    { name: "Shruti Nair", role: "Design Senior Lead", fellowship: "Design Fellow", image: imgShrutiNair },
+    { name: "Shriya Atreya", role: "Design Director", fellowship: "Design Fellow", image: imgShriyaAtreya },
+    { name: "Shruti Nair", role: "Design Co-director", fellowship: "Design Fellow", image: imgShrutiNair },
+    { name: "Autumn Yeats", role: "Design Fellow", image: imgAutumnYeats, imagePosition: "center 35%" },
     { name: "Nikitha Kumar", role: "Marketing Director", fellowship: "Design Fellow", image: imgNikithaKumar },
-    { name: "Nico Campanell", role: "Design Member", image: imgNicoCampanell },
+    { name: "Nico Campanell", role: "Design Fellow", image: imgNicoCampanell },
   ],
   Engineering: [
     { name: "Jenna Lee", role: "Engineering Lead", image: imgJennaLee },
     { name: "Ryan Zhou", role: "Engineering Lead", image: imgRyanZhou },
     { name: "Nolan Yee", role: "Engineering Lead", image: imgNolanYee },
+    { name: "Sarah Ding", role: "Engineering Fellow", image: imgSarahDing },
+    { name: "Sahil Chowdhury", role: "Engineering Fellow", image: imgSahilChowdhury },
+    { name: "Yash Kukrecha", role: "Engineering Fellow", image: imgYashKukrecha },
+    { name: "Rishi Gandikota", role: "Engineering Fellow", image: imgRishiGandikota },
+    { name: "Myshae Allen", role: "Engineering Fellow", image: imgMyshaeAllen },
+    { name: "Olivia Wang", role: "Engineering Fellow", image: imgOliviaWang },
+    { name: "Melissa Huang", role: "Engineering Fellow", image: imgMelissaHuang },
     { name: "Shriyaa Balaji", role: "Events Co-director", fellowship: "Engineering Fellow", image: imgShriyaaBalaji },
     { name: "Viet Dang", role: "Social Co-director", fellowship: "Engineering Fellow", image: imgVietDang },
     { name: "Aayush Ishware", role: "Finance Director", fellowship: "Engineering Fellow", image: imgAayushIshware },
@@ -90,9 +119,12 @@ const teamData = {
     { name: "Krish Patel-Shah", role: "Engineering Fellow", image: imgKrishPatelShah },
     { name: "Mohammad Al Masalmeh", role: "Engineering Fellow", image: imgMohammadAlMasalmeh },
     { name: "Stella Li", role: "Engineering Fellow", image: imgStellaLi },
-  ],
-  Alumni: [
-    { name: "Alumni Name", role: "Past President", fellowship: "Alumni", image: imgDefaultProfile },
+    { name: "Rianna Skaria", role: "Engineering Fellow", image: imgRiannaSkaria },
+    { name: "Hantao Jin", role: "Engineering Fellow", image: imgHantaoJin },
+    { name: "Rishindra Davuluri", role: "Engineering Fellow", image: imgRishindraDavuluri },
+    { name: "Shivansh Nikhra", role: "Engineering Fellow", image: imgShivanshNikhra, imagePosition: "center 35%" },
+    { name: "Evan Kuo", role: "Engineering Fellow", image: imgEvanKuo },
+    { name: "Aarushi Lakhi", role: "Engineering Fellow", image: imgAarushiLakhi },
   ],
 };
 
@@ -126,6 +158,7 @@ function getCategoryMembers(category) {
 
 function MemberCard({ name, role, fellowship, image, imagePosition = "center top" }) {
   const showFellowship = fellowship && fellowship !== role;
+  const linkedInUrl = teamLinkedIn[name];
 
   return (
     <Box
@@ -137,12 +170,19 @@ function MemberCard({ name, role, fellowship, image, imagePosition = "center top
         maxWidth: { xs: "180px", sm: "293px" },
         display: "flex",
         flexDirection: "column",
-        gap: "1px",
         mx: "auto",
         borderRadius: "20px",
+        overflow: "hidden",
+        backgroundColor: "#191919",
+        border: "1px solid #444",
+        position: "relative",
         transition: "box-shadow 0.3s ease",
         "&:hover": {
           boxShadow: "0 10px 38px rgba(243, 128, 26, 0.48)",
+          "& .member-linkedin": {
+            opacity: 1,
+            pointerEvents: "auto",
+          },
         },
       }}
     >
@@ -150,8 +190,7 @@ function MemberCard({ name, role, fellowship, image, imagePosition = "center top
         sx={{
           height: { xs: "160px", sm: "250px" },
           width: "100%",
-          borderRadius: "20px 20px 0 0",
-          overflow: "hidden",
+          flexShrink: 0,
         }}
       >
         <Box
@@ -165,15 +204,15 @@ function MemberCard({ name, role, fellowship, image, imagePosition = "center top
             height: "100%",
             objectFit: "cover",
             objectPosition: imagePosition,
+            display: "block",
           }}
         />
       </Box>
       <Box
         sx={{
-          backgroundColor: "#191919",
-          border: "1px solid #444",
-          borderRadius: "0 0 20px 20px",
           p: { xs: "12px 16px", md: "28px 32px" },
+          pr: linkedInUrl ? { xs: "44px", md: "56px" } : undefined,
+          pb: linkedInUrl ? { xs: "36px", md: "48px" } : undefined,
           display: "flex",
           flexDirection: "column",
           gap: { xs: "4px", md: "12px" },
@@ -217,6 +256,48 @@ function MemberCard({ name, role, fellowship, image, imagePosition = "center top
           )}
         </Box>
       </Box>
+      {linkedInUrl && (
+        <Box
+          component="a"
+          className="member-linkedin"
+          href={linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${name} LinkedIn`}
+          onClick={(e) => e.stopPropagation()}
+          sx={{
+            position: "absolute",
+            right: { xs: "12px", md: "16px" },
+            bottom: { xs: "12px", md: "16px" },
+            width: { xs: "22px", md: "26px" },
+            height: { xs: "22px", md: "26px" },
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "rgba(255, 255, 255, 0.45)",
+            backgroundColor: "transparent",
+            opacity: 0,
+            pointerEvents: "none",
+            transition: "opacity 0.2s ease, color 0.2s ease, transform 0.2s ease",
+            "&:hover": {
+              color: "rgba(255, 255, 255, 0.85)",
+              transform: "scale(1.08)",
+            },
+          }}
+        >
+          <Box
+            component="svg"
+            viewBox="0 0 24 24"
+            aria-hidden
+            sx={{ width: "100%", height: "100%", display: "block" }}
+          >
+            <path
+              fill="currentColor"
+              d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"
+            />
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }
@@ -272,10 +353,10 @@ function TeamPage() {
             position: "absolute",
             pointerEvents: "none",
             mixBlendMode: "lighten",
-            display: { xs: "none", md: "block" },
-            top: { md: "18px", lg: "30px", xl: "42px" },
-            left: { md: "385px", lg: "445px", xl: "525px" },
-            width: { md: "180px", lg: "220px", xl: "256px" },
+            display: { xs: "none", lg: "block" },
+            top: { lg: "30px", xl: "42px" },
+            left: { lg: "445px", xl: "525px" },
+            width: { lg: "220px", xl: "256px" },
             height: "auto",
             zIndex: 2,
           }}
@@ -382,7 +463,7 @@ function TeamPage() {
       </Box>
 
       {/* ========== MEMBERS GRID ========== */}
-      <Box sx={{ px: sectionPx, pb: { xs: "60px", md: "128px" }, minHeight: "400px" }}>
+      <Box sx={{ px: sectionPx, pb: { xs: "60px", md: "128px" }, pt: "8px", minHeight: "400px", overflow: "visible" }}>
         <AnimatePresence mode="wait">
           <Box
             key={selectedCategory}
@@ -399,6 +480,7 @@ function TeamPage() {
               },
               gap: { xs: "12px", md: "40px" },
               justifyContent: "center",
+              overflow: "visible",
             }}
           >
             {getCategoryMembers(selectedCategory).map((member, index) => (

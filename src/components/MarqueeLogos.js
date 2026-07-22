@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { motion } from "framer-motion";
 import { logoUrls } from "../data/workedLogosData";
 
-const LogoItem = ({ logo, isBgLogo }) => (
+const LogoItem = ({ logo }) => (
   <Box
     sx={{
       flexShrink: 0,
@@ -23,37 +23,28 @@ const LogoItem = ({ logo, isBgLogo }) => (
         maxWidth: "100%",
         maxHeight: "100%",
         objectFit: "contain",
-        filter: isBgLogo 
-          ? "grayscale(100%) invert(1) brightness(0.85)" 
-          : "brightness(0) invert(0.85)", 
-        mixBlendMode: isBgLogo ? "screen" : "normal",
-        opacity: 1,
-        transition: "filter 0.3s ease, transform 0.3s ease",
+        filter: "grayscale(1) brightness(1.55) contrast(1.08)",
+        opacity: 0.92,
+        transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease",
         "&:hover": {
-          filter: "brightness(1) invert(0) grayscale(0%)",
-          mixBlendMode: "normal",
-          transform: "scale(1.1)",
+          filter: "none",
+          opacity: 1,
+          transform: "scale(1.08)",
         },
       }}
     />
   </Box>
 );
 
-const getIsBgLogo = (logo) => 
-  logo.includes('9892136b') || // blackstone
-  logo.includes('1ae828cc') || // linkedin
-  logo.includes('2de56e0c') || // salesforce
-  logo.includes('60fd3883') || // instagram
-  logo.includes('268457e2') || // pinterest
-  logo.includes('bfadd3c4');   // logo14 (twitch)
-
 const MarqueeLogos = () => {
-  // Use the verified logo list from Figma and ensure uniqueness
   const logos = Array.from(new Set(logoUrls));
-  
-  // Split logos for two rows or just reuse
-  const row1Logos = [...logos, ...logos];
-  const row2Logos = [...logos.slice().reverse(), ...logos.slice().reverse()];
+  const midpoint = 22;
+  const row1 = logos.slice(0, midpoint);
+  const row2 = logos.slice(midpoint);
+
+  // Duplicate each row so the marquee loop is seamless.
+  const row1Logos = [...row1, ...row1];
+  const row2Logos = [...row2, ...row2];
 
   return (
     <Box
@@ -84,53 +75,23 @@ const MarqueeLogos = () => {
         },
       }}
     >
-      {/* Row 1: Moving Left */}
       <motion.div
-        animate={{
-          x: ["0%", "-50%"],
-        }}
-        transition={{
-          duration: 180, // Even slower
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        style={{
-          display: "flex",
-          width: "max-content",
-          alignItems: "center",
-        }}
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 120, ease: "linear", repeat: Infinity }}
+        style={{ display: "flex", width: "max-content", alignItems: "center" }}
       >
         {row1Logos.map((logo, index) => (
-          <LogoItem 
-            key={`row1-${index}-${logo.slice(-10)}`} 
-            logo={logo} 
-            isBgLogo={getIsBgLogo(logo)} 
-          />
+          <LogoItem key={`row1-${index}-${logo.slice(-10)}`} logo={logo} />
         ))}
       </motion.div>
 
-      {/* Row 2: Moving Right */}
       <motion.div
-        animate={{
-          x: ["-50%", "0%"],
-        }}
-        transition={{
-          duration: 160, // Slightly different speed for visual interest
-          ease: "linear",
-          repeat: Infinity,
-        }}
-        style={{
-          display: "flex",
-          width: "max-content",
-          alignItems: "center",
-        }}
+        animate={{ x: ["-50%", "0%"] }}
+        transition={{ duration: 130, ease: "linear", repeat: Infinity }}
+        style={{ display: "flex", width: "max-content", alignItems: "center" }}
       >
         {row2Logos.map((logo, index) => (
-          <LogoItem 
-            key={`row2-${index}-${logo.slice(-10)}`} 
-            logo={logo} 
-            isBgLogo={getIsBgLogo(logo)} 
-          />
+          <LogoItem key={`row2-${index}-${logo.slice(-10)}`} logo={logo} />
         ))}
       </motion.div>
     </Box>

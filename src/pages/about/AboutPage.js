@@ -713,21 +713,21 @@ function AboutPage() {
             <Box sx={fellowshipBlurbSx}>
               <Typography sx={fellowshipBlurbTitleSx}>Product</Typography>
               <Typography sx={fellowshipBlurbBodySx}>
-                Product fellows will step into the shoes of a Product Manager, learning how to oversee the entire lifecycle of a product from ideation to launch, while collaborating with cross-functional teams to drive product vision and strategy.
+                Learn product management by guiding solutions from ideation to launch while leading cross-functional teams.
               </Typography>
             </Box>
 
             <Box sx={fellowshipBlurbSx}>
               <Typography sx={fellowshipBlurbTitleSx}>Design</Typography>
               <Typography sx={fellowshipBlurbBodySx}>
-                Design fellows immerse themselves in the end-to-end design process, honing design thinking skills through collaboration and decision-making. We cultivate a real-world growth environment where fellows can push the boundaries of their craft through hands-on experience and teamwork.
+                Master UI/UX design through user research, prototyping, visual design thinking, and iterative feedback.
               </Typography>
             </Box>
 
             <Box sx={fellowshipBlurbSx}>
               <Typography sx={fellowshipBlurbTitleSx}>Engineering</Typography>
               <Typography sx={fellowshipBlurbBodySx}>
-                Engineering fellows dive deep into the full-stack development process, mastering the skills needed to build scalable, user-centric applications. From frontend interfaces to backend systems, they collaborate with designers and product managers to bring innovative ideas to life.
+                Build scalable full-stack applications through hands-on development, testing, and deploying real-world products.
               </Typography>
             </Box>
           </Box>

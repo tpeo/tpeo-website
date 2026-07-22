@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton, useMediaQuery, useTheme } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
@@ -594,6 +594,9 @@ function NewFellowPage() {
   }
 
   const [socialCarouselIndex, setSocialCarouselIndex] = useState(0);
+  const [socialDirection, setSocialDirection] = useState(1);
+  const [socialAutoTick, setSocialAutoTick] = useState(0);
+  const socialCooldownRef = useRef(3000);
 
   const visibleSocialImages = Array.from({ length: visibleCount }, (_, i) => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return null;
@@ -602,15 +605,34 @@ function NewFellowPage() {
 
   const handleSocialCarouselPrev = () => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
+    setSocialDirection(-1);
     setSocialCarouselIndex(
       (prev) => (prev - visibleCount + SOCIAL_CAROUSEL_IMAGES.length) % SOCIAL_CAROUSEL_IMAGES.length
     );
+    socialCooldownRef.current = 10000;
+    setSocialAutoTick((tick) => tick + 1);
   };
 
   const handleSocialCarouselNext = () => {
     if (SOCIAL_CAROUSEL_IMAGES.length === 0) return;
+    setSocialDirection(1);
     setSocialCarouselIndex((prev) => (prev + visibleCount) % SOCIAL_CAROUSEL_IMAGES.length);
+    socialCooldownRef.current = 10000;
+    setSocialAutoTick((tick) => tick + 1);
   };
+
+  useEffect(() => {
+    if (SOCIAL_CAROUSEL_IMAGES.length <= visibleCount) return undefined;
+    const timer = setTimeout(() => {
+      setSocialDirection(1);
+      setSocialCarouselIndex(
+        (prev) => (prev + visibleCount) % SOCIAL_CAROUSEL_IMAGES.length
+      );
+      socialCooldownRef.current = 3000;
+      setSocialAutoTick((tick) => tick + 1);
+    }, socialCooldownRef.current);
+    return () => clearTimeout(timer);
+  }, [visibleCount, socialAutoTick]);
 
   return (
     <AnimatedPage>
@@ -824,28 +846,41 @@ function NewFellowPage() {
             <ChevronLeftIcon fontSize={isMobile ? "small" : "medium"} />
           </IconButton>
 
-          <Box sx={{ display: "flex", gap: { xs: "12px", md: "41px" }, flex: 1, minWidth: 0, overflow: "hidden" }}>
-            <AnimatePresence mode="popLayout">
-              {visibleSocialImages.map((image, i) => (
-                <Box
-                  key={`${socialCarouselIndex}-${i}`}
-                  component={motion.img}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.4, ease: "easeInOut" }}
-                  src={image}
-                  alt={`TPEO social event ${((socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length) + 1}`}
-                  sx={{
-                    flex: "1 1 0",
-                    aspectRatio: "1 / 1",
-                    borderRadius: { xs: "12px", md: "20px" },
-                    border: "1px solid #444",
-                    objectFit: "cover",
-                    minWidth: 0,
-                  }}
-                />
-              ))}
+          <Box sx={{ display: "flex", gap: { xs: "12px", md: "41px" }, flex: 1, minWidth: 0, overflow: "hidden", position: "relative" }}>
+            <AnimatePresence mode="wait" custom={socialDirection} initial={false}>
+              <Box
+                key={socialCarouselIndex}
+                component={motion.div}
+                custom={socialDirection}
+                initial={{ opacity: 0, x: socialDirection > 0 ? 72 : -72 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: socialDirection > 0 ? -72 : 72 }}
+                transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                sx={{
+                  display: "flex",
+                  gap: { xs: "12px", md: "41px" },
+                  flex: 1,
+                  minWidth: 0,
+                  width: "100%",
+                }}
+              >
+                {visibleSocialImages.map((image, i) => (
+                  <Box
+                    key={`${socialCarouselIndex}-${i}`}
+                    component="img"
+                    src={image}
+                    alt={`TPEO social event ${((socialCarouselIndex + i) % SOCIAL_CAROUSEL_IMAGES.length) + 1}`}
+                    sx={{
+                      flex: "1 1 0",
+                      aspectRatio: "1 / 1",
+                      borderRadius: { xs: "12px", md: "20px" },
+                      border: "1px solid #444",
+                      objectFit: "cover",
+                      minWidth: 0,
+                    }}
+                  />
+                ))}
+              </Box>
             </AnimatePresence>
           </Box>
 

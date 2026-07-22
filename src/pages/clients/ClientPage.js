@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Box, Typography, Divider, Button, IconButton } from "@mui/material";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedPage from "../../components/AnimatedPage";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -36,8 +36,8 @@ const clientProjects = [
   {
     title: "Texas Cultural Trust #2",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/clients",
+      "Built an Impact Page, Arts & Providers Map, and Events Calendar for Texas Cultural Trust’s WordPress site so users can explore impact, find arts organizations, and discover events statewide.",
+    link: "https://canva.link/ko7713jg4u5ywrw",
     image: imgCaseStudyTx2,
   },
   {
@@ -48,10 +48,10 @@ const clientProjects = [
     image: imgCaseStudySafe,
   },
   {
-    title: "The Arc",
+    title: "The Arc of the Capital Area",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/clients",
+      "Built a SharePoint financial dashboard for The Arc of the Capital Area to track government contracts, automate spend-down with BambooHR data, and help directors monitor budgets and reduce over- and underspending.",
+    link: "https://canva.link/b4atq3b8oxjv40o",
     image: imgCaseStudyTheArc,
   },
 ];
@@ -63,17 +63,10 @@ function ProjectSpotlightCard({
   image,
   imageFit = "cover",
   imagePosition = "center center",
-  index,
-  animationDirection = "left",
 }) {
-  const direction = animationDirection === "left" ? -50 : 50;
   return (
     <Box
       component={motion.div}
-      initial={{ opacity: 0, x: direction }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
       whileHover={{ scale: 1.02, y: -5, transition: { duration: 0.3 } }}
       sx={{
         display: "flex",
@@ -124,6 +117,9 @@ function ProjectSpotlightCard({
         <Box
           component="a"
           href={link}
+          {...(link.startsWith("http")
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
           sx={{
             display: "flex",
             alignItems: "center",
@@ -205,21 +201,57 @@ ProjectSpotlightCard.propTypes = {
   image: PropTypes.string,
   imageFit: PropTypes.oneOf(["cover", "contain"]),
   imagePosition: PropTypes.string,
-  index: PropTypes.number,
-  animationDirection: PropTypes.oneOf(["left", "right"]),
 };
 
-function SpotlightCarousel({ projects, animationDirection = "left" }) {
+const spotlightVariants = {
+  enter: (direction) => ({
+    opacity: 0,
+    x: direction > 0 ? 72 : -72,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: (direction) => ({
+    opacity: 0,
+    x: direction > 0 ? -72 : 72,
+  }),
+};
+
+const SPOTLIGHT_AUTO_MS = 3000;
+const SPOTLIGHT_MANUAL_COOLDOWN_MS = 10000;
+
+function SpotlightCarousel({ projects }) {
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [autoTick, setAutoTick] = useState(0);
+  const cooldownRef = useRef(SPOTLIGHT_AUTO_MS);
   const currentProject = projects[index];
 
   const handlePrev = () => {
+    setDirection(-1);
     setIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    cooldownRef.current = SPOTLIGHT_MANUAL_COOLDOWN_MS;
+    setAutoTick((tick) => tick + 1);
   };
 
   const handleNext = () => {
+    setDirection(1);
     setIndex((prev) => (prev + 1) % projects.length);
+    cooldownRef.current = SPOTLIGHT_MANUAL_COOLDOWN_MS;
+    setAutoTick((tick) => tick + 1);
   };
+
+  useEffect(() => {
+    if (projects.length <= 1) return undefined;
+    const timer = setTimeout(() => {
+      setDirection(1);
+      setIndex((prev) => (prev + 1) % projects.length);
+      cooldownRef.current = SPOTLIGHT_AUTO_MS;
+      setAutoTick((tick) => tick + 1);
+    }, cooldownRef.current);
+    return () => clearTimeout(timer);
+  }, [projects.length, autoTick]);
 
   return (
     <Box
@@ -248,8 +280,21 @@ function SpotlightCarousel({ projects, animationDirection = "left" }) {
         <ChevronLeftIcon fontSize="small" />
       </IconButton>
 
-      <Box sx={{ flex: 1, minWidth: 0 }}>
-        <ProjectSpotlightCard {...currentProject} index={index} animationDirection={animationDirection} />
+      <Box sx={{ flex: 1, minWidth: 0, overflow: "hidden", position: "relative" }}>
+        <AnimatePresence mode="wait" custom={direction} initial={false}>
+          <Box
+            key={index}
+            component={motion.div}
+            custom={direction}
+            variants={spotlightVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <ProjectSpotlightCard {...currentProject} />
+          </Box>
+        </AnimatePresence>
       </Box>
 
       <IconButton
@@ -283,7 +328,6 @@ SpotlightCarousel.propTypes = {
       imagePosition: PropTypes.string,
     })
   ).isRequired,
-  animationDirection: PropTypes.oneOf(["left", "right"]),
 };
 
 function ClientPage() {
@@ -373,7 +417,7 @@ function ClientPage() {
           description="A look at our recent client work."
           maxWidth="816px"
         />
-        <SpotlightCarousel projects={clientProjects} animationDirection="left" />
+        <SpotlightCarousel projects={clientProjects} />
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />
@@ -394,7 +438,7 @@ function ClientPage() {
           description="A look at our recent client work."
           maxWidth="816px"
         />
-        <SpotlightCarousel projects={fellowProjects} animationDirection="right" />
+        <SpotlightCarousel projects={fellowProjects} />
       </Box>
 
       <Divider sx={{ backgroundColor: "#444" }} />
