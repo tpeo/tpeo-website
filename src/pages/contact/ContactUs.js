@@ -79,15 +79,21 @@ ContactInput.propTypes = {
 };
 
 const CONTACT_EMAIL = "team@txproduct.org";
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+
+const emptyFormData = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 function ContactUsPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState(emptyFormData);
   const [errors, setErrors] = useState({});
+  const [honeypot, setHoneypot] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const validateForm = () => {
     const newErrors = {};
@@ -122,26 +128,52 @@ function ContactUsPage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (honeypot) {
+      return;
+    }
 
     if (!validateForm()) {
       return;
     }
 
-    const body = [
-      formData.message.trim(),
-      "",
-      "---",
-      `Name: ${formData.name.trim()}`,
-      `Email: ${formData.email.trim()}`,
-    ].join("\n");
+    setIsSubmitting(true);
+    setSubmitStatus(null);
 
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      formData.subject.trim()
-    )}&body=${encodeURIComponent(body)}`;
+    try {
+      const response = await fetch(FORMSUBMIT_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          _subject: `TPEO Contact: ${formData.subject.trim()}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
 
-    window.location.href = mailtoUrl;
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus("success");
+        setFormData(emptyFormData);
+        setErrors({});
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -202,7 +234,9 @@ function ContactUsPage() {
                 color: "#D7D7D7",
               }}
             >
-              Have a question or want to work with us? We’d love to hear from you.
+              Have a question or want to work with us?
+              <br />
+              We’d love to hear from you.
             </Typography>
           </Box>
 
@@ -291,6 +325,24 @@ function ContactUsPage() {
           }}
         >
           <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: { xs: "12px", md: "16px" } }}>
+            <Box
+              component="input"
+              type="text"
+              name="_honey"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              sx={{
+                position: "absolute",
+                left: "-9999px",
+                width: 0,
+                height: 0,
+                opacity: 0,
+                pointerEvents: "none",
+              }}
+            />
             <ContactInput
               label="Name"
               placeholder="Your name"
@@ -324,8 +376,35 @@ function ContactUsPage() {
               onChange={handleChange}
               error={!!errors.message}
             />
+            {submitStatus === "success" && (
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 400,
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: 1.5,
+                  color: "#7DDA7D",
+                }}
+              >
+                Message sent! We&apos;ll get back to you soon.
+              </Typography>
+            )}
+            {submitStatus === "error" && (
+              <Typography
+                sx={{
+                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+                  fontWeight: 400,
+                  fontSize: { xs: "14px", md: "16px" },
+                  lineHeight: 1.5,
+                  color: "#FF4444",
+                }}
+              >
+                Something went wrong. Please try again or email us at {CONTACT_EMAIL}.
+              </Typography>
+            )}
             <Button
               type="submit"
+              disabled={isSubmitting}
               sx={{
                 backgroundColor: "#F3801A",
                 color: "#101010",
@@ -341,9 +420,14 @@ function ContactUsPage() {
                 "&:hover": {
                   backgroundColor: "#FB8C14",
                 },
+                "&.Mui-disabled": {
+                  backgroundColor: "#F3801A",
+                  color: "#101010",
+                  opacity: 0.7,
+                },
               }}
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </Box>
         </Box>

@@ -53,31 +53,45 @@ const fellowshipBlurbBodySx = {
   fontSize: { xs: "14px", md: "18px" },
   lineHeight: { xs: 1.5, md: "28px" },
   color: "#D7D7D7",
+  width: { xs: "100%", md: "400px" },
+  maxWidth: { xs: "100%", md: "400px" },
 };
 
 const fellowshipBlurbSx = {
-  width: "100%",
+  position: "relative",
+  width: "fit-content",
   maxWidth: "100%",
   textAlign: "center",
   display: "flex",
   flexDirection: "column",
   gap: { xs: "12px", md: "16px" },
   alignItems: "center",
-  justifySelf: "center",
+  justifySelf: { xs: "center", md: "start" },
   cursor: "default",
   p: { xs: "20px", md: "28px 24px" },
   borderRadius: "16px",
-  border: "1px solid transparent",
   backgroundColor: "transparent",
   boxSizing: "border-box",
-  transition: "background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease",
+  transition: "transform 0.35s ease",
+  "&::before": {
+    content: '""',
+    position: "absolute",
+    inset: 0,
+    borderRadius: "16px",
+    border: "1px solid transparent",
+    backgroundColor: "transparent",
+    transition: "background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, backdrop-filter 0.35s ease",
+    zIndex: -1,
+  },
   "&:hover": {
+    transform: "translateY(-4px)",
+  },
+  "&:hover::before": {
     background:
       "linear-gradient(160deg, rgba(25, 25, 25, 0.92) 0%, rgba(243, 128, 26, 0.1) 50%, rgba(25, 25, 25, 0.88) 100%)",
     borderColor: "rgba(243, 128, 26, 0.3)",
     boxShadow:
       "0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 28px rgba(243, 128, 26, 0.1)",
-    transform: "translateY(-4px)",
     backdropFilter: "blur(6px)",
   },
 };
@@ -85,9 +99,28 @@ const fellowshipBlurbSx = {
 const fellowshipBlurbRowSx = {
   display: "grid",
   gridTemplateColumns: { xs: "1fr", md: "1fr 1fr 1fr" },
+  justifyItems: { xs: "center", md: "start" },
   width: "100%",
-  gap: { xs: "48px", md: "16px" },
+  gap: { xs: "48px", md: "56px" },
   mt: { xs: "20px", md: 0 },
+  overflow: "visible",
+  transform: { md: "translateX(-72px)" },
+};
+
+const fellowshipBlurbDesignSx = {
+  ...fellowshipBlurbSx,
+  transform: { md: "translateX(40px)" },
+  "&:hover": {
+    transform: { md: "translateX(40px) translateY(-4px)" },
+  },
+};
+
+const fellowshipBlurbEngineeringSx = {
+  ...fellowshipBlurbSx,
+  transform: { md: "translateX(72px)" },
+  "&:hover": {
+    transform: { md: "translateX(72px) translateY(-4px)" },
+  },
 };
 
 // Feature card data
@@ -717,14 +750,14 @@ function AboutPage() {
               </Typography>
             </Box>
 
-            <Box sx={fellowshipBlurbSx}>
+            <Box sx={fellowshipBlurbDesignSx}>
               <Typography sx={fellowshipBlurbTitleSx}>Design</Typography>
               <Typography sx={fellowshipBlurbBodySx}>
                 Master UI/UX design through user research, prototyping, visual design thinking, and iterative feedback.
               </Typography>
             </Box>
 
-            <Box sx={fellowshipBlurbSx}>
+            <Box sx={fellowshipBlurbEngineeringSx}>
               <Typography sx={fellowshipBlurbTitleSx}>Engineering</Typography>
               <Typography sx={fellowshipBlurbBodySx}>
                 Build scalable full-stack applications through hands-on development, testing, and deploying real-world products.

@@ -89,3 +89,7 @@ export const logoUrls = [
   logo44, // goldman sachs
   logo45, // amd
 ];
+
+export const logoScaleOverrides = {
+  [logo10]: 1.85,
+};

@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { motion } from "framer-motion";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 import { sectionPx } from "../styles/pageLayout";
 
-const APPLICATION_URL = "https://forms.gle/A1MaWe7Tq2KJScHs5";
 const SLACK_URL =
   "https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug";
 
@@ -119,12 +117,8 @@ function JoinCTA() {
           }}
         >
           <Button
-            component="a"
-            href={APPLICATION_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            disabled
             variant="contained"
-            endIcon={<OpenInNewIcon sx={{ fontSize: { xs: "14px", md: "24px" } }} />}
             sx={{
               backgroundColor: "#F3801A",
               color: "#101010",
@@ -137,10 +131,14 @@ function JoinCTA() {
               py: "12px",
               textTransform: "none",
               width: { xs: "100%", sm: "auto" },
-              "&:hover": { backgroundColor: "#FB8C14" },
+              "&.Mui-disabled": {
+                backgroundColor: "#F3801A",
+                color: "#101010",
+                opacity: 0.75,
+              },
             }}
           >
-            Link to Application
+            Applications coming soon!
           </Button>
           <Button
             component="a"

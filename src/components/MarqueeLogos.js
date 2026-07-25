@@ -1,9 +1,12 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
-import { logoUrls } from "../data/workedLogosData";
+import { logoUrls, logoScaleOverrides } from "../data/workedLogosData";
 
-const LogoItem = ({ logo }) => (
+const LogoItem = ({ logo }) => {
+  const scale = logoScaleOverrides[logo] ?? 1;
+
+  return (
   <Box
     sx={{
       flexShrink: 0,
@@ -25,16 +28,18 @@ const LogoItem = ({ logo }) => (
         objectFit: "contain",
         filter: "grayscale(1) brightness(1.55) contrast(1.08)",
         opacity: 0.92,
+        transform: scale !== 1 ? `scale(${scale})` : "none",
         transition: "filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease",
         "&:hover": {
           filter: "none",
           opacity: 1,
-          transform: "scale(1.08)",
+          transform: scale !== 1 ? `scale(${scale * 1.08})` : "scale(1.08)",
         },
       }}
     />
   </Box>
-);
+  );
+};
 
 const MarqueeLogos = () => {
   const logos = Array.from(new Set(logoUrls));

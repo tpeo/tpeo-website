@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import AnimatedPage from "../../components/AnimatedPage";
 import imgTeamStar from "../../assets/aboutIcons/team-doodle-2.png";
 import imgTeamSquiggle from "../../assets/aboutIcons/team-squiggle.png";
-import imgDefaultProfile from "../../assets/aboutIcons/megaphone.png"; // Placeholder
 import imgVaishnuvThiagarajan from "../../assets/teamMembers/vaishnuv-thiagarajan.png";
 import imgVickieHu from "../../assets/teamMembers/vickie-hu.png";
 import imgVenkatSundaram from "../../assets/teamMembers/venkat-sundaram.png";
@@ -50,6 +49,7 @@ import imgAarushiLakhi from "../../assets/MemberPictures/Aarushi Lakhi - Project
 import imgAutumnYeats from "../../assets/MemberPictures/Autumn Yeats- Social Co-Director, Design Fellow.JPG";
 import imgSophiaTran from "../../assets/MemberPictures/Sophia Tran - Design Lead.jpg";
 import imgShriyaAtreya from "../../assets/MemberPictures/Shriya Atreya - Design Director.jpg";
+import imgLotusPascale from "../../assets/MemberPictures/Lotus Pascale - Design Lead.png";
 import teamLinkedIn from "../../data/teamLinkedIn";
 import {
   pageRootSx,
@@ -91,7 +91,7 @@ const teamData = {
     { name: "Vickie Hu", role: "Projects Director", fellowship: "Product Fellow", image: imgVickieHu },
   ],
   Design: [
-    { name: "Lotus Pascale", role: "Design Lead", image: imgDefaultProfile },
+    { name: "Lotus Pascale", role: "Design Lead", image: imgLotusPascale, imagePosition: "center 30%" },
     { name: "Yasmine Tsan", role: "Design Lead", image: imgYasmineTsan },
     { name: "Sophia Tran", role: "Design Fellow", image: imgSophiaTran },
     { name: "Asha Kay Rountree", role: "Design Lead", image: imgAshaKayRountree },

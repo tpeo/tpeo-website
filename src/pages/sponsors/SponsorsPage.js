@@ -142,10 +142,10 @@ const tierData = [
 ];
 
 const partnershipLogos = [
-  imgPartnerLogo1, imgPartnerLogo2, imgPartnerLogo3,
-  imgPartnerLogo4, imgPartnerLogo5, imgPartnerLogo6,
-  imgPartnerLogo7, imgPartnerLogo8,
   imgPartnerLogoCitadel, imgPartnerLogoServiceNow,
+  imgPartnerLogo6, imgPartnerLogo7, imgPartnerLogo8,
+  imgPartnerLogo1, imgPartnerLogo2, imgPartnerLogo3,
+  imgPartnerLogo4, imgPartnerLogo5,
 ];
 
 const recentProject = {
@@ -1119,26 +1119,26 @@ function SponsorsPage() {
           }}
         >
           {/* Row 1 */}
-          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo1} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "272px" }, maxWidth: "100%", cursor: "pointer" }} />
-            <Box component={motion.img} src={imgPartnerLogo2} whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
-            <Box component={motion.img} src={imgPartnerLogo3} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center", width: "100%" }}>
+            <Box className="partnership-logo--brighter" component={motion.img} src={imgPartnerLogoCitadel} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "360px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogoServiceNow} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "180px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
           </Box>
           {/* Row 2 */}
-          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo4} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "140px", md: "301px" }, maxWidth: "100%", cursor: "pointer" }} />
-            <Box className="partnership-logo--invert-black" component={motion.img} src={imgPartnerLogo5} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "85%", md: "560px" }, maxWidth: "560px", cursor: "pointer" }} />
-          </Box>
-          {/* Row 3 */}
           <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: { xs: "wrap", md: "nowrap" }, justifyContent: "center", width: "100%" }}>
             <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo6} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
             <Box component={motion.img} src={imgPartnerLogo7} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
             <Box component={motion.img} src={imgPartnerLogo8} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "300px" }, maxWidth: "100%", cursor: "pointer" }} />
           </Box>
+          {/* Row 3 */}
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo1} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "272px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo2} whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box component={motion.img} src={imgPartnerLogo3} whileHover={{ y: -5, transition: { duration: 0.2 } }} sx={{ width: { xs: "120px", md: "242px" }, maxWidth: "100%", cursor: "pointer" }} />
+          </Box>
           {/* Row 4 */}
-          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center", width: "100%" }}>
-            <Box className="partnership-logo--brighter" component={motion.img} src={imgPartnerLogoCitadel} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "220px", md: "360px" }, maxWidth: "100%", cursor: "pointer" }} />
-            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogoServiceNow} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "180px", md: "280px" }, maxWidth: "100%", cursor: "pointer" }} />
+          <Box sx={{ display: "flex", gap: { xs: "30px", md: "60px" }, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            <Box className="partnership-logo--dim" component={motion.img} src={imgPartnerLogo4} whileHover={{ scale: 1.08, transition: { duration: 0.2 } }} sx={{ width: { xs: "140px", md: "301px" }, maxWidth: "100%", cursor: "pointer" }} />
+            <Box className="partnership-logo--invert-black" component={motion.img} src={imgPartnerLogo5} whileHover={{ scale: 1.05, transition: { duration: 0.2 } }} sx={{ width: { xs: "85%", md: "560px" }, maxWidth: "560px", cursor: "pointer" }} />
           </Box>
         </Box>
       </Box>
