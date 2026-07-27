@@ -29,8 +29,8 @@ const clientProjects = [
   {
     title: "Texas Cultural Trust #1",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/clients",
+      "Designed & implemented a centralized task management system that pulls directly from TXCT’s existing Excel and OneDrive files. Visualized responsibilities and progress in one place to reduce duplicate work without requiring staff to change their current workflow.",
+    link: "https://www.canva.com/design/DAHGyCpz8RY/grXzQOO0kqueouPU5rxx0g/view?utm_content=DAHGyCpz8RY&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=he96b607c79",
     image: imgCaseStudyTx,
   },
   {
@@ -41,11 +41,12 @@ const clientProjects = [
     image: imgCaseStudyTx2,
   },
   {
-    title: "SAFE",
+    title: "SAFE Alliance",
     description:
-      "Designed & implemented a centralized statewide Events Calendar to help users discover arts and cultural events across Texas in one place.",
-    link: "/clients",
+      "Designed & implemented an integrated merchandise drop-shipping and donation platform to help SAFE Alliance generate passive revenue and streamline donor engagement. Created an automated e-commerce experience with flexible giving options and donor thank-you gifts to support survivors across Central Texas.",
+    link: "https://www.figma.com/slides/RuegBoRyCweskkR3m2AiSW/SAFE-Final-Presentation?node-id=2-284&t=EnokUViOdYns1tFZ-0",
     image: imgCaseStudySafe,
+    imageFit: "contain",
   },
   {
     title: "The Arc of the Capital Area",
