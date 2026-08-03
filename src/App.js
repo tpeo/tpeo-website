@@ -9,6 +9,7 @@ import NewFellowPage from "./pages/newFellow/NewFellowPage";
 import TeamPage from "./pages/team/TeamPage";
 import ClientPage from "./pages/clients/ClientPage";
 import SponsorsPage from "./pages/sponsors/SponsorsPage";
+import EventsPage from "./pages/events/EventsPage";
 import JoinTPEOPage from "./pages/join/JoinTPEOPage";
 import ContactUsPage from "./pages/contact/ContactUs";
 
@@ -36,6 +37,7 @@ function App() {
               <Route path="/team" element={<TeamPage />} />
               <Route path="/clients" element={<ClientPage />} />
               <Route path="/sponsors" element={<SponsorsPage />} />
+              <Route path="/events" element={<EventsPage />} />
               <Route path="/join" element={<JoinTPEOPage />} />
               <Route path="/contact" element={<ContactUsPage />} />
             </Routes>

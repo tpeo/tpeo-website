@@ -24,6 +24,7 @@ const navItems = [
   { path: "/new-fellow", text: "Fellowship" },
   { path: "/clients", text: "Projects" },
   { path: "/sponsors", text: "Partners" },
+  { path: "/events", text: "Events" },
 ];
 
 function Header() {
