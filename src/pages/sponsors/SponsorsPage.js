@@ -23,7 +23,6 @@ import imgReachOutDoodle from "../../assets/partnerIcons/reach-out-doodle.png";
 import imgCaseStudyTx2 from "../../assets/partnerIcons/case-study-tx-2-client.png";
 import imgHeroArrowRight from "../../assets/partnerIcons/hero-arrow-right.svg";
 import imgViewMoreProjectsArrow from "../../assets/partnerIcons/view-more-projects-arrow.svg";
-
 import imgPartnerLogo1 from "../../assets/partnerIcons/partner-logo-1.png";
 import imgPartnerLogo2 from "../../assets/partnerIcons/partner-logo-2.png";
 import imgPartnerLogo3 from "../../assets/partnerIcons/partner-logo-3.png";
@@ -139,13 +138,6 @@ const tierData = [
       "Representation at UT flagship tech events across school year",
     ],
   },
-];
-
-const partnershipLogos = [
-  imgPartnerLogoCitadel, imgPartnerLogoServiceNow,
-  imgPartnerLogo6, imgPartnerLogo7, imgPartnerLogo8,
-  imgPartnerLogo1, imgPartnerLogo2, imgPartnerLogo3,
-  imgPartnerLogo4, imgPartnerLogo5,
 ];
 
 const recentProject = {
@@ -1206,4 +1198,3 @@ function SponsorsPage() {
 }
 
 export default SponsorsPage;
-
