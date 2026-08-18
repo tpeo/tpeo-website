@@ -24,7 +24,6 @@ const socialImageContext = require.context(
   /\.(png|jpg|jpeg|JPG|JPEG)$/i
 );
 const SOCIAL_CAROUSEL_IMAGES = socialImageContext.keys().map((key) => socialImageContext(key));
-const SOCIAL_CAROUSEL_VISIBLE_COUNT = 3;
 
 const fellowshipSteps = [
   {
