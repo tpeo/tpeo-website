@@ -19,7 +19,7 @@ const footerNavItems = [
 const socialIcons = [
   { src: socialEmail, alt: "Email", href: "mailto:team@txproduct.org" },
   { src: socialInstagram, alt: "Instagram", href: "https://www.instagram.com/txproduct" },
-  { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/txproduct" },
+  { src: socialLinkedin, alt: "LinkedIn", href: "https://www.linkedin.com/company/tpeo" },
   { src: socialYoutube, alt: "YouTube", href: "https://www.youtube.com/@texasproductengineeringorg5958/featured" },
 ];
 
