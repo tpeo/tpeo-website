@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 
 import { sectionPx } from "../styles/pageLayout";
 
+const APPLICATION_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLScl82Mk-UHscqZ6oj6633yTF0cUcE_K-n7hGbcYj0tzHa1Wsw/viewform";
+
 const SLACK_URL =
   "https://join.slack.com/t/txproduct/shared_invite/zt-2p5x3m8xd-0C8RxZDrqw6intMXII6aug";
 
@@ -91,7 +94,7 @@ function JoinCTA() {
             color: "#D7D7D7",
           }}
         >
-          Applications are NOW open!
+          Applications are live!
         </Typography>
         <Typography
           sx={{
@@ -117,7 +120,10 @@ function JoinCTA() {
           }}
         >
           <Button
-            disabled
+            component="a"
+            href={APPLICATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             variant="contained"
             sx={{
               backgroundColor: "#F3801A",
@@ -131,14 +137,12 @@ function JoinCTA() {
               py: "12px",
               textTransform: "none",
               width: { xs: "100%", sm: "auto" },
-              "&.Mui-disabled": {
-                backgroundColor: "#F3801A",
-                color: "#101010",
-                opacity: 0.75,
+              "&:hover": {
+                backgroundColor: "#e07010",
               },
             }}
           >
-            Applications coming soon!
+            Application live
           </Button>
           <Button
             component="a"
